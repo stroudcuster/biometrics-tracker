@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Biometrics Tracker User Documentation</title>
+<meta name="generator" content="Bluefish 2.2.12" >
+<meta name="author" content="Stroud" >
+<meta name="date" content="2022-11-04T14:53:21-0400" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link rel="stylesheet" type="text/css" href="css/biometrics-tracker.css" />
+<!--
+
+// -->
+</script>
+</head>
+<body>
+<header>Biometrics Tracker User Documentation</header>
+<section id="initial-configuration">
+<h2>Initial Configuration</h2>
+<p>The first time you start the Biometrics Tracker application, you will be presented with the display shown below:</p>
+<img src="images/config-display.png" width="502" height="234" alt="Configuration Window" class="small-screenshot" caption="The Configuration Window"></img>
+<p> 
+You will be asked to specify the font size you would like to use for the application windows.  A smaller font allows the display of more information, 
+a larger font is easier to read.  When you click the ‘Create Config’ button the database file and configuration file will be created.  A folder named 
+"biometrics-tracker" will be created in you home folder.  Within this folder, these folders will be created:
+<dl>
+<dt>data</dt>
+<dd>the SQLite3 database file will be located in this folder</dd>
+<dt>config</dt>
+<dd>configuration information for the Biometrics Tracker application will be located in this folder</dd>
+<dt>logs</dt>
+<dd>log files created by the Biometrics Tracker Schedule function will be located in this folder</dd>
+</dl>
+</p>
+</section>
+<section id="application-window">
+<h2>The Application Window</h2>
+<p>After the initial configuration is completed, and subsequent times that you start the application, you will be presented with the display shown below.  The top bar
+has several drop down menus that are organized in the following fashion.</p>
+<ul class="menu" id="menu-overview">
+<li><a href="add-edit-person.html" target="_blank" class="menu-link">People</a></li>
+<li><a href="entry-edit.html" target="_blank" class="menu-link">Entry/Edit</a></li>
+<li><a href="reports.html" target="_blank" class="menu-link">Reports</a></li>
+<li><a href="import-export.html" target="_blank" class="menu-link">Import/Export</a></li>
+<li><a href="scheduling.html" target="_blank", class="menu-link">Scheduling</a></li>
+<li><a href="help.html" target="_blank" class="menulink">Help</a></li>
+</ul>
+<img src="images/initial-display.png" style="width: 739px; height: 584.25px;" class="screenshot"/>
+</section>
+<section id="general-topics">
+<h2>General Topics</h2>
+<section id="glossary">
+<h2>A Glossary of Terms</h2>
+<dl>
+	<dt id="glossary-checkbox">check box</dt>
+	<dd>One or more GUI elements that allow you to select one or more choices from a list of options</dd>
+	<dt id="glossary-combobox">combo box</dt>
+	<dd>A GUI element the allows you to select from a list of values via a drop-down list that appears when the combo box is in focus.  A value is selected
+	by clicking on it's entry in the list.</dd>
+	<dt id="glossary-datapoint">data point</dt>
+	<dd>Information related to readings that you enter into the Biometrics Tracker.  This consists of the id of the person associated with the data point,
+	the date, time and value of the reading, and optionally a note that gives context to the reading.</dd>
+	<dt id="glossary-dialog">dialog</dt>
+	<dd>A pop up GUI that either informs you of some event, or prompts you to enter a piece of information.  While the dialog is displayed the main GUI may
+	be disabled for entry.  Dialogs generally a Cancel button and a button to indicate that the entry of the requested information is complete.
+	<dt id="glossary-entry-session">entry session/event</dt>
+	<dd>An entry session or event is the result of the conditions stated in a Schedule being met.  A Schedule Entry window will be displayed,
+	prompting you to enter a metric reading.</dd>	
+	<dt id="glossary-field">field, entry field</dt>
+	<dd>GUI elements that allow you to enter numerical or character information.</dd>
+	<dt id="gossary-frequency">frequency</dt>
+	<dd>The interval a Schedule is based on.  Frequency may be Hourly, Daily, Weekly, Monthly or One Time.</dd>
+	<dt id="glossary-gui">GUI</dt>
+	<dd>Graphical User Interface - the window based display and entry elements used in applications.</dd>
+	<dt id="glossary-in-focus">in focus</dt>
+	<dd>An entry field on a GUI is said to be in focus when it is the field that will receive input from the keyboard.  As to move through the 
+	entry fields using the Tab and Back Tab keys or click on a field, the field in focus will change.</dd>
+	<dt id="glossary-interval">interval</dt>
+	<dd>A numeric property of a schedule that determines whether an entry session will be scheduled every hour, day, (interval=1) or every 2nd (interval=2), 
+	3rd (interval=3) hours, days, etc.</dd>
+	<dt id="glossary-metric">metric</dt>
+	<dd>The various types of readings (blood pressure, pulse, etc.) in the application's database.</dd>
+	<dt>property</dt>
+	<dd>A piece of information related to a person, data point, schedule, etc.  For instance, person has ID, name and date of birth properties</dd>
+	<dt id="glossary-radio-button">radio button</dt>
+	<dd>A GUI element the allows you to select a single choice from a list of options</dd>
+	<dt id="glossary-schedule">schedule</dt>
+	<dd>A Schedule is a set of conditions associated with a particular person and data point type.  When the schedule monitor is running and 
+	the Schedule's conditions are met, and Entry Session is initiated.</dd>
+	<dt id="glossary-uom">UOM</dt>
+	<dd>Unit of Measure.  For each numerical metric, there are one of more units of measure (e.g. pounds, kilograms, etc.) that may be used in taking the
+	reading.</dd>
+
+</dl>
+</section>
+<section id="selecting-a-person">
+<h3>Selecting a Person to Work With</h3>
+<p>If more than one person has been entered, all of the functional menu options with the exception of <span class="menu-item">Add a New Person</span> will display 
+a list that of people tracked by the application that allows you to select person whose data you will be working with.  To select a person, 
+double click the list entry displaying their name.</p>
+<img src="images/person-list.png" style="width: 735.75px; height: 572.25px;" class="screenshot"/>
+</section>
+<section id="check-boxes-and-radio-buttons">
+<h2>Check Boxes and Radio Buttons</h2>
+<p>In addition to <a href="#glossary-field" target="_blank" class="glossary-link">entry fields</a> that allow you to enter text or numbers, the Biometrics Tracker uses 
+<a href="#glossary-checkbox" target="_blank" class="glossary-link">check boxes</a> and <a href="#glossary-radio-button" target="_blank" class="glossary-link">radio buttons</a>. You indicate
+your choice by clicking on the box with the left mouse button or by pressing on the space bar when the check box is in focus.  Using the space bar allows you to keep your hands on the key board, which makes for faster an more accurate data entry.  The image below 
+unselected check box in focus.  The fact that it is unchecked is indicated by the gray color.
+</p>
+<img src="images/unchecked-box-in-focus.png" width: 695px; height: 137px; class="small-screenshot"/>
+<p>The image below shows a selected <a href="#glossary-checkbox" target="_blank" class="glossary-link">check box</a>
+<a href="#glossary-in-focus" target="_blank" class="glossary-link">in focus</a>. The fact that it is checked is indicated by the blue color.
+</p>
+<img src="images/checked-box-in-focus.png" width: 630px; height: 136px; class="small-screenshot"/>
+<p>The image below shows a selected <a href="#glossary-checkbox" target="_blank" class="glossary-link">check box</a> out of focus.
+</p>
+<img src="images/checked-box-out-of-focus.png" class="small-screenshot"/>
+<p>A set of <a href="#glossary-radio-button" target="_blank" class="glossary-link">radio buttons</a> that allow you to select a single choice from a set of options.  A radio button is selected by click is with the left mouse button or pressing
+the space bar when the button is <a href="#glossary-in-focus" target="_blank" class="glossary-link">in focus</a>.  The term 'radio button' refers to the station selection buttons on radios in cars of years gone by; pressing one 
+button unset all the others. The image below shows a set of radio buttons, the selected button (AM) in focus and the unselected
+button out of focus.
+</p>
+<img src="images/checked-button-in-focus.png" width: 584px; height: 185px; class="small-screenshot"/>
+<p>The image below shows a selected button (AM) out of focus and an unselected button <a href="#glossary-in-focus" target="_blank" class="glossary-link">
+in focus</a>.  As with the <a href="#glossary-checkbox" target="_blank" class="glossary-link">check boxes</a>, blue indicated a selected state, gray
+indicates an unselected state.
+</p>
+<img src="images/unchecked-button-in-focus.png" width: 548px; height: 85px; class="small-screenshot"/>
+</section>
+<section id="combo-boxes">
+<h2>Combo Boxes</h2>
+<p>A combo box is another GUI element that prompts you to select from a list of choices.  Initially, it looks similar to a regular entry field, except for
+a small arrow in the lower right hand corner. See the image on the left below.  When you click on the combo box, a pop-down list is displayed.  See the
+image in the center below.  Depending on the number of possible values, not all of the choices are initially displayed.  If this is the case, you can scroll though the list of values. To select a
+value, click on it.  The value will appear in the entry field.  See the image on the right below.
+</p>
+<table>
+<tr>
+<td><figure><img src="images/combo-box-1.png" width="329" height="58" alt=""><figcaption>An un-expanded combo box</figcaption></figure></td>
+<td><figure><img src="images/combo-box-2.png" width="320" height="172" alt=""><figcaption>An expanded combo box</figcaption></figure></td>
+<td><figure><img src="images/combo-box-3.png" width="320" height="73" alt=""><figcaption>A combo box with value selected</figcaption></td>
+</tr>
+</table>
+</section>
+<section id="entering-dates-and-times">
+<h3>Entering Dates and Times</h3>
+<p>The date and time entry fields used by the Biometric Tracker have been designed to facilitate fast and accurate entry.  The month, day, hour and minute 
+<a href="#glossary-field" target="_blank" class="glossary-link">fields<a>
+checked to assure that they fall within the valid range of values.  If an invalid value is entered, the <a href="#glossary-field" target="_blank" class="glossary-link">
+field</a> will be cleared and surrounded by a red border, as
+shown below.
+</p>
+<img src="images/invalid-hour-error.png" class="small-screenshot"/>
+<p>  When a date or time field is <a href="#glossary-in-focus" target="_blank" class="glossary-link">in focus</a>, pressing the up or down arrows will increment or decrement the value.  
+You can use either the arrows at the bottom right of the main keyboard or the arrow on the numeric pad, if the NumLock key is not in effect.  If you are entering 
+data points that have accumulated over a period of time, this helps to speed the entry process.
+ </p>
+</section>
+<section id="entering-numeric-data">
+<h3>Entering Numeric Data</h3>
+<p>When entering numeric data, be aware that blanks are not taken as a zero value.  If you enter blanks to a numeric <a href="#glossary-field" target="_blank"
+class="glossary-link">field</a>, it will be bordered in red as shown below.</p>
+<img src="images/blank-numeric-error.png" class="small-screenshot"/>
+</section>
+<footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+include biometrics_tracker/help/*.html
+include biometrics_tracker/help/css/*.css
+include biometrics_tracker/help/images/*.png
+include docs/source/*.rst
+
+
+

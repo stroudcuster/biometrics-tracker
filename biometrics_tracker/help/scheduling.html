@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scheduling the Entry of Biometric Data</title>
+<meta name="generator" content="Bluefish 2.2.12" >
+<meta name="author" content="Stroud" >
+<meta name="date" content="2022-11-04T10:15:49-0400" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link rel="stylesheet" type="text/css" href="css/biometrics-tracker.css" />
+</head>
+<body>
+<h1>Scheduling the Entry of Biometric Data</h1>
+<p>
+If you wish, you can create a set of <a href="glossary.html#glossary-schedule" target="_blank" class="glossary-link">schedules</a> for the recording of biometric measurements.
+<a href="glossary.html#glossary-schedule" target="_blank" class="glossary-link">Entry sessions</a> can be scheduled at hourly, daily, weekly or monthly
+<a href="glossary.html#glossary-interval" target="_blank" class="glossary-link">intervals</a> or on a one-time basis. Each schedule has start and end dates, and you can suspend schedule entries if needed.  The window that is displayed at 
+the scheduled time allows the entry of a single <a href="glossary.html#glossary-metric" target="_blank" class="glossary-link">metric</a>.  The Biometrics Tracker 
+has a background process that monitors the schedules and invokes an entry session at the appropriate times.  Schedules can be suspended either through a 
+<a href="glossary.html#glossary-checkbox" target="_blank" class="glossary-link">checkbox</a> on the <span class="menu-item">Add or Edit Schedule Entries</span>
+function or a button at the bottom of the <span class="widget-label">Scheduled Entry</span> <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a>.
+</p>
+<p>
+Each type of schedule has a time of day <a href="glossary.html#glossary-property" target="_blank" class="glossary-link">property</a> .  For hourly schedules, this specifies the time of day the first of a series of hourly entry sessions will be triggered.  
+For other schedule types, it specifies the single time of day an entry session will be triggered.
+</p>
+<p>Except for  One-Time schedules, each type of schedule has an <a href="glossary.html#glossary-interval" target="_blank" class="glossary-link">interval</a> property that allows you to schedule entry sessions every other hour, every other day, the third
+Tuesday of each month, or every three months.  If you want a schedule to trigger every hour, day, day of week or day place a 1 in this entry field.
+<p>
+<p>Weekly schedules allow you to specify the days of the week on which an entry sessions will be triggered.  Monthly schedules allow you to specify which days of the
+month an entry session will be triggered.</p>
+The scheduling functions are accessed through the Scheduling menu.  The functions provided are listed below:
+</p>
+<ul>
+<li>
+<a href="add-edit-schedules.html" class="menu-item">Add or Edit Schedules</a>
+</li>
+<li>
+<nav><a href="view-upcoming-events.html" class="menu-item">View Upcoming Events</a></nav>
+</li>
+<li>
+<nav><a href="start-scheduler.html" class="menu-item">Start the Scheduler</a></nav>
+</li>
+<li>
+<nav><a href="scheduled-entry.html" class="widget-label">Scheduled Entry window</a></nav>
+</li>
+</ul>
+</section>
+<nav><a href="import-export.html" class="returnlink">Previous Topic: Importing and Exporting Data Points</a></nav>
+<nav><a href="add-edit-schedules.html" class="returnlink">Next Topic: Add or Edit Scheduless</a></nav>
+<nav><a href="user-doc-index.html#menu-overview" target="_parent" class="returnlink">Return to the Menu Overview</a></nav>
+<footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
+</body>
+</html>

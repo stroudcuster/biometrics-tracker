@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Importing and Exporting Data</title>
+<meta name="generator" content="Bluefish 2.2.12" >
+<meta name="author" content="Stroud" >
+<meta name="date" content="2022-11-04T14:53:21-0400" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link rel="stylesheet" type="text/css" href="css/biometrics-tracker.css" />
+</head>
+<body>
+<header>Importing and Exporting Data</header>
+<a href="#export" name="Go to Exporting Data Help" class="internal-link">Go to Exporting Data Help</a>
+<section id="import">
+<h2>Importing Data</h2>
+<p>
+If you've been using a spreadsheet to keep track of your readings, they can probably be imported into the
+Biometrics Tracker application.  This requires that the spreadsheet have columns for the date, time (optional) and
+the values for each type of reading in it's own column.  You can create a Comma Separated Values (CSV) file
+from your spreadsheet application by selecting the "Save As" menu option and selecting the CSV format, or by
+selecting an "Export" function that allows you to create a CSV file.  If you have column headings, those can
+be included in the file.  Some CSV conversions ask if you want to enclose string (alpha character) values in quotes.
+The Biometric Tracker's import function will handle quoted of unquoted strings.  If your data includes, commas however,
+select the option to quote strings if it is available.
+</p>
+<p>
+Once you have created the CSV file and you know its location in your directory structure, select the <span class="menu-item">Import from
+CSV</span> option from the <span class="menu-item">Import/Export</span> menu.  If you are tracking information for more than one person, you will
+be presented with the <span class="widget-label">Person Selection List</span> mentioned previously.  After you select the person associated
+with the data to be imported, you will be presented with a <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> similar to the 
+one shown below.  As with other application functions, if you are only tracking one person, this <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> will be presented immediately after you
+make the menu selection.  It allows you to select the file to be imported and inform the import function
+about the format of the file.  If you click the <span class="widget-label">Browse</span> button to the right of the 
+file name <a href="glossary.html#glossary-entry-field" target="_blank" class="glossary-link">entry field</a>, a file selection <a href="glossary.html#glossary-dialog" target="_blank" class="glossary-link">dialog</a> will be presented.  Select the file to be imported.
+</p>
+<img src="images/import-csv-1.png" width="973" height="761" alt="" class="screenshot">
+<p>
+The first thirty lines of the file will be displayed in the pane in the lower portion of the GUI.  Next there are
+three things you have to know about the format of the CSV file.  Examining the displayed file will help you answer
+these questions.
+</p>
+<img src="images/import-csv-2.png" width="986" height="766" alt="" class="screenshot">
+<ol>
+<li>
+How many lines of column heading are at the start of the file?  These are referred to as header lines. Enter
+this number to the prompt.  In the GUI image above, there are 3 header lines at the top of the displayed file.
+If there are no column heading lines, enter 0.</li>
+<li>
+You may have formatted your spreadsheet so in a series of readings for a given day, the date only appears in
+the first row associated with the day.  See the spreadsheet image below for an example of this format.  If
+you did this, click the <a href="glossary.html#glossary-checkbox" target="_blank" class="glossary-link">check box</a> labeled 
+<span class="widget-label">Use date from previous column if date column is blank</span>.</li>
+<li>
+What data appears in each column.  In a CSV file, each column's data is separated from the others by commas.
+Examine the displayed file or you original spreadsheet.  Use the <a href="glossary.html#glossary-combobox" target="_blank" class="glossary-link">combo box</a>
+ fields to select the type of data associated with each column.  If you want to ignore the contents of the column, pick the 
+ <span class="widget-label">Ignore</span> selection in the combo box associated with that column.  The number to the left of each combo box indicates 
+ the column it is referring to.  Note that the sequence of numbers proceeds horizontally, not vertically.  Be careful to make sure you have all
+of the appropriate selections made, as they will determine how your data is imported into the application's database.
+Once you have all of your selections made, click the <span class="widget-label">Proceed</span> button.  If you decide not the continue with the
+import process, click the <span class="widget-label">Cancel</span> button to exit the GUI.
+</li>
+</ol>
+<p>
+The <span class="widget-label">Select</span> and <span class="widget-label">Save</span> buttons located in the lower right area of the window allow
+you save save and reuse the choices you have made regarding the format of your import file.  This is useful if you will be doing imports periodically; 
+you won't have to scratch you head to remember what selections you made.  The set of selections you make are referred to as an Import Specification.  
+Each Specification is identified by an ID that you assign.  Clicking the <span class="widget-label">Save</span> button will display a pop-up dialog showing you
+a list of Specification IDs you have assigned in the past and prompting you to enter an ID for the new Specification.  Note that you must click the
+<span class="widget-label">Save</span> button before you click the <span class="widget-label">Proceed</span> button.
+</p>
+<img src="images/import-csv-6.png" width="454" height="332" alt="" class="small-screenshot">
+<p>When you want to re-use a specification, click the <span class="widget-label">Select</span> button.  You will be presented with a 
+<a href="glossary.html#glossary-dialog" target="_blank" class="glossary-link">dialog</a> showing you a list of ID's of saved Import Specifications.  
+Double click on the id of the specification you want to use.
+<p>
+<img src="images/import-csv-5.png" width="450" height="369" alt="" class="small-screenshot">
+<p>The <a href="glossary.html#glossary-entry-field" target="_blank" class="glossary-link">entry fields</a> on the GUI will be filled with the values contained in the Import Specification you selected
+</p>
+<p>
+When the import process is complete, a GUI similar to the one shown below will be presented.  Any issued that occurred
+in the importation process will be noted, along with the number of CSV file rows processed and application database
+rows produced.  It's a good idea to produce a <span class="menu-item">History Report</span> so that you can examine the results 
+of the import process in detail.
+</p>
+<img src="images/import-csv-3.png" width="984" height="769" alt="" class="screenshot">
+</section>
+<section id="export">
+<a target="export"></a>
+<h2>Exporting Data</h2>
+<p>
+The information you enter into the Biometrics Tracker database belongs to you.  That means you should be able to move it to other applications.  The Biometrics 
+Tracker application can export data to two formats; a Comma Separated File (CSV) or to the <a href="https://www.sqlite.org/index.html" target="_parent">SQLite3</a> relational database format.  I chose to implement these 
+formats because they are widely used.  You can import the CSV file into a spreadsheet application and the SQLite3 database is open source, it is very widely used 
+and has been around for twenty years.  Most mobile applications that store data directly on the mobile device use this database.
+</p>
+<p>
+To access the Export function, select the <span class="menu-item">Export to CSV/SQL</span> option from the <span class="menu-item">Import/Export</span> menu
+A GUI similar to the one show below will be displayed.
+</p>
+<img src="images/export-1.png" width="980" height="766" alt="" class="screenshot">
+<p>
+The first step is to select a folder where the export file will be placed by entering the folder path into the first 
+<a href="glossary.html#glossary-entry-field" target="_blank" class="glossary-link">entry field</a> on the GUI.
+It is important to note the difference between this prompt and a similar one on the <span class="menu=item">Import From CSV</span> window.  There, you
+were prompted to select a file to be imported... here you are being prompted for a folder where the export file will be placed.  An example of
+the selection dialog is shown below:
+</p>
+<img src="images/export-2.png" width="980" height="764" alt="" class="screenshot">
+<p>
+There are quite a few options presented on this window.  If you are creating an export file to be used to import data into another non-spreadsheet application,
+make sure that you have a detailed specification of the formatting requirements for the file.  If you wish to load it into a spreadsheet for your own use, 
+you can be more flexible.  Before proceeding with the creation of the file, you must be able to answer these questions.
+</p>
+<ol>
+<li>What date range of data to you want to include in the export file.  Note the <span class="widget-label">Start Date</span> and 
+<span class="widget-label">End Date</span> prompts on the window shown below</li>
+<li>What file format do you want to use, CSV or SQL. Note the <span class="widget-label">Export File Type</span> combo box on the window shown below</li>
+<li>Do you want to include a header row.  This applies to CSV files only.  Note the <span class="widget-label">Include Header Row?</span> check box on
+the window shown below</li>
+<li>How will the unit of measure (<a href="glossary.html#glossary-uom" target="_blank" class="glossary-link">UOM</a>) associated with each metric be handled? 
+ There are three options: it can be appended to the <a href="glossary.html#glossary-metric" target="_blank" class="glossary-link">metric</a> value, it can be
+shown in a separate column, or it can be excluded completely. Appending the UOM give a nice appearance, but it may mean that the value cannot be treated
+as a number in the destination application.  If that is a problem, you can chose to each UOM in it's own column, immediately after the value, or you can
+omit it completely.  Note the <span class="widget-label">Units of Measure will be:</span> <a href="glossary.html#glossary-combobox" target="_blank" class="glossary-link">combo box</a>
+ on the GUI shown below</li>
+<li>How will dates and times be formatted: what order should the day, month and year be in, and what character will separate them.
+<li>Which format will you be using for time: 12 or 24 hour.  If you chose a y</span>ear/month/day date format and a 24 hour time format, the resulting
+data may be easier to sort in a spreadsheet application.  See the <span class="widget-label">Date Format</span> and <span class="widget-label">Time Format</span>
+combo boxes on the window shown below</li>
+<li>What information will be included in the export.  This selection is very similar to the field selection options on the 
+<span class="menu-item">Import from CSV</span> window.  See the field selection combo boxes on the GUI shown below.</li>
+</ol>
+<p>The Export function offers the same ability to save and select Specifications as the Import function.  If you export data on a periodic basis, this
+feature can save you some head scratching. When you are satisfied with your selections, click the <span class="widget-label">Proceed</span> button.  
+If you do not want to continue with the export process, click the <span class="widget-label">Cancel</span> button.</p>
+<img src="images/export-3.png" width="976" height="763" alt="" class="screenshot">
+<p>
+When the export file creation is complete, a message similar to the one shown below will be displayed.  Note the export file pathname.  You will need to
+know this to import the information into another application.
+</p>
+<img src="images/export-4.png" width="731" height="126" alt="" class="small-screenshot">
+<p>
+The image shown below shows a portion of a CSV export file that was loaded into the <a href="https://www.libreoffice.org/" target="_parent">Libre Office</a> spreadsheet application.
+</p>
+<img src="images/export-5.png" width="437" height="244" alt="" class="small-screenshot">
+</section>
+
+<nav><a href="reports.html" class="returnlink">Previous Topic: Reports</a></nav>
+<nav><a href="scheduling.html" class="returnlink">Next Topic: Scheduling</a></nav>
+<nav><a href="user-doc-index.html#menu-overview" target="_parent" class="returnlink">Return to the Menu Overview</a></nav>
+<footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
+</body>
+</html>

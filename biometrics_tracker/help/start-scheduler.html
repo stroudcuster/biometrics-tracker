@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Start the Scheduler</title>
+<meta name="generator" content="Bluefish 2.2.12" >
+<meta name="author" content="Stroud" >
+<meta name="date" content="2022-11-04T12:49:27-0400" >
+<meta name="copyright" content="">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8">
+<meta http-equiv="content-style-type" content="text/css">
+<meta http-equiv="expires" content="0">
+<link rel="stylesheet" type="text/css" href="css/biometrics-tracker.css" />
+</head>
+<body>
+<header>Start the Scheduler</header>
+<a target="start-scheduler"></a>
+<p>
+The <span class="menu-item">Start Scheduler</span> function examines the schedules entered for each person tracked by the application and submits one or more time-triggered 
+task to start an entry session for each schedule approaching a trigger point.  You can get a preview of the events to be scheduled by using the 
+<span class="menu-item">View Upcoming Events</span> function.  Selecting the <span class="menu-item">Start Scheduler</span> menu option will display the
+<a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> shown below:
+</p>
+<img src="images/start-scheduler-1.png" width="976" height="771" alt="" class="screenshot">
+<p>Click the <span class="widget-label">Run</span> button to start the Scheduler process.  After a short time, a list of events schedules will be displayed
+on the lower portion of the GUI as shown below.
+</p>
+<img src="images/start-scheduler-2.png" width="978" height="760" alt="" class="screenshot">
+<p>As mentioned above, after <a href="glossary.html#glossary-entry-session" target="_blank" class="glossary-link">entry session</a> tasks have been submitted, a background process is initiated to monitor the tasks and initiate each one when
+its appointed time comes.  If you wish to stop this background process, click the <span class="widget-label">Stop</span> button.
+</p>
+<p>
+Because most of what the Start Scheduler process does is unseen, it posts its actions to log file. This file is created in the biometrics-tracker/logs folder
+located in your home folder.  An example log file is shown below.
+</p>
+<img src="images/start-scheduler-3.png" width="814" height="194" alt="" class="screenshot">
+<nav><a href="view-upcoming-events.html" class="returnlink">View Upcoming Events</a></nav>
+<nav><a href="scheduling.html" class="returnlink"><span class="returnlink">Scheduling</span></a></nav>
+<nav><a href="user-doc-index.html#menu-overview" target="_parent" class="returnlink">Return to the Menu Overview</a></nav>
+<footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
+
+</body>
+</html>

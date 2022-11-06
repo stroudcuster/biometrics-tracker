@@ -1,0 +1,91 @@
+dt {
+	font-weight: bold;
+}
+dl {
+	margin-left: 3cm;
+}
+header {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	color: blue;
+}
+footer {
+	text-align: center;
+	font-size: 75%;
+}
+h2 {
+	text-align: center;
+	font-size: 125%;
+	font-weight: bold;
+	color: blue;
+}
+h3 {
+	font-size: 110%;
+	text-align: center;
+	color: blue;
+}
+a {
+	text-align: center;
+}
+p {
+	margin-left: 2cm;
+	margin-right: 3cm;
+	text-align: justify;
+	font-size: 100%;
+}
+ol {
+	margin-left: 2cm;
+	margin-right: 3cm;
+	font-size: 100%;
+}
+ul {
+	margin-left: 2cm;
+	margin-right: 3cm;
+	font-size: 100%;
+}
+dt {
+	font-weight: bold;
+}
+.menu {
+	padding-left: 3cm;
+	font-size: 100%;
+}
+.returnlink {
+	text-align: center;
+}
+.screenshot {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-left: 5cm;
+}
+.small-screenshot {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-left: 15cm;
+}
+
+.small-screenshot-left {
+	float: left;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-left: 5cm;
+}
+.small-screenshot-right {
+	float: right;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	margin-right: 5cm;
+}
+.menu-item {
+	font-style: italic;
+	color: green;
+}
+.widget-label {
+	font-style: italic;
+	color: blue;
+}
+#glossary {
+	padding-left: 3cm;
+	font-size: 100%;
+}
