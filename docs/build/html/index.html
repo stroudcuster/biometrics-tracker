@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Welcome to Biometrics Tracker’s documentation! &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The MIT License (MIT)" href="LICENSE.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="LICENSE.html" title="The MIT License (MIT)"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to Biometrics Tracker’s documentation!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-biometrics-tracker-s-documentation">
+<h1>Welcome to Biometrics Tracker’s documentation!<a class="headerlink" href="#welcome-to-biometrics-tracker-s-documentation" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="main.html">biometrics_tracker.main module - desktop application entry point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-core.html">biometrics_tracker.main.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-scheduler.html">biometrics_tracker.main.scheduler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-createconfig.html">biometrics_tracker.config-createconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html">biometrics_tracker.config.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html">biometrics_tracker.gui.widgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-validators.html">biometrics_tracker.gui.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-datapoints.html">biometrics_tracker.model.datapoints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-exporters.html">biometrics_tracker.model.exporters module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-importers.html">biometrics_tracker.model.importers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-json_handler.html">biometrics_tracker.model.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-uoms.html">biometrics_tracker.model.uoms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output-reports.html">biometrics_tracker.output.reports module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html">biometrics_tracker.utilities.utilities module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>You will need a current working Python interpreter on your system, preferably version 3.10 or newer.  To download an
+interpreter install package, go to &lt;<a class="reference external" href="https://www.python.org">https://www.python.org</a>&gt; .  If you have an existing Python installation, and you
+wish to download the Biometrics Tracker application for the Python Package repository (PyPI), you should upgrade
+the installation tool, pip to the newest version by entering the command <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">upgrade</span> <span class="pre">pip</span></code> at a command prompt.
+The Biometrics Tracker can be downloaded from PyPI entering the command <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">biometrics-tracker</span></code>
+at a command prompt.</p>
+<p>The application is also available from my GitHub repository at &lt;<a class="reference external" href="https://github.com/stroudcuster/biometrics-tracker/">https://github.com/stroudcuster/biometrics-tracker/</a>&gt;.</p>
+<p>This application provides allows you to record and track the following biometric data for a
+number of people:</p>
+<ul class="simple">
+<li><p>Blood Pressure</p></li>
+<li><p>Pulse</p></li>
+<li><p>Blood Glucose</p></li>
+<li><p>Weight</p></li>
+<li><p>Temperature</p></li>
+</ul>
+<p>The application allows you to specify which metrics will be tracked for each person,
+and what unit of measure will be used in recording each measurement. This makes the entry
+of data more efficient, as no prompts or entry fields are displayed for metrics that are
+not tracked for the person whose data is being entered, viewed or edited.</p>
+<p>Two methods of data entry are provided: a display suited for the entry of one or more
+metrics for a single date and time, and a history edit that allows you to quickly locate
+and change data that was previously entered or imported.</p>
+<p>In addition to the numerical reading, you may enter a note that provides context for the reading,
+for instance whether the reading was taken before or after a meal or exercise.</p>
+<p>The application provides several ways of viewing historical data for a specified period of time:
++  It can be viewed and edited on a GUI display
++  A report can be produced in text or PDF format
++  An export file can be created in several different formats</p>
+<p>Help documentation is included with the application download.  It is available through the Help menu option on
+the application GUI, and is displayed in a browser window.</p>
+<p>I developed this application while recovering from heart surgery and dealing with a new diabetes diagnosis.
+I was recording my readings in a Libre Office spreadsheet, but even the best spreadsheet app makes a less
+than satisfactory database.</p>
+<p>If you’ve been using a spreadsheet or some other application to track your metrics, the application can
+import data from a comma separated values (CSV) file.  The import function allows you to specify the content
+and column order of the file you are importing and reports any problems encountered while importing the data.</p>
+<p>This application is written in Python.  It was developed using Python 3.10 and uses the following external libraries,
+which are will be downloaded during the installation of the Biometrics Tracker application, if they are not
+already on your system:</p>
+<ul class="simple">
+<li><p>ttkbootstrap - GitHub repository &lt;<a class="reference external" href="https://github.com/israel-dryer/ttkbootstrap">https://github.com/israel-dryer/ttkbootstrap</a>&gt; Documentation &lt;<a class="reference external" href="https://ttkbootstrap.readthedocs.io/en/latest/">https://ttkbootstrap.readthedocs.io/en/latest/</a>&gt;</p></li>
+<li><p>fpdf2 - GitHub repository &lt;<a class="reference external" href="https://github.com/reingart/pyfpdf">https://github.com/reingart/pyfpdf</a>&gt; Documentation &lt;<a class="reference external" href="https://pyfpdf.readthedocs.io/en/latest/">https://pyfpdf.readthedocs.io/en/latest/</a>&gt;</p></li>
+<li><p>schedule - GitHub repository &lt;<a class="reference external" href="https://github.com/dbader/schedule">https://github.com/dbader/schedule</a>&gt; Documentation &lt;<a class="reference external" href="https://schedule.readthedocs.io/en/stable/">https://schedule.readthedocs.io/en/stable/</a>&gt;</p></li>
+</ul>
+<p>I used the Pycharm Community Edition IDE to develop the application.  Sphinx was used to build the API documentation.
+User documents were created directly in HTML with the Bluefish editor, as Sphinx gave no small amount of trouble in
+creating these documents.</p>
+<p>The Biometrics Tracker application and related documentation are  published under the MIT open source license and the
+code is available for anyone to view.  Your data stays on your computer and there are no ads or in-app purchases.</p>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to Biometrics Tracker’s documentation!</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="LICENSE.html"
+                          title="next chapter">The MIT License (MIT)</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="LICENSE.html" title="The MIT License (MIT)"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to Biometrics Tracker’s documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>

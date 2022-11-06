@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.model.exporters module &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="biometrics_tracker.model.importers module" href="model-importers.html" />
+    <link rel="prev" title="biometrics_tracker.model.datapoints module" href="model-datapoints.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="model-importers.html" title="biometrics_tracker.model.importers module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="model-datapoints.html" title="biometrics_tracker.model.datapoints module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.model.exporters module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-model-exporters-module">
+<span id="model-exporters"></span><h1>biometrics_tracker.model.exporters module<a class="headerlink" href="#biometrics-tracker-model-exporters-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-biometrics_tracker.model.exporters"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.CSVExporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">CSVExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexed_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_dialect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dialect</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'excel'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.CSVExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase" title="biometrics_tracker.model.exporters.ExporterBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExporterBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.CSVExporter.close_csv_file">
+<span class="sig-name descname"><span class="pre">close_csv_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.CSVExporter.close_csv_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the close action.  Closes the export file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.CSVExporter.column_action">
+<span class="sig-name descname"><span class="pre">column_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.CSVExporter.column_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the column action.  Formats the value, and if specified, the u.o.m.  If the u.o.m. is to
+be put in its own row, a tuple containing the formatted metric value and the u.o.m. is returned.  Otherwise
+a single string is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodPressure" title="biometrics_tracker.model.datapoints.BloodPressure"><em>biometrics_tracker.model.datapoints.BloodPressure</em></a><em>, </em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Pulse" title="biometrics_tracker.model.datapoints.Pulse"><em>Pulse</em></a><em>, </em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodGlucose" title="biometrics_tracker.model.datapoints.BloodGlucose"><em>BloodGlucose</em></a><em>, </em><em>etc</em>) – a instance of one of the metrics classes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.CSVExporter.create_csv_file">
+<span class="sig-name descname"><span class="pre">create_csv_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.CSVExporter.create_csv_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the open action.  Creates a text file and, if specified, writes a header row to the CSV file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.CSVExporter.row_action">
+<span class="sig-name descname"><span class="pre">row_action</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.CSVExporter.row_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the row action.  Write a csv file record</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportSpec">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">ExportSpec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportType" title="biometrics_tracker.model.exporters.ExportType"><span class="pre">ExportType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_header_row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to persist the entry values of the biometrics_tracker.gui.tk_gui.ExportFrame for reuse.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportSpecsCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">ExportSpecsCollection</span></span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportSpecsCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Used to persist a number of instances of ExportSpec, keyed by the ExportSpec.id property</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportSpecsPickler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">ExportSpecsPickler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pickle_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportSpecsPickler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provides pickling and unpickling for an instance of ExportSpecsCollection</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportSpecsPickler.retrieve">
+<span class="sig-name descname"><span class="pre">retrieve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsCollection" title="biometrics_tracker.model.exporters.ExportSpecsCollection"><span class="pre">ExportSpecsCollection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportSpecsPickler.retrieve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpickles and returns an instance of ExportSpecsCollection</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>biometrics_tracker.model.exporters.ExportSpecsCollection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportSpecsPickler.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsCollection" title="biometrics_tracker.model.exporters.ExportSpecsCollection"><span class="pre">ExportSpecsCollection</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportSpecsPickler.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pickles the provided ExportSpecsCollection instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>specs</strong> (<a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsCollection" title="biometrics_tracker.model.exporters.ExportSpecsCollection"><em>biometrics_tracker.model.exporters.ExportSpecsCollection</em></a>) – the ExportFrame enty values to be preserved for later use</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExportType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">ExportType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExportType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">ExporterBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportType" title="biometrics_tracker.model.exporters.ExportType"><span class="pre">ExportType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexed_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>A base class for classes that produce export files from the Biometrics Tracking database</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase.fmt_date">
+<span class="sig-name descname"><span class="pre">fmt_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats a date using the format selected by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<em>datetime.date</em>) – The date to be formated</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A formatted string date</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase.fmt_time">
+<span class="sig-name descname"><span class="pre">fmt_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats a time using the format selected by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tm</strong> (<em>datetime.time</em>) – The time to be formated</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A formatted string time</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase.fmt_value">
+<span class="sig-name descname"><span class="pre">fmt_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Decimal</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats a metric value, appending the u.o.m. if requested by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>Decimal</em><em>, </em><em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>]</em>) – a tuple of (systolic, diastolic) for blood pressure, a single numeric value for all others</p></li>
+<li><p><strong>uom</strong> (<a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><em>biometrics_tracker.model.uoms.UOM</em></a>) – the UOM associated with the metrics</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a formatted string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase.produce_export">
+<span class="sig-name descname"><span class="pre">produce_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataPointRespMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase.produce_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces the export file, using callbacks specified by subclasses to handle open, column, row and close actions
+:param msg: a response message containing a list of DataPoints
+:type msg: biometrics_tracker.ipc.messages.DataPointRespMsg
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.ExporterBase.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.model.exporters.ExporterBase.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method in invoked when the thread is started.  It sends a request to the persistence manager to
+retrieve the datapoints for the specified person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.SQLiteExporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">SQLiteExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexed_fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.SQLiteExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase" title="biometrics_tracker.model.exporters.ExporterBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExporterBase</span></code></a></p>
+<p>Creates an SQLite databaes file and exports datapoints to it.  The database consists of two tables: PEOPLE and
+EXPORT.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.SQLiteExporter.close_sqlite_db">
+<span class="sig-name descname"><span class="pre">close_sqlite_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.SQLiteExporter.close_sqlite_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the close action.  Closes the connection to the export database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.SQLiteExporter.column_action">
+<span class="sig-name descname"><span class="pre">column_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.SQLiteExporter.column_action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle the column action.  Formats the value, and if specified, the u.o.m.  If the u.o.m. is to
+be put in its own row, a tuple containing the formatted metric value and the u.o.m. is returned.  Otherwise
+a single string is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodPressure" title="biometrics_tracker.model.datapoints.BloodPressure"><em>biometrics_tracker.model.datapoints.BloodPressure</em></a><em>, </em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Pulse" title="biometrics_tracker.model.datapoints.Pulse"><em>Pulse</em></a><em>, </em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodGlucose" title="biometrics_tracker.model.datapoints.BloodGlucose"><em>BloodGlucose</em></a><em>, </em><em>etc</em>) – a instance of one of the metrics classes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.SQLiteExporter.create_sqlite_db">
+<span class="sig-name descname"><span class="pre">create_sqlite_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.SQLiteExporter.create_sqlite_db" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Handles the open action.  Creates the database file, inserts a single row into the PEOPLE table and builds</dt><dd><p>an insert statement to be used to insert rows into the EXPORT table.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.SQLiteExporter.insert_data">
+<span class="sig-name descname"><span class="pre">insert_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.SQLiteExporter.insert_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the row action.  Inserts a row into the EXPORT table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.model.exporters.UOMHandlingType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.exporters.</span></span><span class="sig-name descname"><span class="pre">UOMHandlingType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.exporters.UOMHandlingType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.model.exporters module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.CSVExporter"><code class="docutils literal notranslate"><span class="pre">CSVExporter</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.CSVExporter.close_csv_file"><code class="docutils literal notranslate"><span class="pre">CSVExporter.close_csv_file()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.CSVExporter.column_action"><code class="docutils literal notranslate"><span class="pre">CSVExporter.column_action()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.CSVExporter.create_csv_file"><code class="docutils literal notranslate"><span class="pre">CSVExporter.create_csv_file()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.CSVExporter.row_action"><code class="docutils literal notranslate"><span class="pre">CSVExporter.row_action()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpec"><code class="docutils literal notranslate"><span class="pre">ExportSpec</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsCollection"><code class="docutils literal notranslate"><span class="pre">ExportSpecsCollection</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsPickler"><code class="docutils literal notranslate"><span class="pre">ExportSpecsPickler</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsPickler.retrieve"><code class="docutils literal notranslate"><span class="pre">ExportSpecsPickler.retrieve()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportSpecsPickler.save"><code class="docutils literal notranslate"><span class="pre">ExportSpecsPickler.save()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExportType"><code class="docutils literal notranslate"><span class="pre">ExportType</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase"><code class="docutils literal notranslate"><span class="pre">ExporterBase</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_date"><code class="docutils literal notranslate"><span class="pre">ExporterBase.fmt_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_time"><code class="docutils literal notranslate"><span class="pre">ExporterBase.fmt_time()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase.fmt_value"><code class="docutils literal notranslate"><span class="pre">ExporterBase.fmt_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase.produce_export"><code class="docutils literal notranslate"><span class="pre">ExporterBase.produce_export()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.ExporterBase.run"><code class="docutils literal notranslate"><span class="pre">ExporterBase.run()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.SQLiteExporter"><code class="docutils literal notranslate"><span class="pre">SQLiteExporter</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.SQLiteExporter.close_sqlite_db"><code class="docutils literal notranslate"><span class="pre">SQLiteExporter.close_sqlite_db()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.SQLiteExporter.column_action"><code class="docutils literal notranslate"><span class="pre">SQLiteExporter.column_action()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.SQLiteExporter.create_sqlite_db"><code class="docutils literal notranslate"><span class="pre">SQLiteExporter.create_sqlite_db()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.SQLiteExporter.insert_data"><code class="docutils literal notranslate"><span class="pre">SQLiteExporter.insert_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.model.exporters.UOMHandlingType"><code class="docutils literal notranslate"><span class="pre">UOMHandlingType</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="model-datapoints.html"
+                          title="previous chapter">biometrics_tracker.model.datapoints module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="model-importers.html"
+                          title="next chapter">biometrics_tracker.model.importers module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/model-exporters.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="model-importers.html" title="biometrics_tracker.model.importers module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="model-datapoints.html" title="biometrics_tracker.model.datapoints module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.model.exporters module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>

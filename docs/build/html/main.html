@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.main module - desktop application entry point &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API" href="api.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main module - desktop application entry point</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-main-module-desktop-application-entry-point">
+<span id="main"></span><h1>biometrics_tracker.main module - desktop application entry point<a class="headerlink" href="#biometrics-tracker-main-module-desktop-application-entry-point" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-biometrics_tracker.main.main"></span><p>This script is the entry point for the Biometrics Tracking application.  It attempts to open a JSON formatted
+file which contains the application’s configuration info.  If this file is not found, which will happen the first
+time the application is invoked, the config.createconfig.ConfigGUI Window will be presented to allow configuration
+parameters to be set.  If the import succeeds, the gui.Application Window will be presented.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.ErrorDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.main.</span></span><span class="sig-name descname"><span class="pre">ErrorDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.main.ErrorDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code></p>
+<p>Used to present error messages to the user</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.ErrorDialog.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.main.ErrorDialog.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the error message GUI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.Launcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.main.</span></span><span class="sig-name descname"><span class="pre">Launcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.main.Launcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Launches the Biometrics Tracker app, or if this is the first time invocation, prompt for configuation info,
+then start the application</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.Launcher.launch_config">
+<span class="sig-name descname"><span class="pre">launch_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">homepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.main.main.Launcher.launch_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a GUI to prompt the user for configuration info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>homepath</strong> (<em>pathlib.Path</em>) – a pathlib object associated with the user’s home directory</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>quit flag</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.Launcher.launch_gui">
+<span class="sig-name descname"><span class="pre">launch_gui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.main.main.Launcher.launch_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch the Biometric Tracker GUI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>pathlib.Path</em>) – a pathlib object connected to the configuration file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>quit flag</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.Launcher.launch_scheduler">
+<span class="sig-name descname"><span class="pre">launch_scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.main.main.Launcher.launch_scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch the Biomentrics Tracker Scheduler</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config_path</strong> (<em>pathlib.Path</em>) – a Path object pointing to the configuration file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>quit flag</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.Launcher.start_database">
+<span class="sig-name descname"><span class="pre">start_database</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.main.Launcher.start_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the database thread</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The file name of the SQLite3 database</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.main.main.launch">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.main.</span></span><span class="sig-name descname"><span class="pre">launch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.main.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for a configuration file.  If one is found, launch the Biometrics Tracking GUI or Scheduler of Config GUI,
+according to the command line argument.  If not, launch the Config GUI</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.main module - desktop application entry point</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.ErrorDialog"><code class="docutils literal notranslate"><span class="pre">ErrorDialog</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.ErrorDialog.close"><code class="docutils literal notranslate"><span class="pre">ErrorDialog.close()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.Launcher"><code class="docutils literal notranslate"><span class="pre">Launcher</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.Launcher.launch_config"><code class="docutils literal notranslate"><span class="pre">Launcher.launch_config()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.Launcher.launch_gui"><code class="docutils literal notranslate"><span class="pre">Launcher.launch_gui()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.Launcher.launch_scheduler"><code class="docutils literal notranslate"><span class="pre">Launcher.launch_scheduler()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.Launcher.start_database"><code class="docutils literal notranslate"><span class="pre">Launcher.start_database()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.main.main.launch"><code class="docutils literal notranslate"><span class="pre">launch()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="api.html"
+                          title="previous chapter">API</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/main.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="api.html" title="API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main module - desktop application entry point</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>

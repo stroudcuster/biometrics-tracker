@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.gui.validators module &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="biometrics_tracker.model.datapoints module" href="model-datapoints.html" />
+    <link rel="prev" title="biometrics_tracker.gui.widgets module" href="gui-widgets.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="model-datapoints.html" title="biometrics_tracker.model.datapoints module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gui-widgets.html" title="biometrics_tracker.gui.widgets module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.validators module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-gui-validators-module">
+<span id="gui-validators"></span><h1>biometrics_tracker.gui.validators module<a class="headerlink" href="#biometrics-tracker-gui-validators-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-biometrics_tracker.gui.validators"></span><dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.day_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">day_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.day_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a day value to be numeric and between 1 and 31, inclusive.  A more complete validation is done in the
+:method gui.widgets.DateWidget.validate_date(event): method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.hour_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">hour_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.hour_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate an hour value to be numeric and between 1 and 12, inclusive</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.minute_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">minute_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.minute_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a minute value to be numeric and less than or equal to 59</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.month_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">month_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.month_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a month value to be numeric and between 1 and 12 inclusive</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.not_blank_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">not_blank_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.not_blank_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a value to be non-blank</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.numeric_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">numeric_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.numeric_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a value to be numeric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.validators.year_validator">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.validators.</span></span><span class="sig-name descname"><span class="pre">year_validator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.validation.ValidationEvent</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.validators.year_validator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates a year value to be numeric</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>ttkbootstrap.validation.ValidationEvent</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Is the value valid?</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.gui.validators module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.day_validator"><code class="docutils literal notranslate"><span class="pre">day_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.hour_validator"><code class="docutils literal notranslate"><span class="pre">hour_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.minute_validator"><code class="docutils literal notranslate"><span class="pre">minute_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.month_validator"><code class="docutils literal notranslate"><span class="pre">month_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.not_blank_validator"><code class="docutils literal notranslate"><span class="pre">not_blank_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.numeric_validator"><code class="docutils literal notranslate"><span class="pre">numeric_validator()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.validators.year_validator"><code class="docutils literal notranslate"><span class="pre">year_validator()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gui-widgets.html"
+                          title="previous chapter">biometrics_tracker.gui.widgets module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="model-datapoints.html"
+                          title="next chapter">biometrics_tracker.model.datapoints module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/gui-validators.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="model-datapoints.html" title="biometrics_tracker.model.datapoints module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gui-widgets.html" title="biometrics_tracker.gui.widgets module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.validators module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>

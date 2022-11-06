@@ -1,0 +1,1731 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.gui.widgets module &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="biometrics_tracker.gui.validators module" href="gui-validators.html" />
+    <link rel="prev" title="biometrics_tracker.gui.tk_gui module" href="gui-tk-gui.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui-validators.html" title="biometrics_tracker.gui.validators module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.widgets module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-gui-widgets-module">
+<span id="gui-widgets"></span><h1>biometrics_tracker.gui.widgets module<a class="headerlink" href="#biometrics-tracker-gui-widgets-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-biometrics_tracker.gui.widgets"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodGlucoseWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">BloodGlucoseWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="biometrics_tracker.gui.widgets.DataPointWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a></p>
+<p>A widget that allows the entry of a Blood Glucose datapoint</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodGlucoseWidget.check_change">
+<span class="sig-name descname"><span class="pre">check_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.check_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the widgets metric value has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodGlucoseWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the focus on the bg_entry field when the focus_set method on the widget is called
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodGlucoseWidget.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the blood glucose value
+:return: int blood glucose value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodGlucoseWidget.zero_value">
+<span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeros the blood glucose value and set the note to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodPressureWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">BloodPressureWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodPressureWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="biometrics_tracker.gui.widgets.DataPointWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a></p>
+<p>A widget that allows the entry of a Blood Pressure datapoint</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodPressureWidget.check_change">
+<span class="sig-name descname"><span class="pre">check_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.check_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the widgets metric value has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodPressureWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the focus on the systolic_entry field when the focus_set method of the widget is called
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodPressureWidget.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'int'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'int'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the systolic and diastolic values entered to the widget
+:return: tuple(int, int) representing the systolic and diastolic values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BloodPressureWidget.zero_value">
+<span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeros the systolic and diastolic values and set the note to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyTempWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">BodyTempWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyTempWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="biometrics_tracker.gui.widgets.DataPointWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a></p>
+<p>A widget that allows the entry of a Body Temperature datapoint</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyTempWidget.check_change">
+<span class="sig-name descname"><span class="pre">check_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyTempWidget.check_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the widgets metric value has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyTempWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyTempWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the focus on the temp_entry field when the focus_set methold on the widget is called
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyTempWidget.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Decimal</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyTempWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the body temperature value
+:return: Decimal body temperature</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyTempWidget.zero_value">
+<span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyTempWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeros the body temperature value and set the note to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyWeightWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">BodyWeightWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyWeightWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="biometrics_tracker.gui.widgets.DataPointWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a></p>
+<p>A widget that allows the entry of a Body Weight datapoint</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyWeightWidget.check_change">
+<span class="sig-name descname"><span class="pre">check_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.check_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the widgets metric value has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyWeightWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value widget in focus when the focus_set method on the widget is called
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyWeightWidget.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Decimal</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the body weight value
+:return: Decimal body weight value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.BodyWeightWidget.zero_value">
+<span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeros the body weight value and set the note to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Checkbutton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">Checkbutton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Checkbutton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Checkbutton</span></code></p>
+<p>Subclass of ttkbootstrap.Checkbutton that changes it appears when it is in focus, so that the user
+can tell when that can use the space bar to select or unselect a checkbox</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Checkbutton.focus_in">
+<span class="sig-name descname"><span class="pre">focus_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Checkbutton.focus_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler for the &lt;FocusIn&gt; event. Changes config parm bootstyle to ‘toolbutton’
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Checkbutton.focus_out">
+<span class="sig-name descname"><span class="pre">focus_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Checkbutton.focus_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler for the &lt;FocusOut&gt; event.  Changes config parm bootstyle to ‘primary’
+:param event:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DailyScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DailyScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DailyScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a></p>
+<p>A widget to present and modify the info related to ScheduleEntry instances with a Daily frequency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DailyScheduleWidget.get_schedule_entry">
+<span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DailyScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an instance of ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the created instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeComboWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DataPointTypeComboWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ComboBox for selecting an option from a list of DataPointType enum values</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeComboWidget.get_dp_type">
+<span class="sig-name descname"><span class="pre">get_dp_type</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.get_dp_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DataPointType selected by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>biometrics_tracker.model.datapoints.DataPointType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeComboWidget.retrieve_selection">
+<span class="sig-name descname"><span class="pre">retrieve_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.retrieve_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the selection and convert is to a DataPointType.  The values used for the list are the
+returned value from the label method of the corresponding container class.  For instance, the
+value for DataPointType.BG selection comes from BloodGlucose.label()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeComboWidget.set_selection">
+<span class="sig-name descname"><span class="pre">set_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.set_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the selected item in the list of DataPointType enums.  This method performs the inverse of the
+operation performed by the retrieve_selection method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dp_type</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><em>biometrics_tracker.model.datapoints.DataPointType</em></a>) – The DataPointType enum value to be set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DataPointTypeWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A widget that contains a checkbox and a gui.widgets.UOMRadioWidget.  The radio button group is disabled unless
+the checkbox is checked.  This widget is used on gui.tk_gui.PersonFrame to allow the selection of tracked
+metrics and a selection of the u.o.m to be used for the metric</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the focus on the check_btn field when the focus_set method on the DataPointTypeWidget is called</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeWidget.set_tracked">
+<span class="sig-name descname"><span class="pre">set_tracked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget.set_tracked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the variable value for the checkbox.  If the box is checked, the u.o.m radio buttons are enabled,
+otherwise they are disabled
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DataPointWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A base class for widget that allow the entry of information on the recording of a particular type of metric</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.check_changed_note">
+<span class="sig-name descname"><span class="pre">check_changed_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.check_changed_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the note property has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.create_note_entry">
+<span class="sig-name descname"><span class="pre">create_note_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.create_note_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a note entry field either as a Entry in the DataPointFrame, or as a popup invoked a right click</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.edit_note">
+<span class="sig-name descname"><span class="pre">edit_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.edit_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a dialog that allows the note to be edited if it is not displayed on the widget
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.focus_set">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must be overridden to set the focus on the value widget
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.get_note">
+<span class="sig-name descname"><span class="pre">get_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.get_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the text of the note associated with the datapoint
+:return: String note</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.get_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must be overriden to return the value entered for the metric
+:return: metric value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.handle_keypress">
+<span class="sig-name descname"><span class="pre">handle_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.handle_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Watch for up and down arrow key presses, if caught, set focus on the DataPointWidget above or below</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.is_changed">
+<span class="sig-name descname"><span class="pre">is_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.is_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a boolean flag that indicates whether the widgets value property has been changed.  This
+property is maintained by the classes that inherit this class
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidget.zero_value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must be overriden to set the IntVar associated with the value entry for the metric to zero
+and the note field to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidgetFactory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DataPointWidgetFactory</span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidgetFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This factory class creates the apporpriate widget for the specified datapoint type, optionally setting
+the initial field values from an instance of biometrics_tracker.model.datapoints.DataPoint</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointWidgetFactory.make_widget">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">track_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.TrackingConfig" title="biometrics_tracker.model.datapoints.TrackingConfig"><span class="pre">TrackingConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">DataPoint</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_note_field</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget" title="biometrics_tracker.gui.widgets.BloodPressureWidget"><span class="pre">BloodPressureWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget" title="biometrics_tracker.gui.widgets.PulseWidget"><span class="pre">PulseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget" title="biometrics_tracker.gui.widgets.BloodGlucoseWidget"><span class="pre">BloodGlucoseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget" title="biometrics_tracker.gui.widgets.BodyWeightWidget"><span class="pre">BodyWeightWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget" title="biometrics_tracker.gui.widgets.BodyTempWidget"><span class="pre">BodyTempWidget</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointWidgetFactory.make_widget" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> – parent GUI element for the new widget instance</p></li>
+<li><p><strong>track_cfg</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.TrackingConfig" title="biometrics_tracker.model.datapoints.TrackingConfig"><em>biometrics_tracker.model.datapoints.TrackingConfig</em></a>) – contains the DataPointType and UOM info to be used in creating the widget</p></li>
+<li><p><strong>datapoint</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><em>biometrics_tracker.model.datapoints.DataPoint</em></a><em>]</em>) – an optional datapoint to fill the widget field values</p></li>
+<li><p><strong>show_note_field</strong> (<em>bool</em>) – controls whether the widget Note field is shown on the widget of implemented
+as a right-click function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DateWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A general purpose date entry widget</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.clear_key_count">
+<span class="sig-name descname"><span class="pre">clear_key_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.clear_key_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the keystroke counter to 0.  This method is bound to the &lt;FocusIn&gt; event for the month, day and year
+fields
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.day_keypress">
+<span class="sig-name descname"><span class="pre">day_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.day_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks the keystrokes entered to the day field, puts the year entry field in focus after two keystrokes.
+This method is bound to the &lt;KeyPress&gt; event of the day entry field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the month, day and year fields</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the month, day and year fields</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates focus_set to the month entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.get_date">
+<span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.get_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a date value from the values entered to the month, day and year entry fields.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime.date instance</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.month_keypress">
+<span class="sig-name descname"><span class="pre">month_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.month_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks the keystrokes entered to the month field, puts the day entry field in focus after two keystrokes.
+This method is bound to the &lt;KeyPress&gt; event of the month field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.select_range">
+<span class="sig-name descname"><span class="pre">select_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.select_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates select range functionality to the month entry field
+:param start:
+:param end:
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.set_date">
+<span class="sig-name descname"><span class="pre">set_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.set_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the month, day and year field from the provided date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date_value</strong> (<em>date</em>) – the new value for the date widget</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.set_next_entry">
+<span class="sig-name descname"><span class="pre">set_next_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.set_next_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes the widget to focus on when the Tab key is pressed in the Year field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.set_prev_entry">
+<span class="sig-name descname"><span class="pre">set_prev_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.set_prev_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes the widget to focus on when the Back Tab key is pressed in the Month field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.validate_date">
+<span class="sig-name descname"><span class="pre">validate_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.validate_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validates the month, day and year elements of the date and presents a Messagebox if any is invalid
+This method is bound to the Focus Out event of the year entry field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DateWidget.year_keypress">
+<span class="sig-name descname"><span class="pre">year_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DateWidget.year_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks the keystrokes entered to the year field, puts the next entry field on the GUI in focus after two
+keystrokes. This method is bound to the &lt;KeyPress&gt; event of the year entry field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DaysOfMonthManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columnspan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_navigation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Manages a DaysOfMonthWidget by handling navigation (if it is specified) and collecting the days checked for
+each month.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate disable to the widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate enable to the widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass focus_set calls through to the widget
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.get_days_of_months">
+<span class="sig-name descname"><span class="pre">get_days_of_months</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict[slice((&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;),</span> <span class="pre">list[int],</span> <span class="pre">None)]</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.get_days_of_months" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the dict containing the days of the months that were checked.  Before returning, the entries for
+months in which no boxes where checked are removed from the dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DaysOfMonthsType (dict[[int, int]: list[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.next_month">
+<span class="sig-name descname"><span class="pre">next_month</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.next_month" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Next month navigation handler.  Prior to navigation, the checkboxes for the current month are collect
+and placed in a dictionary keyed by year and month. After the new widget is created, the values collected</p>
+</div></blockquote>
+<p>(if any) when the month was navigated away from are used to preset the checkboxes</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.prev_month">
+<span class="sig-name descname"><span class="pre">prev_month</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.prev_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Previous month navigation handler.  Prior to navigation, the checkboxes for the current month are collect
+and placed in a dictionary keyed by year and month. After the new widget is created, the values collected
+(if any) when the month was navigated away from are used to preset the checkboxes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthManager.set_days_of_months">
+<span class="sig-name descname"><span class="pre">set_days_of_months</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">doms:</span> <span class="pre">dict[slice((&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;),</span> <span class="pre">list[int],</span> <span class="pre">None)]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.set_days_of_months" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the initial checked state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>doms</strong> (<em>biometrics_tracker.gui.widgets.DaysOfMonthsType</em>) – the map of the days of months that will be checked</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">DaysOfMonthWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>Presents a calendar frame for the specified month/year, with a checkbox for each day of the month.  Allows the
+user to select days of the month.  Optionally the calendar can naviate through the months via ‘previous month’
+and ‘next month’ buttons</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables each of the days of the month check boxes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables each of the days of the month check boxes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates invocation of the focus_set method to the check box for the first day of the month.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.get_days_of_month">
+<span class="sig-name descname"><span class="pre">get_days_of_month</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.get_days_of_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the days of the month selected by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.handle_arrows">
+<span class="sig-name descname"><span class="pre">handle_arrows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.handle_arrows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles keypresses of the arrow keys to allow navigation within the days of the month.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DaysOfMonthWidget.set_days_of_month">
+<span class="sig-name descname"><span class="pre">set_days_of_month</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.set_days_of_month" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the day of month check boxes for a list of days of the month</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>days</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – a list of the days to be set</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ErrorMessageDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ErrorMessageDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ErrorMessageDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MessageDialog</span></code></p>
+<p>A ttkbootstrap.dialogs Dialog that displays error message</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ErrorMessageDialog.create_body">
+<span class="sig-name descname"><span class="pre">create_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ErrorMessageDialog.create_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overrides the create_body method of the base class.  Builds the body of the Dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>Tkinter derived Window</em><em> or </em><em>Frame</em>) – the GUI parent for this Dialog</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.HourlyScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">HourlyScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.HourlyScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a></p>
+<p>A widget to present and modify the info related to ScheduleEntry instances with an Hourly frequency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.HourlyScheduleWidget.get_schedule_entry">
+<span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.HourlyScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an instance of ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the created instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportFieldWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ImportExportFieldWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A widget that represents a field in an import or export file.  Each widget instance is associated with one
+of the string values defined at the beginning of the model.importers module</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_index">
+<span class="sig-name descname"><span class="pre">field_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the int value that specifies the position of the field in the CSV file
+:return: int field index</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_name">
+<span class="sig-name descname"><span class="pre">field_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the selected field anme
+:return: string field name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportFieldWidget.is_changed">
+<span class="sig-name descname"><span class="pre">is_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.is_changed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Has a field name selection changed
+:return: boolean True is field name has changed, False otherwise</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ImportExportSaveSpecWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Toplevel</span></code></p>
+<p>A dialog displays a list of existing ImportSpec or ExportSpec ID’s and prompts the user for the ID of
+the spec about to be persisted</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.get_spec_id">
+<span class="sig-name descname"><span class="pre">get_spec_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.get_spec_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the entered ID
+:return: the entered ID
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dislays the dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ImportExportSpecButtons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>This widget contains a pair of buttons, one which invokes the display of an ImportExportSpecsListWidget and
+one which invokes the display of an ImportExportSaveSpecWidget</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_save_widget">
+<span class="sig-name descname"><span class="pre">destroy_save_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_save_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy the currently displayed ImportExportSaveSpecWidget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_spec_list">
+<span class="sig-name descname"><span class="pre">destroy_spec_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_spec_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy the currently displayed ImportExportSpecsListWidget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_saved_spec_id">
+<span class="sig-name descname"><span class="pre">get_saved_spec_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_saved_spec_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the ID entered to an ImportExportSaveSpec dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the entered ID</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_selected_spec_id">
+<span class="sig-name descname"><span class="pre">get_selected_spec_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_selected_spec_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the id of the Spec selected on the ImportExportSpecsListWidget dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the selected ID</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.save_specs">
+<span class="sig-name descname"><span class="pre">save_specs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.save_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an ImportExportSaveSpecWidget dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecButtons.select_specs">
+<span class="sig-name descname"><span class="pre">select_specs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.select_specs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display an ImportExportSpecsListWidget.
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecsListWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ImportExportSpecsListWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Toplevel</span></code></p>
+<p>A dialog that prompts the user to select an Import or Export Spec for a list of Specs</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.get_selected_id">
+<span class="sig-name descname"><span class="pre">get_selected_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.get_selected_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the select Spec ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the selected ImportSpec or ExportSpec ID</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.MonthlyScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">MonthlyScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.MonthlyScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a></p>
+<p>A widget to present and modify the info related to ScheduleEntry instances with a Monthly frequency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.MonthlyScheduleWidget.get_schedule_entry">
+<span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.MonthlyScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an instance of ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the created instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.NoteTip">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">NoteTip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.NoteTip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implements a tool tip type window to display the note associated with a model.datapoints.DataPoint derived
+instance</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.NoteTip.hidetip">
+<span class="sig-name descname"><span class="pre">hidetip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.NoteTip.hidetip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hide the note tool tip
+:param event
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.NoteTip.showtip">
+<span class="sig-name descname"><span class="pre">showtip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.NoteTip.showtip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display Note tool tip
+:param: event
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.OneTimeScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">OneTimeScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.OneTimeScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a></p>
+<p>A widget to present and modify the info related to ScheduleEntry instances with a Once frequency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.OneTimeScheduleWidget.get_schedule_entry">
+<span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.OneTimeScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an instance of ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the created instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PayloadCheckbutton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PayloadCheckbutton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PayloadCheckbutton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.Checkbutton" title="biometrics_tracker.gui.widgets.Checkbutton"><code class="xref py py-class docutils literal notranslate"><span class="pre">Checkbutton</span></code></a></p>
+<p>A subclass of biometrics_tracker.gui.widgets.Checkbutton that adds a payload property to carry an instance of
+some class associated with the Checkbutton.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PayloadLabel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PayloadLabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PayloadLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Label</span></code></p>
+<p>A subclass of ttkbootstrap.Label that adds a payload property to carry on instance of some class ossocated
+with the text of the label.  This can be used to make the label a selection widget.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PlaceholderWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PlaceholderWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PlaceholderWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PulseWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget" title="biometrics_tracker.gui.widgets.DataPointWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a></p>
+<p>A widget the allows entry of a pulse metric</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget.check_change">
+<span class="sig-name descname"><span class="pre">check_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget.check_change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check to see if the widgets metric value has been changed
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the focus on the pulse_entry field when the focus_set method of the widget is called
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value entered for the metric
+:return: int pulse metric value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget.zero_value">
+<span class="sig-name descname"><span class="pre">zero_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget.zero_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zeros the pulse value and set the note to an empty string
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Radiobutton">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">Radiobutton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Radiobutton" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Radiobutton</span></code></p>
+<p>Subclass of ttkbootstrap.Radiobutton that changes it appears when it is in focus, so that the user
+can tell when that can use the space bar to select or unselect a button</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Radiobutton.focus_in">
+<span class="sig-name descname"><span class="pre">focus_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Radiobutton.focus_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler for the &lt;FocusIn&gt; event. Changes config parm bootstyle to ‘toolbutton’
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.Radiobutton.focus_out">
+<span class="sig-name descname"><span class="pre">focus_out</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.Radiobutton.focus_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handler for the &lt;FocusOut&gt; event.  Changes config parm bootstyle to ‘primary’
+:param event:
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ScheduleDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><span class="pre">ScheduleWidget</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Toplevel</span></code></p>
+<p>Implements a dialog version of on of the ScheduleEntry widgets.  Not used in the current codebase</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">ScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A base class for widgets corresponding to the various schedule types; Monthly, Weekly, etc.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleWidget.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleWidget.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable the interval and when time widgets for entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleWidget.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleWidget.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable the interval and when time widgets for entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate focus_set to the interval widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.ScheduleWidget.get_schedule_entry">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.ScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a ScheduleEntry instance from the widget values and return it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the created ScheduleEntry</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">TimeWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A general purpose date entry widget</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.am_keypress">
+<span class="sig-name descname"><span class="pre">am_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.am_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the Tab key is pressed when the AM radio button is in focus, skip over the PM button and set the
+focus on the next_entry field if any has been specified
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.clear_key_count">
+<span class="sig-name descname"><span class="pre">clear_key_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.clear_key_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the keystroke counter to 0.  This method is bound to the &lt;FocusIn&gt; event for the hour and minute entry
+fields
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the hour and minute fields and the ap/pm radio buttons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the hour and minute fields and the am/pm radio buttons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates set focus functionality to the hour field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.get_datetime">
+<span class="sig-name descname"><span class="pre">get_datetime</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.get_datetime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a datetime instance with a zero date.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datetime instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.get_time">
+<span class="sig-name descname"><span class="pre">get_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">time</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a datetime.time instance using the values entered to the hour and minute entry fields.
+:return: datetime.time instance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.hour_keypress">
+<span class="sig-name descname"><span class="pre">hour_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.hour_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks the keystrokes entered to the hour field, puts the minute entry field on the GUI in focus after two
+keystrokes. This method is bound to the &lt;KeyPress&gt; event of the hour entry field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.minute_keypress">
+<span class="sig-name descname"><span class="pre">minute_keypress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.minute_keypress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks the keystrokes entered to the minute field, puts the next entry field on the GUI  on the GUI in focus
+after two keystrokes. This method is bound to the &lt;KeyPress&gt; event of the hour entry field.
+:param event:
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.select_range">
+<span class="sig-name descname"><span class="pre">select_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.select_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates select range to the hour field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> – start position for selection</p></li>
+<li><p><strong>end</strong> – end position for selection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.set_next_entry">
+<span class="sig-name descname"><span class="pre">set_next_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.set_next_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes the widget that will receive focus after the am/pm radio buttons</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.set_prev_entry">
+<span class="sig-name descname"><span class="pre">set_prev_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">entry</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.set_prev_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes the widget that will receive focus when the Back Tab key is pressed in the hour field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.set_time">
+<span class="sig-name descname"><span class="pre">set_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.set_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the hour, minute and am/pm fields to the provided time</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_value</strong> (<em>time</em>) – the new value for the time widget</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.TimeWidget.validate_time">
+<span class="sig-name descname"><span class="pre">validate_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.TimeWidget.validate_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the hour and minute values, display a MessageBox if either is invalid. This method is bound
+to the Button-1 events on the AM and PM radio buttons
+:param event:
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMListWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">UOMListWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_enum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">selected_uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMListWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Listbox</span></code></p>
+<p>A widget that extends tk.Listbox to present a selection list of u.o.m. Enum values for one of the Enum classes
+defined in model.uoms</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMListWidget.set_selected">
+<span class="sig-name descname"><span class="pre">set_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMListWidget.set_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the Listbox’s selected element and uses it to set the selection_uom property.  This method is bound
+to the &lt;Double-1&gt; event for the Listbox
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMRadioWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">UOMRadioWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMRadioWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<dl class="simple">
+<dt>A widget that contains a series of ttkbootstrap.Radiobutton instances based on u.o.m. Enum values for one of the</dt><dd><p>Enum classes defined in model.uoms</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMRadioWidget.disable">
+<span class="sig-name descname"><span class="pre">disable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.disable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the radio button group for entry
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMRadioWidget.enable">
+<span class="sig-name descname"><span class="pre">enable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the radio button group for entry
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMRadioWidget.handle_selection">
+<span class="sig-name descname"><span class="pre">handle_selection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.handle_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the select radio button value and uses it to return the corresponding model.uoms.UOM extending
+instance
+:return: an instance of an Enum that extends model.uoms.UOM</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.UOMRadioWidget.set_selection">
+<span class="sig-name descname"><span class="pre">set_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.set_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selects the radio button that corresponds to the provided model.uoms.UOM extending value
+:param uom: an instance of an Enum that extends model.uoms.UOM
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">WeekDayCheckbuttonWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A Frame containing a checkbox for each day of the week, allows selection of a list of week days</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget.get_checked_days">
+<span class="sig-name descname"><span class="pre">get_checked_days</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.WeekDay" title="biometrics_tracker.model.datapoints.WeekDay"><span class="pre">biometrics_tracker.model.datapoints.WeekDay</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget.get_checked_days" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of WeekDay enums for the days whose checkboxes where selected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of WeeKDay enums</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.WeekDay" title="biometrics_tracker.model.datapoints.WeekDay">biometrics_tracker.model.datapoints.WeekDay</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.WeeklyScheduleWidget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">WeeklyScheduleWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.WeeklyScheduleWidget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget" title="biometrics_tracker.gui.widgets.ScheduleWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a></p>
+<p>A widget to present and modify the info related to ScheduleEntry instances with a Weekly frequency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.WeeklyScheduleWidget.get_schedule_entry">
+<span class="sig-name descname"><span class="pre">get_schedule_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.WeeklyScheduleWidget.get_schedule_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return an instance of ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the created instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.gui.widgets module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget"><code class="docutils literal notranslate"><span class="pre">BloodGlucoseWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.check_change"><code class="docutils literal notranslate"><span class="pre">BloodGlucoseWidget.check_change()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">BloodGlucoseWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.get_value"><code class="docutils literal notranslate"><span class="pre">BloodGlucoseWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodGlucoseWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">BloodGlucoseWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget"><code class="docutils literal notranslate"><span class="pre">BloodPressureWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.check_change"><code class="docutils literal notranslate"><span class="pre">BloodPressureWidget.check_change()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">BloodPressureWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.get_value"><code class="docutils literal notranslate"><span class="pre">BloodPressureWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BloodPressureWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">BloodPressureWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget"><code class="docutils literal notranslate"><span class="pre">BodyTempWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget.check_change"><code class="docutils literal notranslate"><span class="pre">BodyTempWidget.check_change()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">BodyTempWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget.get_value"><code class="docutils literal notranslate"><span class="pre">BodyTempWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyTempWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">BodyTempWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget"><code class="docutils literal notranslate"><span class="pre">BodyWeightWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.check_change"><code class="docutils literal notranslate"><span class="pre">BodyWeightWidget.check_change()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">BodyWeightWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.get_value"><code class="docutils literal notranslate"><span class="pre">BodyWeightWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.BodyWeightWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">BodyWeightWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Checkbutton"><code class="docutils literal notranslate"><span class="pre">Checkbutton</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Checkbutton.focus_in"><code class="docutils literal notranslate"><span class="pre">Checkbutton.focus_in()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Checkbutton.focus_out"><code class="docutils literal notranslate"><span class="pre">Checkbutton.focus_out()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DailyScheduleWidget"><code class="docutils literal notranslate"><span class="pre">DailyScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DailyScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">DailyScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget"><code class="docutils literal notranslate"><span class="pre">DataPointTypeComboWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.get_dp_type"><code class="docutils literal notranslate"><span class="pre">DataPointTypeComboWidget.get_dp_type()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.retrieve_selection"><code class="docutils literal notranslate"><span class="pre">DataPointTypeComboWidget.retrieve_selection()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.set_selection"><code class="docutils literal notranslate"><span class="pre">DataPointTypeComboWidget.set_selection()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget"><code class="docutils literal notranslate"><span class="pre">DataPointTypeWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">DataPointTypeWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointTypeWidget.set_tracked"><code class="docutils literal notranslate"><span class="pre">DataPointTypeWidget.set_tracked()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget"><code class="docutils literal notranslate"><span class="pre">DataPointWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.check_changed_note"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.check_changed_note()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.create_note_entry"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.create_note_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.edit_note"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.edit_note()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.get_note"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.get_note()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.get_value"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.handle_keypress"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.handle_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.is_changed"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.is_changed()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">DataPointWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidgetFactory"><code class="docutils literal notranslate"><span class="pre">DataPointWidgetFactory</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DataPointWidgetFactory.make_widget"><code class="docutils literal notranslate"><span class="pre">DataPointWidgetFactory.make_widget()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget"><code class="docutils literal notranslate"><span class="pre">DateWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.clear_key_count"><code class="docutils literal notranslate"><span class="pre">DateWidget.clear_key_count()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.day_keypress"><code class="docutils literal notranslate"><span class="pre">DateWidget.day_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.disable"><code class="docutils literal notranslate"><span class="pre">DateWidget.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.enable"><code class="docutils literal notranslate"><span class="pre">DateWidget.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">DateWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.get_date"><code class="docutils literal notranslate"><span class="pre">DateWidget.get_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.month_keypress"><code class="docutils literal notranslate"><span class="pre">DateWidget.month_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.select_range"><code class="docutils literal notranslate"><span class="pre">DateWidget.select_range()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.set_date"><code class="docutils literal notranslate"><span class="pre">DateWidget.set_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.set_next_entry"><code class="docutils literal notranslate"><span class="pre">DateWidget.set_next_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.set_prev_entry"><code class="docutils literal notranslate"><span class="pre">DateWidget.set_prev_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.validate_date"><code class="docutils literal notranslate"><span class="pre">DateWidget.validate_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DateWidget.year_keypress"><code class="docutils literal notranslate"><span class="pre">DateWidget.year_keypress()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.disable"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.enable"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.focus_set"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.get_days_of_months"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.get_days_of_months()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.next_month"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.next_month()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.prev_month"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.prev_month()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthManager.set_days_of_months"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthManager.set_days_of_months()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.disable"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.enable"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.get_days_of_month"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.get_days_of_month()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.handle_arrows"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.handle_arrows()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.DaysOfMonthWidget.set_days_of_month"><code class="docutils literal notranslate"><span class="pre">DaysOfMonthWidget.set_days_of_month()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ErrorMessageDialog"><code class="docutils literal notranslate"><span class="pre">ErrorMessageDialog</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ErrorMessageDialog.create_body"><code class="docutils literal notranslate"><span class="pre">ErrorMessageDialog.create_body()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.HourlyScheduleWidget"><code class="docutils literal notranslate"><span class="pre">HourlyScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.HourlyScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">HourlyScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget"><code class="docutils literal notranslate"><span class="pre">ImportExportFieldWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_index"><code class="docutils literal notranslate"><span class="pre">ImportExportFieldWidget.field_index()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.field_name"><code class="docutils literal notranslate"><span class="pre">ImportExportFieldWidget.field_name()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportFieldWidget.is_changed"><code class="docutils literal notranslate"><span class="pre">ImportExportFieldWidget.is_changed()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget"><code class="docutils literal notranslate"><span class="pre">ImportExportSaveSpecWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.get_spec_id"><code class="docutils literal notranslate"><span class="pre">ImportExportSaveSpecWidget.get_spec_id()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSaveSpecWidget.show"><code class="docutils literal notranslate"><span class="pre">ImportExportSaveSpecWidget.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_save_widget"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.destroy_save_widget()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.destroy_spec_list"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.destroy_spec_list()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_saved_spec_id"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.get_saved_spec_id()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.get_selected_spec_id"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.get_selected_spec_id()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.save_specs"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.save_specs()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecButtons.select_specs"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecButtons.select_specs()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecsListWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.get_selected_id"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecsListWidget.get_selected_id()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ImportExportSpecsListWidget.show"><code class="docutils literal notranslate"><span class="pre">ImportExportSpecsListWidget.show()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.MonthlyScheduleWidget"><code class="docutils literal notranslate"><span class="pre">MonthlyScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.MonthlyScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">MonthlyScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.NoteTip"><code class="docutils literal notranslate"><span class="pre">NoteTip</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.NoteTip.hidetip"><code class="docutils literal notranslate"><span class="pre">NoteTip.hidetip()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.NoteTip.showtip"><code class="docutils literal notranslate"><span class="pre">NoteTip.showtip()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.OneTimeScheduleWidget"><code class="docutils literal notranslate"><span class="pre">OneTimeScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.OneTimeScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">OneTimeScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PayloadCheckbutton"><code class="docutils literal notranslate"><span class="pre">PayloadCheckbutton</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PayloadLabel"><code class="docutils literal notranslate"><span class="pre">PayloadLabel</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PlaceholderWidget"><code class="docutils literal notranslate"><span class="pre">PlaceholderWidget</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget"><code class="docutils literal notranslate"><span class="pre">PulseWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget.check_change"><code class="docutils literal notranslate"><span class="pre">PulseWidget.check_change()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">PulseWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget.get_value"><code class="docutils literal notranslate"><span class="pre">PulseWidget.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget.zero_value"><code class="docutils literal notranslate"><span class="pre">PulseWidget.zero_value()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Radiobutton"><code class="docutils literal notranslate"><span class="pre">Radiobutton</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Radiobutton.focus_in"><code class="docutils literal notranslate"><span class="pre">Radiobutton.focus_in()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.Radiobutton.focus_out"><code class="docutils literal notranslate"><span class="pre">Radiobutton.focus_out()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleDialog"><code class="docutils literal notranslate"><span class="pre">ScheduleDialog</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget"><code class="docutils literal notranslate"><span class="pre">ScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget.disable"><code class="docutils literal notranslate"><span class="pre">ScheduleWidget.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget.enable"><code class="docutils literal notranslate"><span class="pre">ScheduleWidget.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">ScheduleWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.ScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">ScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget"><code class="docutils literal notranslate"><span class="pre">TimeWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.am_keypress"><code class="docutils literal notranslate"><span class="pre">TimeWidget.am_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.clear_key_count"><code class="docutils literal notranslate"><span class="pre">TimeWidget.clear_key_count()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.disable"><code class="docutils literal notranslate"><span class="pre">TimeWidget.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.enable"><code class="docutils literal notranslate"><span class="pre">TimeWidget.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">TimeWidget.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.get_datetime"><code class="docutils literal notranslate"><span class="pre">TimeWidget.get_datetime()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.get_time"><code class="docutils literal notranslate"><span class="pre">TimeWidget.get_time()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.hour_keypress"><code class="docutils literal notranslate"><span class="pre">TimeWidget.hour_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.minute_keypress"><code class="docutils literal notranslate"><span class="pre">TimeWidget.minute_keypress()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.select_range"><code class="docutils literal notranslate"><span class="pre">TimeWidget.select_range()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.set_next_entry"><code class="docutils literal notranslate"><span class="pre">TimeWidget.set_next_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.set_prev_entry"><code class="docutils literal notranslate"><span class="pre">TimeWidget.set_prev_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.set_time"><code class="docutils literal notranslate"><span class="pre">TimeWidget.set_time()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.TimeWidget.validate_time"><code class="docutils literal notranslate"><span class="pre">TimeWidget.validate_time()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMListWidget"><code class="docutils literal notranslate"><span class="pre">UOMListWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMListWidget.set_selected"><code class="docutils literal notranslate"><span class="pre">UOMListWidget.set_selected()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMRadioWidget"><code class="docutils literal notranslate"><span class="pre">UOMRadioWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.disable"><code class="docutils literal notranslate"><span class="pre">UOMRadioWidget.disable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.enable"><code class="docutils literal notranslate"><span class="pre">UOMRadioWidget.enable()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.handle_selection"><code class="docutils literal notranslate"><span class="pre">UOMRadioWidget.handle_selection()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.UOMRadioWidget.set_selection"><code class="docutils literal notranslate"><span class="pre">UOMRadioWidget.set_selection()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget"><code class="docutils literal notranslate"><span class="pre">WeekDayCheckbuttonWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.WeekDayCheckbuttonWidget.get_checked_days"><code class="docutils literal notranslate"><span class="pre">WeekDayCheckbuttonWidget.get_checked_days()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.WeeklyScheduleWidget"><code class="docutils literal notranslate"><span class="pre">WeeklyScheduleWidget</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.WeeklyScheduleWidget.get_schedule_entry"><code class="docutils literal notranslate"><span class="pre">WeeklyScheduleWidget.get_schedule_entry()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gui-tk-gui.html"
+                          title="previous chapter">biometrics_tracker.gui.tk_gui module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gui-validators.html"
+                          title="next chapter">biometrics_tracker.gui.validators module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/gui-widgets.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui-validators.html" title="biometrics_tracker.gui.validators module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.widgets module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>

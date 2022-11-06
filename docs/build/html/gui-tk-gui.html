@@ -1,0 +1,1378 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.gui.tk_gui module &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="biometrics_tracker.gui.widgets module" href="gui-widgets.html" />
+    <link rel="prev" title="biometrics_tracker.config-logging_config module" href="config-logging_config.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui-widgets.html" title="biometrics_tracker.gui.widgets module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="config-logging_config.html" title="biometrics_tracker.config-logging_config module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.tk_gui module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-gui-tk-gui-module">
+<span id="gui-tk-gui"></span><h1>biometrics_tracker.gui.tk_gui module<a class="headerlink" href="#biometrics-tracker-gui-tk-gui-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+</tbody>
+</table>
+<span class="target" id="module-biometrics_tracker.gui.tk_gui"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">AddEditScheduleFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>Implements a GUI to facilitate the maintenance of ScheduleEntry’s</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.clear_entry">
+<span class="sig-name descname"><span class="pre">clear_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.clear_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the entry widgets except for the Starts On and Ends On date entry widgets, and removes any
+schedule widget that is present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.daily_selected">
+<span class="sig-name descname"><span class="pre">daily_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.daily_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a Daily Schedule widget and grid it into the display</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.display_schedules">
+<span class="sig-name descname"><span class="pre">display_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ScheduleEntriesMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.display_schedules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a set of widgets to display and allow the modification of a set of ScheduleEntry’s</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.ScheduleEntriesMsg</em>) – a message containing a list of ScheduleEntry’s</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.edit_entry">
+<span class="sig-name descname"><span class="pre">edit_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.edit_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method implements the logic for editing an existing ScheduleEntry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_on_note">
+<span class="sig-name descname"><span class="pre">focus_on_note</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_on_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forces the focus to the note field.  This method is used to prevent the Seq No field, which is intended to be
+display only, from gaining focus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delagates the focus_set invocations to the Starts On date entry widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_entry">
+<span class="sig-name descname"><span class="pre">get_entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a ScheduleEntry instance from the currently active SchduleEntry widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>biometric_tracker.model.datapoints.ScheduleEntry</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_non_entered_values">
+<span class="sig-name descname"><span class="pre">get_non_entered_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'datetime.time'&gt;,</span> <span class="pre">typing.Optional[datetime.date]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_non_entered_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides values for info that may not (yet) be entered by the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[int, int, time, Optional[date])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.handle_delete">
+<span class="sig-name descname"><span class="pre">handle_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.handle_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process a list of ‘Delete’ checkboxes, sending delete messages to the database for each checked box</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.hourly_selected">
+<span class="sig-name descname"><span class="pre">hourly_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.hourly_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate an Hourly Schedule widget and grid it into the display</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.monthly_selected">
+<span class="sig-name descname"><span class="pre">monthly_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.monthly_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a Monthly Schedule widget and grid it into the display</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.once_selected">
+<span class="sig-name descname"><span class="pre">once_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.once_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a One Time Schedule widget and grid it into the display</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.retrieve_schedules">
+<span class="sig-name descname"><span class="pre">retrieve_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ScheduleEntriesMsg</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.retrieve_schedules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Issue a ScheduleEntryReqMsg to the database to retrieve the ScheduleEntry’s for a person
+:param msg: although this parm is not used in the method, it is needed in the signiture when
+it is used as a replyto parm for other messages</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assures that required info has been entered before comleting a Save request.  Invokes ScheduleEntry save and
+delete handlers if the entries are valid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.weekly_selected">
+<span class="sig-name descname"><span class="pre">weekly_selected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.weekly_selected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate a Weekly Schedule widget and grid it into the diplay</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">Application</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, <a class="reference internal" href="main-core.html#biometrics_tracker.main.core.CoreLogic" title="biometrics_tracker.main.core.CoreLogic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreLogic</span></code></a></p>
+<p>This ttkbootstrap Window is the main GUI for the application.  It contains menus that invoke the various
+application functions.  The body of the Window is used to contain the various Frames that implement the
+application’s functionality.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.add_datapoint">
+<span class="sig-name descname"><span class="pre">add_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.add_datapoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a biometrics_tracker.gui.tk_gui.QuickEntryFrame to allow a set of metrics for a date and time to be entered.  This method
+is invoked when a person is selected after the Biometrics/Quick Entry menu option is selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – the  DB response message contain the Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.add_edit_schedules">
+<span class="sig-name descname"><span class="pre">add_edit_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.add_edit_schedules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the Add/Edit Schedule Entries function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message containing a Person instance for the person whose schedules will be maintained.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.add_person">
+<span class="sig-name descname"><span class="pre">add_person</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.add_person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a biometrics_tracker.gui.tk_gui.PersonFrame to allow the entry of information to a new person.  This method is invoked when the
+Person/Add a New Person menu option is selected</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.check_completion_queue">
+<span class="sig-name descname"><span class="pre">check_completion_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.check_completion_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the completion queue for messages, invoke the callback if a message is retrieved</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.check_response_queue">
+<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.check_response_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the database response queue for messages, invoke the callback if a message is received.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.edit_person">
+<span class="sig-name descname"><span class="pre">edit_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.edit_person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a biometrics_tracker.gui.tk_gui.PersonFrame to allow the edit of an existing person’s information.  This method in invoked
+when a person is selected after the People/Edit a Person’s Information menu option is selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message object containing the Person object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.exit_app">
+<span class="sig-name descname"><span class="pre">exit_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompletionMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.exit_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>End the Tkinter event loop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.CompletionMsg</em>) – a Completion message, probably a response to a close database request</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a gui.CSVImportFrame to allow a CSV file to be imported.  This method is invoked when a person is
+selected after the Biometrics/Import CSV File menu option is selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message object containing a Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.export_process_complete">
+<span class="sig-name descname"><span class="pre">export_process_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ImportExportCompletionMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.export_process_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is specified as the completion callback for the export process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.CompletionMsg</em>) – the completion message</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.help_menu">
+<span class="sig-name descname"><span class="pre">help_menu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.help_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the help table of contents in the system default browser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.history_report">
+<span class="sig-name descname"><span class="pre">history_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.history_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a gui.BiometricsReportFrame that allows the accepts a date range and produces a report for the selected
+person.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message object containing a Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.import_csv">
+<span class="sig-name descname"><span class="pre">import_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.import_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a gui.CSVImportFrame to allow a CSV file to be imported.  This method is invoked when a person is
+selected after the Biometrics/Import CSV File menu option is selected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message object containing a Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.import_process_complete">
+<span class="sig-name descname"><span class="pre">import_process_complete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ImportExportCompletionMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.import_process_complete" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is specified as the completion callback for the import process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.CompletionMsg</em>) – the completion message</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.refresh_people_list">
+<span class="sig-name descname"><span class="pre">refresh_people_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PeopleMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.refresh_people_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Received a list of people and saves it for future use</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.PeopleMsg</em>) – a message containing a list of Person instances</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.remove_child_frame">
+<span class="sig-name descname"><span class="pre">remove_child_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_class</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.remove_child_frame" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Removes a Frame of the specified class from the Window.  This method is invoked when a application function is</dt><dd><p>complete or canceled</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame_class</strong> (<em>Class</em>) – the class of the Frame to be removed (e.g. gui.PersonListFrame, gui.PersonFrame,
+gui.QuickEntryFrame)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.run_scheduler">
+<span class="sig-name descname"><span class="pre">run_scheduler</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.run_scheduler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents the RunSchedulerFrame and starts biometrics_tracker.main.scheduler.Scheduler in a separate thread</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.select_person">
+<span class="sig-name descname"><span class="pre">select_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.select_person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a biometrics_tracker.gui.tk_gui.PeopleListFrame to allow the selection of a person for further processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>str</em>) – a title to be displayed at the top of the Frame</p></li>
+<li><p><strong>callback</strong> (<em>Callable</em>) – a callback to be invoked when a person is selected</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.submit_person_update">
+<span class="sig-name descname"><span class="pre">submit_person_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PersonFrame" title="biometrics_tracker.gui.tk_gui.PersonFrame"><span class="pre">PersonFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DBOperation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.submit_person_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the database with the result of an add or update of a person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>person_frame</strong> (<a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PersonFrame" title="biometrics_tracker.gui.tk_gui.PersonFrame"><em>biometrics_tracker.gui.tk_gui.PersonFrame</em></a>) – the frame presented in the add or update process.  This method is
+invoked when the .gui.PersonFrame submit button is pressed though the submit function
+of the add_person and edit_person methods</p></li>
+<li><p><strong>operation</strong> (<em>biometrics_tracker.ipc.messages.DBOperation</em>) – whether the Person database row is to be inserted or updated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.upcoming_events">
+<span class="sig-name descname"><span class="pre">upcoming_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.upcoming_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build and display a list of ScheduleEntry’s that will be triggered during the specified series</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message containing a Person instance for the person whose ScheduleEntry’s will be dislayed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.view_edit_history">
+<span class="sig-name descname"><span class="pre">view_edit_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.view_edit_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame that allows the retrieval and editing of datapoint
+for the selected person that are within a specified date range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message object containing the a Person object</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsFrameBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">BiometricsFrameBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>This is a base class for frames that display biometrics data in various ways</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method must be overridden by inheriting classes to retrieve Datapoints for a specified prerson within a
+specified date range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">BiometricsReportPromptFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase" title="biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.display_history">
+<span class="sig-name descname"><span class="pre">display_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompletionMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.display_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the DataPoints retrieved by the retrieve_history method in a ScrolledText widget.  This content
+is also used to create the Text version of the History Report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messges.CompletionMsg</em>) – a completion message notifying that the report creation process is complete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.retrieve_history">
+<span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.retrieve_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the datapoints within the specified date range for the selected person and produce a text report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">CSVImportFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ttkbootstrap Frame that allows the entry of the information necessary to import a CSV file</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.browse_csv">
+<span class="sig-name descname"><span class="pre">browse_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.browse_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a tk.filedialog to browse the file system and select a CSV file to be imported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.focus_first_widget">
+<span class="sig-name descname"><span class="pre">focus_first_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.focus_first_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Focuses on the first gui.widgets.CSVImportFrame.  This method is bound to the &lt;FocusOut&gt; widget of the
+‘Number of Header Rows’ entry field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tkinter.Event</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.header_rows">
+<span class="sig-name descname"><span class="pre">header_rows</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.header_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of header rows in the CSV file to be imported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>number of header rows</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.import_file_name">
+<span class="sig-name descname"><span class="pre">import_file_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.import_file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the import file name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>file name</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.indexed_fields">
+<span class="sig-name descname"><span class="pre">indexed_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.indexed_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict[int, str] that has the position within the CSV file of the field as the key and the field name
+as the value.  The field names are taken from the string values defined at the beginning of the model.importers
+module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>map of fields selected for import</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[int, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.save_import_spec">
+<span class="sig-name descname"><span class="pre">save_import_spec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.save_import_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used a callback for the OK button on the Save Import Spec dialog.  It collects the
+current values from the prompts, creates an ImportSpec object, places in an ImportSpecCollection
+object and pickles the collection object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.select_import_spec">
+<span class="sig-name descname"><span class="pre">select_import_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.select_import_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used as a callback for the selection action of the Select Import Spec dialog.
+It retrieves the selected specification from the ImportSpecificatonCollection and uses it
+to set the prompt values on this Frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.set_use_prev_row_date">
+<span class="sig-name descname"><span class="pre">set_use_prev_row_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.set_use_prev_row_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a boolean based on the value of the IntVar associated with the Use Previous Row Date checkbox</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.CSVImportFrame.update_preview">
+<span class="sig-name descname"><span class="pre">update_preview</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.update_preview" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the ttkbootstrap.scrolled Scrollable Text widget to show the first 30 lines of the selected
+CSV files.  This method is bound the &lt;FocusOut&gt; event of the CSV file name entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>Tkinter.Event</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ExportFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">ExportFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ExportFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ttkbootstrap Frame that allows the entry of the information necessary to export a CSV or
+SQLite database file</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ExportFrame.browse_export_dir">
+<span class="sig-name descname"><span class="pre">browse_export_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ExportFrame.browse_export_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Presents a tk.filedialog to browse the file system and select a CSV file to be imported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ExportFrame.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ExportFrame.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegates the focus_set method calls to the Export Directory entry field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ExportFrame.indexed_fields">
+<span class="sig-name descname"><span class="pre">indexed_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ExportFrame.indexed_fields" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Returns a dict[int, str] that has the field name as the key and the position within the Export file of the field</dt><dd><p>as the value.  The field names are taken from the string values defined at the beginning of the
+model.importers module.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>map of fields selected for export</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[int, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ExportFrame.save_export_spec">
+<span class="sig-name descname"><span class="pre">save_export_spec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ExportFrame.save_export_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used as a callback for the Save Export Spec dialog.  It collects the values of the
+entry prompts in the Frame, creates an instance of ExportSpec, places that instance in an instance
+of ExportSpecCollection and pickles the collection object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ImportExportStatusDialog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">ImportExportStatusDialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MessageDialog</span></code></p>
+<p>A ttkbootstrap.dialogs Dialog that displays status info for a completed import/export run</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.close_dialog">
+<span class="sig-name descname"><span class="pre">close_dialog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.close_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the Dialog from the screen.  This method is invoked when the close button is pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.create_body">
+<span class="sig-name descname"><span class="pre">create_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.create_body" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overrides the create_body method of the base class.  Builds the body of the Dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>Tkinter derived Window</em><em> or </em><em>Frame</em>) – the GUI parent for this Dialog</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.NewDataPointFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">NewDataPointFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.NewDataPointFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ttkbootstrap Frame that allows entry of a set of metrics for a particular date and time</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.PeopleListFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">PeopleListFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ttkbootstrap Frame containing a tk.Listbox that allows the selection of a person whose data is to be used in
+subsequent processes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.PeopleListFrame.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives the Frame’s Listbox focus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.PeopleListFrame.selected_person">
+<span class="sig-name descname"><span class="pre">selected_person</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.selected_person" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Person ID for the selected Listbox entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>person ID</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.PersonFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">PersonFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.PersonFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>A ttkbootstrap Frame that allows the entry of information associated with a person, including which metrics
+will be tracked for that person</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.RunSchedulerFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">RunSchedulerFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.RunSchedulerFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>Presents a window that allows the user to start a process that retrieves ScheduleEntry’s and uses the information
+to schedule jobs using the schedule library</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.RunSchedulerFrame.show_scheduled_jobs">
+<span class="sig-name descname"><span class="pre">show_scheduled_jobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SchedulerCompletionMsg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.RunSchedulerFrame.show_scheduled_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a list of scheduled jobs after the SchedulerCompletionMsg is received</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracking.ipc.messages.SchedulerCompletionMsg</em>) – a message containing a list of schedule job</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">SaveBiometricsReportFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>Presents a ttkb.Frame that displays a Biometrics History Report and allows the user to save the report as a text
+or PDF file and optionally email the report to one or more recipients</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.disable_save">
+<span class="sig-name descname"><span class="pre">disable_save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.disable_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the save button</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.enable_save">
+<span class="sig-name descname"><span class="pre">enable_save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.enable_save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the save button</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report">
+<span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StringIO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the report to a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>descendant</em><em> of </em><em>IOBase</em>) – the destination for the save report</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">ScheduledEntryWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, <a class="reference internal" href="main-core.html#biometrics_tracker.main.core.CoreLogic" title="biometrics_tracker.main.core.CoreLogic"><code class="xref py py-class docutils literal notranslate"><span class="pre">CoreLogic</span></code></a></p>
+<p>This ttkbootstrap Window handles the scheduled entry of a single metric.  The person is the person is the
+owner of the schedule entry and date is assumed to be the current date.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_completion_queue">
+<span class="sig-name descname"><span class="pre">check_completion_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_completion_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the completion queue for messages, invoke the callback if a message is retrieved</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_response_queue">
+<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_response_queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the database response queue for messages, invoke the callback if a message is received.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.close_db">
+<span class="sig-name descname"><span class="pre">close_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.close_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a CloseDataBaseReqMsg to the database manager, with exit_app method as the reply_to Callable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.exit_app">
+<span class="sig-name descname"><span class="pre">exit_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompletionMsg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.exit_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ends the GUI event loop</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – a Completion message, usually a response to a Close Database request</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_date">
+<span class="sig-name descname"><span class="pre">get_date</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the date the metric reading was taken</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the date the metric reading was taken</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime.date</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_time">
+<span class="sig-name descname"><span class="pre">get_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">time</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the time the metric reading was taken</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the time the metric reading was taken</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime.time</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.help_menu">
+<span class="sig-name descname"><span class="pre">help_menu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.help_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the help table of contents in the system default browser</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received">
+<span class="sig-name descname"><span class="pre">person_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback specified as the replyto Callable in the message sent by the run method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.PersonMsg</em>) – a message containing a Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.remove_child_frame">
+<span class="sig-name descname"><span class="pre">remove_child_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_class</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.remove_child_frame" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Removes a Frame of the specified class from the Window.  This method is invoked when a application function is</dt><dd><p>complete or canceled</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame_class</strong> (<em>Class</em>) – the class of the Frame to be removed (e.g. gui.PersonListFrame, gui.PersonFrame,
+gui.QuickEntryFrame)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is invoked when the ScheduledEntry thread is started.  It sends a request to the persistance
+manager to retrieve the Person instance for the person associated with the scheduled job that invoked
+this class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback invoked when the Submit button is clicked</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.suspend_schedule">
+<span class="sig-name descname"><span class="pre">suspend_schedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.suspend_schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback invoked when the Suspend this Schedule button is clicked</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">UpcomingScheduledEventsFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
+<p>This Frame prompts the user for start and end dates and displays the ScheduleEntry’s that will be triggered
+during the specified period</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate the focus_set method to the Starts On date widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.retrieve_schedules">
+<span class="sig-name descname"><span class="pre">retrieve_schedules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.retrieve_schedules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Issue a ScheduleEntryReqMsg to the database to retrieve the ScheduleEntry’s for a person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.show_events">
+<span class="sig-name descname"><span class="pre">show_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.show_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a list of ScheduleEntry’s that will be triggered during the specified period and insert the contents
+into a ScrollableFrame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.store_entries">
+<span class="sig-name descname"><span class="pre">store_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ScheduleEntriesMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.store_entries" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is used as the ‘replyto’ in the ScheduleEntryReqMsg’s sent by the retrieve_schedules method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.ScheduleEntryMsg</em>) – a message containing a list of ScheduleEntry’s retrieved from the database</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">ViewEditBiometricsFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase" title="biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history">
+<span class="sig-name descname"><span class="pre">display_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataPointRespMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a entry prompts from the DataPoints history retrieved by the retrieve_history method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – a response message containing a list of DataPoints</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history">
+<span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the datapoint within the specified date range for the selected person and fill a ScrollableFrame
+with rows of widgets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.gui.tk_gui module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.clear_entry"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.clear_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.daily_selected"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.daily_selected()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.display_schedules"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.display_schedules()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.edit_entry"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.edit_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_on_note"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.focus_on_note()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.focus_set"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_entry"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.get_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.get_non_entered_values"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.get_non_entered_values()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.handle_delete"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.handle_delete()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.hourly_selected"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.hourly_selected()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.monthly_selected"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.monthly_selected()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.once_selected"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.once_selected()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.retrieve_schedules"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.retrieve_schedules()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.validate"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.validate()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.AddEditScheduleFrame.weekly_selected"><code class="docutils literal notranslate"><span class="pre">AddEditScheduleFrame.weekly_selected()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application"><code class="docutils literal notranslate"><span class="pre">Application</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.add_datapoint"><code class="docutils literal notranslate"><span class="pre">Application.add_datapoint()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.add_edit_schedules"><code class="docutils literal notranslate"><span class="pre">Application.add_edit_schedules()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.add_person"><code class="docutils literal notranslate"><span class="pre">Application.add_person()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.check_completion_queue"><code class="docutils literal notranslate"><span class="pre">Application.check_completion_queue()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.check_response_queue"><code class="docutils literal notranslate"><span class="pre">Application.check_response_queue()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.edit_person"><code class="docutils literal notranslate"><span class="pre">Application.edit_person()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.exit_app"><code class="docutils literal notranslate"><span class="pre">Application.exit_app()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.export"><code class="docutils literal notranslate"><span class="pre">Application.export()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.export_process_complete"><code class="docutils literal notranslate"><span class="pre">Application.export_process_complete()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.help_menu"><code class="docutils literal notranslate"><span class="pre">Application.help_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.history_report"><code class="docutils literal notranslate"><span class="pre">Application.history_report()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.import_csv"><code class="docutils literal notranslate"><span class="pre">Application.import_csv()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.import_process_complete"><code class="docutils literal notranslate"><span class="pre">Application.import_process_complete()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.refresh_people_list"><code class="docutils literal notranslate"><span class="pre">Application.refresh_people_list()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.remove_child_frame"><code class="docutils literal notranslate"><span class="pre">Application.remove_child_frame()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.run_scheduler"><code class="docutils literal notranslate"><span class="pre">Application.run_scheduler()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.select_person"><code class="docutils literal notranslate"><span class="pre">Application.select_person()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.submit_person_update"><code class="docutils literal notranslate"><span class="pre">Application.submit_person_update()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.upcoming_events"><code class="docutils literal notranslate"><span class="pre">Application.upcoming_events()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.Application.view_edit_history"><code class="docutils literal notranslate"><span class="pre">Application.view_edit_history()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history"><code class="docutils literal notranslate"><span class="pre">BiometricsFrameBase.retrieve_history()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame"><code class="docutils literal notranslate"><span class="pre">BiometricsReportPromptFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.display_history"><code class="docutils literal notranslate"><span class="pre">BiometricsReportPromptFrame.display_history()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsReportPromptFrame.retrieve_history"><code class="docutils literal notranslate"><span class="pre">BiometricsReportPromptFrame.retrieve_history()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.browse_csv"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.browse_csv()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.focus_first_widget"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.focus_first_widget()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.header_rows"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.header_rows()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.import_file_name"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.import_file_name()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.indexed_fields"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.indexed_fields()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.save_import_spec"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.save_import_spec()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.select_import_spec"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.select_import_spec()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.set_use_prev_row_date"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.set_use_prev_row_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.CSVImportFrame.update_preview"><code class="docutils literal notranslate"><span class="pre">CSVImportFrame.update_preview()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ExportFrame"><code class="docutils literal notranslate"><span class="pre">ExportFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ExportFrame.browse_export_dir"><code class="docutils literal notranslate"><span class="pre">ExportFrame.browse_export_dir()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ExportFrame.focus_set"><code class="docutils literal notranslate"><span class="pre">ExportFrame.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ExportFrame.indexed_fields"><code class="docutils literal notranslate"><span class="pre">ExportFrame.indexed_fields()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ExportFrame.save_export_spec"><code class="docutils literal notranslate"><span class="pre">ExportFrame.save_export_spec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog"><code class="docutils literal notranslate"><span class="pre">ImportExportStatusDialog</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.close_dialog"><code class="docutils literal notranslate"><span class="pre">ImportExportStatusDialog.close_dialog()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ImportExportStatusDialog.create_body"><code class="docutils literal notranslate"><span class="pre">ImportExportStatusDialog.create_body()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.NewDataPointFrame"><code class="docutils literal notranslate"><span class="pre">NewDataPointFrame</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.focus_set"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.selected_person"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame.selected_person()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PersonFrame"><code class="docutils literal notranslate"><span class="pre">PersonFrame</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.RunSchedulerFrame"><code class="docutils literal notranslate"><span class="pre">RunSchedulerFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.RunSchedulerFrame.show_scheduled_jobs"><code class="docutils literal notranslate"><span class="pre">RunSchedulerFrame.show_scheduled_jobs()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.disable_save"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.disable_save()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.enable_save"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.enable_save()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.save_report()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_completion_queue"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.check_completion_queue()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.check_response_queue"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.check_response_queue()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.close_db"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.close_db()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.exit_app"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.exit_app()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_date"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_date()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_time"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_time()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.help_menu"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.help_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.person_received()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.remove_child_frame"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.remove_child_frame()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.run"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.run()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.submit"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.submit()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.suspend_schedule"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.suspend_schedule()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame"><code class="docutils literal notranslate"><span class="pre">UpcomingScheduledEventsFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.focus_set"><code class="docutils literal notranslate"><span class="pre">UpcomingScheduledEventsFrame.focus_set()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.retrieve_schedules"><code class="docutils literal notranslate"><span class="pre">UpcomingScheduledEventsFrame.retrieve_schedules()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.show_events"><code class="docutils literal notranslate"><span class="pre">UpcomingScheduledEventsFrame.show_events()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.UpcomingScheduledEventsFrame.store_entries"><code class="docutils literal notranslate"><span class="pre">UpcomingScheduledEventsFrame.store_entries()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.display_history()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.retrieve_history()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="config-logging_config.html"
+                          title="previous chapter">biometrics_tracker.config-logging_config module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gui-widgets.html"
+                          title="next chapter">biometrics_tracker.gui.widgets module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/gui-tk-gui.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui-widgets.html" title="biometrics_tracker.gui.widgets module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="config-logging_config.html" title="biometrics_tracker.config-logging_config module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.tk_gui module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+    </div>
+  </body>
+</html>
