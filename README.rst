@@ -8,9 +8,10 @@ interpreter install package, go to <https://www.python.org> .  If you have an ex
 wish to download the Biometrics Tracker application for the Python Package repository (PyPI), you should upgrade
 the installation tool, pip to the newest version by entering the command :code:`pip upgrade pip` at a command prompt.
 The Biometrics Tracker can be downloaded from PyPI entering the command :code:`pip install biometrics-tracker`
-at a command prompt.
+at a command prompt.  Once the app is installed, it can be started by entered the command :code:`biotrack`
 
 The application is also available from my GitHub repository at <https://github.com/stroudcuster/biometrics-tracker/>.
+API documentation is available at <https://stroudcuster.github.io/biometrics-tracker/index.html>
 
 This application provides allows you to record and track the following biometric data for a
 number of people:

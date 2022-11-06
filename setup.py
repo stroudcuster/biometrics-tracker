@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='biometrics_tracker',
     description='This application records and reports biometric measurements (e.g. weight, blood pressure, pulse)',
-    version='0.9.2',
+    version='1.0.0',
     packages=['biometrics_tracker',
               'biometrics_tracker.main',
               'biometrics_tracker.gui',
