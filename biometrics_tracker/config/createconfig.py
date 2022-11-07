@@ -1,6 +1,5 @@
 import json
 import pathlib
-import sys
 from tkinter import ttk
 import tkinter.font as font
 import ttkbootstrap as ttkb
@@ -8,6 +7,7 @@ from typing import Optional
 
 import biometrics_tracker.config.json_handler as jh
 import biometrics_tracker.config.logging_config as logging_config
+import biometrics_tracker.utilities.utilities as util
 
 
 class ConfigInfo:
@@ -132,7 +132,7 @@ class ConfigGUI(ttkb.Window):
         self.config_info.menu_font_size = self.font_size_var.get()
         self.config_info.default_font_size = self.font_size_var.get()
         self.config_info.text_font_size = self.font_size_var.get()
-        self.config_info.help_url = pathlib.Path(sys.path[-1:][0], 'biometrics_tracker', 'help',
+        self.config_info.help_url = pathlib.Path(util.whereami(), 'biometrics_tracker', 'help',
                                                  'user-doc-index.html').as_uri()
         self.config_info.config_file_path = pathlib.Path(self.config_dir_path, 'config_info.json')
         self.config_info.write_json()

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>biometrics_tracker.utilities.utilities module &#8212; Biometrics Tracking 0.9.2 documentation</title>
+    <title>biometrics_tracker.utilities.utilities module &#8212; Biometrics Tracking 1.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -31,7 +31,7 @@
         <li class="right" >
           <a href="output-reports.html" title="biometrics_tracker.output.reports module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.utilities.utilities module</a></li> 
       </ul>
@@ -148,6 +148,16 @@ positive or negative, but they must all have the same sign or a ValueError excep
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.split_camelcase">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_camelcase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camelcase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_camelcase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits a camelcase string into its components
+:param camelcase: a camelcase formatted string
+:type camelcase: str
+:return: a list consisting of the components of the original string
+:rtype: list[str]</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.split_datetime">
 <span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dttm:</span> <span class="pre">~datetime.datetime)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'datetime.date'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'datetime.time'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_datetime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return date and time instances created from the proved datetime</p>
@@ -160,6 +170,28 @@ positive or negative, but they must all have the same sign or a ValueError excep
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple[datetime.date, datetime.time]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.step_enumerate">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">step_enumerate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.step_enumerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is similar to the built in enumerate function, but it allows you to specify  a starting value and
+the amount to increment the index for each item in the list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lst</strong> (<em>list</em><em>[</em><em>Any</em><em>]</em>) – a list of items to be enumerated</p></li>
+<li><p><strong>start</strong> (<em>int</em>) – the starting value for the enumeration</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – the amount by which the index will be incremented for each itme in the list</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of tuples consisting of index/item pairs</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple[int, Any]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -183,6 +215,20 @@ to validate the string format and extract hours, minutes and seconds from the st
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.whereami">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">whereami</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.whereami" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Path object pointing to the location of the application’s package folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the path of the application’s package directory</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pathlib.Path</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -202,8 +248,11 @@ to validate the string format and extract hours, minutes and seconds from the st
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.max_dom"><code class="docutils literal notranslate"><span class="pre">max_dom()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.mk_datetime"><code class="docutils literal notranslate"><span class="pre">mk_datetime()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.ordinal"><code class="docutils literal notranslate"><span class="pre">ordinal()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_camelcase"><code class="docutils literal notranslate"><span class="pre">split_camelcase()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_datetime"><code class="docutils literal notranslate"><span class="pre">split_datetime()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.step_enumerate"><code class="docutils literal notranslate"><span class="pre">step_enumerate()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.time_from_str"><code class="docutils literal notranslate"><span class="pre">time_from_str()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.whereami"><code class="docutils literal notranslate"><span class="pre">whereami()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -247,14 +296,14 @@ to validate the string format and extract hours, minutes and seconds from the st
         <li class="right" >
           <a href="output-reports.html" title="biometrics_tracker.output.reports module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 0.9.2 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.utilities.utilities module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, Stroud Custer III.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

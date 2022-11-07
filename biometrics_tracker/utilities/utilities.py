@@ -1,5 +1,7 @@
 from datetime import date, time, datetime
+import pathlib
 import re
+import sys
 from typing import Any, Optional
 
 
@@ -191,6 +193,20 @@ def max_dom(month: int) -> int:
 
 
 def step_enumerate(lst: list[Any], start: int = 0, step: int = 1) -> list[tuple[int, Any]]:
+    """
+    This function is similar to the built in enumerate function, but it allows you to specify  a starting value and
+    the amount to increment the index for each item in the list
+
+    :param lst: a list of items to be enumerated
+    :type lst: list[Any]
+    :param start: the starting value for the enumeration
+    :type start: int
+    :param step: the amount by which the index will be incremented for each itme in the list
+    :type step: int
+    :return: a list of tuples consisting of index/item pairs
+    :rtype: list[tuple[int, Any]]
+
+    """
     enum_list: list[tuple[int, Any]] = []
     idx: int = start
     for entry in lst:
@@ -200,8 +216,24 @@ def step_enumerate(lst: list[Any], start: int = 0, step: int = 1) -> list[tuple[
 
 
 def split_camelcase(camelcase: str) -> list[str]:
+    """
+    Splits a camelcase string into its components
+    :param camelcase: a camelcase formatted string
+    :type camelcase: str
+    :return: a list consisting of the components of the original string
+    :rtype: list[str]
+
+    """
     groups: list[str] = camel_case_re.split(camelcase)
     return [w for w in groups if len(w) > 0]
 
 
+def whereami() -> pathlib.Path:
+    """
+    Returns a Path object pointing to the location of the application's package folder
+    
+    :return: the path of the application's package directory
+    :rtype: pathlib.Path
 
+    """
+    return pathlib.Path(sys.path[-1:][0])
