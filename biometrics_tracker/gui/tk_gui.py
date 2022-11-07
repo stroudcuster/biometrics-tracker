@@ -28,7 +28,8 @@ import biometrics_tracker.model.exporters as exp
 import biometrics_tracker.model.importers as imp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.output.reports as reports
-from biometrics_tracker.utilities.utilities import mk_datetime, split_datetime, increment_date, split_camelcase
+from biometrics_tracker.utilities.utilities import mk_datetime, split_datetime, increment_date, split_camelcase, \
+    whereami
 import biometrics_tracker.gui.widgets as widgets
 from biometrics_tracker.gui.widgets import DateWidget, TimeWidget, DataPointTypeWidget, ImportExportFieldWidget, \
     dp_widget_union, DataPointWidgetFactory, Checkbutton, Radiobutton
@@ -997,10 +998,12 @@ class SaveBiometricsReportFrame(ttkb.Frame):
         self.save_rpt_var = ttkb.StringVar()
         ttkb.Radiobutton(self, text=SaveBiometricsReportFrame.TEXT, variable=self.save_rpt_var,
                          value=SaveBiometricsReportFrame.TEXT, command=self.enable_save).grid(column=1, row=0, padx=8)
+        """" temporarily disabled until I can find a working PDF library
         ttkb.Radiobutton(self, text=SaveBiometricsReportFrame.PDF, variable=self.save_rpt_var,
                          value=SaveBiometricsReportFrame.PDF, command=self.enable_save).grid(column=2, row=0, padx=8)
+        """
         ttkb.Radiobutton(self, text=SaveBiometricsReportFrame.DONT_SAVE, variable=self.save_rpt_var,
-                         value=SaveBiometricsReportFrame.DONT_SAVE, command=self.disable_save).grid(column=3, row=0,
+                         value=SaveBiometricsReportFrame.DONT_SAVE, command=self.disable_save).grid(column=2, row=0,
                                                                                                     padx=8)
         self.save_rpt_var.set(SaveBiometricsReportFrame.DONT_SAVE)
         self.file_name_var = ttkb.StringVar()
@@ -1734,8 +1737,8 @@ class Application(ttkb.Window, core.CoreLogic):
         completion queues.
         :type queue_mgr: biometrics_tracker.ipc.queue_manager.Queues
         """
-        ttkb.Window.__init__(self, themename="darkly",
-                             iconphoto=pathlib.Path('gui', 'biometrics_tracker.png').__str__())
+        ttkb.Window.__init__(self, themename="darkly", iconphoto=pathlib.Path(whereami(), 'gui',
+                                                                              'biometrics_tracker.png').__str__())
         core.CoreLogic.__init__(self, config_info, queue_mgr)
         font.nametofont('TkMenuFont').config(size=self.config_info.menu_font_size)
         font.nametofont('TkTextFont').config(size=self.config_info.text_font_size)
