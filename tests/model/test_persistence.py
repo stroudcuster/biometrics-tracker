@@ -4,9 +4,8 @@ import pathlib
 import pytest
 from typing import Any, Callable, Optional
 
-from datapoints_fixtures import person_fix, people_fix, tracking_config_fix, schedule_fix, \
-    blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, body_weight_data_fix, body_temp_data_fix, \
-    blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, body_temp_dp_data_fix, \
+from datapoints_fixtures import person_fix, people_fix, tracking_config_fix, schedule_fix, datapoints_fix, \
+    blood_pressure_dp_data_fix, pulse_dp_data_fix, blood_glucose_dp_data_fix, body_temp_dp_data_fix, \
     body_weight_dp_data_fix
 import datapoints_fixtures as dp_fix
 
@@ -352,7 +351,6 @@ class TestPersistence:
                 if single_delete_count >= 2:
                     break
             person_id = schedule_fix[0].person_id
-            print(f'Delete: {person_id} {person_id.__class__.__name__}')
             self.db.delete_schedules_for_person(person_id)
             check_sched: list[dp.ScheduleEntry] = self.db.retrieve_schedules_for_person(person_id)
             assert len(check_sched) == 0, \
@@ -360,6 +358,53 @@ class TestPersistence:
 
         self.db_open_do_close(lambda s=schedule_fix: self.insert_schedules(s))
         self.db_open_do_close(delete)
+
+    def insert_datapoints(self, datapoints_fix) -> tuple[dict[str, dp.DataPoint], datetime, datetime]:
+        def make_key() -> str:
+            return f'{datapoint.person_id}:{datapoint.taken.strftime(DATETIME_FMT)}:{datapoint.type.name}'
+        datapoints_map: dict[str, dp.DataPoint] = {}
+        first_taken: Optional[datetime] = None
+        last_taken: Optional[datetime] = None
+        for datapoint in datapoints_fix:
+            self.db.insert_datapoint(datapoint)
+            datapoints_map[make_key()] = datapoint
+            if first_taken is None or datapoint.taken < first_taken:
+                first_taken = datapoint.taken
+            if last_taken is None or datapoint.taken > last_taken:
+                last_taken = datapoint.taken
+            prev_key = datapoint.person_id
+
+        return datapoints_map, first_taken, last_taken
+
+    def dp_err_preamble(self, datap: dp.DataPoint):
+        return f'DataPoint Person ID: {datap.person_id} Taken: {datap.taken.strftime(DATETIME_FMT)} Type: {datap.type.name}'
+
+    @pytest.mark.DataBase
+    @pytest.mark.DataPoint
+    def test_datapoint_insert(self, people_fix, datapoints_fix):
+        def make_key(datapoint: dp.DataPoint) -> str:
+            return f'{datapoint.person_id}:{datapoint.taken.strftime(DATETIME_FMT)}:{datapoint.type.name}'
+
+        def retrieve_datapoints():
+            for person in people_fix:
+                check_dps: list[dp.DataPoint] = self.db.retrieve_datapoints_for_person(person.id, first_taken,
+                                                                                       last_taken)
+                for chk_dp in check_dps:
+                    key = make_key(chk_dp)
+                    if key in datapoints_map:
+                        datapoint = datapoints_map[key]
+                        if not compare_object(datapoint, chk_dp):
+                            assert datapoint.note == chk_dp.note,\
+                                f'{self.dp_err_preamble(datapoint)} {attr_error("Note"), datapoint.note, chk_dp.note}'
+                            assert compare_object(datapoint.data, chk_dp.data), \
+                                f'{self.dp_err_preamble(datapoint)} {attr_error("Data"), datapoint.data, chk_dp.data}'
+                    else:
+                        assert False, f'{self.dp_err_preamble(chk_dp)} Person ID, Taken or DP Type mismatch'
+
+        self.create_db_connection()
+        datapoints_map, first_taken, last_taken = self.insert_datapoints(datapoints_fix)
+        self.close_db_connection()
+        self.db_open_do_close(retrieve_datapoints)
 
 
 @pytest.mark.DataBase
@@ -433,8 +478,14 @@ def test_schedule_update_last_triggered(tmpdir, schedule_fix):
 @pytest.mark.Database
 @pytest.mark.Person
 @pytest.mark.Schedule
-@pytest.mark.skip
 def test_schedule_delete(tmpdir, schedule_fix):
     per_tests = TestPersistence(tmpdir)
     per_tests.test_schedule_delete(schedule_fix)
+
+
+@pytest.mark.Database
+@pytest.mark.DataPoint
+def test_datapoint_insert(tmpdir, people_fix, datapoints_fix):
+    per_tests = TestPersistence(tmpdir)
+    per_tests.test_datapoint_insert(people_fix, datapoints_fix)
 

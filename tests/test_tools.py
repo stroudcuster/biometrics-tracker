@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 from typing import Any
 
 TIME_FMT: str = '%I:%M:%S %p'
@@ -28,4 +29,16 @@ def compare_object(obj1, obj2) -> bool:
     if isinstance(obj2, obj1.__class__) and obj1.__dict__ == obj2.__dict__:
         return True
     else:
+        for key, value in obj1.__dict__.items():
+            if key not in obj2.__dict__:
+                return False
+            elif not isinstance(value, (Decimal, float)):
+                if value != obj2.__dict__[key]:
+                    return False
+                else:
+                    return True
+            elif abs(value - obj2.__dict__[key]) > 0.1:
+                return False
+            else:
+                return True
         return False

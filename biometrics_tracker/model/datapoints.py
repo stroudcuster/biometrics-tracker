@@ -196,9 +196,9 @@ class TrackingConfig:
     Indicates that a particular datapoint is recorded for a particular person
 
     """
-    def __init__(self, dp_type: DataPointType, uom: uoms.UOM, tracked: bool):
+    def __init__(self, dp_type: DataPointType, default_uom: uoms.UOM, tracked: bool):
         self.dp_type: DataPointType = dp_type
-        self.default_uom: uoms.UOM = uom
+        self.default_uom: uoms.UOM = default_uom
         self.tracked: bool = tracked
 
 

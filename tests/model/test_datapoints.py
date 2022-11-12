@@ -2,7 +2,7 @@ from datetime import date, time, datetime, timedelta
 import pytest
 from typing import Any
 
-from datapoints_fixtures import person_data_fix, person_fix, tracking_config_data, schedule_data, \
+from datapoints_fixtures import person_data_fix, person_fix, tracking_config_fix, schedule_fix, \
     blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, body_weight_data_fix, body_temp_data_fix, \
     blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, body_temp_dp_data_fix, \
     body_weight_dp_data_fix
@@ -32,34 +32,34 @@ def test_person_init(person_data_fix):
 
 
 @pytest.mark.TrackingConfig
-def test_tracking_config_init(tracking_config_data):
-    track_cfg = dp.TrackingConfig(dp_type=tracking_config_data[0].dp_type,
-                                  uom=tracking_config_data[0].uom,
-                                  tracked=tracking_config_data[0].tracked)
+def test_tracking_config_init(tracking_config_fix):
+    track_cfg = dp.TrackingConfig(dp_type=tracking_config_fix[0].dp_type,
+                                  default_uom=tracking_config_fix[0].default_uom,
+                                  tracked=tracking_config_fix[0].tracked)
     assert track_cfg is not None, 'Tracking Config object not created'
-    assert track_cfg.dp_type == tracking_config_data[0].dp_type, attr_error('Tracking Config DP Type',
-                                                                            tracking_config_data[0].dp_type.name,
-                                                                            track_cfg.dp_type.name)
-    assert track_cfg.default_uom == tracking_config_data[0].uom, attr_error('Tracking Config UOM',
-                                                                            tracking_config_data[0].uom.name,
-                                                                            track_cfg.default_uom.name)
-    assert track_cfg.tracked == tracking_config_data[0].tracked, attr_error('Tracking Config Tracked',
-                                                                            tracking_config_data[0].tracked,
-                                                                            track_cfg.tracked)
+    assert track_cfg.dp_type == tracking_config_fix[0].dp_type, attr_error('Tracking Config DP Type',
+                                                                           tracking_config_fix[0].dp_type.name,
+                                                                           track_cfg.dp_type.name)
+    assert track_cfg.default_uom == tracking_config_fix[0].default_uom, attr_error('Tracking Config UOM',
+                                                                           tracking_config_fix[0].default_uom.name,
+                                                                           track_cfg.default_uom.name)
+    assert track_cfg.tracked == tracking_config_fix[0].tracked, attr_error('Tracking Config Tracked',
+                                                                           tracking_config_fix[0].tracked,
+                                                                           track_cfg.tracked)
 
 
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
-def test_person_add_tracked_dp_type(person_fix, tracking_config_data):
-    for datum in tracking_config_data:
-        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.uom, datum.tracked))
-    assert len(person_fix.tracked) == len(tracking_config_data), attr_error('Person TrackingConfig List Len',
-                                                                            len(person_fix.tracked),
-                                                                            len(tracking_config_data))
-    for datum in tracking_config_data:
+def test_person_add_tracked_dp_type(person_fix, tracking_config_fix):
+    for datum in tracking_config_fix:
+        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked))
+    assert len(person_fix.tracked) == len(tracking_config_fix), attr_error('Person TrackingConfig List Len',
+                                                                           len(person_fix.tracked),
+                                                                           len(tracking_config_fix))
+    for datum in tracking_config_fix:
         assert datum.dp_type in person_fix.tracked, f'No Tracking Config for DataPointType {datum.dp_type.name}'
-        assert datum.uom == person_fix.tracked[datum.dp_type].default_uom, attr_error(
-            f'Tracking Config for {datum.dp_type.name} Default UOM', datum.uom.name,
+        assert datum.default_uom == person_fix.tracked[datum.dp_type].default_uom, attr_error(
+            f'Tracking Config for {datum.dp_type.name} Default UOM', datum.default_uom.name,
             person_fix.tracked[datum.dp_type].default_uom.name)
         assert datum.tracked == person_fix.tracked[datum.dp_type].tracked, attr_error(
             f'Tracking Config for {datum.dp_type}', datum.tracked, person_fix.tracked[datum.dp_type].tracked)
@@ -67,15 +67,15 @@ def test_person_add_tracked_dp_type(person_fix, tracking_config_data):
 
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
-def test_person_remove_tracked_dp_type(person_fix, tracking_config_data):
-    for datum in tracking_config_data:
-        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.uom, datum.tracked))
-    assert len(person_fix.tracked) == len(tracking_config_data), attr_error(
-        'Person TrackingConfig List Len before remove', len(tracking_config_data), len(person_fix.tracked))
-    for idx, datum in enumerate(tracking_config_data):
+def test_person_remove_tracked_dp_type(person_fix, tracking_config_fix):
+    for datum in tracking_config_fix:
+        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked))
+    assert len(person_fix.tracked) == len(tracking_config_fix), attr_error(
+        'Person TrackingConfig List Len before remove', len(tracking_config_fix), len(person_fix.tracked))
+    for idx, datum in enumerate(tracking_config_fix):
         rmv_dp_type = datum.dp_type
         person_fix.remove_tracked_dp_type(rmv_dp_type)
-        expected_len: int = len(tracking_config_data)-(idx+1)
+        expected_len: int = len(tracking_config_fix) - (idx + 1)
         assert len(person_fix.tracked) == expected_len, attr_error(
             'Person TrackingConfig List Len after remove', expected_len, len(person_fix.tracked))
         assert rmv_dp_type not in person_fix.tracked, f'Person Tracking Config {rmv_dp_type.name} not removed'
@@ -83,21 +83,23 @@ def test_person_remove_tracked_dp_type(person_fix, tracking_config_data):
 
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
-def test_person_is_tracked(person_fix, tracking_config_data):
-    for datum in tracking_config_data:
-        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.uom, datum.tracked))
-    assert len(person_fix.tracked) == len(tracking_config_data), attr_error('Person TrackingConfig List Len',
-                                                                        len(tracking_config_data), len(person_fix.tracked))
-    for datum in tracking_config_data:
+def test_person_is_tracked(person_fix, tracking_config_fix):
+    for datum in tracking_config_fix:
+        person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom,
+                                                                        datum.tracked))
+    assert len(person_fix.tracked) == len(tracking_config_fix), attr_error('Person TrackingConfig List Len',
+                                                                           len(tracking_config_fix),
+                                                                           len(person_fix.tracked))
+    for datum in tracking_config_fix:
         assert datum.tracked == person_fix.is_tracked(datum.dp_type), attr_error(
             f'Person TrackingConfig {datum.dp_type.name} Tracked', datum.tracked, person_fix.is_tracked(datum.dp_type))
 
 
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
-def test_person_dp_type_track_config(person_fix, tracking_config_data):
-    for datum in tracking_config_data:
-        tc1: dp.TrackingConfig = dp.TrackingConfig(datum.dp_type, datum.uom, datum.tracked)
+def test_person_dp_type_track_config(person_fix, tracking_config_fix):
+    for datum in tracking_config_fix:
+        tc1: dp.TrackingConfig = dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked)
         person_fix.add_tracked_dp_type(datum.dp_type, tc1)
         tc2 = person_fix.dp_type_track_cfg(datum.dp_type)
         assert tc1.dp_type == tc2.dp_type, attr_error('Tracking Config DP Type', tc1.dp_type.name, tc2.dp_type.name)
@@ -129,8 +131,8 @@ def test_weekday_name_map():
 
 
 @pytest.mark.Schedule
-def test_schedule_init(schedule_data):
-    for datum in schedule_data:
+def test_schedule_init(schedule_fix):
+    for datum in schedule_fix:
         schedule = dp.ScheduleEntry(datum.person_id, datum.seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                     datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
                                     datum.starts_on, datum.ends_on, datum.suspended, datum.last_triggered)
@@ -178,8 +180,8 @@ def test_schedule_init(schedule_data):
 
 
 @pytest.mark.Schedule
-def test_schedule_get_weekday_dates(schedule_data):
-    datum = schedule_data[0]
+def test_schedule_get_weekday_dates(schedule_fix):
+    datum = schedule_fix[0]
     schedule = dp.ScheduleEntry(datum.person_id, datum.seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                 datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
                                 datum.starts_on, datum.ends_on, datum.suspended, datum.last_triggered)
@@ -192,12 +194,12 @@ def test_schedule_get_weekday_dates(schedule_data):
 
 
 @pytest.mark.Schedule
-def test_schedule_next_occurrence_today(schedule_data):
+def test_schedule_next_occurrence_today(schedule_fix):
     def error_preamble() -> str:
         return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
                f'Interval {schedule.interval} When : {schedule.when_time}'
-    datum = schedule_data[0]
+    datum = schedule_fix[0]
     schedule = dp.ScheduleEntry(datum.person_id, datum.seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                 datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
                                 datum.starts_on, datum.ends_on, datum.suspended, datum.last_triggered)
@@ -318,13 +320,13 @@ def test_schedule_next_occurrence_today(schedule_data):
 
 @pytest.mark.Person
 @pytest.mark.Schedule
-def test_person_add_schedule(person_fix, schedule_data):
+def test_person_add_schedule(person_fix, schedule_fix):
     def error_preamble() -> str:
         return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
                f'Interval {schedule.interval} When : {schedule.when_time}'
 
-    for idx, datum in enumerate(schedule_data):
+    for idx, datum in enumerate(schedule_fix):
         seq_nbr: int = idx + 1
         schedule = dp.ScheduleEntry(datum.person_id, seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                     datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
@@ -337,19 +339,19 @@ def test_person_add_schedule(person_fix, schedule_data):
         sched2 = person_fix.entry_schedules[seq_nbr]
         assert compare_object(schedule, sched2), attr_error(f'{error_preamble()}  Retrieved Schedule not the same as '
                                                             f'Saved Schedule', schedule.__str__(), sched2.__str__())
-    assert len(person_fix.entry_schedules) == len(schedule_data), attr_error(
-        f'{error_preamble()} Schedule Dict Len is wrong ', len(schedule_data), len(person_fix.entry_schedules))
+    assert len(person_fix.entry_schedules) == len(schedule_fix), attr_error(
+        f'{error_preamble()} Schedule Dict Len is wrong ', len(schedule_fix), len(person_fix.entry_schedules))
 
 
 @pytest.mark.Person
 @pytest.mark.Schedule
-def test_person_rmv_schedule(person_fix, schedule_data):
+def test_person_rmv_schedule(person_fix, schedule_fix):
     def error_preamble() -> str:
         return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
                f'Interval {schedule.interval} When : {schedule.when_time}'
 
-    for idx, datum in enumerate(schedule_data):
+    for idx, datum in enumerate(schedule_fix):
         seq_nbr: int = idx + 1
         schedule = dp.ScheduleEntry(datum.person_id, seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                     datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,

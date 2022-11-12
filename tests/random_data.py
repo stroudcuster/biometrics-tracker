@@ -100,6 +100,9 @@ class RandomData:
                     day = random.randint(1, RandomData.max_dom_map[month])
                 except KeyError:
                     day = 1
+                # Some invalid days of month are sneaking by
+                if day > RandomData.max_dom_map[month]:
+                    day = RandomData.max_dom_map[month]
             return date(year, month, day)
         else:
             raise ValueError(f'Upper bound ({upper.strftime(DATE_FMT)}) '

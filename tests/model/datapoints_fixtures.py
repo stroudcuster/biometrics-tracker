@@ -57,10 +57,10 @@ def tracking_config_data():
     dp_types_used: list[dp.DataPointType] = []
     idx: int = 0
     while idx < 5:
-        datum = collections.namedtuple('tracking_config_data_t', ['dp_type', 'uom', 'tracked'])
+        datum = collections.namedtuple('tracking_config_data_t', ['dp_type', 'default_uom', 'tracked'])
         datum.dp_type = random_data.random_dp_type()
         if datum.dp_type not in dp_types_used:
-            datum.uom = random_data.random_uom(datum.dp_type)
+            datum.default_uom = random_data.random_uom(datum.dp_type)
             datum.tracked = random_data.random_bool()
             data.append(datum)
             dp_types_used.append(datum.dp_type)
@@ -72,7 +72,7 @@ def tracking_config_data():
 def tracking_config_fix():
     data: list[dp.TrackingConfig] = []
     for datum in tracking_config_data():
-        data.append(dp.TrackingConfig(dp_type=datum.dp_type, uom=datum.uom, tracked=datum.tracked))
+        data.append(dp.TrackingConfig(dp_type=datum.dp_type, default_uom=datum.default_uom, tracked=datum.tracked))
     return data
 
 
@@ -129,7 +129,7 @@ def make_metric(value_lower: Union[int, Decimal], value_upper: Union[int, Decima
     if isinstance(value_lower, int):
         datum.value = random_data.random_int(value_lower, value_upper)
     else:
-        datum.value = random_data.random_dec(value_lower, value_upper, precision)
+        datum.value = Decimal(random_data.random_dec(value_lower, value_upper, precision))
     datum.uom = random_data.random_uom(dp_type)
     return datum
 
@@ -164,7 +164,8 @@ def blood_glucose_dp_data_fix():
     taken_upper: datetime = datetime.now() - timedelta(days=45)
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
-    for bg in blood_glucose_data():
+    for datum in blood_glucose_data():
+        bg: dp.BloodGlucose = dp.BloodGlucose(datum.value, datum.uom)
         data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.BG, bg))
     return data
 
@@ -191,7 +192,8 @@ def blood_pressure_dp_data_fix():
     taken_upper: datetime = datetime.now() - timedelta(days=45)
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
-    for bp in  blood_pressure_data():
+    for datum in blood_pressure_data():
+        bp: dp.BloodPressure = dp.BloodPressure(datum.systolic, datum.diastolic, datum.uom)
         data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.BP, bp))
     return data
 
@@ -215,7 +217,8 @@ def pulse_dp_data_fix() -> list[collections.namedtuple]:
     taken_upper: datetime = datetime.now() - timedelta(days=45)
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
-    for pulse in pulse_data():
+    for datum in pulse_data():
+        pulse: dp.Pulse = dp.Pulse(datum.value, datum.uom)
         data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.PULSE, pulse))
     return data
 
@@ -239,8 +242,9 @@ def body_temp_dp_data_fix() -> list[collections.namedtuple]:
     taken_upper: datetime = datetime.now() - timedelta(days=45)
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
-    for body_temp in body_temp_data():
-        data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.PULSE, body_temp))
+    for datum in body_temp_data():
+        body_temp: dp.BodyTemperature = dp.BodyTemperature(datum.value, datum.uom)
+        data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.BODY_TEMP, body_temp))
     return data
 
 
@@ -263,8 +267,61 @@ def body_weight_dp_data_fix() -> list[collections.namedtuple]:
     taken_upper: datetime = datetime.now() - timedelta(days=45)
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
-    for body_weight in body_weight_data():
-        data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.PULSE, body_weight))
+    for datum in body_weight_data():
+        body_weight: dp.BodyWeight = dp.BodyWeight(datum.value, datum.uom)
+        data.append(make_datapoint(person_id, taken_lower, taken_upper, note, dp.DataPointType.BODY_WGT, body_weight))
     return data
+
+
+@pytest.fixture
+def datapoints_fix(people_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, blood_glucose_dp_data_fix,
+                        body_temp_dp_data_fix, body_weight_dp_data_fix) -> list[dp.DataPoint]:
+    def grab_dp_data() -> list[collections.namedtuple]:
+        switch: int = random_data.random_int(1, 5)
+        match switch:
+            case 1:
+                return blood_pressure_dp_data_fix
+            case 2:
+                return pulse_dp_data_fix
+            case 3:
+                return blood_glucose_dp_data_fix
+            case 4:
+                return body_temp_dp_data_fix
+            case 5:
+                return body_weight_dp_data_fix
+            case _:
+                raise ValueError(f'switch value {switch} out of range')
+
+    def make_key(taken: datetime, type: dp.DataPointType) -> str:
+        return f'{taken.strftime("%m/%d/%Y %HH:%MM:%SS")}:{type.name}'
+
+    datapoints: list[dp.DataPoint] = []
+    for person in people_fix:
+        datapoints_map: dict[str, str] = {}
+        for datum in grab_dp_data():
+            match datum.type:
+                case dp.DataPointType.BG:
+                    data: dp.BloodGlucose = dp.BloodGlucose(value=datum.data.value, uom=datum.data.uom)
+                case dp.DataPointType.BP:
+                    data: dp.BloodPressure = dp.BloodPressure(systolic=datum.data.systolic,
+                                                              diastolic=datum.data.diastolic, uom=datum.data.uom)
+                case dp.DataPointType.PULSE:
+                    data: dp.Pulse = dp.Pulse(value=datum.data.value, uom=datum.data.uom)
+                case dp.DataPointType.BODY_TEMP:
+                    data: dp.BodyTemperature(value=datum.data.value, uom=datum.data.uom)
+                case dp.DataPointType.BODY_WGT:
+                    data: dp.BodyWeight = dp.BodyWeight(value=datum.data.value, uom=datum.data.uom)
+                case _:
+                    raise ValueError(f'DP Type {datum.type} out of range')
+            key = make_key(datum.taken, datum.type)
+            if key not in datapoints_map:
+                datapoints.append(dp.DataPoint(person_id=person.id, taken=datum.taken, note=datum.note, data=datum.data,
+                                               type=datum.type))
+                datapoints_map[key] = 'x'
+
+    return datapoints
+
+
+
 
 

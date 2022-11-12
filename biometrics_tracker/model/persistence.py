@@ -392,7 +392,7 @@ fr
 
         """
         curs = self.conn.cursor()
-        curs.execute(DELETE_SCHEDULES_FOR_PERSON_STMT, person_id)
+        curs.execute(DELETE_SCHEDULES_FOR_PERSON_STMT, (person_id,))
         curs.execute('COMMIT;')
 
     def retrieve_schedules_for_person(self, person_id) -> list[dp.ScheduleEntry]:
