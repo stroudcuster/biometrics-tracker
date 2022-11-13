@@ -54,7 +54,7 @@ UPDATE_SCHEDULE_STMT = 'UPDATE SCHEDULE SET DP_TYPE = ?, FREQUENCY = ?, STARTS_O
 
 UPDATE_SCHEDULE_LAST_TRIGGERED_STMT = 'UPDATE SCHEDULE SET LAST_TRIGGERED = ? WHERE PERSON_ID = ? AND SEQ_NBR = ?;'
 
-DELETE_SCHEDULE_FOR_PERSON_STMT = 'DELETE FROM SCHEDULE WHERE PERSON_ID = ? AND SEQ_NBR = ?;'
+DELETE_SCHEDULE_FOR_PERSON_SEQ_STMT = 'DELETE FROM SCHEDULE WHERE PERSON_ID = ? AND SEQ_NBR = ?;'
 
 DELETE_SCHEDULES_FOR_PERSON_STMT = 'DELETE FROM SCHEDULE WHERE PERSON_ID = ?;'
 
@@ -379,7 +379,7 @@ fr
 
         """
         curs = self.conn.cursor()
-        curs.execute(DELETE_SCHEDULE_FOR_PERSON_STMT, (person_id, seq_nbr))
+        curs.execute(DELETE_SCHEDULE_FOR_PERSON_SEQ_STMT, (person_id, seq_nbr))
         curs.execute('COMMIT;')
 
     def delete_schedules_for_person(self, person_id: str):
@@ -392,7 +392,7 @@ fr
 
         """
         curs = self.conn.cursor()
-        curs.execute(DELETE_SCHEDULES_FOR_PERSON_STMT, (person_id))
+        curs.execute(DELETE_SCHEDULES_FOR_PERSON_STMT, (person_id,))
         curs.execute('COMMIT;')
 
     def retrieve_schedules_for_person(self, person_id) -> list[dp.ScheduleEntry]:

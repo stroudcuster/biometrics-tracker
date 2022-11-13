@@ -196,9 +196,9 @@ class TrackingConfig:
     Indicates that a particular datapoint is recorded for a particular person
 
     """
-    def __init__(self, dp_type: DataPointType, uom: uoms.UOM, tracked: bool):
+    def __init__(self, dp_type: DataPointType, default_uom: uoms.UOM, tracked: bool):
         self.dp_type: DataPointType = dp_type
-        self.default_uom: uoms.UOM = uom
+        self.default_uom: uoms.UOM = default_uom
         self.tracked: bool = tracked
 
 
@@ -327,34 +327,36 @@ class ScheduleEntry:
 
         """
         next_occur: list[datetime] = []
-        if self.last_triggered is not None:
-            mark = self.last_triggered
-        if self.starts_on <= today <= self.ends_on:
-            match self.frequency:
-                case FrequencyType.One_Time:
-                    if self.starts_on == today:
-                        next_occur.append(utilities.mk_datetime(self.starts_on, self.when_time))
-                case FrequencyType.Monthly:
-                    for day_of_month in self.days_of_month:
-                        if day_of_month == today.day:
+        if not self.suspended:
+            if self.last_triggered is not None:
+                mark = self.last_triggered
+            if self.starts_on <= today:
+                if today <= self.ends_on:
+                    match self.frequency:
+                        case FrequencyType.One_Time:
+                            if self.starts_on == today:
+                                next_occur.append(utilities.mk_datetime(self.starts_on, self.when_time))
+                        case FrequencyType.Monthly:
+                            for day_of_month in self.days_of_month:
+                                if day_of_month == today.day:
+                                    next_occur.append(utilities.mk_datetime(today, self.when_time))
+                        case FrequencyType.Weekly:
+                            for weekday in self.weekdays:
+                                if weekday == WeekDay(today.weekday()+1):
+                                    weekday_dates = self.get_weekday_dates(weekday)
+                                    if self.interval == 0:
+                                        next_occur.append(utilities.mk_datetime(today, self.when_time))
+                                    elif date(today.year, today.month, today.day) in weekday_dates:
+                                        next_occur.append(utilities.mk_datetime(today, self.when_time))
+                        case FrequencyType.Daily:
                             next_occur.append(utilities.mk_datetime(today, self.when_time))
-                case FrequencyType.Weekly:
-                    for weekday in self.weekdays:
-                        if weekday == WeekDay(today.weekday()+1):
-                            weekday_dates = self.get_weekday_dates(weekday)
-                            if self.interval == 0:
-                                next_occur.append(utilities.mk_datetime(today, self.when_time))
-                            elif date(today.year, today.month, today.day) in weekday_dates:
-                                next_occur.append(utilities.mk_datetime(today, self.when_time))
-                case FrequencyType.Daily:
-                    next_occur.append(utilities.mk_datetime(today, self.when_time))
-                case FrequencyType.Hourly:
-                    hour: int = self.when_time.hour
-                    while hour < 24:
-                        next_occur.append(datetime(year=today.year, month=today.month, day=today.day, hour=hour,
-                                                   minute=self.when_time.minute))
-                        hour += self.interval
-        return next_occur
+                        case FrequencyType.Hourly:
+                            hour: int = self.when_time.hour
+                            while hour < 24:
+                                next_occur.append(datetime(year=today.year, month=today.month, day=today.day, hour=hour,
+                                                           minute=self.when_time.minute))
+                                hour += self.interval
+            return next_occur
 
     def __str__(self):
         """
@@ -399,7 +401,6 @@ class ScheduleEntry:
                            f'{self.when_time.strftime("%I:%M:%S %p")}'
 
 
-
 @dataclass
 class Person:
     """
@@ -414,16 +415,19 @@ class Person:
 
     def __post_init__(self):
         self.tracked: dict[str: TrackingConfig] = {}
-        self.entry_schedules: dict[int: ScheduleEntry] = []
+        self.entry_schedules: dict[int: ScheduleEntry] = {}
 
     def add_tracked_dp_type(self, dp_type, tc: TrackingConfig):
         self.tracked[dp_type] = tc
 
     def remove_tracked_dp_type(self, dp_type):
-        self.tracked[dp_type].remove()
+        del self.tracked[dp_type]
 
     def is_tracked(self, dp_type: DataPointType):
-        return dp_type in self.tracked.keys()
+        if dp_type not in self.tracked:
+            return False
+        else:
+            return self.tracked[dp_type].tracked
 
     def dp_type_track_cfg(self, dp_type: DataPointType) -> TrackingConfig:
         return self.tracked[dp_type]
@@ -432,10 +436,13 @@ class Person:
         self.entry_schedules[sched.seq_nbr] = sched
 
     def remove_entry_sched(self, seq_nbr: int):
-        self.entry_schedules[seq_nbr].remove()
+        del self.entry_schedules[seq_nbr]
 
     def dp_type_uom(self, dp_type: DataPointType) -> uoms.UOM:
         return self.tracked[dp_type].default_uom
+
+    def __str__(self):
+        return f'ID: {self.id} Name: {self.name} D.O.B: {self.dob.strftime("%m/%d/%Y")}'
 
 
 @dataclass
@@ -536,11 +543,22 @@ dptype_name_map = {DataPointType.BG.name: DataPointType.BG,
                    DataPointType.BODY_WGT.name: DataPointType.BODY_WGT,
                    DataPointType.BP.name: DataPointType.BP,
                    DataPointType.PULSE.name: DataPointType.PULSE}
+
 """
 A dict[str, model.datapoints.DataPointType] that provides a mapping between the name property of each 
 DataPointType value and the corresponding value
 
 :property dptype_name_map:
+
+"""
+
+
+dptype_label_map = {dptype: dptype_dp_map[dptype].label() for dptype in DataPointType}
+"""
+A dict[str, model.datapoints.DataPointType] that provides a mapping between the label metric type and the corresponding 
+DataPointType 
+
+:property dptype_label_map:
 
 """
 

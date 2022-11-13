@@ -1,8 +1,9 @@
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from enum import Enum, auto
-import schedule
 from typing import Any, Callable, Iterator, Optional, Union
+
+import schedule
 
 import biometrics_tracker.model.datapoints as dp
 

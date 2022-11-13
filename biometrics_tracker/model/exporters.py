@@ -35,6 +35,7 @@ time_formats: dict[str, str] = {'HH:MM:SS-24': '%H:%M:%S',
 
 time_format_strft_map: dict[str, str] = {strft: label for label, strft in time_formats.items()}
 
+
 class ExportType(Enum):
     CSV = auto()
     SQL = auto()
