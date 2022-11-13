@@ -441,6 +441,9 @@ class Person:
     def dp_type_uom(self, dp_type: DataPointType) -> uoms.UOM:
         return self.tracked[dp_type].default_uom
 
+    def __str__(self):
+        return f'ID: {self.id} Name: {self.name} D.O.B: {self.dob.strftime("%m/%d/%Y")}'
+
 
 @dataclass
 class DataPoint:
@@ -540,11 +543,22 @@ dptype_name_map = {DataPointType.BG.name: DataPointType.BG,
                    DataPointType.BODY_WGT.name: DataPointType.BODY_WGT,
                    DataPointType.BP.name: DataPointType.BP,
                    DataPointType.PULSE.name: DataPointType.PULSE}
+
 """
 A dict[str, model.datapoints.DataPointType] that provides a mapping between the name property of each 
 DataPointType value and the corresponding value
 
 :property dptype_name_map:
+
+"""
+
+
+dptype_label_map = {dptype: dptype_dp_map[dptype].label() for dptype in DataPointType}
+"""
+A dict[str, model.datapoints.DataPointType] that provides a mapping between the label metric type and the corresponding 
+DataPointType 
+
+:property dptype_label_map:
 
 """
 

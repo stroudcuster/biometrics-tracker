@@ -50,4 +50,3 @@ class BiometricsRandomData(rd.RandomData):
             raise ValueError(f'Month must be 1 - 12 value {month:d}')
 
 
-

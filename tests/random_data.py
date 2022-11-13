@@ -210,3 +210,8 @@ class RandomData:
             bool_value = False
         return bool_value
 
+    @staticmethod
+    def random_dict_item(dictx: dict):
+        keys = [key for key in dictx.keys]
+        idx = RandomData.random_int(0, len(keys)-1)
+        return keys[idx], dictx[keys[idx]]

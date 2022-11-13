@@ -372,7 +372,6 @@ class TestPersistence:
                 first_taken = datapoint.taken
             if last_taken is None or datapoint.taken > last_taken:
                 last_taken = datapoint.taken
-            prev_key = datapoint.person_id
 
         return datapoints_map, first_taken, last_taken
 
@@ -395,9 +394,9 @@ class TestPersistence:
                         datapoint = datapoints_map[key]
                         if not compare_object(datapoint, chk_dp):
                             assert datapoint.note == chk_dp.note,\
-                                f'{self.dp_err_preamble(datapoint)} {attr_error("Note"), datapoint.note, chk_dp.note}'
+                                f'{self.dp_err_preamble(datapoint)} {attr_error("Note", datapoint.note, chk_dp.note)}'
                             assert compare_object(datapoint.data, chk_dp.data), \
-                                f'{self.dp_err_preamble(datapoint)} {attr_error("Data"), datapoint.data, chk_dp.data}'
+                                f'{self.dp_err_preamble(datapoint)} {attr_error("Data", datapoint.data, chk_dp.data)}'
                     else:
                         assert False, f'{self.dp_err_preamble(chk_dp)} Person ID, Taken or DP Type mismatch'
 
