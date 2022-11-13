@@ -42,3 +42,9 @@ def compare_object(obj1, obj2) -> bool:
             else:
                 return True
         return False
+
+
+def dict_diff(name: str, exp_list: dict, obs_list: dict):
+    expected = ','.join(f'{str(k)}{str(v)}' for k, v in exp_list.items())
+    observed = ','.join(f'{str(k)}{str(v)}' for k, v in obs_list.items())
+    return f'{name} list mismatch Expected: {expected}, Observed: {observed}'
