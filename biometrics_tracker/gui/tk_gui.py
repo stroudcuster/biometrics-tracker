@@ -1001,7 +1001,7 @@ class SaveBiometricsReportFrame(ttkb.Frame):
         ttkb.Radiobutton(self, text=SaveBiometricsReportFrame.PDF, variable=self.save_rpt_var,
                          value=SaveBiometricsReportFrame.PDF, command=self.enable_save).grid(column=2, row=0, padx=8)
         ttkb.Radiobutton(self, text=SaveBiometricsReportFrame.DONT_SAVE, variable=self.save_rpt_var,
-                         value=SaveBiometricsReportFrame.DONT_SAVE, command=self.disable_save).grid(column=2, row=0,
+                         value=SaveBiometricsReportFrame.DONT_SAVE, command=self.disable_save).grid(column=3, row=0,
                                                                                                     padx=8)
         self.save_rpt_var.set(SaveBiometricsReportFrame.DONT_SAVE)
         self.file_name_var = ttkb.StringVar()
