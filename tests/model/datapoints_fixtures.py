@@ -14,7 +14,7 @@ DP_MAX = 10
 
 def person_data():
     data = collections.namedtuple('person_data_t', ['id', 'name', 'dob', 'age'])
-    data.id = random_data.random_string(5, False)
+    data.id = random_data.random_string(5, initial_caps=False, no_spaces=True)
     data.name = f'{random_data.random_alpha_string(6)} {random_data.random_alpha_string(10)}'
     data.dob = random_data.random_dob()
     age_dur = date.today() - data.dob
@@ -299,26 +299,27 @@ def datapoints_fix(people_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, bl
     datapoints: list[dp.DataPoint] = []
     for person in people_fix:
         datapoints_map: dict[str, str] = {}
-        for datum in grab_dp_data():
-            match datum.type:
-                case dp.DataPointType.BG:
-                    data: dp.BloodGlucose = dp.BloodGlucose(value=datum.data.value, uom=datum.data.uom)
-                case dp.DataPointType.BP:
-                    data: dp.BloodPressure = dp.BloodPressure(systolic=datum.data.systolic,
-                                                              diastolic=datum.data.diastolic, uom=datum.data.uom)
-                case dp.DataPointType.PULSE:
-                    data: dp.Pulse = dp.Pulse(value=datum.data.value, uom=datum.data.uom)
-                case dp.DataPointType.BODY_TEMP:
-                    data: dp.BodyTemperature(value=datum.data.value, uom=datum.data.uom)
-                case dp.DataPointType.BODY_WGT:
-                    data: dp.BodyWeight = dp.BodyWeight(value=datum.data.value, uom=datum.data.uom)
-                case _:
-                    raise ValueError(f'DP Type {datum.type} out of range')
-            key = make_key(datum.taken, datum.type)
-            if key not in datapoints_map:
-                datapoints.append(dp.DataPoint(person_id=person.id, taken=datum.taken, note=datum.note, data=datum.data,
-                                               type=datum.type))
-                datapoints_map[key] = 'x'
+        for _ in range(0, 2):
+            for datum in grab_dp_data():
+                match datum.type:
+                    case dp.DataPointType.BG:
+                        data: dp.BloodGlucose = dp.BloodGlucose(value=datum.data.value, uom=datum.data.uom)
+                    case dp.DataPointType.BP:
+                        data: dp.BloodPressure = dp.BloodPressure(systolic=datum.data.systolic,
+                                                                  diastolic=datum.data.diastolic, uom=datum.data.uom)
+                    case dp.DataPointType.PULSE:
+                        data: dp.Pulse = dp.Pulse(value=datum.data.value, uom=datum.data.uom)
+                    case dp.DataPointType.BODY_TEMP:
+                        data: dp.BodyTemperature(value=datum.data.value, uom=datum.data.uom)
+                    case dp.DataPointType.BODY_WGT:
+                        data: dp.BodyWeight = dp.BodyWeight(value=datum.data.value, uom=datum.data.uom)
+                    case _:
+                        raise ValueError(f'DP Type {datum.type} out of range')
+                key = make_key(datum.taken, datum.type)
+                if key not in datapoints_map:
+                    datapoints.append(dp.DataPoint(person_id=person.id, taken=datum.taken, note=datum.note, data=datum.data,
+                                                   type=datum.type))
+                    datapoints_map[key] = 'x'
 
     return datapoints
 

@@ -8,7 +8,7 @@ class LoggingConfig:
     Carries the logging configuration and allows the log file pathname and logging level to be
     updated.
     """
-    def __init__(self, config: Optional[dict]):
+    def __init__(self, config: Optional[dict] = None):
         if config is None:
             self.config = {
                 'version': 1,
@@ -22,6 +22,10 @@ class LoggingConfig:
                              },
                 'loggers': {
                     'scheduled_entry': {
+                        'handlers': ('file-handler',),
+                        'level': logging.DEBUG,
+                    },
+                    'unit_tests': {
                         'handlers': ('file-handler',),
                         'level': logging.DEBUG
                     }

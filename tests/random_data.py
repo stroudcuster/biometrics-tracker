@@ -192,20 +192,24 @@ class RandomData:
                        f'must be after lower bound({lower.strftime(DATETIME_FMT)})')
 
     @staticmethod
-    def random_string(length: int, initial_caps: bool = True) -> str:
+    def random_string(length: int, initial_caps: bool = True, no_spaces: bool = False) -> str:
         string = ''
         for idx in range(length):
-            string = f'{string}{random.choice("abcdefghijklmnopqrstuvwxyz 0123456789")}'
+            char: str = random.choice("abcdefghijklmnopqrstuvwxyz 0123456789")
+            if not no_spaces or char != ' ':
+                string = f'{string}{char}'
         if initial_caps:
             return f'{string[0:1].upper()}{string[1:]}'
         else:
             return string
 
     @staticmethod
-    def random_alpha_string(length: int, initial_caps: bool = True) -> str:
+    def random_alpha_string(length: int, initial_caps: bool = True, no_spaces: bool = False) -> str:
         string = ''
         for idx in range(length):
-            string = f'{string}{random.choice("abcdefghijklmnopqrstuvwxyz ")}'
+            char: str = random.choice("abcdefghijklmnopqrstuvwxyz ")
+            if not no_spaces or char != ' ':
+                string = f'{string}{char}'
         if initial_caps:
             return f'{string[0:1].upper()}{string[1:]}'
 
