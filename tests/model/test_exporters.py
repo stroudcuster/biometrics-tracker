@@ -4,12 +4,12 @@ from decimal import Decimal
 import pathlib
 import pytest
 import re
+from time import sleep
 from typing import Any, Callable, Optional
 
-from datapoints_fixtures import person_data_fix, person_fix, tracking_config_fix, schedule_fix, \
-    blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, body_weight_data_fix, body_temp_data_fix, \
-    blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, body_temp_dp_data_fix, \
-    body_weight_dp_data_fix
+from datapoints_fixtures import people_fix, blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, \
+    body_weight_data_fix, body_temp_data_fix, blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, \
+    pulse_dp_data_fix, body_temp_dp_data_fix, body_weight_dp_data_fix, datapoints_fix
 
 
 import biometrics_tracker.ipc.messages as msgs
@@ -28,8 +28,13 @@ from tests.test_tools import DATETIME_FMT, DATE_FMT, TIME_FMT, attr_error, compa
 @pytest.mark.DataBase
 @pytest.mark.DataPoint
 class TestExporters:
-    def __init__(self, temp_dir, person: dp.Person, datapoints_fix):
-        self.temp_dir = temp_dir
+    def __init__(self, temp_dir, date_fmt: str, time_fmt: str, uom_handling: exp.UOMHandlingType, person: dp.Person,
+                 datapoints_fix):
+        self.temp_dir: str = temp_dir
+        self.date_fmt: str = date_fmt
+        self.time_fmt: str = time_fmt
+        self.uom_handling: exp.UOMHandlingType = uom_handling
+        self.person = person
         self.queue_mgr = queues.Queues(sleep_seconds=2)
         self.random_data = BiometricsRandomData()
         self.db_path = pathlib.Path(self.temp_dir, 'biometrics.db')
@@ -40,47 +45,86 @@ class TestExporters:
         self.datapoints_map: dict[str, dp.DataPoint] = {}
         self.start: Optional[datetime] = None
         self.end: Optional[datetime] = None
-        self.fields: list[str | dp.DataPointType] = [DATE,
-                                  TIME,
-                                  dp.dptype_dp_map[dp.DataPointType.BP],
-                                  dp.dptype_dp_map[dp.DataPointType.PULSE],
-                                  dp.dptype_dp_map[dp.DataPointType.BG],
-                                  dp.dptype_dp_map[dp.DataPointType.BODY_WGT],
-                                  dp.dptype_dp_map[dp.DataPointType.BODY_TEMP]]
+        self.fields: list[str | dp.DataPointType] = []
         self.indexed_fields: dict[str, int] = {}
-        for idx, field in enumerate(self.fields):
-            if isinstance(field, str):
-                self.indexed_fields[field] = idx
-            elif isinstance(field, dp.DataPointType):
-                self.indexed_fields[dp.dptype_dp_map[field].label] = idx
         self.datapoints_map, self.start, self.end = self.insert_datapoints(datapoints_fix)
+        self.db.close()
+        self.db = per.DataBase(self.db_path.__str__(), self.queue_mgr, block_req_queue=False)
+        self.db.start()
         self.date_re = re.compile('')
         self.mdy_re = re.compile('"*(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})"*')
         self.ymd_re = re.compile('"*(\d{2,4})[/-](\d{1,2})[/-](\d{1,2})"*')
-        self.time12_re = re.compile('"*(\d{1,2}):(\d{2}):*(\d{0,2})\s*([am|AM|pm|PM]{2})"*')
-        self.time24_re = re.compile('"*(\d{1,2}):(\d{2}):*(\d{0,2})\s"*')
+        self.time12_re = re.compile('"*(\d{1,2}):(\d{2}):(\d{0,2})\s*([am|AM|pm|PM]{2})"*')
+        self.time24_re = re.compile('"*(\d{1,2}):(\d{2}):(\d{0,2})\s*"*')
         self.bp_re = re.compile('"*(\d{2,3})/(\d{2,3})([\s\w])*"*')
         self.int_value_re = re.compile('"*(\d{2,4})([\s\w]*)"*')
         self.dec_value_re = re.compile('"*(\d{2,4}[.]*\d*)([\s\w]*)"*')
 
-    def decode_date(self, date_fmt: str, date_str: str) -> date:
-        if date_fmt[0:2] == '%m':
-            groups = self.mdy_re.match(date_str)
-            return date(year=groups[2], month=groups[0], day=groups[1])
-        else:
-            groups = self.ymd_re.match(date_str)
-            return date(year=groups[0], month=groups[1], day=groups[2])
+    def create_field_map(self):
+        match self.uom_handling:
+            # If UOM is excluded or appended make straight list of the date, time and metric columns
+            case exp.UOMHandlingType.Excluded | exp.UOMHandlingType.AppendedToValue:
+                self.fields = [DATE,
+                               TIME,
+                               dp.DataPointType.BP,
+                               dp.DataPointType.PULSE,
+                               dp.DataPointType.BG,
+                               dp.DataPointType.BODY_WGT,
+                               dp.DataPointType.BODY_TEMP]
+            #  If UOM is in separate column, include fillers in the field list for the UOMs
+            case exp.UOMHandlingType.InSeparateColumn:
+                self.fields = [DATE,
+                               TIME,
+                               dp.DataPointType.BP, f'{dp.DataPointType.BP.name} UOM',
+                               dp.DataPointType.PULSE, f'{dp.DataPointType.PULSE.name} UOM',
+                               dp.DataPointType.BG, f'{dp.DataPointType.BG.name} UOM',
+                               dp.DataPointType.BODY_WGT, f'{dp.DataPointType.BODY_WGT.name} UOM',
+                               dp.DataPointType.BODY_TEMP, f'{dp.DataPointType.BODY_TEMP.name} UOM',]
 
-    def decode_time(self, time_fmt: str, time_str: str) -> time:
-        if time_fmt[0:2] == '%H':
-            groups = self.time24_re.match(time_str)
-            return time(hour=groups[0], minute=groups[1], second=groups[2])
-        else:
-            groups = self.time12_re.match(time_str)
-            hour = groups[0]
-            if groups[3] in ['pm', 'PM']:
-                hour += 12
-            return time(hour=hour, minute=groups[1], second=groups[2])
+        self.indexed_fields = {}
+        for idx, field in enumerate(self.fields):
+            if isinstance(field, str):
+                self.indexed_fields[field] = idx
+            elif isinstance(field, dp.DataPointType):
+                self.indexed_fields[dp.dptype_dp_map[field].label()] = idx
+
+    def decode_date(self, date_fmt: str, date_str: str) -> Optional[date]:
+        try:
+            if date_fmt[0:2] in ['%m', '%d']:
+                match = self.mdy_re.match(date_str)
+                if match is not None:
+                    groups = match.groups()
+                    if date_fmt[0:2] == '%m':
+                        return date(year=int(groups[2]), month=int(groups[0]), day=int(groups[1]))
+                    else:
+                        return date(year=int(groups[2]), month=int(groups[1]), day=int(groups[0]))
+            else:
+                match = self.ymd_re.match(date_str)
+                if match is not None:
+                    groups = match.groups()
+                    return date(year=int(groups[0]), month=int(groups[1]), day=int(groups[2]))
+            raise ValueError(f'Date: {date_str} could not be decoded using format {date_fmt}')
+        except ValueError:
+            raise ValueError(f'Date: {date_str} could not be decoded using format {date_fmt}')
+
+    def decode_time(self, time_fmt: str, time_str: str) -> Optional[time]:
+        try:
+            if time_fmt[0:2] == '%H':
+                match = self.time24_re.match(time_str)
+                if match is not None:
+                    groups = match.groups()
+                    return time(hour=int(groups[0]), minute=int(groups[1]), second=int(groups[2]))
+            else:
+                match = self.time12_re.match(time_str)
+                if match is not None:
+                    groups = match.groups()
+                    hour = int(groups[0])
+                    if len(groups) == 4 and hour < 12 and groups[3] in ['pm', 'PM']:
+                        hour += 12
+                    return time(hour=hour, minute=int(groups[1]), second=int(groups[2]))
+            raise ValueError(f'Time: {time_str} could not be decoded using format {time_fmt}')
+        except ValueError:
+            raise ValueError(f'Time: {time_str} could not be decoded using format {time_fmt}')
 
     def decode_int(self, int_str: str) -> tuple[int, str]:
         groups = self.int_value_re.match(int_str)
@@ -142,66 +186,79 @@ class TestExporters:
 
         return datapoints_map, first_taken, last_taken
 
-    def test_export_init(self, person: dp.Person, date_fmt: str, time_fmt: str, uom_handling: exp.UOMHandlingType,
-                         completion_dest: Callable):
-        assert self.person == person, f'CSVExporter init mismatch ' \
-                                              f'{attr_error("Person:", str(person), str(self.person))}'
-        assert self.date_fmt == date_fmt, f'CSVExporter init mismatch ' \
-                                                  f'{attr_error("Date Fmt:", date_fmt, self.date_fmt)}'
-        assert self.time_fmt == time_fmt, f'CSVExporter init mismatch ' \
-                                          f'{attr_error("Time Fmt:", time_fmt, self.time_fmt)}'
-        assert self.uom_handling == uom_handling, \
-            f'CSVExporter init mismatch {attr_error("UOM Handling:", uom_handling.name,self.uom_handling)}'
-        assert self.indexed_fields == self.indexed_fields, \
-            f'CSVExporter init mismatch {dict_diff("Indexed Fields:", self.indexed_fields, self.indexed_fields)}'
+    def test_export_init(self, exporter: exp.ExporterBase, person: dp.Person, completion_dest: Callable):
+        assert exporter.person == person, f'CSVExporter init mismatch ' \
+                                              f'{attr_error("Person:", str(person), str(exporter.person))}'
+        assert exporter.date_fmt == self.date_fmt, f'CSVExporter init mismatch ' \
+                                                   f'{attr_error("Date Fmt:", self.date_fmt, exporter.date_fmt)}'
+        assert exporter.time_fmt == self.time_fmt, f'CSVExporter init mismatch ' \
+                                                   f'{attr_error("Time Fmt:", self.time_fmt, exporter.time_fmt)}'
+        assert exporter.uom_handling == self.uom_handling, \
+               f'CSVExporter init mismatch {attr_error("UOM Handling:", self.uom_handling.name,exporter.uom_handling)}'
+        assert exporter.indexed_fields == self.indexed_fields, \
+            f'CSVExporter init mismatch {dict_diff("Indexed Fields:", self.indexed_fields, exporter.indexed_fields)}'
         expected = completion_dest.__name__
-        observed = self.completion_destination.__name__
-        assert self.completion_destination == completion_dest, \
+        observed = exporter.completion_destination.__name__
+        assert exporter.completion_destination == completion_dest, \
             f'CSVExporter init mismatch {attr_error("Completion Dest", expected, observed)}'
 
-    def check_csv_export(self):
+    def check_csv_export(self, msg: msgs.ImportExportCompletionMsg, include_header: bool):
+        print(f'Completion Messages for {self.person.id} {self.person.name}')
+        for line in msg.messages:
+            print(line)
         export_path = pathlib.Path(self.temp_dir, 'biometrics.csv')
         with export_path.open(mode='r') as ep:
             reader = csv.reader(ep, delimiter=',')
             row_count: int = 0
             for row_nbr, row in enumerate(reader):
-                if row_nbr >= 1:
-                    row_count += 1
                 assert len(row) == len(self.fields), \
                     f'CSV Export Column Count mismatch row {row_nbr} {attr_error("Columns", len(self.fields), len(row))}'
-                taken_date = self.decode_date(row[self.indexed_fields[DATE]])
-                taken_time = self.decode_time(row[self.indexed_fields[TIME]])
-                taken: datetime = util.mk_datetime(taken_date, taken_time)
-                for col_idx, col_data in enumerate(row):
-                    if isinstance(self.fields[col_idx], dp.DataPointType):
-                        key = f'{self.person.id}:{taken.strftime("%m/%d/%Y %H:%M:%S")}:{self.fields[col_idx].name}'
-                        assert key in self.datapoints_map, f'CSVExporter no DataPoint for {key}'
-                        datapoint: dp.DataPoint = self.datapoints_map[key]
-                        uom_str: str = ''
-                        match datapoint.__class__:
-                            case dp.BloodPressure:
-                                obs_systolic, obs_diastolic, obs_uom_str = self.decode_bloodpressure(col_data)
-                                exp_systolic = datapoint.data.systolic
-                                exp_
-                                assert systolic == datapoint.data.systolic and diastolic == datapoint.data.diastolic,
-                                    f'CSVExporter {attr_error("Systolic", , systolic)} {attr_error("Diastolic", datapoint.data)}'
-                            case dp.BodyWeight:
-                                ...
-                            case dp.BodyTemperature:
-                                ...
-                            case dp.Pulse | dp.BloodGlucose:
-                                ...
+                if row_nbr >= 1 or not include_header:
+                    row_count += 1
+                    taken_date = self.decode_date(self.date_fmt, row[self.indexed_fields[DATE]])
+                    taken_time = self.decode_time(self.time_fmt, row[self.indexed_fields[TIME]])
+                    taken: datetime = util.mk_datetime(taken_date, taken_time)
+                    for col_idx, col_data in enumerate(row):
+                        if isinstance(self.fields[col_idx], dp.DataPointType) and len(col_data.strip()) > 0:
+                            key = f'{self.person.id}:{taken.strftime(DATETIME_FMT)}:{self.fields[col_idx].name}'
+                            assert key in self.datapoints_map, f'CSVExporter no DataPoint for {key}'
+                            datapoint: dp.DataPoint = self.datapoints_map[key]
+                            assert datapoint.type == self.fields[col_idx], \
+                                f'CSVExporter {attr_error("Datapoint Type", datapoint.type.name, self.field_list[col_idx].name)}'
+                            uom_str: str = ''
+                            match datapoint.__class__:
+                                case dp.BloodPressure:
+                                    obs_systolic, obs_diastolic, obs_uom_str = self.decode_bloodpressure(col_data)
+                                    systolic_err = attr_error('Systolic', datapoint.data.systolic, obs_systolic)
+                                    diastolic_err = attr_error('Diastolic', datapoint.data.diastolic, obs_diastolic)
+                                    assert obs_systolic == datapoint.data.systolic and \
+                                        obs_diastolic == datapoint.data.diastolic, \
+                                        f'CSVExporter {systolic_err} {diastolic_err}'
+                                case dp.BodyWeight:
+                                    observed, uom_str = self.decode_decimal(col_data)
+                                    error = attr_error('BodyWeight', datapoint.data.value, observed)
+                                    assert observed == datapoint.data.value, f'CSVExporter {error}'
+                                case dp.BodyTemperature:
+                                    observed, uom_str = self.decode_decimal(col_data)
+                                    error = attr_error('Body Temperature', datapoint.data.value.observed)
+                                    assert observed == datapoint.data.value, f'CSVExporter {error}'
+                                case dp.Pulse:
+                                    observed, uom_str = self.decode_int(col_data)
+                                    error = attr_error('Pulse', datapoint.data.value, observed)
+                                    assert observed == datapoint.data.value, f'CSVExporter {error}'
+                                case dp.BloodGlucose:
+                                    observed, uom_str = self.decode_int(col_data)
+                                    error = attr_error('Blood Glucose', datapoint.data.value, observed)
+                                    assert observed == datapoint.data.value, f'CSVExporter {error}'
 
-
-
-    def test_csv_export(self, temp_dir, person: dp.Person, date_fmt: str, time_fmt: str,
-                        uom_handling: exp.UOMHandlingType, completion_dest, include_header: bool,
-                        csv_dialect):
-
-        csv_exporter: exp.CSVExporter = exp.CSVExporter(self.queue_mgr, person, self.start.date(), self.end.date(),
-                                                        date_fmt, time_fmt, self.indexed_fields, uom_handling, temp_dir,
-                                                        completion_dest, include_header, csv_dialect)
-        self.test_export_init(person, date_fmt, time_fmt, uom_handling, completion_dest)
+    def test_csv_export(self, temp_dir, completion_dest, include_header: bool, csv_dialect):
+        self.include_header = include_header
+        self.create_field_map()
+        csv_exporter: exp.CSVExporter = exp.CSVExporter(self.queue_mgr, self.person, self.start.date(), self.end.date(),
+                                                        self.date_fmt, self.time_fmt, self.indexed_fields,
+                                                        self.uom_handling, temp_dir,completion_dest, include_header,
+                                                        csv_dialect)
+        self.test_export_init(csv_exporter, self.person, completion_dest)
         expected = str(include_header)
         observed = str(csv_exporter.include_header_row)
         assert csv_exporter.include_header_row == include_header, \
@@ -211,6 +268,13 @@ class TestExporters:
         assert csv_exporter.csv_dialect == csv_dialect, \
             f'CSVExporter init mismatch {attr_error("CSV Dialect", expected, observed)}'
         csv_exporter.start()
+        msg: Optional[msgs.ImportExportCompletionMsg] = None
+        while msg is None:
+            msg = self.queue_mgr.check_completion_queue(block=True)
+            if msg is not None and msg.destination is not None:
+                msg.destination(msg, include_header)
+            else:
+                sleep(5)
 
     def test_sql_export(self, temp_dir, person: dp.Person, date_fmt: str, time_fmt: str,
                         uom_handling: exp.UOMHandlingType, completion_dest: Callable):
@@ -220,14 +284,15 @@ class TestExporters:
         self.test_export_init()
 
 
-def test_csv_export(temp_dir, people_fix, datapoints_fix):
-
+@pytest.mark.DataPoint
+def test_csv_export(tmpdir, people_fix, datapoints_fix):
+    print(f'Temp Dir: {str(tmpdir)}')
     for person in people_fix:
         date_fmt: str = BiometricsRandomData.random_dict_item(exp.date_formats)[1]
         time_fmt: str = BiometricsRandomData.random_dict_item(exp.time_formats)[1]
         uom_handling: exp.UOMHandlingType = exp.UOMHandlingType(BiometricsRandomData.random_int(1, len(
             exp.UOMHandlingType)))
         include_hdr = BiometricsRandomData.random_bool()
-        test_exporter = TestExporters(temp_dir, person, datapoints_fix)
-        test_exporter.test_csv_export(temp_dir, person, date_fmt, time_fmt, uom_handling, test_exporter.check_csv_export,
-                                      include_hdr, csv.excel)
+        temp_dir: pathlib.Path = pathlib.Path(tmpdir)
+        test_exporter = TestExporters(temp_dir, date_fmt, time_fmt, uom_handling, person, datapoints_fix)
+        test_exporter.test_csv_export(temp_dir, test_exporter.check_csv_export, include_hdr, csv.excel)

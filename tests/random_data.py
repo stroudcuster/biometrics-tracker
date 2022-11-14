@@ -5,13 +5,14 @@ import random
 from time import sleep
 from typing import Optional
 
+
 TIME_FMT: str = '%I:%M:%S %p'
 DATE_FMT: str = '%m/%d/%Y'
 DATETIME_FMT: str = f'{DATE_FMT} {TIME_FMT}'
 
 
 class RandomData:
-    max_dom_map: dict[int, int] = {1: 31, 2: 29, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30,
+    max_dom_map: dict[int, int] = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30,
                                    12: 31}
 
     def __init__(self, seed: Optional[int] = None):
@@ -103,7 +104,12 @@ class RandomData:
                 # Some invalid days of month are sneaking by
                 if day > RandomData.max_dom_map[month]:
                     day = RandomData.max_dom_map[month]
-            return date(year, month, day)
+            rtn_value: Optional[date] = None
+            try:
+                rtn_value = date(year, month, day)
+            except ValueError:
+                raise ValueError(f'Day {day} not valid for month {month}')
+            return rtn_value
         else:
             raise ValueError(f'Upper bound ({upper.strftime(DATE_FMT)}) '
                              f'must be after lower bound({lower.strftime(DATE_FMT)})')
@@ -212,6 +218,6 @@ class RandomData:
 
     @staticmethod
     def random_dict_item(dictx: dict):
-        keys = [key for key in dictx.keys]
+        keys = [key for key in dictx.keys()]
         idx = RandomData.random_int(0, len(keys)-1)
         return keys[idx], dictx[keys[idx]]

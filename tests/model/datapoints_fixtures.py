@@ -10,6 +10,7 @@ import biometrics_tracker.model.datapoints as dp
 
 random_data = rd.BiometricsRandomData()
 
+DP_MAX = 10
 
 def person_data():
     data = collections.namedtuple('person_data_t', ['id', 'name', 'dob', 'age'])
@@ -147,7 +148,7 @@ def make_datapoint(person_id: str, taken_lower: datetime, taken_upper: datetime,
 
 def blood_glucose_data():
     data: list[collections.namedtuple] = []
-    for idx in range(random_data.random_int(1, 5)):
+    for idx in range(random_data.random_int(1, DP_MAX)):
         data.append(make_metric(40, 2000, dp.DataPointType.BG))
     return data
 
@@ -161,7 +162,7 @@ def blood_glucose_data_fix():
 def blood_glucose_dp_data_fix():
     person_id = random_data.random_string(length=5)
     taken_lower: datetime = datetime.now() - timedelta(days=45)
-    taken_upper: datetime = datetime.now() - timedelta(days=45)
+    taken_upper: datetime = datetime.now()
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
     for datum in blood_glucose_data():
@@ -172,7 +173,7 @@ def blood_glucose_dp_data_fix():
 
 def blood_pressure_data():
     data: list[collections.namedtuple] = []
-    for idx in range(random_data.random_int(1, 5)):
+    for idx in range(random_data.random_int(1, DP_MAX)):
         datum = collections.namedtuple('bg_data_t', ['systolic', 'diastolic', 'uom'])
         datum.systolic = random_data.random_int(70, 400)
         datum.diastolic = random_data.random_int(40, 200)
@@ -189,7 +190,7 @@ def blood_pressure_data_fix():
 def blood_pressure_dp_data_fix():
     person_id = random_data.random_string(length=5)
     taken_lower: datetime = datetime.now() - timedelta(days=45)
-    taken_upper: datetime = datetime.now() - timedelta(days=45)
+    taken_upper: datetime = datetime.now()
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
     for datum in blood_pressure_data():
@@ -200,8 +201,8 @@ def blood_pressure_dp_data_fix():
 
 def pulse_data():
     data: list[collections.namedtuple] = []
-    for idx in range(random_data.random_int(1, 5)):
-        data.append(make_metric(50, 200, dp.DataPointType.BG))
+    for idx in range(random_data.random_int(1, DP_MAX)):
+        data.append(make_metric(50, 200, dp.DataPointType.PULSE))
     return data
 
 
@@ -214,7 +215,7 @@ def pulse_data_fix():
 def pulse_dp_data_fix() -> list[collections.namedtuple]:
     person_id = random_data.random_string(length=5)
     taken_lower: datetime = datetime.now() - timedelta(days=45)
-    taken_upper: datetime = datetime.now() - timedelta(days=45)
+    taken_upper: datetime = datetime.now()
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
     for datum in pulse_data():
@@ -239,7 +240,7 @@ def body_temp_data_fix() -> list[collections.namedtuple]:
 def body_temp_dp_data_fix() -> list[collections.namedtuple]:
     person_id = random_data.random_string(length=5)
     taken_lower: datetime = datetime.now() - timedelta(days=45)
-    taken_upper: datetime = datetime.now() - timedelta(days=45)
+    taken_upper: datetime = datetime.now()
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
     for datum in body_temp_data():
@@ -250,7 +251,7 @@ def body_temp_dp_data_fix() -> list[collections.namedtuple]:
 
 def body_weight_data() -> list[collections.namedtuple]:
     data: list[collections.namedtuple] = []
-    for idx in range(random_data.random_int(1, 5)):
+    for idx in range(random_data.random_int(1, DP_MAX)):
         data.append(make_metric(Decimal(10.0), Decimal(1100.0), dp.DataPointType.BODY_WGT))
     return data
 
@@ -264,7 +265,7 @@ def body_weight_data_fix() -> list[collections.namedtuple]:
 def body_weight_dp_data_fix() -> list[collections.namedtuple]:
     person_id = random_data.random_string(length=5)
     taken_lower: datetime = datetime.now() - timedelta(days=45)
-    taken_upper: datetime = datetime.now() - timedelta(days=45)
+    taken_upper: datetime = datetime.now()
     note = random_data.random_string(length=25)
     data: list[collections.namedtuple] = []
     for datum in body_weight_data():
@@ -275,7 +276,7 @@ def body_weight_dp_data_fix() -> list[collections.namedtuple]:
 
 @pytest.fixture
 def datapoints_fix(people_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, blood_glucose_dp_data_fix,
-                        body_temp_dp_data_fix, body_weight_dp_data_fix) -> list[dp.DataPoint]:
+                   body_temp_dp_data_fix, body_weight_dp_data_fix) -> list[dp.DataPoint]:
     def grab_dp_data() -> list[collections.namedtuple]:
         switch: int = random_data.random_int(1, 5)
         match switch:
