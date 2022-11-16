@@ -4,12 +4,11 @@ import pathlib
 import pytest
 from typing import Any, Callable, Optional
 
-from datapoints_fixtures import person_fix, people_fix, tracking_config_fix, schedule_fix, datapoints_fix, \
+from tests.model.datapoints_fixtures import person_fix, people_fix, tracking_config_fix, schedule_fix, datapoints_fix, \
     blood_pressure_dp_data_fix, pulse_dp_data_fix, blood_glucose_dp_data_fix, body_temp_dp_data_fix, \
     body_weight_dp_data_fix
-import datapoints_fixtures as dp_fix
 
-import persistence_fixtures as perfix
+import tests.model.persistence_fixtures as perfix
 
 import biometrics_tracker.ipc.queue_manager as queues
 import biometrics_tracker.model.datapoints as dp
@@ -22,7 +21,18 @@ from tests.test_tools import DATE_FMT, DATETIME_FMT, TIME_FMT, attr_error, compa
 
 @pytest.mark.Database
 class TestPersistence:
+    """
+    A container for tests that exercise the method in the biometrics_tracker.model.persistence.DataBase class
+
+    """
     def __init__(self, temp_dir: pathlib.Path):
+        """
+        Creates an instance of TestPersistence
+
+        :param temp_dir: a temporary directory where the test database will be created
+        :type temp_dir: pathlib.Path
+
+        """
         self.temp_dir = temp_dir
         self.queue_mgr = queues.Queues(sleep_seconds=2)
         self.queue_mgr_patch = perfix.QueueManagerPatch()
@@ -35,13 +45,37 @@ class TestPersistence:
         self.now: datetime = datetime.now()
 
     def create_db_connection(self):
+        """
+        Create a database connection in biometrics_tracker.model.persistence.DataBase.  Setting the closed property
+        to true causes the run routine to exit after creating the connection.
+
+        :return: None
+
+        """
         self.db.closed = True
         self.db.run()
 
     def close_db_connection(self):
+        """
+        Send a close message to the biometrics_tracker.model.persistence.DataBase instance.  This methold must
+        be used to close the database when it is being run in a separate thread
+
+        :return: None
+
+        """
         self.db.close_db()
 
     def db_open_do_close(self, do_action: Callable, do_action_args: Optional[dict] = None):
+        """
+        Opens the test database, invokes the provided callback and then closes the test database
+
+        :param do_action: a callback to be invoked
+        :type do_action: Callable
+        :param do_action_args: an optional dict of arguments to be passed to the callback
+        :type do_action_args: Optional[dict]
+        :return: None
+
+        """
         self.create_db_connection()
         rtn_value: Any = None
         if do_action_args is None:
@@ -52,6 +86,13 @@ class TestPersistence:
         return rtn_value
 
     def check_sqlite3(self) -> str:
+        """
+        Initiates and retrieves a response the sqlite3 CLI listing the tables and indexes created in the test database
+
+        :return: text containing a list of the tables and indexes in the test database
+        :rtype: str
+
+        """
         script: str = f'.open {self.db_path.__str__()}\n.table\n.index'
         script_path = pathlib.Path(self.temp_dir, 'script.txt')
         with script_path.open(mode='w') as sp:
@@ -60,12 +101,24 @@ class TestPersistence:
         return script_resp
 
     def test_create_database(self):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.create_db method
+
+        :return: None
+
+        """
         self.db_open_do_close(do_action=self.db.create_db)
         script_resp = self.check_sqlite3()
         for item in self.tbl_idx_list:
             assert script_resp.find(item) >= 0, f'Table or Index {item} missing from database'
 
     def test_drop_database(self):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.drop_db method
+
+        :return: None
+
+        """
         self.db_open_do_close(do_action=self.db.drop_db)
         script_resp = self.check_sqlite3()
         for item in self.tbl_idx_list:
@@ -73,6 +126,14 @@ class TestPersistence:
 
     @pytest.mark.Person
     def test_person_insert_retrieve(self, people: list[dp.Person]):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.insert_person method
+
+        :param people: a list of Person objects to be used in the test
+        :type people: list[biometrics_tracker.model.datapoints.Person]
+        :return: None
+
+        """
         person_map: dict[str, dp.Person] = {}
 
         def insert_people():
@@ -98,6 +159,14 @@ class TestPersistence:
         self.db_open_do_close(do_action=retrieve_people)
 
     def test_person_update(self, people: list[dp.Person]):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.update_person method
+
+        :param people: a list of Person objects to be used in the test
+        :type people: list[biometrics_tracker.model.datapoints.Person]
+        :return: None
+
+        """
         person_map: dict[str, dp.Person] = {}
 
         def insert_people():
@@ -124,6 +193,14 @@ class TestPersistence:
         self.db_open_do_close(do_action=update_people)
 
     def test_people_list(self, people: list[dp.Person]):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.retrieve_people method
+
+        :param people: a list of Person objects to be used in the test
+        :type people: list[biometrics_tracker.model.datapoints.Person]
+        :return: None
+
+        """
         id_name_list: list[(str, str)] = []
         people_list: list[tuple[str, str]] = []
 
@@ -139,6 +216,17 @@ class TestPersistence:
             assert id_name in people_list, f'Person ID: {id_name[0]} Name: {id_name[1]} not in People List'
 
     def test_tracking_cfg_insert(self, people_fix, tracking_config_fix):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.upsert_tracking_config method by invoking the
+        insert_person method with a Person instance that includes a list of TrackingConfig instances to be inserted
+
+        :param people_fix: a fixture that provides a list of Person objects
+        :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+        :param tracking_config_fix: a fixture that provides a list of TrackingConfig objects
+        :return: None
+
+        """
+
         def insert():
             for person in people_fix:
                 for track_cfg in tracking_config_fix:
@@ -160,6 +248,16 @@ class TestPersistence:
         self.db_open_do_close(retrieve)
 
     def test_tracking_cfg_update(self, people_fix, tracking_config_fix):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.upsert_tracking_config method by invoking the
+        insert_person method with a Person instance that includes a list of TrackingConfig instances to be updated
+
+        :param people_fix: a fixture that provides a list of Person objects
+        :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+        :param tracking_config_fix: a fixture that provides a list of TrackingConfig objects
+        :return: None
+
+        """
         def insert():
             for person in people_fix:
                 for track_cfg in tracking_config_fix:
@@ -195,6 +293,14 @@ class TestPersistence:
         self.db_open_do_close(retrieve)
 
     def sched_err_preamble(self, sched: dp.ScheduleEntry):
+        """
+        Provides a preamble to be included in the message output when an assertion testing the ScheduleEntry persistence
+        methods fails
+
+        :param sched: the ScheduleEntry instance that will provide the info to be included in the preamble
+        :return: None
+
+        """
         return f'Schedule Person ID: {sched.person_id} Seq Nbr: {sched.seq_nbr:3d} '
 
     def insert_schedules(self, schedule_fix):
@@ -202,6 +308,14 @@ class TestPersistence:
             self.db.insert_schedule_entry(schedule)
 
     def test_schedule_insert(self, schedule_fix):
+        """
+        Tests the biometrics_tracker.model.persistence.insert_schedule_entry method
+
+        :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+        :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+        :return: None
+
+        """
         def retrieve():
             person_id: str = schedule_fix[0].person_id
             schedules: list[dp.ScheduleEntry] = self.db.retrieve_schedules_for_person(person_id)
@@ -253,6 +367,15 @@ class TestPersistence:
             self.db_open_do_close(retrieve)
 
     def test_schedule_update(self, schedule_fix):
+        """
+        Tests the biometrics_tracker.model.persistence.update_schedule_entry method
+
+        :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+        :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+        :return: None
+
+        """
+
         def update():
             for schedule in schedule_fix:
                 lower: date = datetime.now().date() - timedelta(days=30)
@@ -320,6 +443,15 @@ class TestPersistence:
             self.db_open_do_close(retrieve)
 
     def test_schedule_update_last_triggered(self, schedule_fix):
+        """
+         Tests the biometrics_tracker.model.persistence.update_schedule_last_triggered method
+
+         :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+         :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+         :return: None
+
+         """
+
         def update():
             self.now = datetime.now()
             for schedule in schedule_fix:
@@ -340,6 +472,14 @@ class TestPersistence:
         self.db_open_do_close(retrieve)
 
     def test_schedule_delete(self, schedule_fix):
+        """
+         Tests the biometrics_tracker.model.persistence.delete_schedule_for_person_seq method
+
+         :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+         :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+         :return: None
+
+         """
         def delete():
             single_delete_count: int = 0
             for schedule in schedule_fix:
@@ -360,6 +500,14 @@ class TestPersistence:
         self.db_open_do_close(delete)
 
     def insert_datapoints(self, datapoints_fix) -> tuple[dict[str, dp.DataPoint], datetime, datetime]:
+        """
+        Inserts a list of DataPoints to be used in other tests, using the
+        biometrics_tracker.persistence.DataBase.insert_datapoint method
+
+        :param datapoints_fix: a fixture that provides a list of DataPoint objects
+        :type datapoints_fix: list[biometrics_tracker.model.datapoints.DataPoint]
+        :return: None
+        """
         def make_key() -> str:
             return f'{datapoint.person_id}:{datapoint.taken.strftime(DATETIME_FMT)}:{datapoint.type.name}'
         datapoints_map: dict[str, dp.DataPoint] = {}
@@ -376,11 +524,29 @@ class TestPersistence:
         return datapoints_map, first_taken, last_taken
 
     def dp_err_preamble(self, datap: dp.DataPoint):
+        """
+        Provides a preamble to be included in the message output when an assertion testing the DataPoint persistence
+        methods fails
+
+        :param datap: the DataPoint instance that will provide the info to be included in the preamble
+        :return: None
+
+        """
         return f'DataPoint Person ID: {datap.person_id} Taken: {datap.taken.strftime(DATETIME_FMT)} Type: {datap.type.name}'
 
     @pytest.mark.DataBase
     @pytest.mark.DataPoint
     def test_datapoint_insert(self, people_fix, datapoints_fix):
+        """
+        Tests the biometrics_tracker.model.persistence.DataBase.insert_datapoint method
+
+        :param people_fix: a fixture that provides a list of Person objects
+        :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+        :param datapoints_fix: a fixture that provides a list of DataPoints object
+        :type datapoints_fix: list[biometrics_tracker.model.datapoints.DataPoint]
+        :return: None
+
+        """
         def make_key(datapoint: dp.DataPoint) -> str:
             return f'{datapoint.person_id}:{datapoint.taken.strftime(DATETIME_FMT)}:{datapoint.type.name}'
 
@@ -408,6 +574,14 @@ class TestPersistence:
 
 @pytest.mark.DataBase
 def test_create_drop(tmpdir):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.create_db and drop_db methods. This is implemented as a
+    module level function because pytest, or Pycharm's pytest framework doesn't seem to be able to properly run tests
+    implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :return: None
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_create_database()
     per_tests.test_drop_database()
@@ -416,6 +590,17 @@ def test_create_drop(tmpdir):
 @pytest.mark.Database
 @pytest.mark.Person
 def test_person_insert_retrieve(tmpdir, people_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.insert_person and retrieve_person methods. This is
+    implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be able
+    to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_person_insert_retrieve(people_fix)
 
@@ -423,6 +608,17 @@ def test_person_insert_retrieve(tmpdir, people_fix):
 @pytest.mark.Database
 @pytest.mark.Person
 def test_person_update(tmpdir, people_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.update_person and retrieve_person methods. This is
+    implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be able
+    to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_person_update(people_fix)
 
@@ -430,6 +626,17 @@ def test_person_update(tmpdir, people_fix):
 @pytest.mark.Database
 @pytest.mark.Person
 def test_people_list(tmpdir, people_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.retrieve_people methods This is implemented as a module
+    level function because pytest, or Pycharm's pytest framework doesn't seem to be able to properly run tests
+    implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_people_list(people_fix)
 
@@ -438,6 +645,19 @@ def test_people_list(tmpdir, people_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_track_cfg_insert(tmpdir, people_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.upsert_tracking_config method by invoking the
+    insert_person method with a Person instance that includes a list of TrackingConfig instances to be inserted
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :param tracking_config_fix: a fixture that provides a list of TrackingConfig objects
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_tracking_cfg_insert(people_fix, tracking_config_fix)
 
@@ -446,6 +666,19 @@ def test_track_cfg_insert(tmpdir, people_fix, tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_track_cfg_update(tmpdir, people_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.upsert_tracking_config method by invoking the
+    insert_person method with a Person instance that includes a list of TrackingConfig instances to be updated
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :param tracking_config_fix: a fixture that provides a list of TrackingConfig objects
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_tracking_cfg_insert(people_fix, tracking_config_fix)
 
@@ -454,6 +687,17 @@ def test_track_cfg_update(tmpdir, people_fix, tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_schedule_insert(tmpdir, schedule_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.insert_schedule_entry method
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_schedule_insert(schedule_fix)
 
@@ -462,6 +706,17 @@ def test_schedule_insert(tmpdir, schedule_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_schedule_update(tmpdir, schedule_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.update_schedule_entry method
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_schedule_update(schedule_fix)
 
@@ -470,6 +725,17 @@ def test_schedule_update(tmpdir, schedule_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_schedule_update_last_triggered(tmpdir, schedule_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.update_schedule_last_triggered method
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+     """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_schedule_update_last_triggered(schedule_fix)
 
@@ -478,6 +744,17 @@ def test_schedule_update_last_triggered(tmpdir, schedule_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_schedule_delete(tmpdir, schedule_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.delete_schedule_for_person_seq method
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param schedule_fix: a fixture that provides a list of ScheduleEntry instances to be used in the test
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+     """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_schedule_delete(schedule_fix)
 
@@ -485,6 +762,19 @@ def test_schedule_delete(tmpdir, schedule_fix):
 @pytest.mark.Database
 @pytest.mark.DataPoint
 def test_datapoint_insert(tmpdir, people_fix, datapoints_fix):
+    """
+    Tests the biometrics_tracker.model.persistence.DataBase.insert_datapoint method
+    This is implemented as a module level function because pytest, or Pycharm's pytest framework doesn't seem to be
+    able to properly run tests implemented as bound methods.
+
+    :param tmpdir: a fixture that provides a temporary directory where the test database will be created.
+    :param people_fix: a fixture that provides a list of Person objects
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
+    :param datapoints_fix: a fixture that provides a list of DataPoints object
+    :type datapoints_fix: list[biometrics_tracker.model.datapoints.DataPoint]
+    :return: None
+
+    """
     per_tests = TestPersistence(tmpdir)
     per_tests.test_datapoint_insert(people_fix, datapoints_fix)
 

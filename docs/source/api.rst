@@ -2,7 +2,7 @@ API
 ===
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
 
     main
     main-core
@@ -21,6 +21,16 @@ API
     model-uoms
     output-reports
     utilities-utilities
+    tests-random_data
+    tests-test_tools
+    tests-model-random_data
+    tests-model-test_tools
+    tests-model-datapoints_fixtures
+    tests-model-persistence_fixtures
+    tests-model-test_datapoints
+    tests-model-test_exporters
+    tests-model-test_json_handler
+    tests-model-test_persistence
 
 .. autosummary::
     :toctree: generated

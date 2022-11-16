@@ -563,3 +563,11 @@ DataPointType
 """
 
 
+metric_union = Union[BloodGlucose, BloodPressure, Pulse, BodyTemperature, BodyWeight]
+"""
+A Union type that includes the metric classes (BloodPress, BloodGlucose, etc)
+
+"""
+
+
+

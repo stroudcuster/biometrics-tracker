@@ -7,6 +7,7 @@ import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.uoms as uoms
 
 
+
 class BiometricsJSONEncoder(json.JSONEncoder):
     """
     Implements a custom json.JSONEncoder to encode instances of model.BodyWeight, model.Pulse, etc.  The result

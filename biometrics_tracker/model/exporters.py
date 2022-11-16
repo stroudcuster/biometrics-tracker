@@ -377,7 +377,7 @@ class SQLiteExporter(ExporterBase):
         """
         ExporterBase.__init__(self, ExportType.SQL, queue_mgr, person, start_date, end_date, indexed_fields, date_fmt,
                               time_fmt, uom_handling, export_dir_path, 'biometrics.db', completion_destination)
-        self.filepath = pathlib.Path(export_dir_path, 'biometrics.db')
+        self.filepath = pathlib.Path(export_dir_path, 'export.db')
         self.open_action_method = self.create_sqlite_db
         self.column_action_method = self.column_action
         self.row_action_method = self.insert_data

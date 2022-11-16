@@ -2084,7 +2084,7 @@ class Application(ttkb.Window, core.CoreLogic):
                 csv_fields: dict[int, str] = frame.indexed_fields()
                 importer = imp.CSVImporter(self.queue_mgr, person, frame.import_file_name(),
                                            frame.header_rows(), frame.use_prev_row_date, csv_fields,
-                                           completion_replyto=self.import_process_complete)
+                                           completion_dest=self.import_process_complete)
                 importer.start()
 
         person = person_msg.payload

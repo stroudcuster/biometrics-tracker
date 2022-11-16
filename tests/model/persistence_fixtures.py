@@ -5,6 +5,11 @@ import biometrics_tracker.ipc.queue_manager as queue_manager
 
 
 class QueueManagerPatch:
+    """
+    This class implements a monkey patch on the biometrics_tracker.ipc.Queues class and replaces the queue.Queue
+    based dp_response and dp_request queues with lists.
+
+    """
     def __init__(self):
         self.db_resp_queue: list[msg.MsgBase] = []
         self.completion_queue: list[msg.CompletionMsg] = []

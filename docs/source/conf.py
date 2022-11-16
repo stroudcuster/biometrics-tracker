@@ -9,7 +9,7 @@ import pathlib
 import sys
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
-autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf"]
+autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf", "pytest"]
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

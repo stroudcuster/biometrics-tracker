@@ -1,0 +1,550 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pytest tests.model.datapoint_fixtures &#8212; Biometrics Tracking 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytest tests.model.persistence_fixtures" href="tests-model-persistence_fixtures.html" />
+    <link rel="prev" title="pytest tests.model.test_tools" href="tests-model-test_tools.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-persistence_fixtures.html" title="pytest tests.model.persistence_fixtures"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_tools.html" title="pytest tests.model.test_tools"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.datapoint_fixtures</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pytest-tests-model-datapoint-fixtures">
+<h1>pytest tests.model.datapoint_fixtures<a class="headerlink" href="#pytest-tests-model-datapoint-fixtures" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-tests.model.datapoints_fixtures"></span><dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_glucose_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_glucose_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_glucose_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_metric function to assemble a list data for the biometrics_tracker.model.datapoints.BloodGlucose
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_glucose_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_glucose_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_glucose_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for blood_glucose_data()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_glucose_dp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_glucose_dp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_glucose_dp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_datapoint function to assemble a list data for the biometrics_tracker.model.datapoints.BloodGlucoseDP
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_pressure_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_pressure_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_pressure_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_metric function to assemble a list data for the biometrics_tracker.model.datapoints.BloodPressure
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_pressure_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_pressure_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_pressure_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for blood_pressure_data()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.blood_pressure_dp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">blood_pressure_dp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.blood_pressure_dp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_datapoint function to assemble a list data for the biometrics_tracker.model.datapoints.BloodPressureDP
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_temp_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_temp_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_temp_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_metric function to assemble a list data for the biometrics_tracker.model.datapoints.BodyTemp
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_temp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_temp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_temp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for body_temp_data()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_temp_dp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_temp_dp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_temp_dp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_datapoint function to assemble a list data for the
+biometrics_tracker.model.datapoints.BodyTemperatureDP class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_weight_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_weight_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_weight_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_metric function to assemble a list data for the biometrics_tracker.model.datapoints.BodyWeight
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_weight_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_weight_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_weight_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for body_weight_data()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.body_weight_dp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">body_weight_dp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.body_weight_dp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_datapoint function to assemble a list data for the biometrics_tracker.model.datapoints.BodyWeightDP
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.datapoints_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">datapoints_fix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">people_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blood_pressure_dp_data_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_dp_data_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blood_glucose_dp_data_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_temp_dp_data_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body_weight_dp_data_fix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">biometrics_tracker.model.datapoints.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.datapoints_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture that provides a varied list of DataPoint subclass instances using rondom data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>people_fix</strong> – a pytest.fixture providing Person instances</p></li>
+<li><p><strong>blood_pressure_dp_data_fix</strong> – a pytest.fixture providing data to create BloodPressureDP instances</p></li>
+<li><p><strong>pulse_dp_data_fix</strong> – a pytest.fixture providing data to create PulseDP instances</p></li>
+<li><p><strong>blood_glucose_dp_data_fix</strong> – a pytest.fixture providing data to crate BloodGlucoseDP instances</p></li>
+<li><p><strong>body_temp_dp_data_fix</strong> – a pytest.fixture providing data to create BodyTemperature instances</p></li>
+<li><p><strong>body_weight_dp_data_fix</strong> – a pytest.fixture providing data to create BodyWeight instances</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of DataPoint subclasses</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[biometrics_tracking.model.datapoints.DataPoint]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.make_datapoint">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">make_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taken_lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taken_upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodGlucose" title="biometrics_tracker.model.datapoints.BloodGlucose"><span class="pre">BloodGlucose</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodPressure" title="biometrics_tracker.model.datapoints.BloodPressure"><span class="pre">BloodPressure</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Pulse" title="biometrics_tracker.model.datapoints.Pulse"><span class="pre">Pulse</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyTemperature" title="biometrics_tracker.model.datapoints.BodyTemperature"><span class="pre">BodyTemperature</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyWeight" title="biometrics_tracker.model.datapoints.BodyWeight"><span class="pre">BodyWeight</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.make_datapoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates named tuple of data necessary to create an instance of one of the DataPoint classes (e.g. BloodPressureDP,
+BloodGlucoseDP, etc.)  using random values within the specified ranges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>person_id</strong> (<em>str</em>) – the Person ID to be associated with the DataPoint data</p></li>
+<li><p><strong>taken_lower</strong> (<em>datetime</em>) – a lower limit for the Taken datetime property</p></li>
+<li><p><strong>taken_upper</strong> (<em>datetime</em>) – an upper limit for the Taken datetime property</p></li>
+<li><p><strong>note</strong> (<em>str</em>) – a note to be associated with the DataPoint data</p></li>
+<li><p><strong>dp_type</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><em>biometrics_tracker.model.datapoints.DataPointType</em></a>) – the DataPointType to be associated with the DataPoint data</p></li>
+<li><p><strong>data</strong> – an instance the metric class associated with the DataPointType</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>metric_union</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a named tuple containing the data to create an instance of one of the DataPoint classes</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>collections.namedtuple(‘bg_dp_data_t’, [‘person_id’, ‘taken’, ‘note’, ‘data’, ‘type’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.make_metric">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">make_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Decimal</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Decimal</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">namedtuple</span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.make_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates named tuple of data necessary to create an instance of one of the metrics classes (e.g. BloodPressure,
+BloodGlucose, etc.)  using random values within the specified ranges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value_lower</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>decimal.Decimal</em><em>]</em>) – a lower limit for the random metric value</p></li>
+<li><p><strong>value_upper</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>decimal.Decimal</em><em>]</em>) – a upper limit for the random metric value</p></li>
+<li><p><strong>dp_type</strong> – the DataPointType for the metric</p></li>
+<li><p><strong>precision</strong> – for Decimal values, the number of places to the right of the decimal point</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a named tuple of properties to create an instance of one of the metrics classes</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>collections.namedtuple(‘bg_data_t’, [‘value’, ‘uom’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.people">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">people</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.people" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a list of biometrics_tracker.model.datapoints.Person instances using randomized data. The created instances
+are placed in a dict keyed by ID to prevent the creation of Person instances with duplicated IDs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict.values() containing the biometrics_tracker.model.datapoints.Person instances</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.people_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">people_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.people_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for people()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict.values() containing the biometrics_tracker.model.datapoints.Person instances</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.person">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_data_fix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.person" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_data_fix</strong> (<em>pytest.fixture</em>) – a pytest.fixture providing the data to create a biometrics_tracker.model.datapoints.Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a Person instance created from randomized data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person">biometrics_tracker.model.datapoints.Person</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.person_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">person_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.person_data" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a named tuple containing the properties needed to create a biometrics_tracker.model.datapoints.Person</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>collections.namedtuple(‘person_data_t’, [‘id’, ‘name’, ‘dob’, ‘age’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.person_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">person_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.person_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps person_data.  This function is annotated as a pytest.fixture</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a named tuple containing the properties needed to create a biometrics_tracker.model.datapoints.Person</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>collections.namedtuple(‘person_data_t’, [‘id’, ‘name’, ‘dob’, ‘age’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.person_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">person_fix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_data_fix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.person_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for person()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_data_fix</strong> – a pytest.fixture providing the data to create a biometrics_tracker.model.datapoints.Person instance</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a Person instance created from randomized data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person">biometrics_tracker.model.datapoints.Person</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.pulse_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">pulse_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.pulse_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_metric function to assemble a list data for the biometrics_tracker.model.datapoints.Pulse
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.pulse_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">pulse_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.pulse_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture wrapper for pulse_data()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.pulse_dp_data_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">pulse_dp_data_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">collections.namedtuple</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.datapoints_fixtures.pulse_dp_data_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the make_datapoint function to assemble a list data for the biometrics_tracker.model.datapoints.PulseDP
+class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[collections.namedtuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.schedule_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">schedule_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.schedule_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a list of named tuples containing the data necessary to create a set of ScheduleEntry instances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of named tuples containing the data necessary to create a set of ScheduleEntry instances</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[collections.namedtuple(‘schedule_data_t’, [‘person_id’, ‘seq_nbr’, ‘frequency’, ‘dp_type’, ‘weekdays’,
+‘days_of_month’, ‘interval’, ‘when_time’, ‘starts_on’,
+‘ends_on’,
+‘suspended’, ‘last_triggered’])]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.schedule_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">schedule_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.schedule_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture that uses tracking_config_data to create a list of Schedule instances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of ScheduleEntry instances</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.tracking_config_data">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">tracking_config_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.tracking_config_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a list of named tuples containing the data necessary to create a set of TrackingConfig instances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of named tuples containing the data necessary to create a set of TrackingConfig instances</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[collections.namedtuple(‘tracking_config_data_t’, [‘dp_type’, ‘default_uom’, ‘tracked’])]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.datapoints_fixtures.tracking_config_fix">
+<span class="sig-prename descclassname"><span class="pre">tests.model.datapoints_fixtures.</span></span><span class="sig-name descname"><span class="pre">tracking_config_fix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.datapoints_fixtures.tracking_config_fix" title="Permalink to this definition">¶</a></dt>
+<dd><p>A pytest.fixture that uses tracking_config_data to create a list of TrackingConfig instances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of TrackingConfig instances</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.TrackingConfig" title="biometrics_tracker.model.datapoints.TrackingConfig">biometrics_tracker.model.datapoints.TrackingConfig</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">pytest tests.model.datapoint_fixtures</a><ul>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_glucose_data"><code class="docutils literal notranslate"><span class="pre">blood_glucose_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_glucose_data_fix"><code class="docutils literal notranslate"><span class="pre">blood_glucose_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_glucose_dp_data_fix"><code class="docutils literal notranslate"><span class="pre">blood_glucose_dp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_pressure_data"><code class="docutils literal notranslate"><span class="pre">blood_pressure_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_pressure_data_fix"><code class="docutils literal notranslate"><span class="pre">blood_pressure_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.blood_pressure_dp_data_fix"><code class="docutils literal notranslate"><span class="pre">blood_pressure_dp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_temp_data"><code class="docutils literal notranslate"><span class="pre">body_temp_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_temp_data_fix"><code class="docutils literal notranslate"><span class="pre">body_temp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_temp_dp_data_fix"><code class="docutils literal notranslate"><span class="pre">body_temp_dp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_weight_data"><code class="docutils literal notranslate"><span class="pre">body_weight_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_weight_data_fix"><code class="docutils literal notranslate"><span class="pre">body_weight_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.body_weight_dp_data_fix"><code class="docutils literal notranslate"><span class="pre">body_weight_dp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.datapoints_fix"><code class="docutils literal notranslate"><span class="pre">datapoints_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.make_datapoint"><code class="docutils literal notranslate"><span class="pre">make_datapoint()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.make_metric"><code class="docutils literal notranslate"><span class="pre">make_metric()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.people"><code class="docutils literal notranslate"><span class="pre">people()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.people_fix"><code class="docutils literal notranslate"><span class="pre">people_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.person"><code class="docutils literal notranslate"><span class="pre">person()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.person_data"><code class="docutils literal notranslate"><span class="pre">person_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.person_data_fix"><code class="docutils literal notranslate"><span class="pre">person_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.person_fix"><code class="docutils literal notranslate"><span class="pre">person_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.pulse_data"><code class="docutils literal notranslate"><span class="pre">pulse_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.pulse_data_fix"><code class="docutils literal notranslate"><span class="pre">pulse_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.pulse_dp_data_fix"><code class="docutils literal notranslate"><span class="pre">pulse_dp_data_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.schedule_data"><code class="docutils literal notranslate"><span class="pre">schedule_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.schedule_fix"><code class="docutils literal notranslate"><span class="pre">schedule_fix()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.tracking_config_data"><code class="docutils literal notranslate"><span class="pre">tracking_config_data()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.datapoints_fixtures.tracking_config_fix"><code class="docutils literal notranslate"><span class="pre">tracking_config_fix()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tests-model-test_tools.html"
+                          title="previous chapter">pytest tests.model.test_tools</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tests-model-persistence_fixtures.html"
+                          title="next chapter">pytest tests.model.persistence_fixtures</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests-model-datapoints_fixtures.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-persistence_fixtures.html" title="pytest tests.model.persistence_fixtures"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_tools.html" title="pytest tests.model.test_tools"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.datapoint_fixtures</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

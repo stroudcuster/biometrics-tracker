@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pytest tests.model.test_persistence &#8212; Biometrics Tracking 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pytest tests.model.test_json_handler" href="tests-model-test_json_handler.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_json_handler.html" title="pytest tests.model.test_json_handler"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.test_persistence</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pytest-tests-model-test-persistence">
+<h1>pytest tests.model.test_persistence<a class="headerlink" href="#pytest-tests-model-test-persistence" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-tests.model.test_persistence"></span><dl class="py class">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.model.test_persistence.</span></span><span class="sig-name descname"><span class="pre">TestPersistence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A container for tests that exercise the method in the biometrics_tracker.model.persistence.DataBase class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.check_sqlite3">
+<span class="sig-name descname"><span class="pre">check_sqlite3</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.check_sqlite3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.close_db_connection">
+<span class="sig-name descname"><span class="pre">close_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.close_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.create_db_connection">
+<span class="sig-name descname"><span class="pre">create_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.create_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.db_open_do_close">
+<span class="sig-name descname"><span class="pre">db_open_do_close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.db_open_do_close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.dp_err_preamble">
+<span class="sig-name descname"><span class="pre">dp_err_preamble</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.dp_err_preamble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.insert_datapoints">
+<span class="sig-name descname"><span class="pre">insert_datapoints</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.insert_datapoints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.sched_err_preamble">
+<span class="sig-name descname"><span class="pre">sched_err_preamble</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.sched_err_preamble" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_create_database">
+<span class="sig-name descname"><span class="pre">test_create_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_create_database" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_drop_database">
+<span class="sig-name descname"><span class="pre">test_drop_database</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_drop_database" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_people_list">
+<span class="sig-name descname"><span class="pre">test_people_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_people_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_person_insert_retrieve">
+<span class="sig-name descname"><span class="pre">test_person_insert_retrieve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_person_insert_retrieve" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_person_update">
+<span class="sig-name descname"><span class="pre">test_person_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_person_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_schedule_delete">
+<span class="sig-name descname"><span class="pre">test_schedule_delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_schedule_delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_schedule_insert">
+<span class="sig-name descname"><span class="pre">test_schedule_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_schedule_insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_schedule_update">
+<span class="sig-name descname"><span class="pre">test_schedule_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_schedule_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_schedule_update_last_triggered">
+<span class="sig-name descname"><span class="pre">test_schedule_update_last_triggered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_schedule_update_last_triggered" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_tracking_cfg_insert">
+<span class="sig-name descname"><span class="pre">test_tracking_cfg_insert</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_tracking_cfg_insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_persistence.TestPersistence.test_tracking_cfg_update">
+<span class="sig-name descname"><span class="pre">test_tracking_cfg_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.TestPersistence.test_tracking_cfg_update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.test_persistence.test_create_drop">
+<span class="sig-prename descclassname"><span class="pre">tests.model.test_persistence.</span></span><span class="sig-name descname"><span class="pre">test_create_drop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmpdir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_persistence.test_create_drop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the biometrics_tracker.model.persistence.DataBase.create_db and drop_db methods. This is implemented as a
+module level function because pytest, or Pycharm’s pytest framework doesn’t seem to be able to properly run tests
+implemented as bound methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tmpdir</strong> – a fixture that provides a temporary directory where the test database will be created.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">pytest tests.model.test_persistence</a><ul>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence"><code class="docutils literal notranslate"><span class="pre">TestPersistence</span></code></a><ul>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.check_sqlite3"><code class="docutils literal notranslate"><span class="pre">TestPersistence.check_sqlite3()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.close_db_connection"><code class="docutils literal notranslate"><span class="pre">TestPersistence.close_db_connection()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.create_db_connection"><code class="docutils literal notranslate"><span class="pre">TestPersistence.create_db_connection()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.db_open_do_close"><code class="docutils literal notranslate"><span class="pre">TestPersistence.db_open_do_close()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.dp_err_preamble"><code class="docutils literal notranslate"><span class="pre">TestPersistence.dp_err_preamble()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.insert_datapoints"><code class="docutils literal notranslate"><span class="pre">TestPersistence.insert_datapoints()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.sched_err_preamble"><code class="docutils literal notranslate"><span class="pre">TestPersistence.sched_err_preamble()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_create_database"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_create_database()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_drop_database"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_drop_database()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_people_list"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_people_list()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_person_insert_retrieve"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_person_insert_retrieve()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_person_update"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_person_update()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_schedule_delete"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_schedule_delete()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_schedule_insert"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_schedule_insert()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_schedule_update"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_schedule_update()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_schedule_update_last_triggered"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_schedule_update_last_triggered()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_tracking_cfg_insert"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_tracking_cfg_insert()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_persistence.TestPersistence.test_tracking_cfg_update"><code class="docutils literal notranslate"><span class="pre">TestPersistence.test_tracking_cfg_update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests.model.test_persistence.test_create_drop"><code class="docutils literal notranslate"><span class="pre">test_create_drop()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tests-model-test_json_handler.html"
+                          title="previous chapter">pytest tests.model.test_json_handler</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests-model-test_persistence.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_json_handler.html" title="pytest tests.model.test_json_handler"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.test_persistence</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

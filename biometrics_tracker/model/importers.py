@@ -30,7 +30,7 @@ class CSVImporter(threading.Thread):
     Implements the import process for a CSV file
     """
     def __init__(self, queue_mgr: queues.Queues, person: dp.Person, filename: str, header_rows: int,
-                 use_prev_row_date: bool, indexed_fields: dict[int, str], completion_replyto: Callable):
+                 use_prev_row_date: bool, indexed_fields: dict[int, str], completion_dest: Callable):
         """
         Create an instance of CSVImporter
 
@@ -48,8 +48,8 @@ class CSVImporter(threading.Thread):
                value is the value returned by the label method of the class (e.g. model.BodyWeight, model.Pulse)
                implementing a record of a type of reading.
         :type indexed_fields: dict[int, str]
-        :param completion_replyto: the method to be used as the destination for the completion message
-        :type completion_replyto: Callable
+        :param completion_dest: the method to be used as the destination for the completion message
+        :type completion_dest: Callable
 
         """
         threading.Thread.__init__(self)
@@ -60,7 +60,7 @@ class CSVImporter(threading.Thread):
         self.use_prev_row_date = use_prev_row_date
         self.indexed_fields: dict[int, str] = indexed_fields
         self.max_index: int = len(indexed_fields.keys())
-        self.completion_replyto = completion_replyto
+        self.completion_dest = completion_dest
 
     def run(self) -> None:
         """
@@ -241,7 +241,7 @@ class CSVImporter(threading.Thread):
                         msg_list.append(f'No date found for row {row_nbr}. No datapoints were created.')
                         err_count += 1
             msg_list.append(f'Created {dp_count} datapoints from {row_count} rows with {err_count} errors.')
-            self.queue_mgr.send_completion_msg(messages.ImportExportCompletionMsg(destination=self.completion_replyto,
+            self.queue_mgr.send_completion_msg(messages.ImportExportCompletionMsg(destination=self.completion_dest,
                                                                                   replyto=None,
                                                                                   status=messages.Completion.SUCCESS,
                                                                                   messages=msg_list))

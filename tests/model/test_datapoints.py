@@ -2,7 +2,7 @@ from datetime import date, time, datetime, timedelta
 import pytest
 from typing import Any
 
-from datapoints_fixtures import person_data_fix, person_fix, tracking_config_fix, schedule_fix, \
+from tests.model.datapoints_fixtures import person_data_fix, person_fix, tracking_config_fix, schedule_fix, \
     blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, body_weight_data_fix, body_temp_data_fix, \
     blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, pulse_dp_data_fix, body_temp_dp_data_fix, \
     body_weight_dp_data_fix
@@ -17,10 +17,16 @@ from tests.test_tools import DATETIME_FMT, DATE_FMT, TIME_FMT, attr_error, compa
 random_data: BiometricsRandomData = BiometricsRandomData()
 
 
-
-
 @pytest.mark.Person
 def test_person_init(person_data_fix):
+    """
+    Test biometrics_tracker.model.datapoints.Person initialization
+
+    :param person_data_fix: a fixture providing data to create Person instances
+    :type person_data_fix: collections.namedtuple('person_data_t', ['id', 'name', 'dob', 'age'])
+    :return: None
+
+    """
     person: dp.Person = dp.Person(id=person_data_fix.id,
                                   name=person_data_fix.name,
                                   dob=person_data_fix.dob)
@@ -33,6 +39,14 @@ def test_person_init(person_data_fix):
 
 @pytest.mark.TrackingConfig
 def test_tracking_config_init(tracking_config_fix):
+    """
+    Test biometrics_tracker.model.datapoints.TrackingConfig initialization
+
+    :param tracking_config_fix: a fixture providing a list of TrackingConfig instances
+    :type tracking_config_fix: list[biometrics_tracker.model.datapoints.TrackingConfig]
+    :return: None
+
+    """
     track_cfg = dp.TrackingConfig(dp_type=tracking_config_fix[0].dp_type,
                                   default_uom=tracking_config_fix[0].default_uom,
                                   tracked=tracking_config_fix[0].tracked)
@@ -51,6 +65,16 @@ def test_tracking_config_init(tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_person_add_tracked_dp_type(person_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.Person.add_tracked_dp_type method
+
+    :param person_fix: a fixture providing Person instances
+    :type person_fix: biometrics_tracker.model.datapoints.Person
+    :param tracking_config_fix: a fixture providing TrackingConfig instances
+    :type tracking_config_fix: list[biometrics_tracker.model.datapoints.TrackingConfig]
+    :return: None
+
+    """
     for datum in tracking_config_fix:
         person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked))
     assert len(person_fix.tracked) == len(tracking_config_fix), attr_error('Person TrackingConfig List Len',
@@ -68,6 +92,16 @@ def test_person_add_tracked_dp_type(person_fix, tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_person_remove_tracked_dp_type(person_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.Person.remove_tracked_dp_type method
+
+    :param person_fix: a fixture providing Person instances
+    :type person_fix: biometrics_tracker.model.datapoints.Person
+    :param tracking_config_fix: a fixture providing TrackingConfig instances
+    :type tracking_config_fix: list[biometrics_tracker.model.datapoints.TrackingConfig]
+    :return: None
+
+    """
     for datum in tracking_config_fix:
         person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked))
     assert len(person_fix.tracked) == len(tracking_config_fix), attr_error(
@@ -84,6 +118,16 @@ def test_person_remove_tracked_dp_type(person_fix, tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_person_is_tracked(person_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.Person.is_tracked method
+
+    :param person_fix: a fixture providing Person instances
+    :type person_fix: biometrics_tracker.model.datapoints.Person
+    :param tracking_config_fix: a fixture providing TrackingConfig instances
+    :type tracking_config_fix: list[biometrics_tracker.model.datapoints.TrackingConfig]
+    :return: None
+
+    """
     for datum in tracking_config_fix:
         person_fix.add_tracked_dp_type(datum.dp_type, dp.TrackingConfig(datum.dp_type, datum.default_uom,
                                                                         datum.tracked))
@@ -98,6 +142,16 @@ def test_person_is_tracked(person_fix, tracking_config_fix):
 @pytest.mark.Person
 @pytest.mark.TrackingConfig
 def test_person_dp_type_track_config(person_fix, tracking_config_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.Person.dp_type_track_cfg method
+
+    :param person_fix: a fixture providing Person instances
+    :type person_fix: biometrics_tracker.model.datapoints.Person
+    :param tracking_config_fix: a fixture providing TrackingConfig instances
+    :type tracking_config_fix: list[biometrics_tracker.model.datapoints.TrackingConfig]
+    :return: None
+
+    """
     for datum in tracking_config_fix:
         tc1: dp.TrackingConfig = dp.TrackingConfig(datum.dp_type, datum.default_uom, datum.tracked)
         person_fix.add_tracked_dp_type(datum.dp_type, tc1)
@@ -111,6 +165,12 @@ def test_person_dp_type_track_config(person_fix, tracking_config_fix):
 
 @pytest.mark.Schedule
 def test_frequency_name_map():
+    """
+    Tests the biometrics_tracker.model.datapoints.frequency_name map
+
+    :return: None
+
+    """
     for freq in dp.FrequencyType:
         assert freq.name in dp.frequency_name_map, f'Frequency {freq.name} not in frequency_name_map'
         assert freq == dp.frequency_name_map[freq.name], attr_error(f'frequency_name_map for Frequency {freq.name}',
@@ -122,6 +182,12 @@ def test_frequency_name_map():
 
 @pytest.mark.Schedule
 def test_weekday_name_map():
+    """
+    Tests the biometrics_tracker.model.datapoints.weekday_name_map
+
+    :return: None
+
+    """
     for day in dp.WeekDay:
         assert day.name in dp.weekday_name_map, f'WeekDay {day.name} not in weekday_name_map'
         assert day == dp.weekday_name_map[day.name], attr_error(f'weekday_name_map for WeekDay {day.name}',
@@ -132,6 +198,14 @@ def test_weekday_name_map():
 
 @pytest.mark.Schedule
 def test_schedule_init(schedule_fix):
+    """
+    Tests biometrics_tracker.model.datapoints.ScheduleEntry initialization
+
+    :param schedule_fix: a fixture providing a list of biometrics_tracker.model.datapoints.ScheduleEntry objects
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
     for datum in schedule_fix:
         schedule = dp.ScheduleEntry(datum.person_id, datum.seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                     datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
@@ -181,6 +255,14 @@ def test_schedule_init(schedule_fix):
 
 @pytest.mark.Schedule
 def test_schedule_get_weekday_dates(schedule_fix):
+    """
+    Tests biometrics_tracker.model.datapoints.ScheduleEntry.get_weekday_dates method
+
+    :param schedule_fix: a fixture providing a list of biometrics_tracker.model.datapoints.ScheduleEntry objects
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
     datum = schedule_fix[0]
     schedule = dp.ScheduleEntry(datum.person_id, datum.seq_nbr, datum.frequency, datum.dp_type, datum.note,
                                 datum.weekdays, datum.days_of_month, datum.interval, datum.when_time,
@@ -195,6 +277,15 @@ def test_schedule_get_weekday_dates(schedule_fix):
 
 @pytest.mark.Schedule
 def test_schedule_next_occurrence_today(schedule_fix):
+    """
+    Tests biometrics_tracker.model.datapoints.ScheduleEntry.next_occurrence_today method
+
+    :param schedule_fix: a fixture providing a list of biometrics_tracker.model.datapoints.ScheduleEntry objects
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
+
     def error_preamble() -> str:
         return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
@@ -321,8 +412,19 @@ def test_schedule_next_occurrence_today(schedule_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_person_add_schedule(person_fix, schedule_fix):
+    """
+    Tests biometrics_tracker.model.datapoints.Person.add_entry_sched method
+
+    :param person_fix: a fixture providing a biometrics_tracking.model.datapoint.Person object
+    :type person_fix: biometrics_tracking.model.datapoints.Person
+    :param schedule_fix: a fixture providing a list of biometrics_tracker.model.datapoints.ScheduleEntry objects
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
+
     def error_preamble() -> str:
-        return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
+        return f'Person.add_entry_sched Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
                f'Interval {schedule.interval} When : {schedule.when_time}'
 
@@ -346,6 +448,16 @@ def test_person_add_schedule(person_fix, schedule_fix):
 @pytest.mark.Person
 @pytest.mark.Schedule
 def test_person_rmv_schedule(person_fix, schedule_fix):
+    """
+    Tests biometrics_tracker.model.datapoints.Person.remove_entry_sched method
+
+    :param person_fix: a fixture providing a biometrics_tracking.model.datapoint.Person object
+    :type person_fix: biometrics_tracking.model.datapoints.Person
+    :param schedule_fix: a fixture providing a list of biometrics_tracker.model.datapoints.ScheduleEntry objects
+    :type schedule_fix: list[biometrics_tracker.model.datapoints.ScheduleEntry]
+    :return: None
+
+    """
     def error_preamble() -> str:
         return f'ScheduleEntry.next_occurrence_today Frequency {schedule.frequency.name} ' \
                f'Starts On {schedule.starts_on.strftime(DATE_FMT)} Ends On {schedule.ends_on.strftime(DATE_FMT)} ' \
@@ -375,6 +487,14 @@ def test_person_rmv_schedule(person_fix, schedule_fix):
 
 @pytest.mark.DataPoint
 def test_blood_pressure_init(blood_pressure_data_fix):
+    """
+    Tests the biometrics_tracking.model.datapoints.BloodPressure init
+
+    :param blood_pressure_data_fix: a fixture providing a the information to create a list of BloodPressure objects
+    :type blood_pressure_data_fix: list[collections.namedtuple('bg_data_t', ['systolic', 'diastolic', 'uom'])]
+    :return: None
+
+    """
     for datum in blood_pressure_data_fix:
         blood_pressure: dp.BloodPressure = dp.BloodPressure(systolic=datum.systolic, diastolic=datum.diastolic,
                                                             uom=datum.uom)
@@ -388,6 +508,14 @@ def test_blood_pressure_init(blood_pressure_data_fix):
 
 @pytest.mark.DataPoint
 def test_blood_glucose_init(blood_glucose_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.BloodGlucose init
+
+    :param blood_glucose_data_fix: a fixture providing data to create a list of BloodGlucose objects
+    :type blood_glucose_data_fix: list[collections.namedtuple('bg_data_t', ['value', 'uom'])]
+    :return: None
+
+    """
     for datum in blood_glucose_data_fix:
         blood_glucose: dp.BloodGlucose = dp.BloodGlucose(value=datum.value, uom=datum.uom)
         assert blood_glucose.value == datum.value, f'Blood Glucose: Value Expected: {datum.value} '\
@@ -398,6 +526,14 @@ def test_blood_glucose_init(blood_glucose_data_fix):
 
 @pytest.mark.DataPoint
 def test_pulse_init(pulse_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.Pulse init
+
+    :param pulse_data_fix: a fixture providing data to create a list of Pulse objects
+    :type pulse_data_fix: list[collections.namedtuple('bg_data_t', ['value', 'uom'])]
+    :return: None
+
+    """
     for datum in pulse_data_fix:
         pulse: dp.Pulse = dp.Pulse(value=datum.value, uom=datum.uom)
         assert pulse.value == datum.value, f'Pulse: Value Expected: {datum.value} Observed: {pulse.value}'
@@ -405,10 +541,32 @@ def test_pulse_init(pulse_data_fix):
 
 
 def dp_error_preamble(person_id: str, taken: datetime, dp_type: dp.DataPointType,) -> str:
+    """
+    Returns a formatted message fragment to be used in assertion messages for DataPoint tests
+
+    :param person_id: ID of the person related to the DataPoint
+    :type person_id: str
+    :param taken: the Taken datetime
+    :type taken: datetime.datetime
+    :param dp_type: DataPointType enum value
+    :type dp_type: biometrics_tracker.model.datapoints.DataPointType
+    :return: None
+
+    """
     return f'Person ID: {person_id} Taken: {datetime.strftime(DATETIME_FMT)} Type: {dp_type.name} '
 
 
 def common_dp_assertions(datum, datapoint: dp.DataPoint):
+    """
+    Assertions that are common the testing of all DataPoint subclasses.
+
+    :param datum: the data necessary to create a particular class of DataPoint
+    :type datum: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :param datapoint: a DataPoint instance
+    :type datapoint: biometrics_tracking.model.datapoints.DataPoint subclass
+    :return: None
+
+    """
     assert datapoint.person_id == datum.person_id, \
         f'{dp_error_preamble(datum.person_id, datum.taken, datum.dp_type)} ' \
         f'Person ID mismatch: Expected: {datum.preson_id} Observed: {datapoint.person_id}'
@@ -429,6 +587,14 @@ def common_dp_assertions(datum, datapoint: dp.DataPoint):
 @pytest.mark.DataPoint
 @pytest.mark.BloodGlucose
 def test_blood_glucose_dp(blood_glucose_dp_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.BloodGluecoseDP init
+
+    :param blood_glucose_dp_data_fix: a fixture the provides a list containing info to create BloodGlucoseDP objects
+    :type blood_glucose_dp_data_fix: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :return: None
+
+    """
     for datum in blood_glucose_dp_data_fix:
         datapoint: dp.BloodGlucoseDP = dp.BloodGlucoseDP(datum.person_id, datum.taken, datum.note, datum.data,
                                                          datum.type)
@@ -442,6 +608,14 @@ def test_blood_glucose_dp(blood_glucose_dp_data_fix):
 @pytest.mark.DataPoint
 @pytest.mark.BloodPressure
 def test_blood_pressure_dp(blood_pressure_dp_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.BloodPressureDP init
+
+    :param blood_pressure_dp_data_fix: a fixture the provides a list containing info to create BloodPressureDP objects
+    :type blood_pressure_dp_data_fix: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :return: None
+
+    """
     for datum in blood_pressure_dp_data_fix:
         datapoint: dp.BloodPressureDP = dp.BloodPressureDP(datum.person_id, datum.taken, datum.note, datum.data,
                                                            datum.type)
@@ -458,6 +632,14 @@ def test_blood_pressure_dp(blood_pressure_dp_data_fix):
 @pytest.mark.DataPoint
 @pytest.mark.Pulse
 def test_pulse_dp(pulse_dp_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.PulseDP init
+
+    :param pulse_dp_data_fix: a fixture the provides a list containing info to create PulseDP objects
+    :type pulse_dp_data_fix: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :return: None
+
+    """
     for datum in pulse_dp_data_fix:
         datapoint: dp.PulseDP = dp.PulseDP(datum.person_id, datum.taken, datum.note, datum.data, datum.type)
         common_dp_assertions(datum, datapoint)
@@ -470,6 +652,14 @@ def test_pulse_dp(pulse_dp_data_fix):
 @pytest.mark.DataPoint
 @pytest.mark.BodyTemperature
 def test_body_temp_dp(body_temp_dp_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.BodyTemperatureDP init
+
+    :param body_temp_dp_data_fix: a fixture the provides a list containing info to create BodyTemperatureDP objects
+    :type body_temp_dp_data_fix: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :return: None
+
+    """
     for datum in body_temp_dp_data_fix:
         datapoint: dp.BodyTemperatureDP = dp.BodyTemperatureDP(datum.person_id, datum.taken, datum.note, datum.data,
                                                                datum.type)
@@ -483,6 +673,14 @@ def test_body_temp_dp(body_temp_dp_data_fix):
 @pytest.mark.DataPoint
 @pytest.mark.BodyWeight
 def test_body_weight_dp(body_weight_dp_data_fix):
+    """
+    Tests the biometrics_tracker.model.datapoints.BodyWeightDP init
+
+    :param body_weight_dp_data_fix: a fixture the provides a list containing info to create BodyWeightDP objects
+    :type body_weight_dp_data_fix: collections.namedtuple('bg_dp_data_t', ['person_id', 'taken', 'note', 'data', 'type'])
+    :return: None
+
+    """
     for datum in body_weight_dp_data_fix:
         datapoint: dp.BodyWeightDP = dp.BodyWeightDP(datum.person_id, datum.taken, datum.note, datum.data, datum.type)
         common_dp_assertions(datum, datapoint)

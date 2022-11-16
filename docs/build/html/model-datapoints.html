@@ -290,7 +290,7 @@ time the entry was triggered.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.model.datapoints.TrackingConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.datapoints.</span></span><span class="sig-name descname"><span class="pre">TrackingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.datapoints.TrackingConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.datapoints.</span></span><span class="sig-name descname"><span class="pre">TrackingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_uom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-uoms.html#biometrics_tracker.model.uoms.UOM" title="biometrics_tracker.model.uoms.UOM"><span class="pre">UOM</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.datapoints.TrackingConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Indicates that a particular datapoint is recorded for a particular person</p>
 </dd></dl>
@@ -315,6 +315,17 @@ model.datapoint.DataPointType value and the class that is used to represent the 
 </dd></dl>
 
 <dl class="py data">
+<dt class="sig sig-object py" id="biometrics_tracker.model.datapoints.dptype_label_map">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.datapoints.</span></span><span class="sig-name descname"><span class="pre">dptype_label_map</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{&lt;DataPointType.BODY_WGT:</span> <span class="pre">1&gt;:</span> <span class="pre">'Body</span> <span class="pre">Weight',</span> <span class="pre">&lt;DataPointType.BG:</span> <span class="pre">2&gt;:</span> <span class="pre">'Blood</span> <span class="pre">Glucose',</span> <span class="pre">&lt;DataPointType.BP:</span> <span class="pre">3&gt;:</span> <span class="pre">'Blood</span> <span class="pre">Pressure',</span> <span class="pre">&lt;DataPointType.PULSE:</span> <span class="pre">4&gt;:</span> <span class="pre">'Pulse',</span> <span class="pre">&lt;DataPointType.BODY_TEMP:</span> <span class="pre">5&gt;:</span> <span class="pre">'Temperature'}</span></em><a class="headerlink" href="#biometrics_tracker.model.datapoints.dptype_label_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dict[str, model.datapoints.DataPointType] that provides a mapping between the label metric type and the corresponding 
+DataPointType</p>
+<dl class="field-list simple">
+<dt class="field-odd">Property dptype_label_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
 <dt class="sig sig-object py" id="biometrics_tracker.model.datapoints.dptype_name_map">
 <span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.datapoints.</span></span><span class="sig-name descname"><span class="pre">dptype_name_map</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'BG':</span> <span class="pre">DataPointType.BG,</span> <span class="pre">'BODY_TEMP':</span> <span class="pre">DataPointType.BODY_TEMP,</span> <span class="pre">'BODY_WGT':</span> <span class="pre">DataPointType.BODY_WGT,</span> <span class="pre">'BP':</span> <span class="pre">DataPointType.BP,</span> <span class="pre">'PULSE':</span> <span class="pre">DataPointType.PULSE}</span></em><a class="headerlink" href="#biometrics_tracker.model.datapoints.dptype_name_map" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dict[str, model.datapoints.DataPointType] that provides a mapping between the name property of each 
@@ -334,6 +345,13 @@ value and the model.uoms.UOM derived Enum the represents the associated unit of 
 <dt class="field-odd">Property dptype_uom_map<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="biometrics_tracker.model.datapoints.metric_union">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.model.datapoints.</span></span><span class="sig-name descname"><span class="pre">metric_union</span></span><a class="headerlink" href="#biometrics_tracker.model.datapoints.metric_union" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Union type that includes the metric classes (BloodPress, BloodGlucose, etc)</p>
+<p>alias of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Union</span></code>[<a class="reference internal" href="#biometrics_tracker.model.datapoints.BloodGlucose" title="biometrics_tracker.model.datapoints.BloodGlucose"><code class="xref py py-class docutils literal notranslate"><span class="pre">BloodGlucose</span></code></a>, <a class="reference internal" href="#biometrics_tracker.model.datapoints.BloodPressure" title="biometrics_tracker.model.datapoints.BloodPressure"><code class="xref py py-class docutils literal notranslate"><span class="pre">BloodPressure</span></code></a>, <a class="reference internal" href="#biometrics_tracker.model.datapoints.Pulse" title="biometrics_tracker.model.datapoints.Pulse"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pulse</span></code></a>, <a class="reference internal" href="#biometrics_tracker.model.datapoints.BodyTemperature" title="biometrics_tracker.model.datapoints.BodyTemperature"><code class="xref py py-class docutils literal notranslate"><span class="pre">BodyTemperature</span></code></a>, <a class="reference internal" href="#biometrics_tracker.model.datapoints.BodyWeight" title="biometrics_tracker.model.datapoints.BodyWeight"><code class="xref py py-class docutils literal notranslate"><span class="pre">BodyWeight</span></code></a>]</p>
 </dd></dl>
 
 </section>
@@ -387,8 +405,10 @@ value and the model.uoms.UOM derived Enum the represents the associated unit of 
 <li><a class="reference internal" href="#biometrics_tracker.model.datapoints.TrackingConfig"><code class="docutils literal notranslate"><span class="pre">TrackingConfig</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.datapoints.WeekDay"><code class="docutils literal notranslate"><span class="pre">WeekDay</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.datapoints.dptype_dp_map"><code class="docutils literal notranslate"><span class="pre">dptype_dp_map</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.datapoints.dptype_label_map"><code class="docutils literal notranslate"><span class="pre">dptype_label_map</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.datapoints.dptype_name_map"><code class="docutils literal notranslate"><span class="pre">dptype_name_map</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.datapoints.dptype_uom_map"><code class="docutils literal notranslate"><span class="pre">dptype_uom_map</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.datapoints.metric_union"><code class="docutils literal notranslate"><span class="pre">metric_union</span></code></a></li>
 </ul>
 </li>
 </ul>

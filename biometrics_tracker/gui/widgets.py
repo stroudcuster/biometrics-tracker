@@ -26,6 +26,7 @@ class Radiobutton(ttkb.Radiobutton):
     """
     Subclass of ttkbootstrap.Radiobutton that changes it appears when it is in focus, so that the user
     can tell when that can use the space bar to select or unselect a button
+
     """
     def __init__(self, parent, text: str, value: str, variable: ttkb.StringVar, command=None,
                  width=None):

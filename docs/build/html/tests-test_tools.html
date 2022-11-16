@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pytest tests.test_tools &#8212; Biometrics Tracking 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytest tests.model.random_data" href="tests-model-random_data.html" />
+    <link rel="prev" title="pytest tests.random_data" href="tests-random_data.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-random_data.html" title="pytest tests.model.random_data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tests-random_data.html" title="pytest tests.random_data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.test_tools</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pytest-tests-test-tools">
+<h1>pytest tests.test_tools<a class="headerlink" href="#pytest-tests-test-tools" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-tests.test_tools"></span><dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.attr_error">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">attr_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_tools.attr_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a boiler-plate message fragment consisting of an attribute name and expected and observed values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attr</strong> (<em>str</em>) – attribute name</p></li>
+<li><p><strong>expected</strong> (<em>Any</em>) – the expected value</p></li>
+<li><p><strong>observed</strong> (<em>Any</em>) – the observed value</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.compare_hms">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">compare_hms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tests.test_tools.compare_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the hour, minutes and seconds of two datetime.time objects.  This avoids false inequalities based on
+microsecond level variances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time1</strong> (<em>datetime.time</em>) – the first of a pair of times to be compared</p></li>
+<li><p><strong>time2</strong> (<em>datetime.time</em>) – the second of a pair of times to be compared</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>are the times equal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.compare_mdyhms">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">compare_mdyhms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tests.test_tools.compare_mdyhms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the day, month, year, hour, minutes and seconds of two datetime.datetime objects.  This avoids false
+inequalities based on microsecond level variances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datetime1</strong> (<em>datetime.datetime</em>) – the first of a pair of datetimes to be compared</p></li>
+<li><p><strong>datetime2</strong> (<em>datetime.datetime</em>) – the second of a pair of datetimes to be compared</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>are the datetimes equal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.compare_object">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">compare_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tests.test_tools.compare_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare two objects by comparing the entries in their __dict__ property</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj1</strong> (<em>Any</em>) – the first of a pair of objects to be compared</p></li>
+<li><p><strong>obj2</strong> (<em>Any</em>) – the second of a pair of objects to be compared</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>are the objects equal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.decode_date">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">decode_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">date</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.test_tools.decode_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a date value from the provided string, using the format specified the provided format string.  This
+method raises a ValueError exception if a date can’t be derived from the provided string value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger that will be written to if the decode fails</p></li>
+<li><p><strong>date_fmt</strong> (<em>str</em>) – the strftime format spec with which the date string was formatted</p></li>
+<li><p><strong>date_str</strong> (<em>str</em>) – the formatted date string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the date value decoded from the date string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[datetime.date]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.decode_decimal">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">decode_decimal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dec_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">decimal.Decimal</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.test_tools.decode_decimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes a Decimal value from the provided string value  This method will properly handle strings in which a
+U.O.M. is appended to the Decimal value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dec_str</strong> (<em>str</em>) – a string representation of a Decimal value</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a Decimal value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>decimal.Decimal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.decode_int">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">decode_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.test_tools.decode_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes an integer from the provided string value.  This method will properly handle strings in which a
+U.O.M. is appended to the integer value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>int_str</strong> (<em>str</em>) – a string representation of an integer</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>an integer value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.decode_time">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">decode_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">time</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.test_tools.decode_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode a time value from the provided string, using the format specified the provided format string. A
+ValueError exception is raised if a time can’t be derived from the provided string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger that will be written to if the decode fails</p></li>
+<li><p><strong>time_fmt</strong> (<em>str</em>) – the strftime format spec with which the time string was formatted</p></li>
+<li><p><strong>time_str</strong> (<em>str</em>) – the formatted time string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the time value decoded from the time string</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[datetime.time]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_tools.dict_diff">
+<span class="sig-prename descclassname"><span class="pre">tests.test_tools.</span></span><span class="sig-name descname"><span class="pre">dict_diff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exp_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_tools.dict_diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats a message fragment to be used if the contents of two dicts are unequal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the name of the attribute that the dicts represent</p></li>
+<li><p><strong>exp_list</strong> (<em>dict</em>) – a dict containing the expected values</p></li>
+<li><p><strong>obs_list</strong> – a dict containing the observed values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message fragment</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">pytest tests.test_tools</a><ul>
+<li><a class="reference internal" href="#tests.test_tools.attr_error"><code class="docutils literal notranslate"><span class="pre">attr_error()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.compare_hms"><code class="docutils literal notranslate"><span class="pre">compare_hms()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.compare_mdyhms"><code class="docutils literal notranslate"><span class="pre">compare_mdyhms()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.compare_object"><code class="docutils literal notranslate"><span class="pre">compare_object()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.decode_date"><code class="docutils literal notranslate"><span class="pre">decode_date()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.decode_decimal"><code class="docutils literal notranslate"><span class="pre">decode_decimal()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.decode_int"><code class="docutils literal notranslate"><span class="pre">decode_int()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.decode_time"><code class="docutils literal notranslate"><span class="pre">decode_time()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_tools.dict_diff"><code class="docutils literal notranslate"><span class="pre">dict_diff()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tests-random_data.html"
+                          title="previous chapter">pytest tests.random_data</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tests-model-random_data.html"
+                          title="next chapter">pytest tests.model.random_data</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests-test_tools.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-random_data.html" title="pytest tests.model.random_data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tests-random_data.html" title="pytest tests.random_data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.test_tools</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>pytest tests.model.test_exporters &#8212; Biometrics Tracking 1.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pytest tests.model.test_json_handler" href="tests-model-test_json_handler.html" />
+    <link rel="prev" title="pytest tests.model.test_datapoints" href="tests-model-test_datapoints.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_json_handler.html" title="pytest tests.model.test_json_handler"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_datapoints.html" title="pytest tests.model.test_datapoints"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.test_exporters</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pytest-tests-model-test-exporters">
+<h1>pytest tests.model.test_exporters<a class="headerlink" href="#pytest-tests-model-test-exporters" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-tests.model.test_exporters"></span><dl class="py class">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.model.test_exporters.</span></span><span class="sig-name descname"><span class="pre">TestExporterBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-exporters.html#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints_fix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A base class to be subclassed by classes that test specific exporter classes</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase.check_export_init">
+<span class="sig-name descname"><span class="pre">check_export_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exporter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-exporters.html#biometrics_tracker.model.exporters.ExporterBase" title="biometrics_tracker.model.exporters.ExporterBase"><span class="pre">ExporterBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase.check_export_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assures that the initialization of the Exporter object resulted in appropriately set properties</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exporter</strong> (<a class="reference internal" href="model-exporters.html#biometrics_tracker.model.exporters.ExporterBase" title="biometrics_tracker.model.exporters.ExporterBase"><em>biometrics_tracker.model.exporters.ExporterBase</em></a>) – the exporter instance to be checked</p></li>
+<li><p><strong>person</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><em>biometrics_tracker.model.datapoints.Person</em></a>) – the Person instance associated with the DataPoints the exporter instance will export</p></li>
+<li><p><strong>completion_dest</strong> (<em>Callable</em>) – a callback routine to be invoked when an ImportExportCompletionMsg is received</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase.check_row">
+<span class="sig-name descname"><span class="pre">check_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_nbr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase.check_row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check the column values in an exported row to assure that there are the expected number of rows, that the
+data corresponds to one of the DataPoint instances that were exported, and that the column values match
+those of the corresponding DataPoint instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row_nbr</strong> (<em>int</em>) – The row number withing the export file</p></li>
+<li><p><strong>row</strong> (<em>tuple</em>) – a tuple of column values</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase.create_db_connection">
+<span class="sig-name descname"><span class="pre">create_db_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase.create_db_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a database connection in biometrics_tracker.model.persistence.DataBase.  Setting the closed property
+to true causes the run routine to exit after creating the connection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase.insert_datapoints">
+<span class="sig-name descname"><span class="pre">insert_datapoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datapoints_fix</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">biometrics_tracker.model.datapoints.DataPoint</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase.insert_datapoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using the DataPoints fixture to provide data, insert DataPoint rows into the test database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>datapoints_fix</strong> (<em>collections.NamedTuple</em>) – a fixture that will provide biometrics_tracker.model.datapionts.DataPoint objects</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A map containing the inserted DataPoints, keyed by a string containing the Person ID, Taken datetime and the DataPointType.name value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[dict[str, <a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint">biometrics_tracker.model.datapoints.DataPoint</a>], datetime, datetime]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestExporterBase.send_db_close_msg">
+<span class="sig-name descname"><span class="pre">send_db_close_msg</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestExporterBase.send_db_close_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a close message to the biometrics_tracker.model.persistence.DataBase instance.  This methold must
+be used to close the database when it is being run in a separate thread</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestSQLiteExporter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.model.test_exporters.</span></span><span class="sig-name descname"><span class="pre">TestSQLiteExporter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_fmt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uom_handling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-exporters.html#biometrics_tracker.model.exporters.UOMHandlingType" title="biometrics_tracker.model.exporters.UOMHandlingType"><span class="pre">UOMHandlingType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints_fix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestSQLiteExporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tests.model.test_exporters.TestExporterBase" title="tests.model.test_exporters.TestExporterBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestExporterBase</span></code></a></p>
+<p>Tests the biometrics_tracker.model.exporters.CSVExporter class.  See the doc comment for the parent class for
+details</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestSQLiteExporter.check_sqlite_export">
+<span class="sig-name descname"><span class="pre">check_sqlite_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ImportExportCompletionMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestSQLiteExporter.check_sqlite_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback method to be invoked on receipt of a ImportExportCompletionMsg</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.ImportExportCompletionMsg</em>) – a message containing info on the success or failure of the export process</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestSQLiteExporter.create_field_map">
+<span class="sig-name descname"><span class="pre">create_field_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestSQLiteExporter.create_field_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a list of fields and a map with field names as keys and column indexes as values.  These are used
+to validate the row contents from the exported file.  This class needs a special version of this method
+because the SQLiteExporter class prepends a Person ID column the the columns specified for export by
+the user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tests.model.test_exporters.TestSQLiteExporter.test_sqlite_export">
+<span class="sig-name descname"><span class="pre">test_sqlite_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.TestSQLiteExporter.test_sqlite_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes a test run of the export process for a single person</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>temp_dir</strong> (<em>pathlib.Path</em>) – a temporary directory path where the input database, exported files and the logs will be placed</p></li>
+<li><p><strong>completion_dest</strong> (<em>Callable</em>) – the callback method to be invoked when an ImportExportCompletionMsg is received</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.test_exporters.test_csv_export">
+<span class="sig-prename descclassname"><span class="pre">tests.model.test_exporters.</span></span><span class="sig-name descname"><span class="pre">test_csv_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmpdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">people_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints_fix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.test_csv_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the CSVExporter class for a number of people.  This is implemented as a module level function because pytest,
+or Pycharm’s pytest framework doesn’t seem to be able to properly run tests implemented as bound methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tmpdir</strong> (<em>pytest.Fixture</em>) – the pytest tmpdir fixture - provides a temporary directory for test output files and logs</p></li>
+<li><p><strong>people_fix</strong> – a fixture that provides a set of Person instances</p></li>
+<li><p><strong>datapoints_fix</strong> – a fixture that provides a set of DataPoint instances associated with contents of people_fix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.model.test_exporters.test_sqlite_export">
+<span class="sig-prename descclassname"><span class="pre">tests.model.test_exporters.</span></span><span class="sig-name descname"><span class="pre">test_sqlite_export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tmpdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">people_fix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datapoints_fix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.model.test_exporters.test_sqlite_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test the SQLiteExporter class for a number of people.  This is implemented as a module level function because
+pytest,or Pycharm’s pytest framework doesn’t seem to be able to properly run tests implemented as bound methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tmpdir</strong> (<em>pytest.Fixture</em>) – the pytest tmpdir fixture - provides a temporary directory for test output files and logs</p></li>
+<li><p><strong>people_fix</strong> – a fixture that provides a set of Person instances</p></li>
+<li><p><strong>datapoints_fix</strong> – a fixture that provides a set of DataPoint instances associated with contents of people_fix</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">pytest tests.model.test_exporters</a><ul>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase"><code class="docutils literal notranslate"><span class="pre">TestExporterBase</span></code></a><ul>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase.check_export_init"><code class="docutils literal notranslate"><span class="pre">TestExporterBase.check_export_init()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase.check_row"><code class="docutils literal notranslate"><span class="pre">TestExporterBase.check_row()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase.create_db_connection"><code class="docutils literal notranslate"><span class="pre">TestExporterBase.create_db_connection()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase.insert_datapoints"><code class="docutils literal notranslate"><span class="pre">TestExporterBase.insert_datapoints()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestExporterBase.send_db_close_msg"><code class="docutils literal notranslate"><span class="pre">TestExporterBase.send_db_close_msg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestSQLiteExporter"><code class="docutils literal notranslate"><span class="pre">TestSQLiteExporter</span></code></a><ul>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestSQLiteExporter.check_sqlite_export"><code class="docutils literal notranslate"><span class="pre">TestSQLiteExporter.check_sqlite_export()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestSQLiteExporter.create_field_map"><code class="docutils literal notranslate"><span class="pre">TestSQLiteExporter.create_field_map()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.TestSQLiteExporter.test_sqlite_export"><code class="docutils literal notranslate"><span class="pre">TestSQLiteExporter.test_sqlite_export()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests.model.test_exporters.test_csv_export"><code class="docutils literal notranslate"><span class="pre">test_csv_export()</span></code></a></li>
+<li><a class="reference internal" href="#tests.model.test_exporters.test_sqlite_export"><code class="docutils literal notranslate"><span class="pre">test_sqlite_export()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tests-model-test_datapoints.html"
+                          title="previous chapter">pytest tests.model.test_datapoints</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tests-model-test_json_handler.html"
+                          title="next chapter">pytest tests.model.test_json_handler</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests-model-test_exporters.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_json_handler.html" title="pytest tests.model.test_json_handler"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tests-model-test_datapoints.html" title="pytest tests.model.test_datapoints"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pytest tests.model.test_exporters</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
