@@ -180,10 +180,10 @@ def decode_time(logger: logging.Logger, time_fmt: str, time_str: str) -> Optiona
             if match is not None:
                 groups = match.groups()
                 hour = int(groups[0])
-                if len(groups) == 4 and groups[3] in ['pm', 'PM']:
-                    if hour < 12:
+                if len(groups) == 4:
+                    if groups[3] in ['pm', 'PM'] and hour < 12:
                         hour += 12
-                    else:
+                    elif groups[3] in ['am', 'AM'] and hour == 12:
                         hour = 0
                 return time(hour=hour, minute=int(groups[1]), second=int(groups[2]))
         raise ValueError(f'Time: {time_str} could not be decoded using format {time_fmt}')

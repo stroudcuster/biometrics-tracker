@@ -18,6 +18,12 @@ from biometrics_tracker.model.importers import DATE, TIME
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.utilities.utilities as util
 
+from tests.model.datapoints_fixtures import people_fix, datapoints_fix, person_data_fix, person_fix, \
+    tracking_config_fix, schedule_fix, blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, \
+    body_weight_data_fix, body_temp_data_fix, blood_glucose_dp_data_fix, blood_pressure_dp_data_fix, \
+    pulse_dp_data_fix, body_temp_dp_data_fix, body_weight_dp_data_fix
+
+
 from tests.model.random_data import BiometricsRandomData
 from tests.model.test_tools import decode_bloodpressure
 from tests.test_tools import DATE_FMT, attr_error, dict_diff, decode_date, decode_time, decode_decimal, decode_int
@@ -501,7 +507,9 @@ def test_csv_export(tmpdir, people_fix, datapoints_fix):
     :param tmpdir: the pytest tmpdir fixture - provides a temporary directory for test output files and logs
     :type tmpdir: pytest.Fixture
     :param people_fix: a fixture that provides a set of Person instances
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
     :param datapoints_fix: a fixture that provides a set of DataPoint instances associated with contents of people_fix
+    :type datapoints_fix: collections.NamedTuple
     :return: None
 
     """
@@ -527,7 +535,9 @@ def test_sqlite_export(tmpdir, people_fix, datapoints_fix):
     :param tmpdir: the pytest tmpdir fixture - provides a temporary directory for test output files and logs
     :type tmpdir: pytest.Fixture
     :param people_fix: a fixture that provides a set of Person instances
+    :type people_fix: list[biometrics_tracker.model.datapoints.Person]
     :param datapoints_fix: a fixture that provides a set of DataPoint instances associated with contents of people_fix
+    :type datapoints_fix: collections.NamedTuple
     :return: None
 
     """

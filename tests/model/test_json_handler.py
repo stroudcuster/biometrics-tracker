@@ -1,3 +1,4 @@
+import decimal
 import json
 import pytest
 from typing import Union
@@ -32,13 +33,21 @@ def json_test(data: dp.metric_union, dp_type: dp.DataPointType) -> None:
     if data_len >= check_data_len:
         for name, value in data.__dict__.items():
             assert name in check_data.__dict__, f'DP Type: {dp_type.name} Property {name} not found'
-            assert value == check_data.__dict__[name], f'DP Type: {dp_type.name} Property {name} Expected {value} '\
-                                                       f'Observed {check_data.__dict__[name]}'
+            if isinstance(value, decimal.Decimal):
+                assert abs(value-check_data.__dict__[name]) < 0.1, \
+                    f'DP Type: {dp_type.name} Property {name} Expected {value} ' \
+                    f'Observed {check_data.__dict__[name]}'
+            else:
+                assert value == check_data.__dict__[name], f'DP Type: {dp_type.name} Property {name} Expected {value} '\
+                                                           f'Observed {check_data.__dict__[name]}'
     else:
         for name, value in check_data.__dict__.items():
             assert name in data.__dict__, f'DP Type: {dp_type.name} Property {name} not found'
-            assert value == data.__dict__[name], f'DP Type: {dp_type.name} Property {name} Expected {value} ' \
-                                                 f'Observed {check_data.__dict__[name]}'
+            if isinstance(value, decimal.Decimal):
+                assert abs(value - data.__dict__[name]) < 0.1,\
+                    f'DP Type: {dp_type.name} Property {name} Expected {value} Observed {check_data.__dict__[name]}'
+                assert value == data.__dict__[name], \
+                    f'DP Type: {dp_type.name} Property {name} Expected {value} Observed {check_data.__dict__[name]}'
         assert False, f'Number of Properties Mismatch Expected: {data_len} Observed: {check_data_len}'
 
 

@@ -180,9 +180,9 @@ class ExporterBase(threading.Thread):
                 fmt_value = f'{value:3d}'
         elif isinstance(value, Decimal):
             if self.uom_handling == UOMHandlingType.AppendedToValue:
-                fmt_value = f'{value:.2f} {uom.abbreviation()}'
+                fmt_value = f'{value:.1f} {uom.abbreviation()}'
             else:
-                fmt_value = f'{value:.2f}'
+                fmt_value = f'{value:.1f}'
         else:
             if self.uom_handling == UOMHandlingType.AppendedToValue:
                 fmt_value = f'{value[0]:3d}/{value[1]:3d} {uom.abbreviation()}'

@@ -76,7 +76,7 @@ class CSVImporter(threading.Thread):
             row_count: int = 0
             msg_list: list[str] = []
             date_re = re.compile('["]*(\d{1,2})/(\d{1,2})/(\d{2,4})["]*')
-            time_re = re.compile('["]*(\d{1,2})[:](\d{2})[:]*(\d{0,2})\s*([am|AM|pm|PM]{2})["]*')
+            time_re = re.compile('["]*(\d{1,2})[:](\d{2})[:]*(\d{0,2})\s*([am|AM|pm|PM]*)["]*')
             bp_re = re.compile('["]*(\d{2,3})/(\d{2,3})[\s\w]*["]*')
             int_value_re = re.compile('["]*(\d{2,4})[\s\w]*["]*')
             dec_value_re = re.compile('["]*(\d{2,4}[.]*\d*)[\s\w]*["]*')
@@ -89,7 +89,7 @@ class CSVImporter(threading.Thread):
                     dp_note: str = ' '
                     data: list = []
                     for col_nbr, field in enumerate(row):
-                        if col_nbr < self.max_index and len(field) > 0:
+                        if col_nbr < self.max_index and len(field.strip()) > 0:
                             indexed_field = self.indexed_fields[col_nbr+1]
                             if indexed_field == DATE:
                                 try:
@@ -118,7 +118,7 @@ class CSVImporter(threading.Thread):
                                         second = int(s)
                                         if ampm in ['pm', 'PM']:
                                             hour += 12
-                                        elif ampm not in ['am', 'AM']:
+                                        elif len(ampm.strip()) > 0 and ampm not in ['am', 'AM']:
                                             raise ValueError
                                         dp_time = time(hour, minute, second)
                                     else:
@@ -128,74 +128,79 @@ class CSVImporter(threading.Thread):
                                                     f'converted to a time.')
                                     err_count += 1
                             elif indexed_field == BLOOD_PRESSURE:
-                                try:
-                                    re_result = bp_re.match(field)
-                                    if re_result is not None and len(re_result.groups()) == 2:
-                                        s, d = re_result.groups()
-                                        systolic = int(s)
-                                        diastolic = int(d)
-                                        bp = dp.BloodPressure(systolic, diastolic,
-                                                              self.person.dp_type_uom(dp.DataPointType.BP))
-                                        data.append(bp)
-                                    else:
-                                        raise ValueError
-                                except ValueError:
-                                    msg_list.append(f'Value "{field}" in row {row_nbr+1}, column {col_nbr+1} can not'
-                                                   f' be converted to a blood pressure.')
-                                    err_count += 1
+                                if self.person.is_tracked(dp.DataPointType.BP):
+                                    try:
+                                        re_result = bp_re.match(field)
+                                        if re_result is not None and len(re_result.groups()) == 2:
+                                            s, d = re_result.groups()
+                                            systolic = int(s)
+                                            diastolic = int(d)
+                                            bp = dp.BloodPressure(systolic, diastolic,
+                                                                  self.person.dp_type_uom(dp.DataPointType.BP))
+                                            data.append(bp)
+                                        else:
+                                            raise ValueError
+                                    except ValueError:
+                                        msg_list.append(f'Value "{field}" in row {row_nbr+1}, column {col_nbr+1} can not'
+                                                        f' be converted to a blood pressure.')
+                                        err_count += 1
                             elif indexed_field == BLOOD_GLUCOSE:
-                                try:
-                                    re_result = int_value_re.match(field)
-                                    if re_result is not None and len(re_result.groups()) > 0:
-                                        value = int(re_result.group(1))
-                                        bg = dp.BloodGlucose(value, self.person.dp_type_uom(dp.DataPointType.BG))
-                                        data.append(bg)
-                                    else:
-                                        raise ValueError
-                                except ValueError:
-                                    msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1} can not be'
-                                                    f'converted to in blood glucose')
-                                    err_count += 1
+                                if self.person.is_tracked(dp.DataPointType.BG):
+                                    try:
+                                        re_result = int_value_re.match(field)
+                                        if re_result is not None and len(re_result.groups()) > 0:
+                                            value = int(re_result.group(1))
+                                            bg = dp.BloodGlucose(value, self.person.dp_type_uom(dp.DataPointType.BG))
+                                            data.append(bg)
+                                        else:
+                                            raise ValueError
+                                    except ValueError:
+                                        msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1} can not be'
+                                                        f'converted to in blood glucose')
+                                        err_count += 1
                             elif indexed_field == BODY_WEIGHT:
-                                try:
-                                    re_result = dec_value_re.match(field)
-                                    if re_result is not None and len(re_result.groups()) > 0:
-                                        value = Decimal(re_result.group(1))
-                                        wgt = dp.BodyWeight(value, self.person.dp_type_uom(dp.DataPointType.BODY_WGT))
-                                        data.append(wgt)
-                                    else:
-                                        raise ValueError
-                                except ValueError:
-                                    msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1}'
-                                                   f' can not be converted to a weight.')
-                                    err_count += 1
+                                if self.person.is_tracked(dp.DataPointType.BODY_WGT):
+                                    try:
+                                        re_result = dec_value_re.match(field)
+                                        if re_result is not None and len(re_result.groups()) > 0:
+                                            value = Decimal(re_result.group(1))
+                                            wgt = dp.BodyWeight(value, self.person.dp_type_uom(dp.DataPointType.BODY_WGT))
+                                            data.append(wgt)
+                                        else:
+                                            raise ValueError
+                                    except ValueError:
+                                        msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1}'
+                                                        f' can not be converted to a weight.')
+                                        err_count += 1
                             elif indexed_field == BODY_TEMP:
-                                try:
-                                    re_result = dec_value_re.match(field)
-                                    if re_result is not None and len(re_result.groups()) > 0:
-                                        value = Decimal(re_result.group(1))
-                                        temp = dp.BodyTemperature(value,
-                                                                  self.person.dp_type_uom(dp.DataPointType.BODY_TEMP))
-                                        data.append(temp)
-                                    else:
-                                        raise ValueError
-                                except ValueError:
-                                    msg_list.append(f'Value "{field}" in row {row_nbr+1}, column {col_nbr+1} can not'
-                                                    f' be converted to a temperature.')
-                                    err_count += 1
+                                if self.person.is_tracked(dp.DataPointType.BODY_TEMP):
+                                    try:
+                                        re_result = dec_value_re.match(field)
+                                        if re_result is not None and len(re_result.groups()) > 0:
+                                            value = Decimal(re_result.group(1))
+                                            temp = dp.BodyTemperature(value,
+                                                                      self.person.dp_type_uom(dp.DataPointType.BODY_TEMP))
+                                            data.append(temp)
+                                        else:
+                                            raise ValueError
+                                    except ValueError:
+                                        msg_list.append(f'Value "{field}" in row {row_nbr+1}, column {col_nbr+1} can not'
+                                                        f' be converted to a temperature.')
+                                        err_count += 1
                             elif indexed_field == PULSE:
-                                try:
-                                    re_result = int_value_re.match(field)
-                                    if re_result is not None and len(re_result.groups()) > 0:
-                                        value = int(re_result.group(1))
-                                        pulse = dp.Pulse(value, self.person.dp_type_uom(dp.DataPointType.PULSE))
-                                        data.append(pulse)
-                                    else:
-                                        raise ValueError
-                                except ValueError:
-                                    msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1} can'
-                                                    f' not be converted to a pulse.')
-                                    err_count += 1
+                                if self.person.is_tracked(dp.DataPointType.PULSE):
+                                    try:
+                                        re_result = int_value_re.match(field)
+                                        if re_result is not None and len(re_result.groups()) > 0:
+                                            value = int(re_result.group(1))
+                                            pulse = dp.Pulse(value, self.person.dp_type_uom(dp.DataPointType.PULSE))
+                                            data.append(pulse)
+                                        else:
+                                            raise ValueError
+                                    except ValueError:
+                                        msg_list.append(f'Value "{field}" in row {row_nbr + 1}, column {col_nbr + 1} can'
+                                                        f' not be converted to a pulse.')
+                                        err_count += 1
                             elif indexed_field == IGNORE:
                                 pass
                             else:

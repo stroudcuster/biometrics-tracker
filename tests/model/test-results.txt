@@ -1,0 +1,51 @@
+/home/stroud/biometrics-tracker/bin/python /snap/pycharm-community/302/plugins/python-ce/helpers/pycharm/_jb_pytest_runner.py --path /home/stroud/PycharmProjects/biometrics-tracker/tests/model
+Testing started at 7:36 PM ...
+Launching pytest with arguments /home/stroud/PycharmProjects/biometrics-tracker/tests/model --no-header --no-summary -q in /home/stroud/PycharmProjects/biometrics-tracker/tests/model
+
+============================= test session starts ==============================
+collecting ... collected 40 items
+
+test_datapoints.py::test_person_init
+test_datapoints.py::test_tracking_config_init
+test_datapoints.py::test_person_add_tracked_dp_type
+test_datapoints.py::test_person_remove_tracked_dp_type
+test_datapoints.py::test_person_is_tracked
+test_datapoints.py::test_person_dp_type_track_config
+test_datapoints.py::test_frequency_name_map
+test_datapoints.py::test_weekday_name_map
+test_datapoints.py::test_schedule_init
+test_datapoints.py::test_schedule_get_weekday_dates
+test_datapoints.py::test_schedule_next_occurrence_today
+test_datapoints.py::test_person_add_schedule
+est_datapoints.py::test_person_rmv_schedule
+test_datapoints.py::test_blood_pressure_init
+test_datapoints.py::test_blood_glucose_init
+test_datapoints.py::test_pulse_init
+test_datapoints.py::test_blood_glucose_dp
+test_datapoints.py::test_blood_pressure_dp
+test_datapoints.py::test_pulse_dp
+test_datapoints.py::test_body_temp_dp
+test_datapoints.py::test_body_weight_dp
+test_exporters.py::test_csv_export
+test_exporters.py::test_sqlite_export
+test_importers.py::test_csv_importer
+test_json_handler.py::test_blood_glucose_json
+test_json_handler.py::test_blood_pressure_json
+test_json_handler.py::test_pulse_json
+test_json_handler.py::test_body_temperature_json
+test_json_handler.py::test_body_weight_json
+test_persistence.py::test_create_drop
+test_persistence.py::test_person_insert_retrieve
+test_persistence.py::test_person_update
+test_persistence.py::test_people_list
+test_persistence.py::test_track_cfg_insert
+test_persistence.py::test_track_cfg_update
+test_persistence.py::test_schedule_insert
+test_persistence.py::test_schedule_update
+test_persistence.py::test_schedule_update_last_triggered
+test_persistence.py::test_schedule_delete
+test_persistence.py::test_datapoint_insert
+
+================= 40 passed, 90 warnings in 411.73s (0:06:51) ==================
+
+Process finished with exit code 0

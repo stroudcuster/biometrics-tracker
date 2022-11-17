@@ -29,7 +29,7 @@ class BiometricsJSONEncoder(json.JSONEncoder):
             # handle other application classes
             match obj.__class__.__name__:
                 case dp.BodyWeight.__name__:
-                    json_str = json.JSONEncoder().encode({'value': f'{obj.value:.2f}',
+                    json_str = json.JSONEncoder().encode({'value': f'{obj.value:.1f}',
                                                           'uom': 'xxx',
                                                           'class': obj.__class__.__name__})
                     json_str = json_str.replace('"xxx"', BiometricsJSONEncoder().default(obj.uom))
