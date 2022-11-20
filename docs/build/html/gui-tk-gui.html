@@ -542,6 +542,17 @@ for the selected person that are within a specified date range.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
 <p>This is a base class for frames that display biometrics data in various ways</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsFrameBase.focus_set">
+<span class="sig-name descname"><span class="pre">focus_set</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.focus_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delegate focus_set calls to the start date widget</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method must be overridden by inheriting classes to retrieve Datapoints for a specified prerson within a
@@ -825,6 +836,39 @@ of ExportSpecCollection and pickles the collection object</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">OldViewEditBiometricsFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase" title="biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a></p>
+<p>Deprecated ViewEditBiometricsFrame class</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.display_history">
+<span class="sig-name descname"><span class="pre">display_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataPointRespMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.display_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a entry prompts from the DataPoints history retrieved by the retrieve_history method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – a response message containing a list of DataPoints</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.retrieve_history">
+<span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.retrieve_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the datapoint within the specified date range for the selected person and fill a ScrollableFrame
+with rows of widgets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.PeopleListFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">PeopleListFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Frame</span></code></p>
@@ -919,12 +963,43 @@ or PDF file and optionally email the report to one or more recipients</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.no_print">
+<span class="sig-name descname"><span class="pre">no_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">CompletionMsg</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.no_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method is invoked in response to the report completion message if the user did not request printing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.CompletionMsg</em>) – report completion message</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report">
-<span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StringIO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StringIO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the report to a file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>text</strong> (<em>descendant</em><em> of </em><em>IOBase</em>) – the destination for the save report</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>descendant</em><em> of </em><em>IOBase</em>) – the destination for the save report</p></li>
+<li><p><strong>prt</strong> (<em>bool</em>) – did user request print</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.show_printer_dialog">
+<span class="sig-name descname"><span class="pre">show_printer_dialog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">CompletionMsg</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.show_printer_dialog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the report file in a browser so it can be printed via the browser print dialog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.CompletionMsg</em>) – report completion message</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
@@ -1155,6 +1230,18 @@ into a ScrollableFrame</p>
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.tk_gui.</span></span><span class="sig-name descname"><span class="pre">ViewEditBiometricsFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase" title="biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a></p>
+<p>A Frame that allows the edit and deletion of DataPoints</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.create_placeholder_widget">
+<span class="sig-name descname"><span class="pre">create_placeholder_widget</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PlaceholderWidget" title="biometrics_tracker.gui.widgets.PlaceholderWidget"><span class="pre">PlaceholderWidget</span></a></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.create_placeholder_widget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a placeholder widget to take up space until the user selects a DataPoint to edit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history">
 <span class="sig-name descname"><span class="pre">display_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataPointRespMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history" title="Permalink to this definition">¶</a></dt>
@@ -1170,15 +1257,36 @@ into a ScrollableFrame</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.edit_datapoint">
+<span class="sig-name descname"><span class="pre">edit_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.edit_datapoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback method to be invoked on the double click of a PayloadLabel entry in the list of retrieved
+DataPoints</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<em>tkinter.Event</em>) – the event generated by the double click</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history">
 <span class="sig-name descname"><span class="pre">retrieve_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve the datapoint within the specified date range for the selected person and fill a ScrollableFrame
+<dd><p>Retrieve the datapoints within the specified date range for the selected person and fill a ScrollableFrame
 with rows of widgets</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.save_datapoint">
+<span class="sig-name descname"><span class="pre">save_datapoint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.save_datapoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>A callback method that handles deletes and updates when the Save button is clicked</p>
 </dd></dl>
 
 </dd></dl>
@@ -1238,6 +1346,7 @@ with rows of widgets</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase"><code class="docutils literal notranslate"><span class="pre">BiometricsFrameBase</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.focus_set"><code class="docutils literal notranslate"><span class="pre">BiometricsFrameBase.focus_set()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.BiometricsFrameBase.retrieve_history"><code class="docutils literal notranslate"><span class="pre">BiometricsFrameBase.retrieve_history()</span></code></a></li>
 </ul>
 </li>
@@ -1271,6 +1380,11 @@ with rows of widgets</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.NewDataPointFrame"><code class="docutils literal notranslate"><span class="pre">NewDataPointFrame</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame"><code class="docutils literal notranslate"><span class="pre">OldViewEditBiometricsFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.display_history"><code class="docutils literal notranslate"><span class="pre">OldViewEditBiometricsFrame.display_history()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.OldViewEditBiometricsFrame.retrieve_history"><code class="docutils literal notranslate"><span class="pre">OldViewEditBiometricsFrame.retrieve_history()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame</span></code></a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.focus_set"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame.focus_set()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.PeopleListFrame.selected_person"><code class="docutils literal notranslate"><span class="pre">PeopleListFrame.selected_person()</span></code></a></li>
@@ -1284,7 +1398,9 @@ with rows of widgets</p>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame</span></code></a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.disable_save"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.disable_save()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.enable_save"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.enable_save()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.no_print"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.no_print()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.save_report"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.save_report()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.SaveBiometricsReportFrame.show_printer_dialog"><code class="docutils literal notranslate"><span class="pre">SaveBiometricsReportFrame.show_printer_dialog()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow</span></code></a><ul>
@@ -1310,8 +1426,11 @@ with rows of widgets</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.create_placeholder_widget"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.create_placeholder_widget()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.display_history"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.display_history()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.edit_datapoint"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.edit_datapoint()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.retrieve_history"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.retrieve_history()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ViewEditBiometricsFrame.save_datapoint"><code class="docutils literal notranslate"><span class="pre">ViewEditBiometricsFrame.save_datapoint()</span></code></a></li>
 </ul>
 </li>
 </ul>

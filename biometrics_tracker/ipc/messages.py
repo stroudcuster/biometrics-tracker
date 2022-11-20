@@ -124,6 +124,7 @@ class PeopleMsg(MsgBase):
 @dataclass
 class DataPointMsg(ObjectMsg):
     payload: dp.DataPoint
+    key_timestamp: Optional[datetime] = field(default=None)
 
 
 @dataclass

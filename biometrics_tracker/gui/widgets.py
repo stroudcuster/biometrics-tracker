@@ -1,8 +1,7 @@
 from abc import abstractmethod
 from datetime import datetime, date, time
 from decimal import Decimal
-import threading
-from time import sleep
+import re
 import tkinter as tk
 import tkinter.simpledialog as tksimpedialog
 from tkinter import ttk
@@ -11,15 +10,17 @@ import ttkbootstrap.dialogs.dialogs as dialogs
 import ttkbootstrap.scrolled as scrolled
 from ttkbootstrap.validation import add_validation
 from ttkbootstrap.constants import *
-from typing import Any, Callable, Optional, Union
+from typing import Any, Callable, Literal, Optional, Union
 
 import biometrics_tracker.config.createconfig as config
 from biometrics_tracker.gui.validators import month_validator, day_validator, year_validator, hour_validator, \
-    minute_validator, numeric_validator
+    minute_validator
 import biometrics_tracker.model.exporters as exp
 import biometrics_tracker.model.importers as imp
 from biometrics_tracker.model import uoms as uoms, datapoints as dp
 import biometrics_tracker.utilities.utilities as utilities
+
+METRIC_WIDGET_MIN_LBL_WIDTH: int = 6
 
 
 class Radiobutton(ttkb.Radiobutton):
@@ -80,6 +81,659 @@ class Checkbutton(ttkb.Checkbutton):
         :return:
         """
         self.configure(bootstyle='primary')
+
+
+class EntryWidget:
+    """
+    An abstract base class for entry label/widget pairs
+    """
+    def __init__(self, parent, label_text: Optional[str], regex_str: Optional[str] = None):
+        """
+        Create an instance of EntryWidget
+        
+        :param parent: the GUI parent of this class
+        :param label_text: the text to be used in creating the label
+        :type label_text: str`
+        :param regex_str:
+        """
+        self.parent = parent
+        self.label_text = label_text
+        if regex_str is not None:
+            self.regex_pattern: Optional[re.Pattern] = re.compile(regex_str)
+        else:
+            self.regex_pattern = None
+        self.strvar = ttkb.StringVar()
+        self.entry = ttkb.Entry(master=parent, textvariable=self.strvar, validate='focusout',
+                                validatecommand=self.validate, invalidcommand=self.invalid)
+
+    def invalid(self):
+        """
+        This method is used as an 'invalidcommand' callback.  It is invoked when validation fails.  It sets the widget
+        background color to red, which gives it a red border, then calls focus_set on the widget
+
+        :return: None
+
+        """
+        self.entry.config(background='red')
+        self.focus_set()
+
+    def focus_set(self):
+        """
+        Delegates focus_set calls to the entry widget
+
+        :return: None
+
+        """
+        self.entry.focus_set()
+        self.entry.selection_range('0', tk.END)
+
+    def bind(self, sequence: str | None = ...,
+             func: Callable[[tk.Event], Any] | None = ...,
+             add: Literal["", "+"] | bool | None = ..., ) -> str:
+        """
+        Delegate bind calls to the entry widget
+
+        :param sequence: the name of the event to be bound
+        :type sequence: str | None
+        :param func: the callback to be invoked when the event is captured
+        :type func: Callable[[tk.Event], Any]
+        :param add: allows multiple bindings for single event
+        :type Literal["", "+"] | bool | None
+        :return: None
+
+        """
+        return self.entry.bind(sequence, func, add)
+
+    def grid(self, **kwargs):
+        """
+        Delegate grid calls to the entry widget
+
+        :param kwargs: key word args
+        :type kwargs: dict[str,Any]
+        :return: None
+
+        """
+        self.entry.grid(kwargs)
+
+    def set_regex(self, regex_str: str) -> None:
+        """
+        Set the regular expression used to validate user input
+
+        :param regex_str: a regular expression
+        :type regex_str: str
+        :return: None
+
+        """
+        self.regex_pattern = re.compile(regex_str)
+
+    def apply_regex(self, value=None) -> Optional[tuple[Any, ...]]:
+        """
+        Apply the widget's regex either to the proved string or to the value entered to the widget prompt
+
+        :param value: if not None, the regex will be applied to this value
+        :type value: str
+        :return: returns the groups collected by the regex
+        :rtype: Optional[tuple[Any, ...]]
+
+        """
+        if value is None:
+            match = self.regex_pattern.match(self.strvar.get())
+        else:
+            match = self.regex_pattern.match(value)
+
+        if match is None:
+            return None
+        else:
+            return match.groups()
+
+    def get_var(self) -> ttkb.StringVar:
+        """
+        Returns the StringVar associated with the entry widget
+
+        :return: the StringVar associated with the entry widget
+        :rtype: ttkb.StringVar
+
+        """
+        return self.strvar
+
+    @abstractmethod
+    def get_value(self):
+        """
+        An abstract method to be implemented by subclasses to return the entry widget value
+
+        :return: the entry widget value
+        :rtype: implementation dependant
+
+        """
+        ...
+
+    @abstractmethod
+    def set_value(self, value: Union[int, Decimal, str]) -> None:
+        """
+        An abstract method implemented by subclasses to set the entry widget value
+
+        :param value:  value to be set
+        :type value: Union[int, Decimal, str]
+        :return: None
+
+        """
+        ...
+
+    @abstractmethod
+    def validate(self) -> int:
+        """
+        An abstract method implemented by subclasses to set the entry widget value
+
+        :return: 1 if valid, 0 if not
+
+        """
+        ...
+
+
+class TextWidget(EntryWidget):
+    """
+    A regex validated text entry widget
+
+    """
+    def __init__(self, parent, label_text: str, regex_str: Optional[str] = None):
+        """
+        Creates and instance of TextWidget
+
+        :param parent: the GUI parent of this widget
+        :param label_text: the text for the label that will be associated with the widget.  The label is not
+            created with the entry widget, but the label text is used to create ValueError exception messages
+        :type label_text: str
+        :param regex_str: The regular expression that will be used to validate data entered to the widget
+        :type regex_str: str
+
+        """
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+
+    def validate(self) -> int:
+        """
+        A validation callback for the validationcommand parameter of the tkinter Entry widget
+
+        :return: 1 if validate, otherwise 0
+        :rtype: int
+
+        """
+        if self.regex_pattern is not None:
+            str_value = self.strvar.get().strip()
+            if len(str_value) > 0:
+                groups = self.apply_regex()
+                if groups is not None and len(groups) == 1:
+                    return 1
+                else:
+                    return 0
+            else:
+                return 1
+        else:
+            return 1
+
+    def get_value(self):
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value
+        :rtype: str
+
+        """
+        return self.strvar.get()
+
+    def set_value(self, value: str):
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: str
+        :return: None
+
+        """
+        if self.regex_pattern is not None:
+            groups = self.apply_regex(value)
+            if groups is None:
+                raise ValueError(f'{value} is not a valid {self.label_text}')
+            else:
+                self.strvar.set(groups[0])
+        else:
+            self.strvar.set(value)
+
+
+class LabeledTextWidget(ttkb.Frame):
+    """
+    A Frame containing a Label and a TextWidget
+
+    """
+    def __init__(self, parent, label_text: str, label_width: int, label_grid_args: dict[str, Any],
+                 entry_width: int, entry_grid_args: dict[str, Any], regex_str: Optional[str] = '\\s*(\\w*)\\s*'):
+        """
+        Creates and instance of LabeledTextWidget
+
+        :param parent: The GUI parent for this Frame
+        :param label_text: the text to be used in creating the label
+        :type label_text: str
+        :param label_width: the width to be used in creating the label
+        :type label_width: int
+        :param label_grid_args: the arguments to be used in gridding the label
+        :type label_grid_args: dict[str, Any]
+        :param entry_width: the width to be used in creating the entry widget
+        :type entry_width: int
+        :param entry_grid_args: the arguments to be used in gridding the entry widet
+        :type entry_grid_args: dict[str, Any]
+        :param regex_str: the regular expression to be used for validation of input: default '\\s*(\\w*)\\s*'
+        :type regex_str: str
+
+        """
+        ttkb.Frame.__init__(self, master=parent)
+        ttkb.Label(master=self, text=label_text,
+                   width=label_width).grid(**label_grid_args)
+        self.entry = TextWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry.grid(**entry_grid_args)
+
+    def focus_set(self):
+        """
+        Delegates calls to focus_set to the entry widget
+
+        :return: None
+
+        """
+        self.entry.focus_set()
+
+    def bind(self, sequence: str | None = ...,
+             func: Callable[[tk.Event], Any] | None = ...,
+             add: Literal["", "+"] | bool | None = ..., ) -> str:
+        """
+        Delegate bind calls to the entry widget
+
+        :param sequence: the name of the event to be bound
+        :type sequence: str | None
+        :param func: the callback to be invoked when the event is captured
+        :type func: Callable[[tk.Event], Any]
+        :param add: allows multiple bindings for single event
+        :type Literal["", "+"] | bool | None
+        :return: None
+
+        """
+        return self.entry.bind(sequence, func, add)
+
+    def get_value(self) -> str:
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value
+        :rtype: str
+
+        """
+        return self.entry.get_value()
+
+    def set_value(self, value: str) -> None:
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: str
+        :return: None
+
+        """
+        self.entry.set_value(value)
+
+    @staticmethod
+    def label_width(text: str, min_width: int) -> int:
+        """
+        Calculates a width for the label based on the label text and a minumum width
+
+        :param text: the label test
+        :type text: str
+        :param min_width: the minimum label width
+        :type min_width: int
+        :return: the calculated label width
+        :rtype: int
+
+        """
+        text_width = len(text) + 2
+        if text_width < min_width:
+            return min_width
+        else:
+            return text_width
+
+
+class IntegerWidget(EntryWidget):
+    def __init__(self, parent, label_text: str, regex_str: Optional[str] = '\\s*(\\d*)\\s*'):
+        """
+        Creates and instance of IntegerWidget
+
+        :param parent: the GUI parent of this widget
+        :param label_text: the text for the label that will be associated with the widget.  The label is not
+            created with the entry widget, but the label text is used to create ValueError exception messages
+        :type label_text: str
+        :param regex_str: The regular expression used to validate data entered: default '\\s*(\\d*)\\s*'
+        :type regex_str: str
+
+        """
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+
+    def validate(self):
+        """
+        A validation callback for the validationcommand parameter of the tkinter Entry widget
+
+        :return: 1 if validate, otherwise 0
+        :rtype: int
+
+        """
+        str_value = self.strvar.get().strip()
+        if len(str_value) > 0:
+            groups = self.apply_regex()
+            if groups is not None and len(groups) == 1:
+                if groups[0].isnumeric():
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+        else:
+            return 1
+
+    def get_value(self):
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value as an integer
+        :rtype: int
+
+        """
+        value = self.strvar.get().strip()
+        if len(value) == 0:
+            return 0
+        else:
+            return int(self.strvar.get().strip())
+
+    def set_value(self, value: Union[int, str]):
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: Union[int, str]
+        :return: None
+
+        """
+        if isinstance(value, int):
+            self.strvar.set(f'{value:d}')
+        elif isinstance(value, str) and value.isnumeric():
+            if len(value.strip()) > 0:
+                re_groups = self.apply_regex(value)
+                int_value: int = int(re_groups[0])
+                self.strvar.set(f'{int_value:d}')
+            else:
+                self.strvar.set('0')
+        else:
+            raise ValueError(f'{value} is not a valid {self.label_text}')
+
+
+class LabeledIntegerWidget(ttkb.Frame):
+    def __init__(self, parent, label_text: str, label_width: int, label_grid_args: dict[str, Any],
+                 entry_width: int, entry_grid_args: dict[str, Any], regex_str: Optional[str] = '\\s*(\\d*)\\s*'):
+        """
+        Creates and instance of LabeledIntegerWidget
+
+        :param parent: The GUI parent for this Frame
+        :param label_text: the text to be used in creating the label
+        :type label_text: str
+        :param label_width: the width to be used in creating the label
+        :type label_width: int
+        :param label_grid_args: the arguments to be used in gridding the label
+        :type label_grid_args: dict[str, Any]
+        :param entry_width: the width to be used in creating the entry widget
+        :type entry_width: int
+        :param entry_grid_args: the arguments to be used in gridding the entry widet
+        :type entry_grid_args: dict[str, Any]
+        :param regex_str: the regular expression to be used for validation of input: default value '\\s*(\\d*)\\s*'
+        :type regex_str: str
+
+        """
+        ttkb.Frame.__init__(self, master=parent)
+        ttkb.Label(master=self, text=label_text,
+                   width=label_width).grid(**label_grid_args)
+        self.entry = IntegerWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry.grid(**entry_grid_args)
+
+    def focus_set(self):
+        """
+        Delegates calls to focus_set to the entry widget
+
+        :return: None
+
+        """
+        self.entry.focus_set()
+
+    def bind(self, sequence: str | None = ...,
+             func: Callable[[tk.Event], Any] | None = ...,
+             add: Literal["", "+"] | bool | None = ..., ) -> str:
+        """
+        Delegate bind calls to the entry widget
+
+        :param sequence: the name of the event to be bound
+        :type sequence: str | None
+        :param func: the callback to be invoked when the event is captured
+        :type func: Callable[[tk.Event], Any]
+        :param add: allows multiple bindings for single event
+        :type Literal["", "+"] | bool | None
+        :return: None
+
+        """
+        return self.entry.bind(sequence, func, add)
+
+    def get_value(self) -> int:
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value as an integer
+        :rtype: int
+
+        """
+        return self.entry.get_value()
+
+    def set_value(self, value: Union[int, str]) -> None:
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: Union[int, str]
+        :return: None
+
+        """
+        self.entry.set_value(value)
+
+    @staticmethod
+    def label_width(text: str, min_width: int) -> int:
+        """
+        Calculates a width for the label based on the label text and a minumum width
+
+        :param text: the label test
+        :type text: str
+        :param min_width: the minimum label width
+        :type min_width: int
+        :return: the calculated label width
+        :rtype: int
+
+        """
+        text_width = len(text) + 2
+        if text_width < min_width:
+            return min_width
+        else:
+            return text_width
+
+
+class DecimalWidget(EntryWidget):
+    def __init__(self, parent, label_text: str, regex_str: Optional[str] = '\\s*(\\d+[.]*\\d*)\\s*'):
+        """
+        Creates and instance of DecimalWidget
+
+        :param parent: the GUI parent of this widget
+        :param label_text: the text for the label that will be associated with the widget.  The label is not
+            created with the entry widget, but the label text is used to create ValueError exception messages
+        :type label_text: str
+        :param regex_str: The regular expression used to validate data entered: default '\\s*(\\d+[.]*\\d*)\\s*'
+        :type regex_str: str
+
+        """
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+
+    def validate(self):
+        """
+        A validation callback for the validationcommand parameter of the tkinter Entry widget
+
+        :return: 1 if validate, otherwise 0
+        :rtype: int
+
+        """
+        str_value = self.strvar.get().strip()
+        if len(str_value) > 0:
+            groups = self.apply_regex()
+            if groups is not None and len(groups) == 1:
+                return 1
+            else:
+                return 0
+        else:
+            return 1
+
+    def get_value(self) -> Decimal:
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value as a Decimal
+        :rtype: decimal.Decimal
+
+        """
+        if self.validate() == 1:
+            str_value = self.strvar.get().strip()
+            if len(str_value) == 0:
+                return Decimal(0)
+            else:
+                return Decimal(str_value)
+        else:
+            raise ValueError(f'{self.strvar.get()} is not a valid {self.label_text}')
+
+    def set_value(self, value: Union[Decimal, str]):
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: Union[decimal.Decimal, str]
+        :return: None
+
+        """
+        if isinstance(value, Decimal):
+            self.strvar.set(f'{value:.1f}')
+        elif isinstance(value, str) and value.isnumeric():
+            if len(value.strip()) > 0:
+                re_groups = self.apply_regex()
+                if re_groups is not None:
+                    dec_value: Decimal = Decimal(re_groups[0])
+                    self.strvar.set(f'{dec_value:.1f}')
+                raise ValueError(f'{self.strvar.get()} is not a valid {self.label_text}')
+            else:
+                self.strvar.set('0.0')
+        else:
+            raise ValueError(f'{self.strvar.get()} is not a valid {self.label_text}')
+
+
+class LabeledDecimalWidget(ttkb.Frame):
+    def __init__(self, parent, label_text: str, label_width: int, label_grid_args: dict[str, Any],
+                 entry_width: int, entry_grid_args: dict[str, Any], regex_str: Optional[str] = '\\s*(\\d+[.]*\\d*)\\s*'):
+        """
+        Creates and instance of LabeledDecimalWidget
+
+        :param parent: The GUI parent for this Frame
+        :param label_text: the text to be used in creating the label
+        :type label_text: str
+        :param label_width: the width to be used in creating the label
+        :type label_width: int
+        :param label_grid_args: the arguments to be used in gridding the label
+        :type label_grid_args: dict[str, Any]
+        :param entry_width: the width to be used in creating the entry widget
+        :type entry_width: int
+        :param entry_grid_args: the arguments to be used in gridding the entry widet
+        :type entry_grid_args: dict[str, Any]
+        :param regex_str: the regular expression to be used for validation of input: default value '\\s*(\\d+[.]*\\d*)\\s*'
+        :type regex_str: str
+
+        """
+        ttkb.Frame.__init__(self, master=parent)
+        ttkb.Label(self, text=label_text, width=label_width).grid(**label_grid_args)
+        self.entry = DecimalWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry.grid(**entry_grid_args)
+
+    def focus_set(self):
+        """
+        Delegates calls to focus_set to the entry widget
+
+        :return: None
+
+        """
+        self.entry.focus_set()
+
+    def bind(self, sequence: str | None = ...,
+             func: Callable[[tk.Event], Any] | None = ...,
+             add: Literal["", "+"] | bool | None = ..., ) -> str:
+        """
+        Delegate bind calls to the entry widget
+
+        :param sequence: the name of the event to be bound
+        :type sequence: str | None
+        :param func: the callback to be invoked when the event is captured
+        :type func: Callable[[tk.Event], Any]
+        :param add: allows multiple bindings for single event
+        :type Literal["", "+"] | bool | None
+        :return: None
+
+        """
+        return self.entry.bind(sequence, func, add)
+
+    def get_value(self) -> Decimal:
+        """
+        Return the widget's entry value
+
+        :return: the widget's entry value as a Decimal
+        :rtype: decimal.Decimal
+
+        """
+        return self.entry.get_value()
+
+    def set_value(self, value: Union[Decimal, str]) -> None:
+        """
+        The argument value is filtered through the validation regex and the resulting regex group is used to set the
+        widget's entry value
+
+        :param value: the value to be used to set the entry value
+        :type value: Union[decimal.Decimal, str]
+        :return: None
+
+        """
+        self.entry.set_value(value)
+
+    @staticmethod
+    def label_width(text: str, min_width: int) -> int:
+        """
+        Calculates a width for the label based on the label text and a minumum width
+
+        :param text: the label test
+        :type text: str
+        :param min_width: the minimum label width
+        :type min_width: int
+        :return: the calculated label width
+        :rtype: int
+
+        """
+        text_width = len(text) + 2
+        if text_width < min_width:
+            return min_width
+        else:
+            return text_width
 
 
 class WeekDayCheckbuttonWidget(ttkb.Frame):
@@ -158,21 +812,21 @@ class DateWidget(ttkb.Frame):
             self.day_var.set(default_value.day)
             self.year_var.set(default_value.year)
         self.month_entry = ttkb.Entry(self, textvariable=self.month_var, width=3)
-        self.month_entry.grid(column=0, row=0, sticky=NW, ipadx=0, padx=0)
-        ttkb.Label(self, text="/", width=1, font=('courier', 20, 'bold')).grid(column=1, row=0, sticky=NW, padx=0,
+        self.month_entry.grid(column=0, row=0, sticky=tk.NW, ipadx=0, padx=0)
+        ttkb.Label(self, text="/", width=1, font=('courier', 20, 'bold')).grid(column=1, row=0, sticky=tk.NW, padx=0,
                                                                                pady=5)
         self.month_entry.bind('<KeyPress>', self.month_keypress)
         self.month_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.month_entry, month_validator)
         self.day_entry = ttkb.Entry(self, textvariable=self.day_var, width=3)
-        self.day_entry.grid(column=2, row=0, sticky=NW)
+        self.day_entry.grid(column=2, row=0, sticky=tk.NW)
         self.day_entry.bind('<KeyPress>', self.day_keypress)
         self.day_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.day_entry, day_validator)
-        ttkb.Label(self, text="/", width=1, font=('courier', 20, 'bold')).grid(column=3, row=0, sticky=NW, padx=0,
+        ttkb.Label(self, text="/", width=1, font=('courier', 20, 'bold')).grid(column=3, row=0, sticky=tk.NW, padx=0,
                                                                                pady=5)
         self.year_entry = ttkb.Entry(self, textvariable=self.year_var, width=6)
-        self.year_entry.grid(column=4, row=0, stick=NW)
+        self.year_entry.grid(column=4, row=0, stick=tk.NW)
         self.year_entry.bind('<KeyPress>', self.year_keypress)
         self.year_entry.bind('<FocusIn>', self.clear_key_count)
         self.year_entry.bind('<FocusOut>', self.validate_date)
@@ -461,7 +1115,7 @@ class DateWidget(ttkb.Frame):
                 self.year_entry.update()
             if valid:
                 self.next_entry.focus_set()
-                self.error = False;
+                self.error = False
             else:
                 if not self.error:
                     self.error = True
@@ -516,22 +1170,22 @@ class TimeWidget(ttkb.Frame):
             self.minute_var.set(fmt_time[3:5])
             self.ampm_var.set(fmt_time[6:8])
         self.hour_entry = ttkb.Entry(self, textvariable=self.hour_var, width=3)
-        self.hour_entry.grid(column=0, row=0, sticky=NW, ipadx=0, padx=0, pady=5)
-        ttkb.Label(self, text=":", width=1, font=('courier', 20, 'bold')).grid(column=1, row=0, sticky=NW, padx=0,
+        self.hour_entry.grid(column=0, row=0, sticky=tk.NW, ipadx=0, padx=0, pady=5)
+        ttkb.Label(self, text=":", width=1, font=('courier', 20, 'bold')).grid(column=1, row=0, sticky=tk.NW, padx=0,
                                                                                pady=5)
         self.hour_entry.bind('<KeyPress>', self.hour_keypress)
         self.hour_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.hour_entry, hour_validator)
         self.minute_entry = ttkb.Entry(self, textvariable=self.minute_var, width=3)
-        self.minute_entry.grid(column=2, row=0, sticky=NW, ipadx=0, padx=0, pady=5)
+        self.minute_entry.grid(column=2, row=0, sticky=tk.NW, ipadx=0, padx=0, pady=5)
         self.minute_entry.bind('<KeyPress>', self.minute_keypress)
         self.minute_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.minute_entry, minute_validator)
         self.am_button = Radiobutton(self, text='AM', value='AM', variable=self.ampm_var, command=self.validate_time)
-        self.am_button.grid(column=3, row=0, stick=NW, padx=5, pady=5)
+        self.am_button.grid(column=3, row=0, stick=tk.NW, padx=5, pady=5)
         self.pm_button = Radiobutton(self, text='PM', value='PM', variable=self.ampm_var, command=self.validate_time)
         self.pm_button.bind('<FocusOut>', self.validate_time, '+')
-        self.pm_button.grid(column=4, row=0, sticky=NW, padx=5, pady=5)
+        self.pm_button.grid(column=4, row=0, sticky=tk.NW, padx=5, pady=5)
         if self.ampm_var.get() not in ['AM', 'PM']:
             self.ampm_var.set('AM')
         self.grid()
@@ -973,6 +1627,7 @@ class DataPointTypeWidget(ttk.Frame):
         """
         self.check_btn.focus_set()
 
+
 class NoteTip:
     """
     Implements a tool tip type window to display the note associated with a model.datapoints.DataPoint derived
@@ -1021,7 +1676,29 @@ class NoteTip:
             tw.destroy()
 
 
-class DataPointWidget(ttkb.Frame):
+class IntegerMetricWidget(LabeledIntegerWidget):
+    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int):
+        LabeledIntegerWidget.__init__(self, parent=parent,
+                                      label_text=dp.dptype_dp_map[dp_type].label(),
+                                      label_width=self.label_width(dp.dptype_dp_map[dp_type].label(), min_label_width),
+                                      label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5},
+                                      entry_width=entry_width,
+                                      entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NE, 'padx': 5, 'pady': 5})
+        ttkb.Label(self, text=uom.abbreviation(), width=10).grid(column=2, row=0, sticky=tk.NW)
+
+
+class DecimalMetricWidget(LabeledDecimalWidget):
+    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int):
+        LabeledDecimalWidget.__init__(self, parent=parent,
+                                      label_text=dp.dptype_dp_map[dp_type].label(),
+                                      label_width=self.label_width(dp.dptype_dp_map[dp_type].label(), min_label_width),
+                                      label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5},
+                                      entry_width=entry_width,
+                                      entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5})
+        ttkb.Label(self, text=uom.abbreviation(), width=10).grid(column=2, row=0, sticky=tk.NW)
+
+
+class MetricWidget(ttkb.Frame):
     """
     A base class for widget that allow the entry of information on the recording of a particular type of metric
     """
@@ -1034,21 +1711,18 @@ class DataPointWidget(ttkb.Frame):
         datapoint.
         """
         ttkb.Frame.__init__(self, parent)
-        self.dp_type = track_cfg.dp_type
-        self.uom = track_cfg.default_uom
+        self.dp_type: dp.DataPointType = track_cfg.dp_type
+        self.uom: uoms.UOM = track_cfg.default_uom
+        self.datapoint: dp.DataPoint = datapoint
+        self.changed: bool = False
         self.note_var: ttkb.StringVar = ttkb.StringVar()
-        self.datapoint = datapoint
         if datapoint:
             self.note_var.set(datapoint.note)
-        self.changed = False
-        ttkb.Label(self, text=dp.dptype_dp_map[self.dp_type].label(), width=15) \
-            .grid(column=0, row=0, sticky=NW, padx=5, pady=5)
-        ttkb.Label(self, text=self.uom.abbreviation(), width=10).grid(column=1, row=1, sticky=NW)
         self.show_note_field = show_note_field
-        self.note_entry = None
-        self.note_tip = None
-        self.up_arrow_entry = None
-        self.down_arrow_entry = None
+        self.note_entry: Optional[LabeledTextWidget] = None
+        self.note_tip: Optional[NoteTip] = None
+        self.up_arrow_entry: Optional[MetricWidget] = None
+        self.down_arrow_entry: Optional[MetricWidget] = None
 
     @abstractmethod
     def get_value(self):
@@ -1082,11 +1756,18 @@ class DataPointWidget(ttkb.Frame):
 
         """
         if self.show_note_field:
-            ttk.Label(self, text='Note').grid(column=2, row=1, stick=NW)
-            self.note_entry = ttkb.Entry(self, textvariable=self.note_var, width=30)
-            self.note_entry.grid(column=3, row=1, sticky=NW, padx=5, pady=5)
+            self.note_entry = LabeledTextWidget(self, label_text='Note', label_width=6,
+                                                label_grid_args={'column': 0, 'row': 1, 'sticky': tk.NW, 'padx': 5,
+                                                                 'pady': 5},
+                                                entry_width=30,
+                                                entry_grid_args={'column': 1, 'row': 1, 'sticky': tk.NW, 'padx': 5,
+                                                                 'pady': 5})
+            if self.datapoint:
+                self.note_entry.set_value(self.datapoint.note)
+            self.note_entry.grid(column=3, row=1, sticky=tk.NE)
             self.note_entry.bind('<FocusOut>', self.check_changed_note)
             self.note_entry.bind('<KeyPress>', self.handle_keypress)
+            self.note_var = self.note_entry.entry.get_var()
         else:
             self.note_tip = NoteTip(self, self.note_var.get())
             self.bind('<Button-3>', self.edit_note)
@@ -1125,7 +1806,7 @@ class DataPointWidget(ttkb.Frame):
         """
         if event:
             pass
-        if self.datapoint and self.datapoint.note != self.note_var.get():
+        if self.datapoint and self.datapoint.note.strip() != self.note_var.get().strip():
             self.changed = True
 
     def is_changed(self) -> bool:
@@ -1158,11 +1839,11 @@ class DataPointWidget(ttkb.Frame):
             self.bind('<Button-3>', self.edit_note)
 
 
-class BodyWeightWidget(DataPointWidget):
+class BodyWeightWidget(MetricWidget):
     """
     A widget that allows the entry of a Body Weight datapoint
     """
-    def __init__(self, parent, track_cfg: dp.TrackingConfig, datapoint: dp.BodyWeightDP=None,
+    def __init__(self, parent, track_cfg: dp.TrackingConfig, datapoint: dp.BodyWeightDP = None,
                  show_note_field: bool = True):
         """
         Creates a gui.widgets.BodyWeightWidget
@@ -1170,18 +1851,17 @@ class BodyWeightWidget(DataPointWidget):
         :param track_cfg: an instance of model.datapoints.TrackingConfig to provide the u.o.m associated with the
         datapoint.
         """
-        DataPointWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
+        MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
         self.weight_var = ttkb.DoubleVar()
+        self.weight_entry = DecimalMetricWidget(parent=self, dp_type=self.dp_type, uom=self.uom,
+                                                min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
         if datapoint:
-            self.weight_var.set(float(datapoint.data.value))
-        self.changed: bool = False
-        self.weight_entry = ttkb.Entry(self, textvariable=self.weight_var, width=10)
-        self.weight_entry.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
-        add_validation(self.weight_entry, numeric_validator)
-        self.grid(padx=5, pady=5)
+            self.weight_entry.set_value(datapoint.data.value)
+        self.weight_entry.grid(column=0, row=1, sticky=tk.NW)
         self.weight_entry.bind('<FocusOut>', self.check_change)
         self.weight_entry.bind('<KeyPress>', self.handle_keypress)
         self.create_note_entry()
+        self.grid(padx=5, pady=5)
         if not show_note_field:
             for child in self.children.values():
                 child.bind('<Button-3>', self.edit_note)
@@ -1191,15 +1871,15 @@ class BodyWeightWidget(DataPointWidget):
         Returns the body weight value
         :return: Decimal body weight value
         """
-        return Decimal(self.weight_var.get())
+        return self.weight_entry.get_value()
 
     def zero_value(self) -> None:
         """
         Zeros the body weight value and set the note to an empty string
         :return: None
         """
-        self.weight_var.set(0)
-        self.note_var.set('')
+        self.weight_entry.set_value(Decimal(0))
+        self.note_entry.set_value('')
 
     def focus_set(self) -> None:
         """
@@ -1214,11 +1894,11 @@ class BodyWeightWidget(DataPointWidget):
         :param event:
         :return: None
         """
-        if self.datapoint and abs(self.datapoint.data.value - self.get_value()) > 0.001:
+        if self.datapoint and abs(self.datapoint.data.value - self.get_value()) > 0.1:
             self.changed = True
 
 
-class BodyTempWidget(DataPointWidget):
+class BodyTempWidget(MetricWidget):
     """
     A widget that allows the entry of a Body Temperature datapoint
     """
@@ -1233,15 +1913,15 @@ class BodyTempWidget(DataPointWidget):
         :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by
         a right click
         """
-        DataPointWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.temp_var = ttkb.DoubleVar()
-        if datapoint is not None:
-            self.temp_var.set(float(datapoint.data.value))
-        self.temp_entry = ttkb.Entry(self, textvariable=self.temp_var, width=10)
-        self.temp_entry.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
+        MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
+        self.temp_entry = DecimalMetricWidget(parent=self, dp_type=self.dp_type, uom=self.uom,
+                                              min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
+        self.temp_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
         self.temp_entry.bind('<KeyPress>', self.handle_keypress)
-        self.grid(padx=5, pady=5)
         self.temp_entry.bind('<FocusOut>', self.check_change)
+        if datapoint is not None:
+            self.temp_entry.set_value(datapoint.data.value)
+        self.grid(padx=5, pady=5)
         self.create_note_entry()
         if not show_note_field:
             for child in self.children.values():
@@ -1252,15 +1932,15 @@ class BodyTempWidget(DataPointWidget):
         Returns the body temperature value
         :return: Decimal body temperature
         """
-        return Decimal(self.temp_var.get())
+        return self.temp_entry.get_value()
 
     def zero_value(self) -> None:
         """
         Zeros the body temperature value and set the note to an empty string
         :return: None
         """
-        self.temp_var.set(0)
-        self.note_var.set('')
+        self.temp_entry.set_value(Decimal(0))
+        self.note_entry.set_value('')
 
     def focus_set(self) -> None:
         """
@@ -1275,73 +1955,11 @@ class BodyTempWidget(DataPointWidget):
         :param event:
         :return: None
         """
-        if self.datapoint and abs(self.datapoint.data.value - self.get_value()) > 0.001:
+        if self.datapoint and (super().is_changed() or abs(self.datapoint.data.value - self.get_value()) > 0.001):
             self.changed = True
 
 
-class BloodGlucoseWidget(DataPointWidget):
-    """
-    A widget that allows the entry of a Blood Glucose datapoint
-    """
-    def __init__(self, parent, track_cfg: dp.TrackingConfig, datapoint: dp.BloodGlucoseDP = None,
-                 show_note_field: bool = True):
-        """
-        Creates a gui.widgets.BloodGlucoseWidget
-        :param parent: the GUI parent for this widget
-        :param track_cfg: an instance of model.datapoints.TrackingConfig to provide the u.o.m associated with the
-        datapoint.
-        :param datapoint: if not None, provides initial values for the metric
-        :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by
-        a right click
-        """
-        DataPointWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.bg_var = ttkb.IntVar()
-        if datapoint is not None:
-            self.bg_var.set(datapoint.data.value)
-        self.bg_entry = ttkb.Entry(self, textvariable=self.bg_var, width=10)
-        self.bg_entry.bind('<KeyPress>', self.handle_keypress)
-        self.bg_entry.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
-        add_validation(self.bg_entry, numeric_validator)
-        self.grid(padx=5, pady=5)
-        self.bg_entry.bind('<FocusOut>', self.check_change)
-        self.create_note_entry()
-        if not show_note_field:
-            for child in self.children.values():
-                child.bind('<Button-3>', self.edit_note)
-
-    def get_value(self) -> int:
-        """
-        Returns the blood glucose value
-        :return: int blood glucose value
-        """
-        return self.bg_var.get()
-
-    def zero_value(self) -> None:
-        """
-        Zeros the blood glucose value and set the note to an empty string
-        :return: None
-        """
-        self.bg_var.set(0)
-        self.note_var.set('')
-
-    def focus_set(self) -> None:
-        """
-        Sets the focus on the bg_entry field when the focus_set method on the widget is called
-        :return: None
-        """
-        self.bg_entry.focus_set()
-
-    def check_change(self, event):
-        """
-        Check to see if the widgets metric value has been changed
-        :param event:
-        :return: None
-        """
-        if self.datapoint and self.datapoint.data.value != self.get_value():
-            self.changed = True
-
-
-class BloodPressureWidget(DataPointWidget):
+class BloodPressureWidget(MetricWidget):
     """
     A widget that allows the entry of a Blood Pressure datapoint
     """
@@ -1356,24 +1974,41 @@ class BloodPressureWidget(DataPointWidget):
         :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by
         a right click
        """
-        DataPointWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.systolic_var = ttkb.IntVar()
-        self.diastolic_var = ttkb.IntVar()
-        if datapoint is not None:
-            self.systolic_var.set(datapoint.data.systolic)
-            self.diastolic_var.set(datapoint.data.diastolic)
-        self.systolic_entry = ttkb.Entry(self, textvariable=self.systolic_var, width=10)
-        self.systolic_entry.grid(column=0, row=1, sticky=NW, padx=5, pady=0)
+        MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
+        self.systolic_entry = LabeledIntegerWidget(self, label_text='Systolic',
+                                                   label_width=METRIC_WIDGET_MIN_LBL_WIDTH,
+                                                   label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
+                                                                    'sticky': tk.NW},
+                                                   entry_width=6,
+                                                   entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
+                                                                    'sticky': tk.NW})
+
+        self.systolic_entry.grid(column=0, row=1, padx=5, sticky=tk.NW)
         self.systolic_entry.bind('<KeyPress>', self.handle_keypress)
         self.systolic_entry.bind('<FocusOut>', self.check_change)
-        add_validation(self.systolic_entry, numeric_validator)
-        ttkb.Label(self, text="===========").grid(column=0, row=2, sticky=NW, padx=5, ipady=0, pady=0)
-        self.diastolic_entry = ttkb.Entry(self, textvariable=self.diastolic_var, width=10)
-        self.diastolic_entry.grid(column=0, row=3, sticky=NW, padx=5, pady=0)
+        dash_frame = ttkb.Frame(self)
+        ttkb.Label(dash_frame, text=' ', width=METRIC_WIDGET_MIN_LBL_WIDTH).grid(column=0, row=0, padx=5, pady=0,
+                                                                                 sticky=tk.NW)
+        ttkb.Label(dash_frame, text='==============', width=8).grid(column=1, row=0, padx=5, pady=0,
+                                                                                   sticky=tk.NW)
+        ttkb.Label(dash_frame, text=track_cfg.default_uom.abbreviation()).grid(column=2, row=0, padx=5, pady=0,
+                                                                               sticky=tk.NW)
+        dash_frame.grid(column=0, row=2, padx=5, sticky=tk.NW)
+        self.diastolic_entry = LabeledIntegerWidget(self, label_text='Diastolic',
+                                                    label_width=10,
+                                                    label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
+                                                                     'sticky': tk.NW},
+                                                    entry_width=6,
+                                                    entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
+                                                                     'sticky': tk.NW})
+        self.diastolic_entry.grid(column=0, row=3, sticky=tk.NW, padx=5, pady=0)
         self.diastolic_entry.bind('<KeyPress>', self.handle_diastolic_keypress)
-        add_validation(self.diastolic_entry, numeric_validator)
-        self.grid(padx=5, pady=5)
         self.diastolic_entry.bind('<FocusOut>', self.check_change)
+        self.grid(padx=5, pady=5, sticky=tk.NW)
+        if datapoint is not None:
+            self.systolic_entry.set_value(datapoint.data.systolic)
+            self.diastolic_entry.set_value(datapoint.data.diastolic)
+
         self.create_note_entry()
         if not show_note_field:
             for child in self.children.values():
@@ -1384,16 +2019,16 @@ class BloodPressureWidget(DataPointWidget):
         Returns the systolic and diastolic values entered to the widget
         :return: tuple(int, int) representing the systolic and diastolic values
         """
-        return self.systolic_var.get(), self.diastolic_var.get()
+        return self.systolic_entry.get_value(), self.diastolic_entry.get_value()
 
     def zero_value(self) -> None:
         """
         Zeros the systolic and diastolic values and set the note to an empty string
         :return: None
         """
-        self.systolic_var.set(0)
-        self.diastolic_var.set(0)
-        self.note_var.set('')
+        self.systolic_entry.set_value(0)
+        self.diastolic_entry.set_value(0)
+        self.note_entry.set_value('')
 
     def focus_set(self) -> None:
         """
@@ -1409,7 +2044,7 @@ class BloodPressureWidget(DataPointWidget):
         :return: None
         """
         systolic, diastolic = self.get_value()
-        if self.datapoint and (self.datapoint.data.systolic != systolic or
+        if self.datapoint and (super().is_changed() or self.datapoint.data.systolic != systolic or
                                self.datapoint.data.diastolic != diastolic):
             self.changed = True
 
@@ -1423,7 +2058,78 @@ class BloodPressureWidget(DataPointWidget):
                 self.handle_keypress(event)
 
 
-class PulseWidget(DataPointWidget):
+class BloodGlucoseWidget(MetricWidget):
+    """
+    A widget that allows the entry of a Blood Glucose datapoint
+    """
+    def __init__(self, parent, track_cfg: dp.TrackingConfig, datapoint: dp.BloodGlucoseDP = None,
+                 show_note_field: bool = True):
+        """
+        Creates a gui.widgets.BloodGlucoseWidget
+        :param parent: the GUI parent for this widget
+        :param track_cfg: an instance of model.datapoints.TrackingConfig to provide the u.o.m associated with the
+        datapoint.
+        :param datapoint: if not None, provides initial values for the metric
+        :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by a right click
+
+        """
+        MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
+        self.bg_entry = IntegerMetricWidget(self, dp_type=track_cfg.dp_type, uom=track_cfg.default_uom,
+                                            min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
+        self.bg_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
+        self.bg_entry.bind('<KeyPress>', self.handle_keypress)
+        self.bg_entry.bind('<FocusOut>', self.check_change)
+        if datapoint is not None:
+            self.bg_entry.set_value(datapoint.data.value)
+        self.grid(padx=5, pady=5)
+        self.create_note_entry()
+        if not show_note_field:
+            for child in self.children.values():
+                child.bind('<Button-3>', self.edit_note)
+
+    def get_value(self) -> int:
+        """
+        Returns the blood glucose value
+
+        :return: int blood glucose value
+        :rtype: int
+
+        """
+        return self.bg_entry.get_value()
+
+    def zero_value(self) -> None:
+        """
+        Zeros the blood glucose value and set the note to an empty string
+
+        :return: None
+
+        """
+        self.bg_entry.set_value(0)
+        self.note_entry.set_value('')
+
+    def focus_set(self) -> None:
+        """
+        Sets the focus on the bg_entry field when the focus_set method on the widget is called
+
+        :return: None
+
+        """
+        self.bg_entry.focus_set()
+
+    def check_change(self, event):
+        """
+        Check to see if the widgets metric value has been changed
+
+        :param event:
+        :type event: tkinter.Event
+        :return: None
+
+        """
+        if self.datapoint and (super().is_changed() or self.datapoint.data.value != self.get_value()):
+            self.changed = True
+
+
+class PulseWidget(MetricWidget):
     """
     A widget the allows entry of a pulse metric
     """
@@ -1435,19 +2141,18 @@ class PulseWidget(DataPointWidget):
         :param track_cfg: an instance of model.datapoints.TrackingConfig to provide the u.o.m associated with the
         datapoint.
         :param datapoint: if not None, provides initial values for the metric
-        :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by
-        a right click
+        :param show_note_field: boolean, controls whether the Note entry is shown in the frame or displayed by a right click
+
         """
-        DataPointWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.pulse_var = ttkb.IntVar()
-        if datapoint is not None:
-            self.pulse_var.set(datapoint.data.value)
-        self.pulse_entry = ttkb.Entry(self, textvariable=self.pulse_var, width=10)
-        self.pulse_entry.grid(column=0, row=1, sticky=NW, padx=5, pady=5)
+        MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
+        self.pulse_entry = IntegerMetricWidget(self, dp_type=track_cfg.dp_type, uom=track_cfg.default_uom,
+                                               min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
+        self.pulse_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
         self.grid(padx=5, pady=5)
         self.pulse_entry.bind('<FocusOut>', self.check_change)
         self.pulse_entry.bind('<KeyPress>', self.handle_keypress)
-        add_validation(self.pulse_entry, numeric_validator)
+        if datapoint is not None:
+            self.pulse_entry.set_value(datapoint.data.value)
         self.create_note_entry()
         if not show_note_field:
             for child in self.children.values():
@@ -1456,40 +2161,48 @@ class PulseWidget(DataPointWidget):
     def get_value(self) -> int:
         """
         Returns the value entered for the metric
+
         :return: int pulse metric value
+
         """
-        return self.pulse_var.get()
+        return self.pulse_entry.get_value()
 
     def zero_value(self) -> None:
         """
         Zeros the pulse value and set the note to an empty string
-        :return: None
-        """
-        self.pulse_var.set(0)
-        self.note_var.set('')
 
+        :return: None
+
+        """
+        self.pulse_entry.set_value(0)
+        self.note_entry.set_value('')
 
     def focus_set(self) -> None:
         """
         Sets the focus on the pulse_entry field when the focus_set method of the widget is called
+
         :return: None
+
         """
         self.pulse_entry.focus_set()
 
     def check_change(self, event):
         """
         Check to see if the widgets metric value has been changed
+
         :param event:
+        :type event: tkinter.Event
         :return: None
+
         """
-        if self.datapoint and self.datapoint.data.value != self.get_value():
+        if self.datapoint and (super().is_changed() or self.datapoint.data.value != self.get_value()):
             self.changed = True
 
 
 widget_union = Union[BloodPressureWidget, PulseWidget, BloodGlucoseWidget, BodyWeightWidget, BodyTempWidget]
 
 
-class DataPointWidgetFactory:
+class MetricWidgetFactory:
     """
     This factory class creates the apporpriate widget for the specified datapoint type, optionally setting
     the initial field values from an instance of biometrics_tracker.model.datapoints.DataPoint
@@ -1508,14 +2221,16 @@ class DataPointWidgetFactory:
         :param show_note_field: controls whether the widget Note field is shown on the widget of implemented
          as a right-click function
         :type show_note_field: bool
-        :return:
+        :return: a metric widget appropriate to the specified datapoint type
+        :rtype: biometrics_tracker.gui.widgets.widget_union
+
         """
         widget: Optional[widget_union] = None
 
         match track_cfg.dp_type:
             case dp.DataPointType.BODY_WGT:
-                widget: DataPointWidget = BodyWeightWidget(parent, track_cfg, datapoint,
-                                                           show_note_field=show_note_field)
+                widget: MetricWidget = BodyWeightWidget(parent, track_cfg, datapoint,
+                                                        show_note_field=show_note_field)
             case dp.DataPointType.BODY_TEMP:
                 widget = BodyTempWidget(parent, track_cfg, datapoint, show_note_field=show_note_field)
             case dp.DataPointType.BP:
@@ -1527,6 +2242,104 @@ class DataPointWidgetFactory:
             case _:
                 ...
         return widget
+
+
+class DataPointWidget(ttkb.Frame):
+    """
+    A frame that contains DataPoint Taken date and time and a MetricWidget subclass to allow editing of DataPoint info
+
+    """
+    def __init__(self, parent, track_cfg: dp.TrackingConfig, datapoint: dp.DataPoint):
+        """
+        Create an instance of DataPointWidget
+
+        :param parent: the GUI parent of this Frame
+        :param track_cfg: a TrackingConfig object associated with a Person.  Carries the DataPointType and default UOM.
+        :type track_cfg: biometrics_tracker.model.datapoints.TrackingConfig
+        :param datapoint: the DataPoint to be edited
+        :type datapoint: biometrics_tracker.model.datapoints.DataPoint
+        :returns: None
+
+        """
+        ttkb.Frame.__init__(self, parent)
+        self.track_cfg = track_cfg
+        self.datapoint = datapoint
+        ttkb.Label(self, text='Recorded on:', width=15).grid(column=0, row=0, sticky=tk.NW, padx=5, pady=5)
+        self.taken_date_widget = DateWidget(self, default_value=datapoint.taken.date())
+        self.taken_date_widget.grid(column=1, row=0, sticky=tk.NW, padx=5, pady=5)
+        ttkb.Label(self, text='at', width=3).grid(column=2, row=0, sticky=tk.NW, padx=2, pady=5)
+        self.taken_time_widget = TimeWidget(self, default_value=datapoint.taken.time())
+        self.taken_time_widget.grid(column=3, row=0, sticky=tk.NW, padx=5, pady=5)
+        self.metric_widget = MetricWidgetFactory.make_widget(self, track_cfg, datapoint)
+        self.metric_widget.grid(column=0, row=1, columnspan=4, sticky=tk.NW, padx=5, pady=5)
+        self.taken_date_widget.prev_entry = parent
+        self.taken_date_widget.next_entry = self.taken_time_widget
+        self.taken_time_widget.prev_entry = self.taken_date_widget
+        self.taken_time_widget.next_entry = self.metric_widget
+
+    def focus_set(self) -> None:
+        """
+        Delete focus_set calls to the Taken date
+
+        :return: None
+
+        """
+        self.taken_date_widget.focus_set()
+
+    def get_taken(self) -> datetime:
+        """
+        Returns a datetime created from the values fo the Taken date and time widgets
+
+        :returns: the Taken datetime
+        :rtype: datetime.datetime
+
+        """
+        return utilities.mk_datetime(self.taken_date_widget.get_date(), self.taken_time_widget.get_time())
+
+    def is_changed(self) -> bool:
+        """
+        Have the edit prompt values been changed
+
+        :return: True if there have been changes
+        :rtype: bool
+
+        """
+        new_taken: datetime = utilities.mk_datetime(self.taken_date_widget.get_date(),
+                                                    self.taken_time_widget.get_time())
+        return (not utilities.compare_mdyhms(new_taken, self.datapoint.taken)) or \
+            self.metric_widget.is_changed()
+
+    def get_datapoint(self) -> dp.DataPoint:
+        """
+        Return a DataPoint objects whose values are taken from the prompt values
+
+        :return: a Datapoint
+        :rtype: biometrics_tracker.model.datapoint.DataPoint
+
+        """
+        if not self.is_changed:
+            return self.datapoint
+        else:
+            self.datapoint.taken = utilities.mk_datetime(self.taken_date_widget.get_date(),
+                                                         self.taken_time_widget.get_time())
+            if self.metric_widget.is_changed:
+                if self.datapoint.type == dp.DataPointType.BP:
+                    self.datapoint.data.systolic, self.datapoint.data.diastolic = self.metric_widget.get_value()
+                else:
+                    self.datapoint.data.value = self.metric_widget.get_value()
+                self.datapoint.note = self.metric_widget.get_note()
+            return self.datapoint
+
+    def get_metric_widget(self) -> Union[BloodPressureWidget, PulseWidget, BloodGlucoseWidget, BodyWeightWidget,
+                                         BodyTempWidget]:
+        """
+        Returns the MetricWidget subclass contained in the Frame
+
+        :return: a MetricWidget subclass
+        :rtype: Union[BloodPressureWidget, PulseWidget, BloodGlucoseWidget, BodyWeightWidget, BodyTempWidget]
+
+        """
+        return self.metric_widget
 
 
 class ImportExportFieldWidget(ttkb.Frame):
@@ -1864,6 +2677,17 @@ class PlaceholderWidget(ttkb.Frame):
         ttkb.Frame.__init__(self, parent)
         for row in range(0, rows):
             ttkb.Label(self, text="              ", width=width).grid(column=0, row=row)
+
+    def is_changed(self) -> bool:
+        """
+        This method assures that the PlaceholderWidget presents an interface that is consistant with the
+        DataPointWidget
+
+        :returns: False
+        :rtype: bool
+
+        """
+        return False
 
 
 class DataPointTypeComboWidget(ttkb.Frame):
@@ -2445,14 +3269,14 @@ class ImportExportSpecsListWidget(ttkb.Toplevel):
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         self.geometry(alignstr)
 
-        ttkb.Label(self, text='Select a Specification').grid(column=0, row=0, columnspan=2, sticky=NW, padx=5, pady=5)
+        ttkb.Label(self, text='Select a Specification').grid(column=0, row=0, columnspan=2, sticky=tk.NW, padx=5, pady=5)
         self.listbox: tk.Listbox = tk.Listbox(self, width=50)
         for idx, spec_id in enumerate(self.spec_id_list):
             self.listbox.insert(idx, spec_id)
         self.listbox.bind('<Double-1>', self.ok_action)
-        self.listbox.grid(column=0, row=1, columnspan=2, sticky=NW, padx=5, pady=5)
+        self.listbox.grid(column=0, row=1, columnspan=2, sticky=tk.NW, padx=5, pady=5)
         self.cancel_button = ttkb.Button(self, text='Cancel', width=15, command=cancel_action)
-        self.cancel_button.grid(column=0, row=2, sticky=NW, padx=5, pady=5)
+        self.cancel_button.grid(column=0, row=2, sticky=tk.NW, padx=5, pady=5)
         self.grid()
 
     def show(self) -> None:
@@ -2501,19 +3325,19 @@ class ImportExportSaveSpecWidget(ttkb.Toplevel):
         self.columnconfigure(0, weight=33)
         self.columnconfigure(1, weight=66)
 
-        ttkb.Label(self, text='Current Specifications').grid(column=0, row=0, columnspan=2, sticky=NW, padx=5, pady=5)
+        ttkb.Label(self, text='Current Specifications').grid(column=0, row=0, columnspan=2, sticky=tk.NW, padx=5, pady=5)
         self.current_specs = scrolled.ScrolledText(self, height=5, width=60)
         for id in self.spec_id_list:
             self.current_specs.insert(END, id)
-        self.current_specs.grid(column=0, row=1, columnspan=2, sticky=NW, padx=5, pady=5)
-        ttkb.Label(self, text='ID for New Spec:').grid(column=0, row=2, sticky=NW, padx=5, pady=5)
+        self.current_specs.grid(column=0, row=1, columnspan=2, sticky=tk.NW, padx=5, pady=5)
+        ttkb.Label(self, text='ID for New Spec:').grid(column=0, row=2, sticky=tk.NW, padx=5, pady=5)
         self.spec_id_var = ttkb.StringVar()
         self.spec_id_entry = ttkb.Entry(self, textvariable=self.spec_id_var, width=40)
-        self.spec_id_entry.grid(column=1, row=2, columnspan=2, sticky=NW, padx=5, pady=5)
+        self.spec_id_entry.grid(column=1, row=2, columnspan=2, sticky=tk.NW, padx=5, pady=5)
         self.cancel_button = ttkb.Button(self, text='Cancel', width=15, command=self.cancel_action)
-        self.cancel_button.grid(column=0, row=3, sticky=NW, padx=5, pady=5)
+        self.cancel_button.grid(column=0, row=3, sticky=tk.NW, padx=5, pady=5)
         self.ok_button = ttkb.Button(self, text='OK', width=15, command=self.save_action)
-        self.ok_button.grid(column=1, row=3, sticky=NW, padx=5, pady=5)
+        self.ok_button.grid(column=1, row=3, sticky=tk.NW, padx=5, pady=5)
 
     def show(self) -> None:
         """
@@ -2553,7 +3377,7 @@ class ImportExportSpecButtons(ttkb.Frame):
         self.specs_map: specs_map_type = specs_map
         ttkb.Label(self, text=button_title).grid(column=0, row=1, columnspan=2, padx=2, pady=2)
         self.select_button = ttkb.Button(self, text='Select', command=self.select_specs)
-        self.select_button.grid(column=0, row=0, padx=2, pady=2, sticky=NW)
+        self.select_button.grid(column=0, row=0, padx=2, pady=2, sticky=tk.NW)
         self.save_button = ttkb.Button(self, text='Save', command=self.save_specs)
         self.save_button.grid(column=1, row=0, padx=2, pady=2, sticky=NE)
         self.select_list: Optional[ImportExportSpecsListWidget] = None

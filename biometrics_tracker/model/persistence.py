@@ -66,7 +66,8 @@ RETRIEVE_SCHEDULES_FOR_PERSON_STMT = 'SELECT SEQ_NBR, DP_TYPE, FREQUENCY, STARTS
 INSERT_DATAPOINT_STMT = 'INSERT INTO DATAPOINTS (PERSON_ID, TIMESTAMP, NOTE, DATA, TYPE)' \
                         'VALUES (?, ?, ?, ?, ?);'
 
-UPDATE_DATAPOINT_STMT = 'UPDATE DATAPOINTS SET NOTE = ?, DATA = ? WHERE PERSON_ID = ? AND TIMESTAMP = ? AND TYPE = ?;'
+UPDATE_DATAPOINT_STMT = 'UPDATE DATAPOINTS SET TIMESTAMP = ?, NOTE = ?, DATA = ? WHERE PERSON_ID = ? AND ' \
+                        'TIMESTAMP = ? AND TYPE = ?;'
 
 DELETE_DP_FOR_PERSON_STMT = 'DELETE FROM DATAPOINTS WHERE PERSON_ID = ?'
 
@@ -110,6 +111,12 @@ class DataBase(threading.Thread):
         self.closed = False
 
     def run(self):
+        """
+        This method is invoked when the DataBase thread is started
+
+        :return: None
+
+        """
         self.conn = sql.connect(self.filename)
         while not self.closed:
             msg: messages.db_req_msg_type = self.queues.check_db_req_queue(block=self.block_req_queue)
@@ -161,11 +168,26 @@ class DataBase(threading.Thread):
                 time.sleep(.250)
 
     def close_db(self) -> None:
+        """
+        Close the database connection and set the closed boolean to True, when will cause the run method to exit
+
+        :return: None
+
+        """
         self.conn.close()
         self.closed = True
 
     def handle_person_req(self, msg: messages.PersonReqMsg) -> Optional[Union[messages.PersonMsg,
                                                                         messages.PeopleMsg]]:
+        """
+        Handle PersonReqMsg tasks - retrieve a list of Person instances or a single instance
+
+        :param msg: the message containing the request info
+        :type msg: biometrics_tracker.ipc.messages.PersonReqMsg
+        :return: if appropriate, returns a response message containing the requested data
+        :rtype: Optional[Union[biometrics_tracker.ipc.messages.PersonMsg,biometrics_tracker.ipc.messages.PeopleMsg]]:
+
+        """
         resp_msg: Optional[Union[messages.PersonMsg, messages.PeopleMsg]] = None
         if msg.person_id is None:
             people_list = self.retrieve_people()
@@ -177,6 +199,14 @@ class DataBase(threading.Thread):
         return resp_msg
 
     def handle_track_cfg_req(self, msg: Union[messages.TrackingConfigReqMsg, messages.TrackingConfigMsg]) -> None:
+        """
+        Handle TrackConfig requests - deletes and updates
+
+        :param msg: a message containing the request info
+        :type msg:Union[biometrics_tracker.ipc.messages.TrackingConfigReqMsg, biometrics_tracker.ipc.messages.TrackingConfigMsg]
+        :return: None
+
+        """
         match msg.__class__:
             case messages.TrackingConfigReqMsg:
                 self.delete_tracking_cfg_for_person(msg.person_id)
@@ -185,6 +215,13 @@ class DataBase(threading.Thread):
 
     def handle_schedule_req(self, msg: Union[messages.ScheduleEntryReqMsg,
                                              messages.ScheduleEntryMsg]) -> messages.ScheduleEntriesMsg:
+        """
+        Handle ScheduleEntry requests - deletes retrievals and upates
+        :param msg:
+        :return: a message containing the response
+        :rtype: biometrics_tracker.ipc.messages.ScheduleEntriesMsg
+
+        """
         resp_msg: Optional[messages.ScheduleEntriesMsg] = None
         match msg.__class__:
             case messages.ScheduleEntryReqMsg:
@@ -207,6 +244,14 @@ class DataBase(threading.Thread):
 
     def handle_dp_req(self, msg: Union[messages.DataPointReqMsg, messages.DataPointMsg]) -> \
             Optional[messages.DataPointRespMsg]:
+        """
+        Handle DataPoint requests - deletes, inserts and updates
+
+        :param msg: a message containing the request info
+        :type msg:  Union[biometrics_tracker.ipc.messages.DataPointReqMsg, biometrics_tracker.ipc.messages.DataPointMsg]
+        :return: a message containing the response info
+        :rtype: Optional[biometrics_tracker.ipc.messages.DataPointRespMsg]
+        """
         match msg.__class__:
             case messages.DataPointReqMsg:
                 match msg.operation:
@@ -227,7 +272,7 @@ class DataBase(threading.Thread):
                     case messages.DBOperation.INSERT:
                         self.insert_datapoint(msg.payload)
                     case messages.DBOperation.UPDATE:
-                        self.update_datapoint(msg.payload)
+                        self.update_datapoint(msg.payload, msg.key_timestamp)
         return None
 
     def close(self):
@@ -305,7 +350,7 @@ class DataBase(threading.Thread):
         :param person_id: the id of the person whose entries will be deleted
         :type person_id: str
         :return: None
-fr
+
         """
         curs: sql.Cursor = self.conn.cursor()
         curs.execute(DELETE_TRACK_CFG_FOR_PERSON_STMT, (person_id,))
@@ -505,7 +550,7 @@ fr
                                              datapoint.type.value))
         curs.execute('COMMIT;')
 
-    def update_datapoint(self, datapoint: dp.DataPoint):
+    def update_datapoint(self, datapoint: dp.DataPoint, key_timestamp: datetime):
         """
         Updates a DATAPOINTS table row with the data from an instance of a subclass of model.datapoints.DataPoint
 
@@ -516,8 +561,8 @@ fr
         """
         data_json = json.dumps(datapoint.data, cls=jh.BiometricsJSONEncoder)
         curs: sql.Cursor = self.conn.cursor()
-        curs.execute(UPDATE_DATAPOINT_STMT, (datapoint.note, data_json, datapoint.person_id,
-                                             datapoint.taken, datapoint.type.value))
+        curs.execute(UPDATE_DATAPOINT_STMT, (datapoint.taken, datapoint.note, data_json, datapoint.person_id,
+                                             key_timestamp, datapoint.type.value))
         curs.execute('COMMIT;')
 
     def del_datapoints_person(self, person_id: str):

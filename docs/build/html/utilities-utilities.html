@@ -17,7 +17,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pytest tests.model.datapoint_fixtures" href="tests-model-datapoints_fixtures.html" />
+    <link rel="next" title="pytest tests.random_data" href="tests-random_data.html" />
     <link rel="prev" title="biometrics_tracker.output.reports module" href="output-reports.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -30,7 +30,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="tests-model-datapoints_fixtures.html" title="pytest tests.model.datapoint_fixtures"
+          <a href="tests-random_data.html" title="pytest tests.random_data"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="output-reports.html" title="biometrics_tracker.output.reports module"
@@ -54,6 +54,48 @@
 </ul>
 </div>
 <span class="target" id="module-biometrics_tracker.utilities.utilities"></span><dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.compare_hms">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_hms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_hms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the hour, minutes and seconds of two datetime.time objects.  This avoids false inequalities based on
+microsecond level variances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time1</strong> (<em>datetime.time</em>) – the first of a pair of times to be compared</p></li>
+<li><p><strong>time2</strong> (<em>datetime.time</em>) – the second of a pair of times to be compared</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>are the times equal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.compare_mdyhms">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_mdyhms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_mdyhms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the day, month, year, hour, minutes and seconds of two datetime.datetime objects.  This avoids false
+inequalities based on microsecond level variances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datetime1</strong> (<em>datetime.datetime</em>) – the first of a pair of datetimes to be compared</p></li>
+<li><p><strong>datetime2</strong> (<em>datetime.datetime</em>) – the second of a pair of datetimes to be compared</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>are the datetimes equal</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.datetime_from_str">
 <span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">datetime_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.datetime_from_str" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a datetime created from the ISO format string passed to the function</p>
@@ -246,6 +288,8 @@ to validate the string format and extract hours, minutes and seconds from the st
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">biometrics_tracker.utilities.utilities module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_hms"><code class="docutils literal notranslate"><span class="pre">compare_hms()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_mdyhms"><code class="docutils literal notranslate"><span class="pre">compare_mdyhms()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.datetime_from_str"><code class="docutils literal notranslate"><span class="pre">datetime_from_str()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_date"><code class="docutils literal notranslate"><span class="pre">increment_date()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_datetime"><code class="docutils literal notranslate"><span class="pre">increment_datetime()</span></code></a></li>
@@ -269,8 +313,8 @@ to validate the string format and extract hours, minutes and seconds from the st
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="tests-model-datapoints_fixtures.html"
-                          title="next chapter">pytest tests.model.datapoint_fixtures</a></p>
+    <p class="topless"><a href="tests-random_data.html"
+                          title="next chapter">pytest tests.random_data</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -303,7 +347,7 @@ to validate the string format and extract hours, minutes and seconds from the st
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="tests-model-datapoints_fixtures.html" title="pytest tests.model.datapoint_fixtures"
+          <a href="tests-random_data.html" title="pytest tests.random_data"
              >next</a> |</li>
         <li class="right" >
           <a href="output-reports.html" title="biometrics_tracker.output.reports module"

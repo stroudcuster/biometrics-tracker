@@ -39,6 +39,44 @@ def split_datetime(dttm: datetime) -> (date, time):
     return dt, tm
 
 
+def compare_hms(time1, time2) -> bool:
+    """
+    Compares the hour, minutes and seconds of two datetime.time objects.  This avoids false inequalities based on
+    microsecond level variances
+
+    :param time1: the first of a pair of times to be compared
+    :type time1: datetime.time
+    :param time2: the second of a pair of times to be compared
+    :type time2: datetime.time
+    :return: are the times equal
+    :rtype:  bool
+
+    """
+    if time1.hour == time2.hour and time1.minute == time2.minute and time1.second == time2.second:
+        return True
+    else:
+        return False
+
+
+def compare_mdyhms(datetime1: datetime, datetime2: datetime) -> bool:
+    """
+    Compares the day, month, year, hour, minutes and seconds of two datetime.datetime objects.  This avoids false
+    inequalities based on microsecond level variances
+
+    :param datetime1: the first of a pair of datetimes to be compared
+    :type datetime1: datetime.datetime
+    :param datetime2: the second of a pair of datetimes to be compared
+    :type datetime2: datetime.datetime
+    :return: are the datetimes equal
+    :rtype: bool
+
+    """
+    if datetime1.month == datetime2.month and datetime1.day == datetime2.day and datetime1.year == datetime2.year:
+        return compare_hms(datetime1.time(), datetime2.time())
+    else:
+        return False
+
+
 def ordinal(number: int):
     """
     Converts an integer to its ordinal representation

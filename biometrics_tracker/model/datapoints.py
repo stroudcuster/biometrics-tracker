@@ -458,6 +458,10 @@ class DataPoint:
     data: Any
     type: DataPointType
 
+    def __str__(self):
+        return f'{self.taken.strftime("%m/%d/%Y %I:%M %p")} {dptype_dp_map[self.type].label()} {self.data.__str__()} ' \
+               f'{self.note}'
+
 
 @dataclass
 class BodyWeightDP(DataPoint):

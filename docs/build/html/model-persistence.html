@@ -89,6 +89,17 @@ foreign key relationship with the PEOPLE table</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.close_db">
+<span class="sig-name descname"><span class="pre">close_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.close_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the database connection and set the closed boolean to True, when will cause the run method to exit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.commit">
 <span class="sig-name descname"><span class="pre">commit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Executes a COMMIT statement</p>
@@ -144,21 +155,15 @@ foreign key relationship with the PEOPLE table</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.delete_tracking_cfg_for_person">
 <span class="sig-name descname"><span class="pre">delete_tracking_cfg_for_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.delete_tracking_cfg_for_person" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Deletes all the rows from the TRACK_CFG table that are related to the specified person</p>
+<dd><p>Deletes all the rows from the TRACK_CFG table that are related to the specified person</p>
 <dl class="field-list simple">
-<dt class="field-odd">param person_id<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the id of the person whose entries will be deleted</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>person_id</strong> (<em>str</em>) – the id of the person whose entries will be deleted</p>
 </dd>
-<dt class="field-even">type person_id<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-<dt class="field-odd">return<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
-</div></blockquote>
-<p>fr</p>
 </dd></dl>
 
 <dl class="py method">
@@ -187,6 +192,62 @@ foreign key relationship with the PEOPLE table</p>
 <dd class="field-odd"><p>sqlite3.Connection</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.handle_dp_req">
+<span class="sig-name descname"><span class="pre">handle_dp_req</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">DataPointReqMsg</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">DataPointMsg</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">DataPointRespMsg</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.handle_dp_req" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle DataPoint requests - deletes, inserts and updates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>Union</em><em>[</em><em>biometrics_tracker.ipc.messages.DataPointReqMsg</em><em>, </em><em>biometrics_tracker.ipc.messages.DataPointMsg</em><em>]</em>) – a message containing the request info</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message containing the response info</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[biometrics_tracker.ipc.messages.DataPointRespMsg]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.handle_person_req">
+<span class="sig-name descname"><span class="pre">handle_person_req</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonReqMsg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PersonMsg</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">PeopleMsg</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.handle_person_req" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle PersonReqMsg tasks - retrieve a list of Person instances or a single instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.PersonReqMsg</em>) – the message containing the request info</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>if appropriate, returns a response message containing the requested data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[Union[biometrics_tracker.ipc.messages.PersonMsg,biometrics_tracker.ipc.messages.PeopleMsg]]:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.handle_schedule_req">
+<span class="sig-name descname"><span class="pre">handle_schedule_req</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">ScheduleEntryReqMsg</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ScheduleEntryMsg</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ScheduleEntriesMsg</span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.handle_schedule_req" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle ScheduleEntry requests - deletes retrievals and upates
+:param msg:
+:return: a message containing the response
+:rtype: biometrics_tracker.ipc.messages.ScheduleEntriesMsg</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.handle_track_cfg_req">
+<span class="sig-name descname"><span class="pre">handle_track_cfg_req</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">TrackingConfigReqMsg</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">TrackingConfigMsg</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.handle_track_cfg_req" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle TrackConfig requests - deletes and updates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – a message containing the request info</p>
+</dd>
+</dl>
+<p>:type msg:Union[biometrics_tracker.ipc.messages.TrackingConfigReqMsg, biometrics_tracker.ipc.messages.TrackingConfigMsg]
+:return: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -303,16 +364,17 @@ a selection list for the people whose biometrics are tracked by the application<
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.run">
 <span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method representing the thread’s activity.</p>
-<p>You may override this method in a subclass. The standard run() method
-invokes the callable object passed to the object’s constructor as the
-target argument, if any, with sequential and keyword arguments taken
-from the args and kwargs arguments, respectively.</p>
+<dd><p>This method is invoked when the DataBase thread is started</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.update_datapoint">
-<span class="sig-name descname"><span class="pre">update_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datapoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">DataPoint</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.update_datapoint" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">update_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datapoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">DataPoint</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.update_datapoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates a DATAPOINTS table row with the data from an instance of a subclass of model.datapoints.DataPoint</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -405,6 +467,7 @@ instance to the SCHEDULE table.</p>
 <li><a class="reference internal" href="#">biometrics_tracker.model.persistence module</a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase"><code class="docutils literal notranslate"><span class="pre">DataBase</span></code></a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.close"><code class="docutils literal notranslate"><span class="pre">DataBase.close()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.close_db"><code class="docutils literal notranslate"><span class="pre">DataBase.close_db()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.commit"><code class="docutils literal notranslate"><span class="pre">DataBase.commit()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.create_db"><code class="docutils literal notranslate"><span class="pre">DataBase.create_db()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.delete_schedule_for_person_seq"><code class="docutils literal notranslate"><span class="pre">DataBase.delete_schedule_for_person_seq()</span></code></a></li>
@@ -412,6 +475,10 @@ instance to the SCHEDULE table.</p>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.delete_tracking_cfg_for_person"><code class="docutils literal notranslate"><span class="pre">DataBase.delete_tracking_cfg_for_person()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.drop_db"><code class="docutils literal notranslate"><span class="pre">DataBase.drop_db()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.get_connection"><code class="docutils literal notranslate"><span class="pre">DataBase.get_connection()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.handle_dp_req"><code class="docutils literal notranslate"><span class="pre">DataBase.handle_dp_req()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.handle_person_req"><code class="docutils literal notranslate"><span class="pre">DataBase.handle_person_req()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.handle_schedule_req"><code class="docutils literal notranslate"><span class="pre">DataBase.handle_schedule_req()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.handle_track_cfg_req"><code class="docutils literal notranslate"><span class="pre">DataBase.handle_track_cfg_req()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_datapoint"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_datapoint()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_person"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_person()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_schedule_entry"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_schedule_entry()</span></code></a></li>

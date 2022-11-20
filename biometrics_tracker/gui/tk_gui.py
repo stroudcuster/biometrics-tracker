@@ -20,7 +20,6 @@ import webbrowser
 import biometrics_tracker.config.createconfig as config
 import biometrics_tracker.main.core as core
 import biometrics_tracker.main.scheduler as scheduler
-from biometrics_tracker.gui.validators import numeric_validator
 import biometrics_tracker.ipc.queue_manager as queues
 import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.model.datapoints as dp
@@ -29,10 +28,10 @@ import biometrics_tracker.model.importers as imp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.output.reports as reports
 from biometrics_tracker.utilities.utilities import mk_datetime, split_datetime, increment_date, split_camelcase, \
-    whereami
+    whereami, compare_mdyhms
 import biometrics_tracker.gui.widgets as widgets
 from biometrics_tracker.gui.widgets import DateWidget, TimeWidget, DataPointTypeWidget, ImportExportFieldWidget, \
-    dp_widget_union, DataPointWidgetFactory, Checkbutton, Radiobutton
+    dp_widget_union, MetricWidgetFactory, Checkbutton, Radiobutton
 
 
 class PersonFrame(ttkb.Frame):
@@ -211,7 +210,7 @@ class NewDataPointFrame(ttkb.Frame):
         row += 1
         for track_cfg in person.tracked.values():
             if track_cfg.tracked:
-                widget = DataPointWidgetFactory.make_widget(self, track_cfg)
+                widget = MetricWidgetFactory.make_widget(self, track_cfg)
                 if widget:
                     if len(self.bio_entries) > 0:
                         prev_widget = self.bio_entries[-1: len(self.bio_entries)][0]
@@ -281,18 +280,19 @@ class CSVImportFrame(ttkb.Frame):
         self.import_fn_entry.bind('<FocusOut>', self.update_preview)
         ttkb.Button(self, text="Browse", command=self.browse_csv).grid(column=3, row=row, padx=5, pady=5, sticky=NW)
         row += 1
-        self.header_rows_var = ttkb.IntVar()
-        ttkb.Label(self, text="Number of Header Rows", width=25).grid(column=0, row=row, padx=5, pady=5)
-        self.header_rows_entry = ttkb.Entry(self, textvariable=self.header_rows_var)
-        self.header_rows_entry.grid(column=1, row=row, padx=5, pady=5, sticky=NW)
-        add_validation(self.header_rows_entry, numeric_validator)
+        self.header_rows_entry = widgets.LabeledIntegerWidget(self, label_text='Number of Header Rows', label_width=25,
+                                                              label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW,
+                                                                               'padx': 5, 'pady': 5}, entry_width=6,
+                                                              entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW,
+                                                                               'padx': 5, 'pady': 5})
+        self.header_rows_entry.grid(column=0, row=row, padx=5, pady=5, sticky=tk.NW)
         self.use_prev_row_date = False
         self.use_prev_row_date_var = ttkb.IntVar()
         self.use_prev_row_date_entry = Checkbutton(self,
                                                    text='Use date from previous row if date column is blank',
                                                    variable=self.use_prev_row_date_var,
                                                    command=self.set_use_prev_row_date, padding=5, width=50)
-        self.use_prev_row_date_entry.grid(column=2, row=row, columnspan=3, padx=5, pady=5)
+        self.use_prev_row_date_entry.grid(column=1, row=row, columnspan=3, padx=5, pady=5)
         self.widgets: list[ImportExportFieldWidget] = []
         row += 1
         ttkb.Label(self, text="Data Types for Each Column in the CSV File").grid(column=0, row=row, columnspan=2,
@@ -394,7 +394,7 @@ class CSVImportFrame(ttkb.Frame):
         :return: number of header rows
         :rtype: int
         """
-        return self.header_rows_var.get()
+        return self.header_rows_entry.get_value()
 
     def focus_first_widget(self, event):
         """
@@ -437,7 +437,7 @@ class CSVImportFrame(ttkb.Frame):
         self.import_spec_buttons.destroy_spec_list()
         if spec_id is not None:
             import_spec: imp.ImportSpec = self.import_specs_collection.get_spec(spec_id)
-            self.header_rows_var.set(import_spec.nbr_of_header_rows)
+            self.header_rows_entry.set_value(import_spec.nbr_of_header_rows)
             self.use_prev_row_date_var.set(import_spec.use_date_from_prev_row)
             for widget in self.widgets:
                 widget.field_name_var.set(import_spec.column_types[widget.index])
@@ -456,7 +456,7 @@ class CSVImportFrame(ttkb.Frame):
             column_types[widget.index] = widget.field_name()
 
         import_spec: imp.ImportSpec = imp.ImportSpec(id=self.import_spec_buttons.get_saved_spec_id(),
-                                                     nbr_of_header_rows=self.header_rows_var.get(),
+                                                     nbr_of_header_rows=self.header_rows_entry.get_value(),
                                                      use_date_from_prev_row=self.use_prev_row_date,
                                                      column_types=column_types)
         self.import_specs_collection.add_spec(import_spec)
@@ -804,6 +804,14 @@ class BiometricsFrameBase(ttkb.Frame):
         self.end_date_widget.set_prev_entry(self.start_date_widget)
         self.end_date_widget.set_next_entry(self.retrieve_btn)
 
+    def focus_set(self):
+        """
+        Delegate focus_set calls to the start date widget
+
+        :return: None
+        """
+        self.start_date_widget.focus_set()
+
     @abstractmethod
     def retrieve_history(self):
         """
@@ -816,6 +824,185 @@ class BiometricsFrameBase(ttkb.Frame):
 
 
 class ViewEditBiometricsFrame(BiometricsFrameBase):
+    """
+    A Frame that allows the edit and deletion of DataPoints
+
+    """
+    def __init__(self, parent, person: dp.Person, queue_mgr: queues.Queues, cancel_action: Callable,
+                 submit_action: Callable):
+        """
+        Create an instance of ViewEditBiometricsFrame
+
+        :param parent: the GUI parent for this frame
+        :type parent: Tk derived Window or Frame
+        :param person: the info for the person whose history is to be displayed
+        :type person: biometrics_tracker.model.datapoints.Person
+        :param queue_mgr: message queue manager
+        :type queue_mgr: biometrics_tracker.ipc.queue_mgr.Queues
+        :param cancel_action: a callback that will be invoked when the Cancel button is pressed
+        :type cancel_action: Callable
+        :param submit_action: a callback that will be invoked when the Save button is pressed
+        :type submit_action: Callable
+        """
+        BiometricsFrameBase.__init__(self, 'View/Edit Biometrics History', parent, person, queue_mgr)
+        self.parent: Application = parent
+        self.submit_action: Callable = submit_action
+        self.hdr_frame.grid(column=0, row=0, padx=5, pady=5)
+        self.entry_frame = ttkb.Frame(self)
+        self.datapoint_widget_row: int = 0
+        self.datapoint_widget_col: int = 0
+        self.datapoint_widget: Optional[Union[widgets.DataPointWidget, widgets.PlaceholderWidget]] = \
+            self.create_placeholder_widget()
+        self.datapoint_widget.grid(column=self.datapoint_widget_col, row=self.datapoint_widget_row,
+                                   rowspan=5, columnspan=3)
+        cancel = ttkb.Button(self.entry_frame, text='Cancel', command=cancel_action)
+        cancel.grid(column=3, row=7, padx=5, pady=5)
+        save = ttkb.Button(self.entry_frame, text='Save', command=self.save_datapoint)
+        save.grid(column=4, row=7, padx=5, pady=5)
+        self.entry_frame.grid(column=0, row=1, padx=5, pady=5)
+        self.list_frame = scrolled.ScrolledFrame(self, bootstyle='darkly', height=300, width=770)
+        self.list_frame.grid(column=0, row=7, padx=5, pady=5)
+        self.grid(sticky=NSEW)
+        self.payload_re = re.compile('!payload\\w*')
+
+        row: int = 13
+        self.grid(padx=60)
+        self.start_date_widget.set_next_entry(self.end_date_widget)
+        self.end_date_widget.set_prev_entry(self.start_date_widget)
+        self.end_date_widget.set_next_entry(self.retrieve_btn)
+        self.delete_boxes = []
+        self.current_payload_label: Optional[widgets.PayloadLabel] = None
+
+    def create_placeholder_widget(self) -> widgets.PlaceholderWidget:
+        """
+        Create a placeholder widget to take up space until the user selects a DataPoint to edit
+
+        :return: None
+
+        """
+        return widgets.PlaceholderWidget(self.entry_frame, rows=5, width=30)
+
+    def retrieve_history(self):
+        """
+        Retrieve the datapoints within the specified date range for the selected person and fill a ScrollableFrame
+        with rows of widgets
+
+        :return: None
+        """
+        self.start_date = self.start_date_widget.get_date()
+        self.end_date = self.end_date_widget.get_date()
+
+        if self.start_date > self.end_date:
+            dialogs.Messagebox.ok('The end date must be on or after the start date', 'Date Entry Error')
+            self.start_date_widget.focus_set()
+            return
+        start_datetime = mk_datetime(self.start_date, time(hour=0, minute=0, second=0))
+        end_datetime = mk_datetime(self.end_date, time(hour=23, minute=59, second=59))
+        self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase,
+                                                                replyto=self.display_history,
+                                                                operation=messages.DBOperation.RETRIEVE_SET,
+                                                                person_id=self.person.id, start=start_datetime,
+                                                                end=end_datetime))
+
+    def display_history(self, msg: messages.DataPointRespMsg):
+        """
+        Create a entry prompts from the DataPoints history retrieved by the retrieve_history method
+
+        :param msg: a response message containing a list of DataPoints
+        :return: None
+
+        """
+        datapoints: list[dp.dptypes_union] = msg.datapoints
+        for child in self.list_frame.children:
+            if self.payload_re.match(child):
+                widget = self.list_frame.nametowidget(child)
+                widget.grid_remove()
+        row: int = 0
+        for datapoint in datapoints:
+            delete_var = ttkb.IntVar()
+            delete_var.set(0)
+            delete_box = widgets.PayloadCheckbutton(self.list_frame, text='Del', variable=delete_var,
+                                                    payload=(datapoint.taken, datapoint.type))
+            self.delete_boxes.append((delete_var, datapoint.taken, datapoint.type))
+            delete_box.grid(column=0, row=row, sticky=NW, padx=5, pady=5)
+            label = widgets.PayloadLabel(self.list_frame, text=datapoint.__str__(), width=400, payload=datapoint)
+            label.grid(column=1, row=row, sticky=NW, padx=5, pady=5)
+            label.bind('<Double-1>', self.edit_datapoint)
+            row += 1
+        self.list_frame.grid()
+        self.start_date_widget.focus_set()
+
+    def edit_datapoint(self, event):
+        """
+        A callback method to be invoked on the double click of a PayloadLabel entry in the list of retrieved
+        DataPoints
+
+        :param event: the event generated by the double click
+        :type event: tkinter.Event
+        :return: None
+
+        """
+        self.current_payload_label = event.widget
+        self.current_payload_label.config(background='blue')
+        datapoint = event.widget.payload
+        track_cfg = self.person.dp_type_track_cfg(datapoint.type)
+        self.datapoint_widget.forget()
+        self.datapoint_widget = widgets.DataPointWidget(self.entry_frame, track_cfg, datapoint)
+        self.datapoint_widget.grid(column=self.datapoint_widget_col, row=self.datapoint_widget_row, sticky=tk.NW,
+                                   padx=5, pady=5)
+        self.datapoint_widget.focus_set()
+
+    def save_datapoint(self):
+        """
+        A callback method that handles deletes and updates when the Save button is clicked
+
+        """
+        deleted_list: list[tuple[datetime, dp.DataPointType]] = []
+        for delete_var, taken, dp_type in self.delete_boxes:
+            if delete_var.get() > 0:
+                self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase, replyto=None,
+                                                                        person_id=self.person.id, start=taken,
+                                                                        end=taken, dp_type=dp_type,
+                                                                        operation=messages.DBOperation.DELETE_SINGLE))
+                deleted_list.append((taken, dp_type))
+
+        key_change: bool = False
+        if self.datapoint_widget.is_changed():
+            key_timestamp: datetime = self.current_payload_label.payload.taken
+            datapoint: dp.DataPoint = self.datapoint_widget.get_datapoint()
+            key_change = not compare_mdyhms(key_timestamp, datapoint.taken)
+            if not key_change:
+                self.current_payload_label['text'] = datapoint.__str__()
+                self.current_payload_label['background'] = ''
+                self.current_payload_label.payload = datapoint
+            self.parent.save_datapoint(self.person, datapoint.taken, widget=self.datapoint_widget.get_metric_widget(),
+                                       delete_if_zero=True, db_operation=messages.DBOperation.UPDATE,
+                                       key_timestamp=key_timestamp)
+        if len(deleted_list) > 0 and not key_change:
+            for child in self.list_frame.children:
+                if self.payload_re.match(child):
+                    widget = self.list_frame.nametowidget(child)
+                    payload = widget.payload
+                    match widget.__class__:
+                        case widgets.PayloadCheckbutton:
+                            if (payload[0], payload[1]) in deleted_list:
+                                widget.grid_remove()
+                        case widgets.PayloadLabel:
+                            if (payload.taken, payload.type) in deleted_list:
+                                widget.grid_remove()
+
+        self.datapoint_widget.grid_remove()
+        self.datapoint_widget = self.create_placeholder_widget()
+        self.datapoint_widget.grid(column=self.datapoint_widget_col, row=self.datapoint_widget_row,
+                                   rowspan=5, columnspan=3)
+        if key_change:
+            self.retrieve_history()
+
+
+class OldViewEditBiometricsFrame(BiometricsFrameBase):
+    """
+    Deprecated ViewEditBiometricsFrame class
+    """
     def __init__(self, parent, person: dp.Person, queue_mgr: queues.Queues, cancel_action: Callable,
                  submit_action: Callable):
         """
@@ -902,8 +1089,8 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
             ttkb.Label(self.tbl_frame, text=dp_time.strftime(format='%I:%M %p')).grid(column=2, row=row_idx)
             track_cfg = self.person.dp_type_track_cfg(datapoint.type)
             col_idx = self.col_dp_map[datapoint.type]
-            widgets[col_idx] = DataPointWidgetFactory.make_widget(self.tbl_frame, track_cfg, datapoint,
-                                                                  show_note_field=False)
+            widgets[col_idx] = MetricWidgetFactory.make_widget(self.tbl_frame, track_cfg, datapoint,
+                                                               show_note_field=False)
             self.all_widgets.append(widgets[col_idx])
         if last_date is not None:
             for col_idx, widget in widgets.items():
@@ -1005,9 +1192,14 @@ class SaveBiometricsReportFrame(ttkb.Frame):
                                                                                                     padx=8)
         self.save_rpt_var.set(SaveBiometricsReportFrame.DONT_SAVE)
         self.file_name_var = ttkb.StringVar()
-        self.save_button = ttkb.Button(self, text="Save", command=lambda text=parent.rptf: self.save_report(text))
-        self.save_button.grid(column=5, row=0)
+        self.save_button = ttkb.Button(self, text="Save",
+                                       command=lambda text=parent.rptf, prt=False: self.save_report(text, prt))
+        self.save_button.grid(column=5, row=0, padx=5, pady=5)
         self.save_button.config(state=DISABLED)
+        self.save_print_button = ttkb.Button(self, text="Save and Print",
+                                             command=lambda text=parent.rptf, prt=True: self.save_report(text, prt))
+        self.save_print_button.grid(column=6, row=0, padx=5, pady=5)
+        self.save_print_button.config(state=DISABLED)
         self.save_file_name = None
 
     def enable_save(self):
@@ -1016,7 +1208,8 @@ class SaveBiometricsReportFrame(ttkb.Frame):
 
         :return: None
         """
-        self.save_button.config(state=NORMAL)
+        self.save_button.config(state=tk.NORMAL)
+        self.save_print_button.config(state=tk.NORMAL)
 
     def disable_save(self):
         """
@@ -1026,12 +1219,14 @@ class SaveBiometricsReportFrame(ttkb.Frame):
         """
         self.save_button.config(state=DISABLED)
 
-    def save_report(self, text: StringIO):
+    def save_report(self, text: StringIO, prt: bool):
         """
         Save the report to a file
 
         :param text: the destination for the save report
         :type text: descendant of IOBase
+        :param prt: did user request print
+        :type prt: bool
         :return: None
         """
         self.save_file_name = filedialog.asksaveasfilename(confirmoverwrite=True)
@@ -1043,17 +1238,41 @@ class SaveBiometricsReportFrame(ttkb.Frame):
                 case SaveBiometricsReportFrame.TEXT:
                     with pathlib.Path(self.save_file_name).open(mode='tw', encoding='UTF-8') as rpt_file:
                         rpt_file.write(text.read())
+                    if prt:
+                        self.show_printer_dialog()
                 case SaveBiometricsReportFrame.PDF:
                     start_date = self.parent.start_date_widget.get_date()
                     end_date = self.parent.end_date_widget.get_date()
+                    comp_dest: Callable = self.no_print
+                    if prt:
+                        comp_dest = self.show_printer_dialog
                     pdf_rpt: reports.PDFReport = reports.PDFReport(self.parent.queue_mgr, self.parent.person, start_date,
                                                                    end_date, self.save_file_name,
-                                                                   completion_destination=self.show_printer_dialog)
+                                                                   completion_destination=comp_dest)
                     pdf_rpt.start()
                 case _:
                     pass
 
-    def show_printer_dialog(self, msg: messages.CompletionMsg):
+    def show_printer_dialog(self, msg: Optional[messages.CompletionMsg] = None):
+        """
+        Open the report file in a browser so it can be printed via the browser print dialog
+
+        :param msg: report completion message
+        :type msg: biometrics_tracker.ipc.messages.CompletionMsg
+        :return: None
+
+        """
+        webbrowser.open_new_tab(self.save_file_name)
+
+    def no_print(self, msg: Optional[messages.CompletionMsg] = None):
+        """
+        This method is invoked in response to the report completion message if the user did not request printing
+
+        :param msg: report completion message
+        :type msg: biometrics_tracker.ipc.messages.CompletionMsg
+        :return: None
+
+        """
         pass
 
 
@@ -1108,12 +1327,13 @@ class AddEditScheduleFrame(ttkb.Frame):
         self.dp_type_entry = widgets.DataPointTypeComboWidget(self.entry_frame)
         self.dp_type_entry.grid(column=5, row=row, sticky=NW)
         row += 1
-        ttkb.Label(self.entry_frame, text="Seq Nbr:").grid(column=0, row=row, sticky=NW, padx=5, pady=5)
-        self.seq_nbr_var = ttkb.IntVar()
-        self.seq_nbr_var.set(0)
-        seq_nbr_entry = ttkb.Entry(self.entry_frame, textvariable=self.seq_nbr_var, width=5)
-        seq_nbr_entry.grid(column=1, row=row, sticky=NW, padx=5, pady=5)
-        seq_nbr_entry.bind('<FocusIn>', self.focus_on_note)
+        self.seq_nbr_entry = widgets.LabeledIntegerWidget(parent=self.entry_frame, label_text='Seq Nbr:', label_width=10,
+                                                          label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW,
+                                                                           'padx': 5, 'pady': 5}, entry_width=8,
+                                                          entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW,
+                                                                           'padx': 5, 'pady': 5})
+        self.seq_nbr_entry.grid(column=0, row=row, sticky=NW, columnspan=2)
+        self.seq_nbr_entry.bind('<FocusIn>', self.focus_on_note)
 
         ttkb.Label(self.entry_frame, text='Note:').grid(column=2, row=row, sticky=NW, padx=5, pady=5)
         self.note_var = ttkb.StringVar()
@@ -1223,7 +1443,7 @@ class AddEditScheduleFrame(ttkb.Frame):
         """
         self.dp_type_entry.selection_clear()
         self.dp_type_entry.dp_type_var.set('')
-        self.seq_nbr_var.set(0)
+        self.seq_nbr_entry.set_value(0)
         self.note_var.set('')
         self.frequency_var.set(value='')
         if self.schedule_widget is not None:
@@ -1435,7 +1655,7 @@ class AddEditScheduleFrame(ttkb.Frame):
         """
         self.db_operation = messages.DBOperation.UPDATE
         self.schedule_entry = event.widget.payload
-        self.seq_nbr_var.set(self.schedule_entry.seq_nbr)
+        self.seq_nbr_entry.set_value(self.schedule_entry.seq_nbr)
         self.start_date_entry.set_date(self.schedule_entry.starts_on)
         self.end_date_entry.set_date(self.schedule_entry.ends_on)
         self.frequency_var.set(self.schedule_entry.frequency.name)
@@ -2029,12 +2249,10 @@ class Application(ttkb.Window, core.CoreLogic):
                                                                             person_id=person.id, start=taken,
                                                                             end=taken,
                                                                             operation=messages.DBOperation.DELETE_SET))
-
-            for widget in self.current_display.all_widgets:
-                if widget.is_changed():
-                    widget.datapoint.note = widget.get_note()
-                    self.save_datapoint(person, widget.datapoint.taken, widget, delete_if_zero=True,
-                                        db_operation=messages.DBOperation.UPDATE)
+            if self.current_display.is_changed():
+                datapoint: dp.DataPoint = self.current_display.get_datapoint()
+                self.save_datapoint(person, datapoint.taken, widget=self.current_display.get_metric_widget(),
+                                    delete_if_zero=True, db_operation=messages.DBOperation.UPDATE)
             self.remove_child_frame(ViewEditBiometricsFrame)
 
         self.remove_child_frame(PeopleListFrame)
@@ -2347,7 +2565,7 @@ class ScheduledEntryWindow(threading.Thread, ttkb.Window, core.CoreLogic):
                                                                          columnspan=5, padx=5, pady=5)
         track_cfg = self.person.dp_type_track_cfg(self.dp_type)
         if track_cfg is not None:
-            self.widget = DataPointWidgetFactory.make_widget(self, track_cfg, None, show_note_field=True)
+            self.widget = MetricWidgetFactory.make_widget(self, track_cfg, None, show_note_field=True)
             self.widget.grid(column=0, row=4, columnspan=3, sticky=NW)
             self.time_widget.set_next_entry(self.widget)
         else:

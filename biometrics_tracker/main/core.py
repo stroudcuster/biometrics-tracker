@@ -100,7 +100,8 @@ class CoreLogic:
                                      operation=messages.DBOperation.DELETE_SINGLE))
 
     def save_datapoint(self, person: dp.Person, taken: datetime, widget: widgets.widget_union,
-                       delete_if_zero: bool, db_operation: messages.DBOperation):
+                       delete_if_zero: bool, db_operation: messages.DBOperation,
+                       key_timestamp: Optional[datetime] = None):
         """
         Inserts or updates the database with datapoint property of the provided datapoint widget if
         the value fields(s) of the widget are non-zero.  If the value field(s) are zero and the
@@ -117,6 +118,8 @@ class CoreLogic:
         :type delete_if_zero: bool
         :param db_operation: controls whether the datapoint database row is inserted or updated
         :type db_operation: biometrics_tracker.ipc.messages.DBOperation
+        :param key_timestamp: for DataPoint updates only: the Taken datetime prior to possible change by user
+        :type key_timestamp: datetime
         :return: None
 
         """
@@ -132,7 +135,8 @@ class CoreLogic:
                     self.queue_mgr.send_db_req_msg(messages.DataPointMsg(destination=per.DataBase,
                                                                          replyto=None,
                                                                          payload=body_weight_dp,
-                                                                         operation=db_operation))
+                                                                         operation=db_operation,
+                                                                         key_timestamp=key_timestamp))
             case widgets.BodyTempWidget.__name__:
                 if widget.get_value() == 0:
                     if delete_if_zero:
@@ -144,7 +148,8 @@ class CoreLogic:
                     self.queue_mgr.send_db_req_msg(messages.DataPointMsg(destination=per.DataBase,
                                                                          replyto=None,
                                                                          payload=body_temp_dp,
-                                                                         operation=db_operation))
+                                                                         operation=db_operation,
+                                                                         key_timestamp=key_timestamp))
             case widgets.BloodGlucoseWidget.__name__:
                 if widget.get_value() == 0:
                     if delete_if_zero:
@@ -156,7 +161,8 @@ class CoreLogic:
                     self.queue_mgr.send_db_req_msg(messages.DataPointMsg(destination=per.DataBase,
                                                                          replyto=None,
                                                                          payload=blood_glucose_dp,
-                                                                         operation=db_operation))
+                                                                         operation=db_operation,
+                                                                         key_timestamp=key_timestamp))
             case widgets.BloodPressureWidget.__name__:
                 systolic, diastolic = widget.get_value()
                 if widget.get_value() == (0, 0):
@@ -169,7 +175,8 @@ class CoreLogic:
                     self.queue_mgr.send_db_req_msg(messages.DataPointMsg(destination=per.DataBase,
                                                                          replyto=None,
                                                                          payload=blood_pressure_dp,
-                                                                         operation=db_operation))
+                                                                         operation=db_operation,
+                                                                         key_timestamp=key_timestamp))
             case widgets.PulseWidget.__name__:
                 if widget.get_value() == 0:
                     if delete_if_zero:
@@ -181,7 +188,8 @@ class CoreLogic:
                     self.queue_mgr.send_db_req_msg(messages.DataPointMsg(destination=per.DataBase,
                                                                          replyto=None,
                                                                          payload=pulse_dp,
-                                                                         operation=db_operation))
+                                                                         operation=db_operation,
+                                                                         key_timestamp=key_timestamp))
             case _:
                 ...
 
