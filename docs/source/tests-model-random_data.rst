@@ -1,3 +1,4 @@
+.. _tests-model-random_data:
 
 pytest tests.model.random_data
 ==============================

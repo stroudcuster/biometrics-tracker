@@ -1,3 +1,4 @@
+.. _tests_model-datapoints_fixtures:
 
 pytest tests.model.datapoint_fixtures
 =====================================

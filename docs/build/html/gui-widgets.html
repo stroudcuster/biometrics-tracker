@@ -1682,6 +1682,64 @@ DataPointWidget</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PluginMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PluginMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenu" title="biometrics_tracker.config.plugin_config.PluginMenu"><span class="pre">PluginMenu</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PluginMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An implementation of biometrics_tracker.config.PluginMenu class for the ttkbootstrap GUI framedwork</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PluginMenu.add_menu">
+<span class="sig-name descname"><span class="pre">add_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PluginMenu.add_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provided as a callback for the add menu funtion in the biometrics_tracker.config.PluginMenu.create_menus method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>label</strong> (<em>str</em>) – the label text for the menu</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PluginMenu.add_menu_item">
+<span class="sig-name descname"><span class="pre">add_menu_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PluginMenu.add_menu_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provided as a callback for the add item function in the biometrics_tracker.config.PluginMenu.create_menus method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>str</em>) – the label text for the menu option</p></li>
+<li><p><strong>action</strong> (<em>Callable</em>) – the action callback for the menu item</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PluginMenu.create_menu">
+<span class="sig-name descname"><span class="pre">create_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">not_found_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ttkbootstrap.Menu</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PluginMenu.create_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invokes the biometrics_tracker.config.PluginMenu.create_menu method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>not_found_action</strong> – the callback to be used for the menu if an entry point can not be imported</p></li>
+<li><p><strong>selection_action</strong> – the callback to be used for Person, date range and DataPointType selections</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the menu object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ttkbootstrap.Menu</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.PulseWidget">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.gui.widgets.</span></span><span class="sig-name descname"><span class="pre">PulseWidget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.PulseWidget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#biometrics_tracker.gui.widgets.MetricWidget" title="biometrics_tracker.gui.widgets.MetricWidget"><code class="xref py py-class docutils literal notranslate"><span class="pre">MetricWidget</span></code></a></p>
@@ -2357,6 +2415,12 @@ instance
 <li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PayloadLabel"><code class="docutils literal notranslate"><span class="pre">PayloadLabel</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PlaceholderWidget"><code class="docutils literal notranslate"><span class="pre">PlaceholderWidget</span></code></a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PlaceholderWidget.is_changed"><code class="docutils literal notranslate"><span class="pre">PlaceholderWidget.is_changed()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PluginMenu"><code class="docutils literal notranslate"><span class="pre">PluginMenu</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PluginMenu.add_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PluginMenu.add_menu_item"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_menu_item()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PluginMenu.create_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.create_menu()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.widgets.PulseWidget"><code class="docutils literal notranslate"><span class="pre">PulseWidget</span></code></a><ul>

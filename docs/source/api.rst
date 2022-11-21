@@ -10,6 +10,7 @@ API
     config-createconfig
     config-json_handler
     config-logging_config
+    config-plugin_config
     gui-tk-gui
     gui-widgets
     gui-validators
@@ -23,6 +24,9 @@ API
     utilities-utilities
     tests-random_data
     tests-test_tools
+    tests-config-config_fixtures
+    tests-config-test_json_handler
+    tests-config-test_plugin_menus
     tests-model-random_data
     tests-model-test_tools
     tests-model-datapoints_fixtures

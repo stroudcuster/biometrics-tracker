@@ -1,3 +1,4 @@
+.. _tests-model-test_persistence:
 
 pytest tests.model.test_persistence
 ===================================

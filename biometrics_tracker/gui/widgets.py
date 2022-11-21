@@ -12,7 +12,7 @@ from ttkbootstrap.validation import add_validation
 from ttkbootstrap.constants import *
 from typing import Any, Callable, Literal, Optional, Union
 
-import biometrics_tracker.config.createconfig as config
+import biometrics_tracker.config.plugin_config as plugin_config
 from biometrics_tracker.gui.validators import month_validator, day_validator, year_validator, hour_validator, \
     minute_validator
 import biometrics_tracker.model.exporters as exp
@@ -3405,6 +3405,7 @@ class ImportExportSpecButtons(ttkb.Frame):
         """
         Display an ImportExportSpecsListWidget.
         :return: None
+
         """
         self.select_list = ImportExportSpecsListWidget(title=self.select_title, specs_map=self.specs_map,
                                                        cancel_action=self.destroy_spec_list,
@@ -3445,6 +3446,65 @@ class ImportExportSpecButtons(ttkb.Frame):
         self.save_widget.destroy()
         return id
 
+
+class PluginMenu:
+    """
+    An implementation of biometrics_tracker.config.PluginMenu class for the ttkbootstrap GUI framedwork
+
+    """
+    def __init__(self, parent, plugin_menu: plugin_config.PluginMenu):
+        """
+        Creates an instance of PluginMenu
+
+        :param parent: the GUI parent of this menu
+        :type parent: ttkbootstrap.Menu
+        :param plugin_menu: a biometrics_tracker.config.PluginMenu instance.  These will be de-serialiezed from JSON provied with the plugin
+        :type plugin_menu: biometrics_tracker.config.PluginMenu
+
+        """
+        self.parent = parent
+        self.plugin_menu = plugin_menu
+        self.menu: Optional[ttkb.Menu] = None
+
+    def add_menu_item(self, label: str, action: Callable):
+        """
+        Provided as a callback for the add item function in the biometrics_tracker.config.PluginMenu.create_menus method
+
+        :param label: the label text for the menu option
+        :type label: str
+        :param action: the action callback for the menu item
+        :type action: Callable
+        :return: None
+
+        """
+        self.menu.add_command(label=label, command=action)
+
+    def add_menu(self, label: str):
+        """
+        Provided as a callback for the add menu funtion in the biometrics_tracker.config.PluginMenu.create_menus method
+
+        :param label: the label text for the menu
+        :type label: str
+        :return: None
+
+        """
+        self.parent.add_cascade(label=label, menu=self.menu)
+
+    def create_menu(self,  not_found_action: Callable,
+                    selection_action: Optional[Callable]) -> ttkb.Menu:
+        """
+        Invokes the biometrics_tracker.config.PluginMenu.create_menu method
+
+        :param not_found_action: the callback to be used for the menu if an entry point can not be imported
+        :param selection_action: the callback to be used for Person, date range and DataPointType selections
+        :return: the menu object
+        :rtype: ttkbootstrap.Menu
+
+        """
+        self.menu = ttkb.Menu(self.parent)
+        self.plugin_menu.create_menu(not_found_action=not_found_action, selection_action=selection_action,
+                                     add_menu_item=self.add_menu_item, add_menu=self.add_menu)
+        return self.menu
 
 
 

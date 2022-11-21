@@ -119,11 +119,32 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="config-json_handler.html#biometrics_tracker.config.json_handler.config_object_hook"><code class="docutils literal notranslate"><span class="pre">config_object_hook()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html#biometrics_tracker.config.json_handler.retrieve_plugins"><code class="docutils literal notranslate"><span class="pre">retrieve_plugins()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html#biometrics_tracker.config.json_handler.save_plugins"><code class="docutils literal notranslate"><span class="pre">save_plugins()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config-logging_config.html#biometrics_tracker.config.logging_config.LoggingConfig"><code class="docutils literal notranslate"><span class="pre">LoggingConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config-plugin_config.html">biometrics_tracker.config.plugin_config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.Plugin"><code class="docutils literal notranslate"><span class="pre">Plugin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.Plugin.add_menu"><code class="docutils literal notranslate"><span class="pre">Plugin.add_menu()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginImportError"><code class="docutils literal notranslate"><span class="pre">PluginImportError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenu"><code class="docutils literal notranslate"><span class="pre">PluginMenu</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenu.add_item"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_item()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenu.create_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.create_menu()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenuItem"><code class="docutils literal notranslate"><span class="pre">PluginMenuItem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenuItem.import_entry_point"><code class="docutils literal notranslate"><span class="pre">PluginMenuItem.import_entry_point()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginNotFoundError"><code class="docutils literal notranslate"><span class="pre">PluginNotFoundError</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a><ul>
@@ -471,6 +492,12 @@
 <li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PlaceholderWidget.is_changed"><code class="docutils literal notranslate"><span class="pre">PlaceholderWidget.is_changed()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PluginMenu"><code class="docutils literal notranslate"><span class="pre">PluginMenu</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PluginMenu.add_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_menu()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PluginMenu.add_menu_item"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_menu_item()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PluginMenu.create_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.create_menu()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PulseWidget"><code class="docutils literal notranslate"><span class="pre">PulseWidget</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PulseWidget.check_change"><code class="docutils literal notranslate"><span class="pre">PulseWidget.check_change()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PulseWidget.focus_set"><code class="docutils literal notranslate"><span class="pre">PulseWidget.focus_set()</span></code></a></li>
@@ -772,6 +799,21 @@
 <li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html#tests.test_tools.decode_int"><code class="docutils literal notranslate"><span class="pre">decode_int()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html#tests.test_tools.decode_time"><code class="docutils literal notranslate"><span class="pre">decode_time()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html#tests.test_tools.dict_diff"><code class="docutils literal notranslate"><span class="pre">dict_diff()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests-config-config_fixtures.html">pytest tests.config.config_fixtures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-config-config_fixtures.html#tests.config.config_fixtures.plugin_fixture"><code class="docutils literal notranslate"><span class="pre">plugin_fixture()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-config-config_fixtures.html#tests.config.config_fixtures.plugin_menus_fixture"><code class="docutils literal notranslate"><span class="pre">plugin_menus_fixture()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests-config-test_json_handler.html">pytest tests.config.test_json_handler</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests-config-test_plugin_menus.html">pytest tests.config.test_plugin_menus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-config-test_plugin_menus.html#tests.config.test_plugin_menus.TestWindow"><code class="docutils literal notranslate"><span class="pre">TestWindow</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tests-model-random_data.html">pytest tests.model.random_data</a><ul>

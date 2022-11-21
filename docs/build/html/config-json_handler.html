@@ -58,30 +58,18 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.config.json_handler.</span></span><span class="sig-name descname"><span class="pre">ConfigJSONEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipkeys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ensure_ascii</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_circular</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_nan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.config.json_handler.ConfigJSONEncoder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">JSONEncoder</span></code></p>
 <p>Implements a custom json.JSONEncoder to encode instances of ConfigInfo, ImportSpecs and ExportSpecs</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>obj</strong> (<em>Any</em>) – the object to be converted to JSON format</p>
-</dd>
-</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.config.json_handler.ConfigJSONEncoder.default">
 <span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.config.json_handler.ConfigJSONEncoder.default" title="Permalink to this definition">¶</a></dt>
-<dd><p>Implement this method in a subclass such that it returns
-a serializable object for <code class="docutils literal notranslate"><span class="pre">o</span></code>, or calls the base implementation
-(to raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>).</p>
-<p>For example, to support arbitrary iterators, you could
-implement default like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
-    <span class="c1"># Let the base class default method raise the TypeError</span>
-    <span class="k">return</span> <span class="n">JSONEncoder</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span>
-</pre></div>
-</div>
+<dd><p>This method is invoked to handle data types that can’t be handled by the standard JSONEncoder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -99,7 +87,44 @@ ExportSpecs</p>
 <dd class="field-even"><p>an instance of the appropriate class (e.g. ConfigInfo, ImportSpecs, etc)</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Union[<a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo">ConfigInfo</a>, ImportSpecs, ExportSpecs]</p>
+<dd class="field-odd"><p>Union[<a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo">ConfigInfo</a>, ImportSpecs, ExportSpecs, <a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PluginMenu" title="biometrics_tracker.gui.widgets.PluginMenu">PluginMenu</a>, <a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenuItem" title="biometrics_tracker.config.plugin_config.PluginMenuItem">PluginMenuItem</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.config.json_handler.retrieve_plugins">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.config.json_handler.</span></span><span class="sig-name descname"><span class="pre">retrieve_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugin_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.Plugin" title="biometrics_tracker.config.plugin_config.Plugin"><span class="pre">biometrics_tracker.config.plugin_config.Plugin</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.config.json_handler.retrieve_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deserialize the Plugin objects encoded in JSON file in the plugins folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>plugin_path</strong> – a Path object pointing to the folder containing the Plugin JSON files</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pathlib.Path</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a list of de-serialized Plugin objects</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[<a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.PluginMenu" title="biometrics_tracker.config.plugin_config.PluginMenu">plugin_config.PluginMenu</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biometrics_tracker.config.json_handler.save_plugins">
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.config.json_handler.</span></span><span class="sig-name descname"><span class="pre">save_plugins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plugins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="config-plugin_config.html#biometrics_tracker.config.plugin_config.Plugin" title="biometrics_tracker.config.plugin_config.Plugin"><span class="pre">biometrics_tracker.config.plugin_config.Plugin</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plugin_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.config.json_handler.save_plugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serialize a list of Plugin instances to JSON files.  The file names are based on the Plugin.name and author_name properties</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plugins</strong> (<em>list</em><em>[</em><em>biometrics_tracker.config.Plugin</em><em>]</em>) – a list of Plugin objects</p></li>
+<li><p><strong>plugin_path</strong> (<em>pathlib.Path</em>) – a Path object pointing to the plugin folder</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -122,6 +147,8 @@ ExportSpecs</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#biometrics_tracker.config.json_handler.config_object_hook"><code class="docutils literal notranslate"><span class="pre">config_object_hook()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.config.json_handler.retrieve_plugins"><code class="docutils literal notranslate"><span class="pre">retrieve_plugins()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.config.json_handler.save_plugins"><code class="docutils literal notranslate"><span class="pre">save_plugins()</span></code></a></li>
 </ul>
 </li>
 </ul>

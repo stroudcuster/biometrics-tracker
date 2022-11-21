@@ -1,3 +1,4 @@
+.. _tests-model-persistence_fixtures:
 
 pytest tests.model.persistence_fixtures
 =======================================

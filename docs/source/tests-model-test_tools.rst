@@ -1,3 +1,4 @@
+.. _tests-model-test_tools:
 
 pytest tests.model.test_tools
 =============================

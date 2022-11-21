@@ -1,7 +1,6 @@
 import decimal
 import json
 import pytest
-from typing import Union
 
 from tests.model.datapoints_fixtures import blood_pressure_data_fix, blood_glucose_data_fix, pulse_data_fix, \
     body_weight_data_fix, body_temp_data_fix
