@@ -1,18 +1,59 @@
 from datetime import datetime, timedelta
 import logging
 import logging.config
+import os
+import pathlib
 import sys
 from time import sleep
 import threading
-from typing import Callable, Optional
+from typing import Any, Callable, Optional
+
 import schedule
 
 import biometrics_tracker.config.createconfig as config
-import biometrics_tracker.gui.tk_gui as gui
 import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.ipc.queue_manager as queues
+import biometrics_tracker.main.dispatcher as dispatcher
 import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.persistence as per
+import biometrics_tracker.utilities.utilities as utilities
+
+
+def run_scheduled_entry(**kwargs):
+    """
+    This method creates and runs an instance of biometrics_tracker.gui.ScheduledEntryWindow.  It is started as a
+    separate process because the Tkinter event loop must be in the main thread.
+
+    :param logger: a logger instance
+    :type logger: logging.Logger
+    :param entry: the ScheduleEntry that triggered the invocation of this method
+    :type entry: biometrics_tracker.model.datapoints.ScheduleEntry
+    :param log_msg: a message to be written to the logger
+    :type log_msg: str
+    :return: None
+
+    """
+    def parm_error(parm: str) -> str:
+        return f'biometrics_tracker.main.scheduler.run_scheduled_entry: {parm} is a require parameter'
+
+    assert 'logger' in kwargs, parm_error('logger')
+    assert 'entry' in kwargs, parm_error('entry')
+    assert 'log_msg' in kwargs, parm_error('log_msg')
+
+    logger: logging.Logger = kwargs['logger']
+    entry: dp.ScheduleEntry = kwargs['entry']
+    log_msg: str = kwargs['log_msg']
+    pid = os.fork()
+    if pid == 0:
+        path: pathlib.Path = pathlib.Path(utilities.whereami('biometrics_tracker'), 'main', 'main.py')
+        logger.info(f'Launching {log_msg}')
+        # the second 'python' arg is passed to the Python interpreter as argv[0].  The second arg
+        # parm, the path to the Python script, becomes the script's argv[0]
+        os.execlp('python', 'python', path.__str__(), '--scheduled-entry', entry.__str__(), entry.person_id,
+                  entry.dp_type.name, entry.note)
+        assert False, f'Error launching {path.__str__()}'
+    if entry.frequency in [dp.FrequencyType.One_Time, dp.FrequencyType.Monthly]:
+        return schedule.CancelJob
 
 
 class Scheduler(threading.Thread):
@@ -20,20 +61,23 @@ class Scheduler(threading.Thread):
     A threaded class the used the contents of the People and ScheduleEntry database tables to present single entry
     windows for according to the schedule
     """
-    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues,
+    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues, start_dispatcher: bool,
                  completion_replyto: Optional[Callable] = None, thread_sleep_seconds: int = 300,
                  queue_sleep_seconds: int = 10):
         threading.Thread.__init__(self, name='biometrics-scheduler')
         self.config_info: config.ConfigInfo = config_info
         self.queue_mgr: queues.Queues = queue_mgr
+        self.start_dispatcher: bool = start_dispatcher
         self.completion_replyto: Callable = completion_replyto
         self.thread_sleep_seconds = thread_sleep_seconds
         self.queue_sleep_seconds = queue_sleep_seconds
         self.people_list: list[dp.Person] = []
-        self.runner: Optional[Runner] = None
         self.quit: bool = False
         logging.config.dictConfig(config_info.logging_config)
         self.logger = logging.getLogger('scheduled_entry')
+        self.dispatcher: Optional[dispatcher.Dispatcher] = None
+        if self.start_dispatcher:
+            self.dispatcher = dispatcher.Dispatcher(self.logger, self.thread_sleep_seconds)
 
     def run(self) -> None:
         """ Override the threading.Thread run method.  Loops until boolean quit property is True, issuing a database
@@ -58,16 +102,20 @@ class Scheduler(threading.Thread):
                         messages.SchedulerCompletionMsg(destination=self.completion_replyto,
                                                         replyto=None, jobs=schedule.get_jobs(),
                                                         status=messages.Completion.SUCCESS))
-                self.runner = Runner(self.queue_mgr, self.logger, self.thread_sleep_seconds)
-                self.runner.daemon = True
-                self.runner.start()
-            except:
+                if self.dispatcher is not None:
+                    if schedule.idle_seconds() is not None:
+                        self.dispatcher.start()
+                        self.logger.info('Dispatcher started.')
+                    else:
+                        self.dispatcher = None
+                        self.logger.info('No jobs scheduled, dispatcher not started')
+            except schedule.ScheduleError:
                 self.queue_mgr.send_completion_msg(
                     messages.SchedulerCompletionMsg(destination=self.completion_replyto,
                                                     replyto=None, jobs=schedule.get_jobs(),
                                                     status=messages.Completion.FAILURE))
-                logging.error(exc_info=sys.exc_info)
-                logging.error('Job monitor not started due to exception in the Schedule process.')
+                logging.error(sys.exc_info)
+                logging.error('Job Dispatcher not started due to exception in the Scheduler process.')
             finally:
                 self.logger.info('Scheduler Ending.')
 
@@ -128,6 +176,7 @@ class Scheduler(threading.Thread):
         for person_id, person_name in self.people_list:
             self.logger.info(f'Requesting Schedules for ID:{person_id} Name:{person_name}')
             self.retrieve_schedules(self.process_schedule_entries, person_id)
+        jobs = schedule.get_jobs()
         self.quit = True
 
     def retrieve_schedules(self, replyto: Callable, person_id: str):
@@ -148,22 +197,6 @@ class Scheduler(threading.Thread):
                                                                     person_id=person_id,
                                                                     seq_nbr=0, last_triggered=None))
         self.check_response_queue(block=True, caller='Scheduler.retrieve_schedules')
-
-    def run_scheduled_entry(self, entry: dp.ScheduleEntry, log_msg: str):
-        """
-        This method creates and runs an instance of biometrics_tracker.gui.ScheduledEntryWindow
-
-        :param entry: the ScheduleEntry that triggered the invocation of this method
-        :type entry: biometrics_tracker.model.datapoints.ScheduleEntry
-        :return: None
-
-        """
-        self.logger.info(f'Launching {log_msg}')
-        job_thread = gui.ScheduledEntryWindow(self.config_info, self.queue_mgr, entry)
-        job_thread.start()
-        self.logger.debug(f'{log_msg} launched')
-        if entry.frequency in [dp.FrequencyType.One_Time, dp.FrequencyType.Monthly]:
-            return schedule.CancelJob
 
     def update_last_triggered(self, entry):
         self.queue_mgr.send_db_req_msg(messages.ScheduleEntryReqMsg(destination=per.DataBase, replyto=None,
@@ -192,33 +225,39 @@ class Scheduler(threading.Thread):
             now_datetime: datetime = datetime.now()
             for entry in msg.entries:
                 if not entry.suspended and entry.starts_on <= now_datetime.date() <= entry.ends_on:
-                    wt_hm_str = entry.when_time.strftime('%H:%M')
-                    wt_m_str = entry.when_time.strftime('%M:%S')
                     next_today: list[datetime] = entry.next_occurrence_today(now_datetime.date())
-
                     for dattim in next_today:
                         if dattim.time() >= now_datetime.time():
+                            wt_hm_str = dattim.strftime('%H:%M')
+                            wt_m_str = dattim.strftime('%M:%S')
                             log_msg: str = f'{entry.frequency.name}  {dp.dptype_dp_map[entry.dp_type].label()} '\
                                            f'Interval {entry.interval} at {dattim.strftime("%m/%d/%Y %H:%M")}'
+                            kwargs: dict[str, Any] = {'logger': self.logger,
+                                                      'entry': entry,
+                                                      'log_msg': log_msg, }
                             match entry.frequency:
                                 case dp.FrequencyType.Hourly:
                                     cancel_jobs_for_entry()
-                                    schedule.every(entry.interval) \
-                                        .hours.at(wt_m_str).do(self.run_scheduled_entry, entry, log_msg)\
-                                        .tag(make_tags())
-                                    self.logger.info(log_msg)
-                                    self.update_last_triggered(entry)
-
+                                    try:
+                                        schedule.every(entry.interval).hours.at(wt_m_str).do(run_scheduled_entry,
+                                                                                             **kwargs).tag(make_tags())
+                                        self.logger.info(log_msg)
+                                        self.update_last_triggered(entry)
+                                        break
+                                    except schedule.ScheduleError:
+                                        self.logger.error(sys.exc_info())
                                 case dp.FrequencyType.Daily:
                                     if (entry.last_triggered is not None and
                                             entry.last_triggered.date() != now_datetime.date()) or \
                                             entry.last_triggered is None:
                                         cancel_jobs_for_entry()
-                                        schedule.every(entry.interval) \
-                                            .days.at(wt_hm_str).do(self.run_scheduled_entry, entry, log_msg)\
-                                            .tag(make_tags())
-                                        self.logger.info(log_msg)
-                                        self.update_last_triggered(entry)
+                                        try:
+                                            schedule.every(entry.interval) \
+                                                .days.at(wt_hm_str).do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                            self.logger.info(log_msg)
+                                            self.update_last_triggered(entry)
+                                        except schedule.ScheduleError:
+                                            self.logger.error(sys.exc_info())
                                     else:
                                         self.logger.debug(f'{log_msg} not scheduled.  Last trigger '
                                                           f'{entry.last_triggered.strftime("%m/%d/%Y %H:%M:%S:%f")}')
@@ -227,109 +266,64 @@ class Scheduler(threading.Thread):
                                     self.logger.info(f'{log_msg} scheduled.')
                                     cancel_jobs_for_entry()
                                     for day in entry.weekdays:
-                                        self.logger.info(log_msg)
-                                        match day:
-                                            case dp.WeekDay.Monday:
-                                                schedule.every(entry.interval)\
-                                                    .monday.at(wt_hm_str)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Monday').tag(make_tags())
-                                            case dp.WeekDay.Tuesday:
-                                                schedule.every(entry.interval)\
-                                                    .tuesday.at(wt_hm_str)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Tuesday').tag(make_tags())
-                                            case dp.WeekDay.Wednesday:
-                                                schedule.every(entry.interval)\
-                                                    .wednesday.at(wt_hm_str)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Wednesday').tag(make_tags())
-                                            case dp.WeekDay.Thursday:
-                                                schedule.every(entry.interval)\
-                                                    .thursday.at(wt_hm_str)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Thursday').tag(make_tags())
-                                            case dp.WeekDay.Friday:
-                                                schedule.every(entry.interval)\
-                                                    .friday.at(wt_hm_str).tag(entry.frequency.name, entry.dp_type.name)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Friday').tag(make_tags())
-                                            case dp.WeekDay.Saturday:
-                                                schedule.every(entry.interval)\
-                                                    .saturday.at(wt_hm_str).tag(entry.frequency.name, entry.dp_type.name)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Saturday').tag(make_tags())
-                                            case dp.WeekDay.Sunday:
-                                                schedule.every(entry.interval)\
-                                                    .sunday.at(wt_hm_str).tag(entry.frequency.name, entry.dp_type.name)\
-                                                    .do(self.run_scheduled_entry, entry,
-                                                        f'{log_msg} scheduled on Sunday').tag(make_tags)
-                                        self.update_last_triggered(entry)
-
+                                        kwargs['log_msg'] = f'{log_msg} scheduled on {day.name}'
+                                        self.logger.info(kwargs['log_msg'])
+                                        try:
+                                            match day:
+                                                case dp.WeekDay.Monday:
+                                                    schedule.every(entry.interval)\
+                                                        .monday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Tuesday:
+                                                    schedule.every(entry.interval)\
+                                                        .tuesday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Wednesday:
+                                                    schedule.every(entry.interval)\
+                                                        .wednesday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Thursday:
+                                                    schedule.every(entry.interval)\
+                                                        .thursday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Friday:
+                                                    schedule.every(entry.interval)\
+                                                        .friday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Saturday:
+                                                    schedule.every(entry.interval)\
+                                                        .saturday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                                case dp.WeekDay.Sunday:
+                                                    schedule.every(entry.interval)\
+                                                        .sunday.at(wt_hm_str)\
+                                                        .do(run_scheduled_entry, **kwargs).tag(make_tags())
+                                            self.update_last_triggered(entry)
+                                        except schedule.ScheduleError:
+                                            self.logger.error(sys.exc_info())
                                 case dp.FrequencyType.Monthly:
                                     cancel_jobs_for_entry()
-                                    schedule.every().day.at(wt_hm_str)\
-                                        .do(self.run_scheduled_entry, entry, log_msg).tag(make_tags)
-                                    self.logger.info(log_msg)
-                                    self.update_last_triggered(entry)
-
+                                    try:
+                                        schedule.every().day.at(wt_hm_str)\
+                                            .do(run_scheduled_entry,kwargs).tag(make_tags())
+                                        self.logger.info(log_msg)
+                                        self.update_last_triggered(entry)
+                                    except schedule.ScheduleError:
+                                        self.logger.error(sys.exc_info())
                                 case dp.FrequencyType.One_Time:
                                     if (entry.last_triggered is not None and
                                             entry.last_triggered.date() != now_datetime.date()) or \
                                             entry.last_triggered is None:
                                         cancel_jobs_for_entry()
-                                        schedule.every().day.at(wt_hm_str).do(self.run_scheduled_entry, entry, log_msg)\
-                                            .tag(make_tags())
+                                        try:
+                                            schedule.every().day.at(wt_hm_str)\
+                                                .do(run_scheduled_entry, kwargs).tag(make_tags())
+                                        except schedule.ScheduleError:
+                                            self.logger.error(sys.exc_info())
+
                                     else:
                                         self.logger.debug(f'{log_msg} not scheduled.  Last trigger '
                                                           f'{entry.last_triggered.strftime("%m/%d/%Y %H:%M:%S:%f")}')
 
 
-class Runner(threading.Thread):
-    """
-    Uses schedule library functionality to run jobs at the appropriate date and time
-    """
-    def __init__(self, queue_mgr: queues.Queues, logger: logging.Logger,
-                 thread_sleep_seconds: int = 300):
-        """
-        Creates and instance of Runner
-
-        :param queue_mgr: gives access to request, response and completion queues
-        :type queue_mgr: biometrics_tracker.ipc.queue_mgr.Queues
-        :param logger: a logger instance
-        :type logger: logging.Logger
-        :param thread_sleep_seconds: the number of seconds the thread should sleep after checking for pending jobs
-        :type thread_sleep_seconds: int
-        :return None
-
-        """
-        threading.Thread.__init__(self)
-        self.queue_mgr: queues.Queues = queue_mgr
-        self.logger = logger
-        self.thread_sleep_seconds = thread_sleep_seconds
-        self.quit = False
-
-    def run(self):
-        self.monitor()
-
-    def monitor(self):
-        """
-        Monitor and run pending jobs
-
-        :return: None
-
-        """
-        self.logger.info('Starting Job Monitor')
-        while not self.quit and schedule.idle_seconds() is not None:
-            self.logger.debug('Check for pending jobs.')
-            schedule.run_pending()
-            sleep(self.thread_sleep_seconds)
-        if not self.quit:
-            self.logger.info('No pending jobs, Job Monitor ending.')
-        else:
-            self.logger.info('Job Monitor ended.')
-
-    def stop(self):
-        self.quit = True
-        self.logger.info('Initiated End Job Monitor.')
 

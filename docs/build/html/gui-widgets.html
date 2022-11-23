@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>biometrics_tracker.gui.widgets module &#8212; Biometrics Tracking 1.0.1 documentation</title>
+    <title>biometrics_tracker.gui.widgets module &#8212; Biometrics Tracking 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.widgets module</a></li> 
       </ul>
@@ -285,7 +285,7 @@ can tell when that can use the space bar to select or unselect a checkbox</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.widgets.DataPointTypeComboWidget.retrieve_selection">
 <span class="sig-name descname"><span class="pre">retrieve_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.widgets.DataPointTypeComboWidget.retrieve_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retrieve the selection and convert is to a DataPointType.  The values used for the list are the
+<dd><p>Retrieve the selection and convert it to a DataPointType.  The values used for the list are the
 returned value from the label method of the corresponding container class.  For instance, the
 value for DataPointType.BG selection comes from BloodGlucose.label()</p>
 <dl class="field-list simple">
@@ -824,12 +824,13 @@ widget’s entry value</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sequence</strong> (<em>str</em><em> | </em><em>None</em>) – the name of the event to be bound</p></li>
 <li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>tk.Event</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – the callback to be invoked when the event is captured</p></li>
-<li><p><strong>add</strong> – allows multiple bindings for single event</p></li>
+<li><p><strong>add</strong> (<em>Literal</em><em>[</em><em>&quot;&quot;</em><em>, </em><em>&quot;+&quot;</em><em>] </em><em>| </em><em>bool</em><em> | </em><em>None</em>) – allows multiple bindings for single event</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
 </dl>
-<p>:type Literal[“”, “+”] | bool | None
-:return: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1220,12 +1221,13 @@ widget’s entry value</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sequence</strong> (<em>str</em><em> | </em><em>None</em>) – the name of the event to be bound</p></li>
 <li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>tk.Event</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – the callback to be invoked when the event is captured</p></li>
-<li><p><strong>add</strong> – allows multiple bindings for single event</p></li>
+<li><p><strong>add</strong> (<em>Literal</em><em>[</em><em>&quot;&quot;</em><em>, </em><em>&quot;+&quot;</em><em>] </em><em>| </em><em>bool</em><em> | </em><em>None</em>) – allows multiple bindings for single event</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
 </dl>
-<p>:type Literal[“”, “+”] | bool | None
-:return: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1303,12 +1305,13 @@ widget’s entry value</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sequence</strong> (<em>str</em><em> | </em><em>None</em>) – the name of the event to be bound</p></li>
 <li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>tk.Event</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – the callback to be invoked when the event is captured</p></li>
-<li><p><strong>add</strong> – allows multiple bindings for single event</p></li>
+<li><p><strong>add</strong> (<em>Literal</em><em>[</em><em>&quot;&quot;</em><em>, </em><em>&quot;+&quot;</em><em>] </em><em>| </em><em>bool</em><em> | </em><em>None</em>) – allows multiple bindings for single event</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
 </dl>
-<p>:type Literal[“”, “+”] | bool | None
-:return: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1387,12 +1390,13 @@ widget’s entry value</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sequence</strong> (<em>str</em><em> | </em><em>None</em>) – the name of the event to be bound</p></li>
 <li><p><strong>func</strong> (<em>Callable</em><em>[</em><em>[</em><em>tk.Event</em><em>]</em><em>, </em><em>Any</em><em>]</em>) – the callback to be invoked when the event is captured</p></li>
-<li><p><strong>add</strong> – allows multiple bindings for single event</p></li>
+<li><p><strong>add</strong> (<em>Literal</em><em>[</em><em>&quot;&quot;</em><em>, </em><em>&quot;+&quot;</em><em>] </em><em>| </em><em>bool</em><em> | </em><em>None</em>) – allows multiple bindings for single event</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
 </dl>
-<p>:type Literal[“”, “+”] | bool | None
-:return: None</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2536,7 +2540,7 @@ instance
         <li class="right" >
           <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.widgets module</a></li> 
       </ul>

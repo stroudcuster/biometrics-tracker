@@ -4,7 +4,7 @@
 <title>History Entry and Edit</title>
 <meta name="generator" content="Bluefish 2.2.12" >
 <meta name="author" content="Stroud" >
-<meta name="date" content="2022-11-04T10:48:08-0400" >
+<meta name="date" content="2022-11-22T12:21:29-0500" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/biometrics-tracker.css" />
 </head>
 <body>
-<header>Entering, Viewing and Editing Biometric Information (Data Points)</header>
+<header>Entering, Viewing and Editing Biometric Readings (Data Points)</header>
 <h2>Adding a Data Point</h2>
 <p>The initial entry of <a href="glossary.html#glossary-datapoint" target="_blank" class="glossary-link">data points</a> is done in one of two ways; by selecting the 
 <span class="menu-item">Add a Data Point</span> option from the <span class="menu-item">Entry/Edit</span> menu, or by using the Scheduling function
@@ -25,29 +25,35 @@ to prompt you for the information at preset times.  The <span class="menu-item">
 </p>
 <img src="images/add-datapoint.png" width: 986px; height: 766px; class="screenshot"/>
 <p>The Scheduled Entry <a href="glossary.html#glossary-interval" target="_blank" class="glossary-link">GUI</a> is very similar to this GUI, except it prompts for a single <a href="glossary.html#glossary-metrics" target="_blank" class="glossary-link">metric</a>, 
-depending on the <a href="glossary.html#glossary-metric" target="_blank" class="glossary-link">metric</a> type in the <<a href="glossary.html#glossary-interval" target="_blank" class="glossary-schedule">schedule</a> that triggered the prompt.
+depending on the <a href="glossary.html#glossary-metric" target="_blank" class="glossary-link">metric</a> type in the <a href="glossary.html#glossary-interval" target="_blank" class="glossary-schedule">schedule</a> that triggered the prompt.
 </p>
-<h2>View/Edit History</h2>
+<h2>View/Edit Biometrics History</h2>
 <p>This function allows you to view and edit the data points you've previously entered.  If you are tracking more than one person, you will be prompted to
 select the person whose history you want to retrieve.  Then you will be prompted for <span class="widget-label">Start Date</span> and 
 <span class="widget-label">End Date</span> of the time period you want to work with.
 </p>
-<p>After you have entered some <a href="glossary.html#glossary-datapoint" target="_blank" class="glossary-link">data points</a> as described above, you can view or edit them by selecting the <span class="menu-item">View/Edit History</span> option
-in the <span class="menu-item">Entry/Edit</span> menu.  If you are tracking more than one person, you will be prompted to select the person whose history you want to retrieve.    The window show below will be displayed
+<p>After you have entered some <a href="glossary.html#glossary-datapoint" target="_blank" class="glossary-link">data points</a> as described above, you can view 
+or edit them by selecting the <span class="menu-item">View/Edit Biometrics History</span> option on the <span class="menu-item">Entry/Edit</span> menu.  
+If you are tracking more than one person, you will be prompted to select the person whose history you want to retrieve, then the window show below will be displayed
 </p>
 <img src="images/view-edit-history-1.png" width: 989px; height: 764px; class="screenshot"/>
 <p>Enter the <span class="widget-label">Start Date</span> and <span class="widget-label">End Date</span> for the period you wish to work with, then click 
-the <span class="widget-label">Retrieve History</span> button.  A <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> similar to the one shown below will be presented. You can use the scroll bar at 
-the right side of the GUI to scroll through the data points.
-If you want to change the value of a data point, click on the value and make the change. Note that the <span class="widget-label">Start Date</span>,
-<span class="widget-label">End Date</span> fields and the <span class="widget-label">Retrieve History</span> button have been disabled.  If you want to work with a different period of history,
-reselect the <span class="menu-item">View/Edit History</span> menu option again. 
+the <span class="widget-label">Retrieve History</span> button.  A list of data points similar to the one shown below will be presented. You can use the scroll bar at 
+the right side of the list to scroll through the data points.
 </p>
 <img src="images/view-edit-history-2.png" width: 984px; height: 768px; class="screenshot"/>
-<p> <span class="widget-label">Notes</span> associated with an entry can be viewed by hovering the mouse cursor over the entry.
-If you want to add or change a note, right click the entry and a <a href="glossary.html#glossary-dialog" target="_blank" class="glossary-link">dialog</a> will be presented as shown below:
+<p>
+If you want to change the value of a data point, double-click on it's list entry. The data point's date, time, value and note will be displayed above the 
+list of data points, and the background color of the list entry you clicked will be changed to blue.
 </p>
-<img src="images/history-note-dialog.png" width: 972px; height: 552px; class="screenshot"/>
+<img src="images/view-edit-history-3.png" width: 984px; height: 768px; class="screenshot"/>
+<p> You can change any of this information, then click the <span class="widget-label">Save</span> button.  The list of points will be refreshed  with the changed 
+information.
+</p>
+<p>The <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">check boxes</a> label <span class="widget-label">Del</span> allow you to delete 
+data points.  Click the check box for the entries you want to delete, then click the <span class="widget-label">Save</span> button.  The list will be updated to 
+reflect the deletions.
+</p>
 <p>If you want to exit the GUI without saving any changes you may have made, click the <span class="widget-label">Cancel</span> button.
 </p>
 <nav><a href="add-edit-person.html" class="returnlink">Previous Topic: Adding and Entering People</a></nav>

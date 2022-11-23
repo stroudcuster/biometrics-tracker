@@ -1,4 +1,5 @@
 from datetime import date, time, datetime
+import importlib.util as imputil
 import pathlib
 import re
 import sys
@@ -266,7 +267,7 @@ def split_camelcase(camelcase: str) -> list[str]:
     return [w for w in groups if len(w) > 0]
 
 
-def whereami() -> pathlib.Path:
+def whereami(package_name: str) -> pathlib.Path:
     """
     Returns a Path object pointing to the location of the application's package folder
     
@@ -274,4 +275,5 @@ def whereami() -> pathlib.Path:
     :rtype: pathlib.Path
 
     """
-    return pathlib.Path(sys.path[-1:][0])
+    origin = imputil.find_spec(package_name).origin
+    return pathlib.Path(origin).parent

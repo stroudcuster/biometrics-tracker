@@ -104,9 +104,11 @@ class Launcher:
         config_info = self.pre_launch(config_path)
         app = gui.Application(config_info, self.queue_mgr)
         app.mainloop()
+        app.destroy()
+        if app.dispatcher is not None:
+            app.dispatcher.join()
         self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase, replyto=None))
-        quit = True
-        return quit
+        return True
 
     def launch_config(self, homepath: pathlib.Path) -> bool:
         """
@@ -121,16 +123,16 @@ class Launcher:
         app_dir_path: pathlib.Path = pathlib.Path(homepath, 'biometrics-tracker')
         config_gui = config.ConfigGUI(app_dir_path)
         config_info = config_gui.ask_config()
-        quit: bool = False
+        quit: bool = True
         if config_info.db_dir_path is not None:
             self.start_database(config_info.db_dir_path.name)
             self.queue_mgr.send_db_req_msg(messages.CreateDataBaseReqMsg(destination=per.DataBase,
                                                                          replyto=None))
             msg: messages.CompletionMsg = self.queue_mgr.check_completion_queue(block=True)
+            self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase,
+                                                                        replyto=None))
             if not msg.status == messages.Completion.SUCCESS:
                 ErrorDialog(message='Database creation failed. The Biometrics Tracker can not be started.')
-                self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase,
-                                                                            replyto=None))
                 quit = True
         else:
             quit = True
@@ -149,8 +151,39 @@ class Launcher:
         config_info: config.ConfigInfo = self.pre_launch(config_path)
         scheduler = sched.Scheduler(config_info, self.queue_mgr)
         scheduler.start()
-        quit = True
-        return quit
+        return True
+
+    def launch_scheduled_entry(self, config_path: pathlib.Path, schedule_str: str, person_id: str,
+                               dp_type_name:str, schedule_note: str) -> bool:
+        """
+        Launch the Biometric Tracker GUI
+
+        :param config_path: a pathlib object connected to the configuration file
+        :type config_path: pathlib.Path
+        :param schedule_str: a string representation of the Schedule that triggered the Scheduled Entry session
+        :type schedule_str: str
+        :param person_id: the id of the person whose metric will be recorded
+        :type person_id: str
+        :param dp_type_name: the string representation of the DataPointType for the metric
+        :type dp_type_name: str
+        :param schedule_note: the note associated with the Schedule that triggered the Schedule Entry session
+        :type schedule_note: str
+        :return: quit flag
+        :rtype: bool
+
+        """
+        config_info = self.pre_launch(config_path)
+        print(f'schedule_str {schedule_str}')
+        print(f'person_id {person_id}')
+        print(f'dp_type_name {dp_type_name}')
+        print(f'schedule_note {schedule_note}')
+        app = gui.ScheduledEntryWindow(config_info=config_info, queue_mgr=self.queue_mgr,
+                                       schedule_str=schedule_str, person_id=person_id, dp_type_name=dp_type_name,
+                                       schedule_note=schedule_note)
+        app.mainloop()
+        app.destroy()
+        self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase, replyto=None))
+        return True
 
 
 def launch():
@@ -176,6 +209,12 @@ def launch():
                         quit = launcher.launch_gui(config_path)
                     case '--scheduler':
                         quit = launcher.launch_scheduler(config_path)
+                    case '--scheduled-entry':
+                        quit = launcher.launch_scheduled_entry(config_path=config_path,
+                                                               schedule_str=sys.argv[2],
+                                                               person_id=sys.argv[3],
+                                                               dp_type_name=sys.argv[4],
+                                                               schedule_note=sys.argv[5])
                     case _:
                        quit = launcher.launch_gui(config_path)
             else:

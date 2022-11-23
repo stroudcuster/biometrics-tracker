@@ -4,7 +4,7 @@
 <title>Importing and Exporting Data</title>
 <meta name="generator" content="Bluefish 2.2.12" >
 <meta name="author" content="Stroud" >
-<meta name="date" content="2022-11-04T14:53:21-0400" >
+<meta name="date" content="2022-11-22T12:58:48-0500" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -53,7 +53,7 @@ How many lines of column heading are at the start of the file?  These are referr
 this number to the prompt.  In the GUI image above, there are 3 header lines at the top of the displayed file.
 If there are no column heading lines, enter 0.</li>
 <li>
-You may have formatted your spreadsheet so in a series of readings for a given day, the date only appears in
+You may have formatted your spreadsheet so that, in a series of readings for a given day, the date only appears in
 the first row associated with the day.  See the spreadsheet image below for an example of this format.  If
 you did this, click the <a href="glossary.html#glossary-checkbox" target="_blank" class="glossary-link">check box</a> labeled 
 <span class="widget-label">Use date from previous column if date column is blank</span>.</li>
@@ -71,7 +71,7 @@ import process, click the <span class="widget-label">Cancel</span> button to exi
 <p>
 The <span class="widget-label">Select</span> and <span class="widget-label">Save</span> buttons located in the lower right area of the window allow
 you save save and reuse the choices you have made regarding the format of your import file.  This is useful if you will be doing imports periodically; 
-you won't have to scratch you head to remember what selections you made.  The set of selections you make are referred to as an Import Specification.  
+you won't have to scratch you head to remember what selections you made previously.  The set of selections you make are referred to as an Import Specification.  
 Each Specification is identified by an ID that you assign.  Clicking the <span class="widget-label">Save</span> button will display a pop-up dialog showing you
 a list of Specification IDs you have assigned in the past and prompting you to enter an ID for the new Specification.  Note that you must click the
 <span class="widget-label">Save</span> button before you click the <span class="widget-label">Proceed</span> button.
@@ -97,13 +97,13 @@ of the import process in detail.
 <h2>Exporting Data</h2>
 <p>
 The information you enter into the Biometrics Tracker database belongs to you.  That means you should be able to move it to other applications.  The Biometrics 
-Tracker application can export data to two formats; a Comma Separated File (CSV) or to the <a href="https://www.sqlite.org/index.html" target="_parent">SQLite3</a> relational database format.  I chose to implement these 
+Tracker application can export data to two formats; a Comma Separated File (CSV) or to the <a href="https://www.sqlite.org/index.html" target="_blank">SQLite3</a> relational database format.  I chose to implement these 
 formats because they are widely used.  You can import the CSV file into a spreadsheet application and the SQLite3 database is open source, it is very widely used 
 and has been around for twenty years.  Most mobile applications that store data directly on the mobile device use this database.
 </p>
 <p>
 To access the Export function, select the <span class="menu-item">Export to CSV/SQL</span> option from the <span class="menu-item">Import/Export</span> menu
-A GUI similar to the one show below will be displayed.
+A <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> similar to the one show below will be displayed.
 </p>
 <img src="images/export-1.png" width="980" height="766" alt="" class="screenshot">
 <p>
@@ -132,7 +132,7 @@ as a number in the destination application.  If that is a problem, you can chose
 omit it completely.  Note the <span class="widget-label">Units of Measure will be:</span> <a href="glossary.html#glossary-combobox" target="_blank" class="glossary-link">combo box</a>
  on the GUI shown below</li>
 <li>How will dates and times be formatted: what order should the day, month and year be in, and what character will separate them.
-<li>Which format will you be using for time: 12 or 24 hour.  If you chose a y</span>ear/month/day date format and a 24 hour time format, the resulting
+<li>Which format will you be using for time: 12 or 24 hour.  If you chose a </span>year/month/day date format and a 24 hour time format, the resulting
 data may be easier to sort in a spreadsheet application.  See the <span class="widget-label">Date Format</span> and <span class="widget-label">Time Format</span>
 combo boxes on the window shown below</li>
 <li>What information will be included in the export.  This selection is very similar to the field selection options on the 
@@ -148,7 +148,7 @@ know this to import the information into another application.
 </p>
 <img src="images/export-4.png" width="731" height="126" alt="" class="small-screenshot">
 <p>
-The image shown below shows a portion of a CSV export file that was loaded into the <a href="https://www.libreoffice.org/" target="_parent">Libre Office</a> spreadsheet application.
+The image shown below shows a portion of a CSV export file that was loaded into the <a href="https://www.libreoffice.org/" target="_blank">Libre Office</a> spreadsheet application.
 </p>
 <img src="images/export-5.png" width="437" height="244" alt="" class="small-screenshot">
 </section>

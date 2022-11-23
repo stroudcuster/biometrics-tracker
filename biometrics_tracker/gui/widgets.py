@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from datetime import datetime, date, time
 from decimal import Decimal
+import pathlib
 import re
 import tkinter as tk
 import tkinter.simpledialog as tksimpedialog
@@ -20,7 +21,7 @@ import biometrics_tracker.model.importers as imp
 from biometrics_tracker.model import uoms as uoms, datapoints as dp
 import biometrics_tracker.utilities.utilities as utilities
 
-METRIC_WIDGET_MIN_LBL_WIDTH: int = 6
+METRIC_WIDGET_MIN_LBL_WIDTH: int = 15
 
 
 class Radiobutton(ttkb.Radiobutton):
@@ -138,7 +139,7 @@ class EntryWidget:
         :param func: the callback to be invoked when the event is captured
         :type func: Callable[[tk.Event], Any]
         :param add: allows multiple bindings for single event
-        :type Literal["", "+"] | bool | None
+        :type add: Literal["", "+"] | bool | None
         :return: None
 
         """
@@ -326,8 +327,8 @@ class LabeledTextWidget(ttkb.Frame):
 
         """
         ttkb.Frame.__init__(self, master=parent)
-        ttkb.Label(master=self, text=label_text,
-                   width=label_width).grid(**label_grid_args)
+        self.label = ttkb.Label(master=self, text=label_text, width=label_width)
+        self.label.grid(**label_grid_args)
         self.entry = TextWidget(parent=self, label_text=label_text, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
 
@@ -351,7 +352,7 @@ class LabeledTextWidget(ttkb.Frame):
         :param func: the callback to be invoked when the event is captured
         :type func: Callable[[tk.Event], Any]
         :param add: allows multiple bindings for single event
-        :type Literal["", "+"] | bool | None
+        :type add: Literal["", "+"] | bool | None
         :return: None
 
         """
@@ -494,8 +495,8 @@ class LabeledIntegerWidget(ttkb.Frame):
 
         """
         ttkb.Frame.__init__(self, master=parent)
-        ttkb.Label(master=self, text=label_text,
-                   width=label_width).grid(**label_grid_args)
+        self.label = ttkb.Label(master=self, text=label_text, width=label_width)
+        self.label.grid(**label_grid_args)
         self.entry = IntegerWidget(parent=self, label_text=label_text, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
 
@@ -519,7 +520,7 @@ class LabeledIntegerWidget(ttkb.Frame):
         :param func: the callback to be invoked when the event is captured
         :type func: Callable[[tk.Event], Any]
         :param add: allows multiple bindings for single event
-        :type Literal["", "+"] | bool | None
+        :type add: Literal["", "+"] | bool | None
         :return: None
 
         """
@@ -664,7 +665,8 @@ class LabeledDecimalWidget(ttkb.Frame):
 
         """
         ttkb.Frame.__init__(self, master=parent)
-        ttkb.Label(self, text=label_text, width=label_width).grid(**label_grid_args)
+        self.label = ttkb.Label(self, text=label_text, width=label_width)
+        self.label.grid(**label_grid_args)
         self.entry = DecimalWidget(parent=self, label_text=label_text, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
 
@@ -688,7 +690,7 @@ class LabeledDecimalWidget(ttkb.Frame):
         :param func: the callback to be invoked when the event is captured
         :type func: Callable[[tk.Event], Any]
         :param add: allows multiple bindings for single event
-        :type Literal["", "+"] | bool | None
+        :type add: Literal["", "+"] | bool | None
         :return: None
 
         """
@@ -1975,32 +1977,32 @@ class BloodPressureWidget(MetricWidget):
         a right click
        """
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.systolic_entry = LabeledIntegerWidget(self, label_text='Systolic',
+        self.systolic_entry = LabeledIntegerWidget(self, label_text=' Systolic',
                                                    label_width=METRIC_WIDGET_MIN_LBL_WIDTH,
                                                    label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
                                                                     'sticky': tk.NW},
                                                    entry_width=6,
                                                    entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
                                                                     'sticky': tk.NW})
-
+        self.systolic_entry.label.configure(anchor=tk.E)
         self.systolic_entry.grid(column=0, row=1, padx=5, sticky=tk.NW)
         self.systolic_entry.bind('<KeyPress>', self.handle_keypress)
         self.systolic_entry.bind('<FocusOut>', self.check_change)
-        dash_frame = ttkb.Frame(self)
-        ttkb.Label(dash_frame, text=' ', width=METRIC_WIDGET_MIN_LBL_WIDTH).grid(column=0, row=0, padx=5, pady=0,
-                                                                                 sticky=tk.NW)
-        ttkb.Label(dash_frame, text='==============', width=8).grid(column=1, row=0, padx=5, pady=0,
-                                                                                   sticky=tk.NW)
-        ttkb.Label(dash_frame, text=track_cfg.default_uom.abbreviation()).grid(column=2, row=0, padx=5, pady=0,
-                                                                               sticky=tk.NW)
+        dash_frame = ttkb.Frame(self, width=METRIC_WIDGET_MIN_LBL_WIDTH * 2)
+        bp_label = ttkb.Label(dash_frame, text='Blood Pressure', width=METRIC_WIDGET_MIN_LBL_WIDTH, anchor=tk.W)
+        bp_label.grid(column=0, row=0, padx=5, pady=0, sticky=tk.NW)
+
+        ttkb.Label(dash_frame, text=f'======================  {track_cfg.default_uom.abbreviation()}').\
+            grid(column=1, row=0, padx=5, pady=0, sticky=tk.NW)
         dash_frame.grid(column=0, row=2, padx=5, sticky=tk.NW)
         self.diastolic_entry = LabeledIntegerWidget(self, label_text='Diastolic',
-                                                    label_width=10,
+                                                    label_width=METRIC_WIDGET_MIN_LBL_WIDTH,
                                                     label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
                                                                      'sticky': tk.NW},
                                                     entry_width=6,
                                                     entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
                                                                      'sticky': tk.NW})
+        self.diastolic_entry.label.configure(anchor=tk.E)
         self.diastolic_entry.grid(column=0, row=3, sticky=tk.NW, padx=5, pady=0)
         self.diastolic_entry.bind('<KeyPress>', self.handle_diastolic_keypress)
         self.diastolic_entry.bind('<FocusOut>', self.check_change)
@@ -2694,19 +2696,22 @@ class DataPointTypeComboWidget(ttkb.Frame):
     """
     A ComboBox for selecting an option from a list of DataPointType enum values
     """
-    def __init__(self, parent):
+    def __init__(self, parent, person: dp.Person):
         """
         Creates an instance of DataPointTypeComboWidget
 
         :param parent: The GUI parent of this widget:
+        :param person: a Person instance associated with the currently selected person.  The TrackingConfig instances are used to limit the DataPointTypes listed in the combo box
+        :type person: biometrics_tracker.model.datapoints.Person
         """
         ttkb.Frame.__init__(self, parent)
         self.dp_type_var = ttkb.StringVar()
         combobox_list: list[str] = []
         self.combobox_map: dict[str, dp.DataPointType] = {}
         for dp_type, datapoint in dp.dptype_dp_map.items():
-            combobox_list.append(datapoint.label())
-            self.combobox_map[datapoint.label()] = dp_type
+            if person.is_tracked(dp_type):
+                combobox_list.append(datapoint.label())
+                self.combobox_map[datapoint.label()] = dp_type
         self.dp_type_entry = ttkb.Combobox(self, textvariable=self.dp_type_var,
                                            values=combobox_list)
         self.dp_type_entry.bind('<<ComboboxSelected>>', self.retrieve_selection)
@@ -2715,7 +2720,7 @@ class DataPointTypeComboWidget(ttkb.Frame):
 
     def retrieve_selection(self, event):
         """
-        Retrieve the selection and convert is to a DataPointType.  The values used for the list are the
+        Retrieve the selection and convert it to a DataPointType.  The values used for the list are the
         returned value from the label method of the corresponding container class.  For instance, the
         value for DataPointType.BG selection comes from BloodGlucose.label()
 
@@ -3255,7 +3260,8 @@ class ImportExportSpecsListWidget(ttkb.Toplevel):
         :type ok_action: Callable
 
         """
-        ttkb.Toplevel.__init__(self, title=title)
+        ttkb.Toplevel.__init__(self, title=title, iconphoto=pathlib.Path(utilities.whereami('biometrics_tracker'), 'gui',
+                               'biometrics_tracker.png').__str__())
         self.spec_map: specs_map_type = specs_map
         self.cancel_action = cancel_action
         self.ok_action = ok_action
@@ -3310,7 +3316,8 @@ class ImportExportSaveSpecWidget(ttkb.Toplevel):
 
     """
     def __init__(self, title: str, spec_map: specs_map_type, cancel_action: Callable, save_action: Callable):
-        ttkb.Toplevel.__init__(self, title)
+        ttkb.Toplevel.__init__(self, title=title, iconphoto=pathlib.Path(utilities.whereami('biometrics_tracker'), 'gui',
+                               'biometrics_tracker.png').__str__())
         self.spec_map: specs_map_type = spec_map
         self.cancel_action = cancel_action
         self.save_action = save_action

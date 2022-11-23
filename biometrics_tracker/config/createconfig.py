@@ -58,7 +58,9 @@ class ConfigGUI(ttkb.Window):
     A GUI that allows entry/maintenance of the application's configuration info
     """
     def __init__(self, app_dir_path: pathlib.Path):
-        ttkb.Window.__init__(self, title="Biometrics Tracker Configuration", themename="darkly")
+        ttkb.Window.__init__(self, title="Biometrics Tracker Configuration", themename="darkly",
+                             iconphoto=pathlib.Path(util.whereami('biometrics_tracker'), 'gui',
+                                                    'biometrics_tracker.png').__str__())
         width = 500
         height = 200
         screenwidth = self.winfo_screenwidth()
@@ -132,7 +134,7 @@ class ConfigGUI(ttkb.Window):
         self.config_info.menu_font_size = self.font_size_var.get()
         self.config_info.default_font_size = self.font_size_var.get()
         self.config_info.text_font_size = self.font_size_var.get()
-        self.config_info.help_url = pathlib.Path(util.whereami(), 'biometrics_tracker', 'help',
+        self.config_info.help_url = pathlib.Path(util.whereami('biometrics_tracker'), 'help',
                                                  'user-doc-index.html').as_uri()
         self.config_info.config_file_path = pathlib.Path(self.config_dir_path, 'config_info.json')
         self.config_info.write_json()

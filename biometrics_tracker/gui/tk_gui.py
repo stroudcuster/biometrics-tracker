@@ -20,6 +20,7 @@ import webbrowser
 import biometrics_tracker.config.createconfig as config
 import biometrics_tracker.main.core as core
 import biometrics_tracker.main.scheduler as scheduler
+import biometrics_tracker.main.dispatcher as dispatcher
 import biometrics_tracker.ipc.queue_manager as queues
 import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.model.datapoints as dp
@@ -29,6 +30,7 @@ import biometrics_tracker.model.persistence as per
 import biometrics_tracker.output.reports as reports
 from biometrics_tracker.utilities.utilities import mk_datetime, split_datetime, increment_date, split_camelcase, \
     whereami, compare_mdyhms
+import biometrics_tracker.version as version
 import biometrics_tracker.gui.widgets as widgets
 from biometrics_tracker.gui.widgets import DateWidget, TimeWidget, DataPointTypeWidget, ImportExportFieldWidget, \
     dp_widget_union, MetricWidgetFactory, Checkbutton, Radiobutton
@@ -943,6 +945,11 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
 
         """
         self.current_payload_label = event.widget
+        for child in self.list_frame.children:
+            if self.payload_re.match(child):
+                widget = self.list_frame.nametowidget(child)
+                if isinstance(widget, widgets.PayloadLabel):
+                    widget.config(background='black')
         self.current_payload_label.config(background='blue')
         datapoint = event.widget.payload
         track_cfg = self.person.dp_type_track_cfg(datapoint.type)
@@ -1324,7 +1331,7 @@ class AddEditScheduleFrame(ttkb.Frame):
         self.end_date_entry: DateWidget = DateWidget(self.entry_frame, default_value=date.today())
         self.end_date_entry.grid(column=3, row=row, sticky=NW)
         ttk.Label(self.entry_frame, text='Data Point Type:').grid(column=4, row=row, sticky=NW, padx=5, pady=5)
-        self.dp_type_entry = widgets.DataPointTypeComboWidget(self.entry_frame)
+        self.dp_type_entry = widgets.DataPointTypeComboWidget(self.entry_frame, self.person)
         self.dp_type_entry.grid(column=5, row=row, sticky=NW)
         row += 1
         self.seq_nbr_entry = widgets.LabeledIntegerWidget(parent=self.entry_frame, label_text='Seq Nbr:', label_width=10,
@@ -1445,6 +1452,7 @@ class AddEditScheduleFrame(ttkb.Frame):
         self.dp_type_entry.dp_type_var.set('')
         self.seq_nbr_entry.set_value(0)
         self.note_var.set('')
+        self.last_triggered_var.set('')
         self.frequency_var.set(value='')
         if self.schedule_widget is not None:
             self.schedule_widget.forget()
@@ -1654,6 +1662,12 @@ class AddEditScheduleFrame(ttkb.Frame):
 
         """
         self.db_operation = messages.DBOperation.UPDATE
+        for child in self.list_frame.children:
+            if self.payload_re.match(child):
+                widget = self.list_frame.nametowidget(child)
+                if isinstance(widget, widgets.PayloadLabel):
+                    widget.config(background='black')
+        event.widget.config(background='blue')
         self.schedule_entry = event.widget.payload
         self.seq_nbr_entry.set_value(self.schedule_entry.seq_nbr)
         self.start_date_entry.set_date(self.schedule_entry.starts_on)
@@ -1758,11 +1772,10 @@ class UpcomingScheduledEventsFrame(ttkb.Frame):
     during the specified period
 
     """
-    def __init__(self, parent, person: dp.Person, queue_mgr: queues.Queues, cancel_action: Callable):
+    def __init__(self, parent, person: dp.Person, queue_mgr: queues.Queues):
         ttkb.Frame.__init__(self, parent)
         self.person: dp.Person = person
         self.queue_mgr = queue_mgr
-        self.cancel_action: Callable = cancel_action
         self.delete_boxes: list[(ttkb.IntVar, str, int)] = []
         self.payload_re = re.compile('!label\w*')
         self.entry_frame = ttkb.Frame(self)
@@ -1781,8 +1794,6 @@ class UpcomingScheduledEventsFrame(ttkb.Frame):
         self.end_date_entry: DateWidget = DateWidget(self.entry_frame, default_value=date.today())
         self.end_date_entry.grid(column=3, row=row, sticky=NW)
         row += 2
-        cancel = ttkb.Button(self.entry_frame, text='Cancel', command=cancel_action)
-        cancel.grid(column=1, row=row, padx=5, pady=5)
         self.show_events_button = ttkb.Button(self.entry_frame, text='Show Events', command=self.show_events)
         self.show_events_button.grid(column=3, row=row, padx=5, pady=5)
         self.entry_frame.grid(column=0, row=0, padx=5, pady=5)
@@ -1894,14 +1905,15 @@ class RunSchedulerFrame(ttkb.Frame):
         self.run_action = run_action
         self.stop_action = stop_action
         self.row: int = 0
-        ttkb.Label(self, text="Start the Scheduler").grid(column=0, row=self.row, columnspan=4)
+        ttkb.Label(self, text="Start the Scheduler and Dispatcher").grid(column=0, row=self.row, columnspan=4)
         self.row += 2
-        cancel_button = ttkb.Button(self, text='Exit', command=exit_action)
+        cancel_button = ttkb.Button(self, text='Exit', command=exit_action, width=15)
         cancel_button.grid(column=0, row=self.row, sticky=NW, padx=5, pady=5)
-        run_button = ttkb.Button(self, text='Run', command=self.run_action)
+        run_button = ttkb.Button(self, text='Start', command=self.run_action, width=15)
         run_button.grid(column=2, row=self.row, sticky=NW, padx=5, pady=5)
-        stop_button = ttkb.Button(self, text='Stop', command=self.stop_action)
-        stop_button.grid(column=4, row=self.row, sticky=NW, padx=5, pady=5)
+        if parent.dispatcher is not None:
+            stop_button = ttkb.Button(self, text='Stop Dispatcher', command=self.stop_action, width=15)
+            stop_button.grid(column=4, row=self.row, sticky=NW, padx=5, pady=5)
         self.row += 1
         self.grid(padx=200)
         self.id_seq_re = re.compile('(\w+)[:](\d+)')
@@ -1955,7 +1967,7 @@ class Application(ttkb.Window, core.CoreLogic):
         completion queues.
         :type queue_mgr: biometrics_tracker.ipc.queue_manager.Queues
         """
-        ttkb.Window.__init__(self, themename="darkly", iconphoto=pathlib.Path(whereami(), 'gui',
+        ttkb.Window.__init__(self, themename="darkly", iconphoto=pathlib.Path(whereami('biometrics_tracker'), 'gui',
                                                                               'biometrics_tracker.png').__str__())
         core.CoreLogic.__init__(self, config_info, queue_mgr)
         font.nametofont('TkMenuFont').config(size=self.config_info.menu_font_size)
@@ -1967,7 +1979,7 @@ class Application(ttkb.Window, core.CoreLogic):
         screenheight = self.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         self.geometry(alignstr)
-        self.title('Biometrics Tracker')
+        self.title(f'Biometrics Tracker version {version.__version__}')
         self.menu_bar = ttkb.Menu(self)
         self.config(menu=self.menu_bar)
         self.current_display = None
@@ -1980,7 +1992,7 @@ class Application(ttkb.Window, core.CoreLogic):
         entry_edit_menu = ttkb.Menu(self.menu_bar)
         entry_edit_menu.add_command(label='Add a New Datapoint', command=lambda: self.select_person(
             'Who are you entering data for?', self.add_datapoint))
-        entry_edit_menu.add_command(label='View/Edit History', command=lambda: self.select_person(
+        entry_edit_menu.add_command(label='View/Edit Biometrics History', command=lambda: self.select_person(
             'Whose history do you want to view?', self.view_edit_history))
         self.menu_bar.add_cascade(label="Entry/Edit", menu=entry_edit_menu)
         schedule_menu = ttkb.Menu(self.menu_bar)
@@ -1988,7 +2000,7 @@ class Application(ttkb.Window, core.CoreLogic):
             'Whose schedules do you want to work with?', self.add_edit_schedules))
         schedule_menu.add_command(label='View Upcoming Events', command=lambda: self.select_person(
             'Whose schedules do you want to work with?', self.upcoming_events))
-        schedule_menu.add_command(label='Start the Scheduler', command=self.run_scheduler)
+        schedule_menu.add_command(label='Start Scheduler/Dispatcher', command=self.run_scheduler)
         self.menu_bar.add_cascade(label="Schedules", menu=schedule_menu)
         reports_menu = ttkb.Menu(self.menu_bar)
         reports_menu.add_command(label='History Report', command=lambda: self.select_person(
@@ -2005,14 +2017,21 @@ class Application(ttkb.Window, core.CoreLogic):
         self.menu_bar.add_cascade(label="Help", menu=help_menu)
         self.people_list: list[tuple[str, str]] = []
         self.people_listbox = None
-        self.repeat_entry = False
-        self.scheduler = None
+        self.repeat_entry: bool = False
+        self.scheduler: Optional[scheduler.Scheduler] = None
+        self.dispatcher: Optional[dispatcher.Dispatcher] = None
         self.check_completion_queue()
         self.check_response_queue()
         self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase,
                                                              replyto=self.refresh_people_list,
                                                              person_id=None,
                                                              operation=messages.DBOperation.RETRIEVE_SET))
+        self.after(600000, func=self.monitor_dispatcher_thread)
+
+    def monitor_dispatcher_thread(self):
+        if self.dispatcher is not None and not self.dispatcher.is_alive():
+            self.dispatcher = None
+        self.after(600000, func=self.monitor_dispatcher_thread)
 
     def help_menu(self):
         """
@@ -2428,13 +2447,10 @@ class Application(ttkb.Window, core.CoreLogic):
         :return: None
 
         """
-        def cancel():
-            self.remove_child_frame(UpcomingScheduledEventsFrame)
-
         person = person_msg.payload
         if isinstance(self.current_display, PeopleListFrame):
             self.remove_child_frame(PeopleListFrame)
-        frame = UpcomingScheduledEventsFrame(self, person=person, queue_mgr=self.queue_mgr, cancel_action=cancel)
+        frame = UpcomingScheduledEventsFrame(self, person=person, queue_mgr=self.queue_mgr)
         self.current_display = frame
         frame.focus_set()
 
@@ -2450,11 +2466,16 @@ class Application(ttkb.Window, core.CoreLogic):
 
         def run() -> None:
             self.scheduler = scheduler.Scheduler(self.config_info, self.queue_mgr,
+                                                 start_dispatcher=(self.dispatcher is None),
                                                  completion_replyto=frame.show_scheduled_jobs)
             self.scheduler.start()
+            if self.dispatcher is None:
+                self.dispatcher = self.scheduler.dispatcher
 
         def stop() -> None:
-            self.scheduler.runner.stop()
+            if self.dispatcher is not None:
+                self.dispatcher.stop()
+                self.dispatcher = None
             self.scheduler.stop()
             self.remove_child_frame(RunSchedulerFrame)
 
@@ -2466,14 +2487,14 @@ class Application(ttkb.Window, core.CoreLogic):
         frame.focus_set()
 
 
-class ScheduledEntryWindow(threading.Thread, ttkb.Window, core.CoreLogic):
+class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
     """
     This ttkbootstrap Window handles the scheduled entry of a single metric.  The person is the person is the
     owner of the schedule entry and date is assumed to be the current date.
     """
 
-    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues,
-                 entry: dp.ScheduleEntry):
+    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues, schedule_str: str, person_id: str,
+                 dp_type_name: str, schedule_note: str):
         """
         Creates an instance of biometrics-tracker.gui.tkgui.ScheduledEntry
 
@@ -2486,23 +2507,23 @@ class ScheduledEntryWindow(threading.Thread, ttkb.Window, core.CoreLogic):
         :type entry: biometrics_tracker.model.datapoints.ScheduleEntry
 
         """
-        threading.Thread.__init__(self)
-        ttkb.Window.__init__(self, themename="darkly")
+        ttkb.Window.__init__(self, themename="darkly",
+                             iconphoto=pathlib.Path(whereami('biometrics_tracker'), 'gui',
+                                                    'biometrics_tracker.png').__str__())
         core.CoreLogic.__init__(self, config_info, queue_mgr)
-        self.person_id: str = entry.person_id
+        self.person_id: str = person_id
         self.person: Optional[dp.Person] = None
-        self.dp_type: dp.DataPointType = entry.dp_type
-        self.schedule_entry: dp.ScheduleEntry = entry
+        self.dp_type: dp.DataPointType = dp.dptype_name_map[dp_type_name]
         font.nametofont('TkMenuFont').config(size=self.config_info.menu_font_size)
         font.nametofont('TkTextFont').config(size=self.config_info.text_font_size)
         font.nametofont('TkDefaultFont').config(size=self.config_info.default_font_size)
-        width = 800
-        height = 300
+        width = 975
+        height = 700
         screenwidth = self.winfo_screenwidth()
         screenheight = self.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         self.geometry(alignstr)
-        self.title('Biometrics Tracker')
+        self.title(f'Biometrics Tracker version {version.__version__}')
         self.menu_bar = ttkb.Menu(self)
         self.config(menu=self.menu_bar)
         self.current_display = None
@@ -2513,9 +2534,9 @@ class ScheduledEntryWindow(threading.Thread, ttkb.Window, core.CoreLogic):
         self.row: int = 0
         ttkb.Label(self, text="Add New Datapoint").grid(column=0, row=self.row, columnspan=4)
         self.row += 1
-        ttkb.Label(self, text=f'Schedule Entry: {entry.__str__()}').grid(column=0, row=self.row, columnspan=4)
+        ttkb.Label(self, text=f'Schedule Entry: {schedule_str}').grid(column=0, row=self.row, columnspan=4)
         self.row += 1
-        ttkb.Label(self, text=entry.note, width=50).grid(column=0, row=self.row, columnspan=4)
+        ttkb.Label(self, text=schedule_note, width=50).grid(column=0, row=self.row, columnspan=4)
         self.row += 2
         ttkb.Label(self, text="Date:").grid(column=0, row=self.row, padx=5, pady=5)
         self.date_widget = DateWidget(self, default_value=date.today())

@@ -5,7 +5,7 @@
 <title>Biometrics Tracker User Documentation</title>
 <meta name="generator" content="Bluefish 2.2.12" >
 <meta name="author" content="Stroud" >
-<meta name="date" content="2022-11-04T14:53:21-0400" >
+<meta name="date" content="2022-11-22T11:55:15-0500" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -46,7 +46,7 @@ a larger font is easier to read.  When you click the ‘Create Config’ button 
 has several drop down menus that are organized in the following fashion.</p>
 <ul class="menu" id="menu-overview">
 <li><a href="add-edit-person.html" target="_blank" class="menu-link">People</a></li>
-<li><a href="entry-edit.html" target="_blank" class="menu-link">Entry/Edit</a></li>
+<li><a href="entry-edit.html" target="_blank" class="menu-link">Entering, Viewing and Editing Biometric Readings</a></li>
 <li><a href="reports.html" target="_blank" class="menu-link">Reports</a></li>
 <li><a href="import-export.html" target="_blank" class="menu-link">Import/Export</a></li>
 <li><a href="scheduling.html" target="_blank", class="menu-link">Scheduling</a></li>
@@ -60,7 +60,8 @@ has several drop down menus that are organized in the following fashion.</p>
 <h2>A Glossary of Terms</h2>
 <dl>
 	<dt id="glossary-checkbox">check box</dt>
-	<dd>One or more GUI elements that allow you to select one or more choices from a list of options</dd>
+	<dd>A GUI element consisting of a square box and a label that allows to select or de-select an option.  In some cases, a set of check boxes allow you to 
+	select one or several options from a list</dd>
 	<dt id="glossary-combobox">combo box</dt>
 	<dd>A GUI element the allows you to select from a list of values via a drop-down list that appears when the combo box is in focus.  A value is selected
 	by clicking on it's entry in the list.</dd>
@@ -69,16 +70,17 @@ has several drop down menus that are organized in the following fashion.</p>
 	the date, time and value of the reading, and optionally a note that gives context to the reading.</dd>
 	<dt id="glossary-dialog">dialog</dt>
 	<dd>A pop up GUI that either informs you of some event, or prompts you to enter a piece of information.  While the dialog is displayed the main GUI may
-	be disabled for entry.  Dialogs generally a Cancel button and a button to indicate that the entry of the requested information is complete.
+	be disabled for entry.  Dialogs that propmt you for input generally feature a Cancel button and a button to indicate that the entry of the information is 
+	complete.
 	<dt id="glossary-entry-session">entry session/event</dt>
-	<dd>An entry session or event is the result of the conditions stated in a Schedule being met.  A Schedule Entry window will be displayed,
+	<dd>When the conditions stated in a Schedule are met, and entry session is initiated.  A Scheduled Entry GUI will be displayed,
 	prompting you to enter a metric reading.</dd>	
 	<dt id="glossary-field">field, entry field</dt>
 	<dd>GUI elements that allow you to enter numerical or character information.</dd>
-	<dt id="gossary-frequency">frequency</dt>
+	<dt id="glossary-frequency">frequency</dt>
 	<dd>The interval a Schedule is based on.  Frequency may be Hourly, Daily, Weekly, Monthly or One Time.</dd>
 	<dt id="glossary-gui">GUI</dt>
-	<dd>Graphical User Interface - the window based display and entry elements used in applications.</dd>
+	<dd>Graphical User Interface - the window based display and entry elements and buttons used in applications.</dd>
 	<dt id="glossary-in-focus">in focus</dt>
 	<dd>An entry field on a GUI is said to be in focus when it is the field that will receive input from the keyboard.  As to move through the 
 	entry fields using the Tab and Back Tab keys or click on a field, the field in focus will change.</dd>
@@ -90,7 +92,7 @@ has several drop down menus that are organized in the following fashion.</p>
 	<dt>property</dt>
 	<dd>A piece of information related to a person, data point, schedule, etc.  For instance, person has ID, name and date of birth properties</dd>
 	<dt id="glossary-radio-button">radio button</dt>
-	<dd>A GUI element the allows you to select a single choice from a list of options</dd>
+	<dd>A GUI element the allows you to select a single choice from a list of options.  Unlike check buttons, radio buttons are always presented as a group</dd>
 	<dt id="glossary-schedule">schedule</dt>
 	<dd>A Schedule is a set of conditions associated with a particular person and data point type.  When the schedule monitor is running and 
 	the Schedule's conditions are met, and Entry Session is initiated.</dd>
@@ -102,7 +104,7 @@ has several drop down menus that are organized in the following fashion.</p>
 </section>
 <section id="selecting-a-person">
 <h3>Selecting a Person to Work With</h3>
-<p>If more than one person has been entered, all of the functional menu options with the exception of <span class="menu-item">Add a New Person</span> will display 
+<p>If more than one person has been entered, all of the menu options with the exception of <span class="menu-item">Add a New Person</span> will display 
 a list that of people tracked by the application that allows you to select person whose data you will be working with.  To select a person, 
 double click the list entry displaying their name.</p>
 <img src="images/person-list.png" style="width: 735.75px; height: 572.25px;" class="screenshot"/>
@@ -111,8 +113,9 @@ double click the list entry displaying their name.</p>
 <h2>Check Boxes and Radio Buttons</h2>
 <p>In addition to <a href="#glossary-field" target="_blank" class="glossary-link">entry fields</a> that allow you to enter text or numbers, the Biometrics Tracker uses 
 <a href="#glossary-checkbox" target="_blank" class="glossary-link">check boxes</a> and <a href="#glossary-radio-button" target="_blank" class="glossary-link">radio buttons</a>. You indicate
-your choice by clicking on the box with the left mouse button or by pressing on the space bar when the check box is in focus.  Using the space bar allows you to keep your hands on the key board, which makes for faster an more accurate data entry.  The image below 
-unselected check box in focus.  The fact that it is unchecked is indicated by the gray color.
+your choice by clicking on the box with the left mouse button or by pressing on the space bar when the check box is in focus.  Using the space bar allows you to keep your hands on the key board,
+ which makes for faster an more accurate data entry.  The image below shows an unselected check box in focus.  The fact that it is unchecked is indicated by the 
+ gray color.
 </p>
 <img src="images/unchecked-box-in-focus.png" width: 695px; height: 137px; class="small-screenshot"/>
 <p>The image below shows a selected <a href="#glossary-checkbox" target="_blank" class="glossary-link">check box</a>
@@ -152,9 +155,8 @@ value, click on it.  The value will appear in the entry field.  See the image on
 <section id="entering-dates-and-times">
 <h3>Entering Dates and Times</h3>
 <p>The date and time entry fields used by the Biometric Tracker have been designed to facilitate fast and accurate entry.  The month, day, hour and minute 
-<a href="#glossary-field" target="_blank" class="glossary-link">fields<a>
-checked to assure that they fall within the valid range of values.  If an invalid value is entered, the <a href="#glossary-field" target="_blank" class="glossary-link">
-field</a> will be cleared and surrounded by a red border, as
+<a href="#glossary-field" target="_blank" class="glossary-link">fields<a> are checked to assure that they fall within the valid range of values.  
+If an invalid value is entered, the <a href="#glossary-field" target="_blank" class="glossary-link">field</a> will be cleared and surrounded by a red border, as
 shown below.
 </p>
 <img src="images/invalid-hour-error.png" class="small-screenshot"/>
@@ -169,6 +171,7 @@ data points that have accumulated over a period of time, this helps to speed the
 class="glossary-link">field</a>, it will be bordered in red as shown below.</p>
 <img src="images/blank-numeric-error.png" class="small-screenshot"/>
 </section>
+<nav><a href="add-edit-person.html" class="returnlink">Next Topic: Add/Edit Person</a></nav>
 <footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
 </body>
 </html>

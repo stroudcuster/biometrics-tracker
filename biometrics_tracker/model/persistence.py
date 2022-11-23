@@ -367,7 +367,7 @@ class DataBase(threading.Thread):
         """
         weekdays: str = ','.join(w.name for w in sched_entry.weekdays)
         doms: str = ','.join(str(d) for d in sched_entry.days_of_month)
-        when_time_str = sched_entry.when_time.strftime('%I:%M:%S')
+        when_time_str = sched_entry.when_time.strftime('%H:%M:%S')
         curs = self.conn.cursor()
         curs.execute(INSERT_SCHEDULE_STMT, (sched_entry.person_id, sched_entry.seq_nbr, sched_entry.dp_type.name,
                                             sched_entry.frequency.name, sched_entry.starts_on, sched_entry.ends_on,
@@ -387,7 +387,7 @@ class DataBase(threading.Thread):
         """
         weekdays: str = ','.join(w.name for w in sched_entry.weekdays)
         doms: str = ','.join(str(d) for d in sched_entry.days_of_month)
-        when_time_str = sched_entry.when_time.strftime('%I:%M:%S')
+        when_time_str = sched_entry.when_time.strftime('%H:%M:%S')
         curs = self.conn.cursor()
         curs.execute(UPDATE_SCHEDULE_STMT, (sched_entry.dp_type.name, sched_entry.frequency.name, sched_entry.starts_on,
                                             sched_entry.ends_on, sched_entry.note, weekdays, doms, sched_entry.interval,

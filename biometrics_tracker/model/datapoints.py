@@ -334,11 +334,11 @@ class ScheduleEntry:
                 if today <= self.ends_on:
                     match self.frequency:
                         case FrequencyType.One_Time:
-                            if self.starts_on == today:
+                            if self.starts_on == today and self.when_time <= datetime.now().time():
                                 next_occur.append(utilities.mk_datetime(self.starts_on, self.when_time))
                         case FrequencyType.Monthly:
                             for day_of_month in self.days_of_month:
-                                if day_of_month == today.day:
+                                if day_of_month == today.day and self.when_time <= datetime.now().time():
                                     next_occur.append(utilities.mk_datetime(today, self.when_time))
                         case FrequencyType.Weekly:
                             for weekday in self.weekdays:
@@ -346,12 +346,13 @@ class ScheduleEntry:
                                     weekday_dates = self.get_weekday_dates(weekday)
                                     if self.interval == 0:
                                         next_occur.append(utilities.mk_datetime(today, self.when_time))
-                                    elif date(today.year, today.month, today.day) in weekday_dates:
+                                    elif date(today.year, today.month, today.day) in weekday_dates and \
+                                            self.when_time <= datetime.now().time():
                                         next_occur.append(utilities.mk_datetime(today, self.when_time))
                         case FrequencyType.Daily:
                             next_occur.append(utilities.mk_datetime(today, self.when_time))
                         case FrequencyType.Hourly:
-                            hour: int = self.when_time.hour
+                            hour: int = datetime.now().time().hour
                             while hour < 24:
                                 next_occur.append(datetime(year=today.year, month=today.month, day=today.day, hour=hour,
                                                            minute=self.when_time.minute))
@@ -395,10 +396,10 @@ class ScheduleEntry:
                            f'{self.when_time.strftime("%I:%M:%S %p")}'
             case FrequencyType.Hourly:
                 if self.interval == 1:
-                    return f'{stub} starting at {self.when_time.strftime("%I:%M:%S %p")}'
+                    return f'{stub} at {self.when_time.strftime("%M:%S")} after the hour'
                 else:
                     return f'{stub} every {utilities.ordinal(self.interval)} hour starting at ' \
-                           f'{self.when_time.strftime("%I:%M:%S %p")}'
+                           f'{self.when_time.strftime("%M:%S")} after the hour'
 
 
 @dataclass

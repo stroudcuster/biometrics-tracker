@@ -27,7 +27,7 @@ class LoggingConfig:
                     },
                     'unit_tests': {
                         'handlers': ('file-handler',),
-                        'level': logging.DEBGU
+                        'level': logging.DEBUG,
                     }
                 }
             }

@@ -4,7 +4,7 @@
 <title>Start the Scheduler</title>
 <meta name="generator" content="Bluefish 2.2.12" >
 <meta name="author" content="Stroud" >
-<meta name="date" content="2022-11-04T12:49:27-0400" >
+<meta name="date" content="2022-11-23T18:28:59-0500" >
 <meta name="copyright" content="">
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -19,13 +19,17 @@
 <header>Start the Scheduler</header>
 <a target="start-scheduler"></a>
 <p>
-The <span class="menu-item">Start Scheduler</span> function examines the schedules entered for each person tracked by the application and submits one or more time-triggered 
-task to start an entry session for each schedule approaching a trigger point.  You can get a preview of the events to be scheduled by using the 
+The <span class="menu-item">Start Scheduler/Dispatcher</span> function examines the schedules entered for each person tracked by the application and submits one or more time-triggered 
+tasks to start entry sessions for each schedule approaching a trigger point, then starts a Dispatcher job that will run in the background, monitoring the 
+scheduled entry sessions and initiating those whose scheduled time has arrived.  The Dispatcher job will end when there are no more entry sessions scheduled,
+or when you turn off your computer. Stopping the Dispatcher should not normally be necessary, as it is only consumes a small amount of your system's resources.
+ You can also stop the Dispatcher job by selecting this menu selection and clicking the <span class="widget-label">Stop Dispatcher</span>
+button that is displayed when the Dispatcher job is running.  You can get a preview of the events to be scheduled by using the 
 <span class="menu-item">View Upcoming Events</span> function.  Selecting the <span class="menu-item">Start Scheduler</span> menu option will display the
 <a href="glossary.html#glossary-gui" target="_blank" class="glossary-link">GUI</a> shown below:
 </p>
 <img src="images/start-scheduler-1.png" width="976" height="771" alt="" class="screenshot">
-<p>Click the <span class="widget-label">Run</span> button to start the Scheduler process.  After a short time, a list of events schedules will be displayed
+<p>Click the <span class="widget-label">Start Scheduler and Dispatcher</span> button to start the Scheduler process.  After a short time, a list of events schedules will be displayed
 on the lower portion of the GUI as shown below.
 </p>
 <img src="images/start-scheduler-2.png" width="978" height="760" alt="" class="screenshot">
@@ -37,8 +41,8 @@ Because most of what the Start Scheduler process does is unseen, it posts its ac
 located in your home folder.  An example log file is shown below.
 </p>
 <img src="images/start-scheduler-3.png" width="814" height="194" alt="" class="screenshot">
-<nav><a href="view-upcoming-events.html" class="returnlink">View Upcoming Events</a></nav>
-<nav><a href="scheduling.html" class="returnlink"><span class="returnlink">Scheduling</span></a></nav>
+<nav><a href="viewing-upcoming-events.html" class="returnlink">Previous Topic: Viewing Upcoming Events</a></nav>
+<nav><a href="scheduling.html" class="returnlink"><span class="returnlink">Return to the Scheduling Overview</span></a></nav>
 <nav><a href="user-doc-index.html#menu-overview" target="_parent" class="returnlink">Return to the Menu Overview</a></nav>
 <footer>Copyright 2022 Stroud S. Custer, published under the MIT license</footer>
 

@@ -17,7 +17,7 @@ autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf", "pytest"]
 project = 'Biometrics Tracking'
 copyright = '2022, Stroud Custer III'
 author = 'Stroud Custer III'
-release = '1.0.1'
+release = '1.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
