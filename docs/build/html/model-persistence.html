@@ -66,17 +66,6 @@ the PEOPLE table.
 relationship with the PEOPLE table
 - SCHEDULE - one row for each schedule entry for the scheduled collection of biometrics data.  This table has a
 foreign key relationship with the PEOPLE table</p>
-<p>TODO: mark up the list above so that it appears as a bulleted list in the Sphinx-produced API doc pages</p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">param filename<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the name of the file containing the SQLite database</p>
-</dd>
-<dt class="field-even">type filename<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
-</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.close" title="Permalink to this definition">¶</a></dt>
@@ -294,6 +283,23 @@ instance to the SCHEDULE table.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.retrieve_datapoints">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retrieve_datapoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">biometrics_tracker.model.datapoints.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a list of DataPoints from rows retrieved from the DATAPOINTS table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rows</strong> (<em>list</em><em>[</em><em>list</em><em>[</em><em>tuple</em><em>[</em><em>]</em><em>]</em><em>]</em>) – the rows retrieved by a SELECT statement</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of DataPoints</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint">biometrics_tracker.model.datapoints.DataPoint</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_for_person">
 <span class="sig-name descname"><span class="pre">retrieve_datapoints_for_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">biometrics_tracker.model.datapoints.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_for_person" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves rows related to the specified person id from the DATAPOINTS table, returning a list of
@@ -311,6 +317,30 @@ instances of subclasses of model.datapoints.DataPoint</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[model.datapoints.UOM]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_where">
+<span class="sig-name descname"><span class="pre">retrieve_datapoints_where</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><span class="pre">DataPointType</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint"><span class="pre">biometrics_tracker.model.datapoints.DataPoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_where" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method was created to provide more flexibility in the selection criteria for DataPoints.  Selection
+for Person, date range and DataPointType can be mixed and matches.  A parameter value of None indicates
+that the column will not be included in the SELECT statement where clause.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>person_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the optional ID of the person to select rows for</p></li>
+<li><p><strong>start_datetime</strong> (<em>Optional</em><em>[</em><em>datetime</em><em>]</em>) – the optional earliest date/time to select rows for</p></li>
+<li><p><strong>end_datetime</strong> (<em>Optional</em><em>[</em><em>datetime</em><em>]</em>) – the optional most recent date/time to select rows for</p></li>
+<li><p><strong>dp_type</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPointType" title="biometrics_tracker.model.datapoints.DataPointType"><em>biometrics_tracker.model.datapoints.DataPointType</em></a><em>]</em>) – the optional DataPointType to select rows for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of DataPoints that meet the provided selection criterial</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.DataPoint" title="biometrics_tracker.model.datapoints.DataPoint">biometrics_tracker.model.datapoints.DataPoint</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -482,7 +512,9 @@ instance to the SCHEDULE table.</p>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_datapoint"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_datapoint()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_person"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_person()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.insert_schedule_entry"><code class="docutils literal notranslate"><span class="pre">DataBase.insert_schedule_entry()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_datapoints()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_for_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_datapoints_for_person()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_where"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_datapoints_where()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_people"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_people()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_person()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_schedules_for_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_schedules_for_person()</span></code></a></li>

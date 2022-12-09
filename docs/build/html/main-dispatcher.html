@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>biometrics_tracker.config-logging_config module &#8212; Biometrics Tracking 1.1.0 documentation</title>
+    <title>biometrics_tracker.main.dispatcher module &#8212; Biometrics Tracking 1.1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -17,8 +17,8 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="biometrics_tracker.gui.tk_gui module" href="gui-tk-gui.html" />
-    <link rel="prev" title="biometrics_tracker.config.json_handler module" href="config-json_handler.html" /> 
+    <link rel="next" title="biometrics_tracker.main.scheduler module" href="main-scheduler.html" />
+    <link rel="prev" title="biometrics_tracker.main.core module" href="main-core.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -30,14 +30,14 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
+          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="config-json_handler.html" title="biometrics_tracker.config.json_handler module"
+          <a href="main-core.html" title="biometrics_tracker.main.core module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.config-logging_config module</a></li> 
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.dispatcher module</a></li> 
       </ul>
     </div>  
 
@@ -46,19 +46,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="biometrics-tracker-config-logging-config-module">
-<span id="config-logging-config"></span><h1>biometrics_tracker.config-logging_config module<a class="headerlink" href="#biometrics-tracker-config-logging-config-module" title="Permalink to this heading">¶</a></h1>
+  <section id="biometrics-tracker-main-dispatcher-module">
+<span id="main-dispatcher"></span><h1>biometrics_tracker.main.dispatcher module<a class="headerlink" href="#biometrics-tracker-main-dispatcher-module" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 </div>
-<span class="target" id="module-biometrics_tracker.config.logging_config"></span><dl class="py class">
-<dt class="sig sig-object py" id="biometrics_tracker.config.logging_config.LoggingConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.config.logging_config.</span></span><span class="sig-name descname"><span class="pre">LoggingConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.config.logging_config.LoggingConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Carries the logging configuration and allows the log file pathname and logging level to be
-updated.</p>
+<span class="target" id="module-biometrics_tracker.main.dispatcher"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.main.dispatcher.Dispatcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.dispatcher.</span></span><span class="sig-name descname"><span class="pre">Dispatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.dispatcher.Dispatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Uses schedule library functionality to run jobs at the appropriate date and time</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.dispatcher.Dispatcher.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.dispatcher.Dispatcher.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monitor and run pending jobs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -73,8 +83,11 @@ updated.</p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">biometrics_tracker.config-logging_config module</a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.config.logging_config.LoggingConfig"><code class="docutils literal notranslate"><span class="pre">LoggingConfig</span></code></a></li>
+<li><a class="reference internal" href="#">biometrics_tracker.main.dispatcher module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.dispatcher.Dispatcher"><code class="docutils literal notranslate"><span class="pre">Dispatcher</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.dispatcher.Dispatcher.run"><code class="docutils literal notranslate"><span class="pre">Dispatcher.run()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -82,18 +95,18 @@ updated.</p>
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="config-json_handler.html"
-                          title="previous chapter">biometrics_tracker.config.json_handler module</a></p>
+    <p class="topless"><a href="main-core.html"
+                          title="previous chapter">biometrics_tracker.main.core module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="gui-tk-gui.html"
-                          title="next chapter">biometrics_tracker.gui.tk_gui module</a></p>
+    <p class="topless"><a href="main-scheduler.html"
+                          title="next chapter">biometrics_tracker.main.scheduler module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/config-logging_config.rst.txt"
+      <li><a href="_sources/main-dispatcher.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -121,14 +134,14 @@ updated.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="gui-tk-gui.html" title="biometrics_tracker.gui.tk_gui module"
+          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
              >next</a> |</li>
         <li class="right" >
-          <a href="config-json_handler.html" title="biometrics_tracker.config.json_handler module"
+          <a href="main-core.html" title="biometrics_tracker.main.core module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.config-logging_config module</a></li> 
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.dispatcher module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

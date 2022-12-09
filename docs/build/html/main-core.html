@@ -17,7 +17,7 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="biometrics_tracker.main.scheduler module" href="main-scheduler.html" /> 
+    <link rel="next" title="biometrics_tracker.main.dispatcher module" href="main-dispatcher.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -29,7 +29,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
+          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
@@ -152,6 +152,14 @@ This allows the user to delete an existing datapoint by changing it’s value fi
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.main.core.DataPointSelection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.core.</span></span><span class="sig-name descname"><span class="pre">DataPointSelection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic" title="biometrics_tracker.main.core.CoreLogic"><span class="pre">CoreLogic</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">people_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_date_rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_dp_type_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.DataPointSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A GUI framework agnostic class to act as a container for the selection criteria collected by
+in inheriting class the implements the selection GUI in a particular GUI framework</p>
+</dd></dl>
+
 </section>
 
 
@@ -175,6 +183,7 @@ This allows the user to delete an existing datapoint by changing it’s value fi
 <li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.save_datapoint"><code class="docutils literal notranslate"><span class="pre">CoreLogic.save_datapoint()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#biometrics_tracker.main.core.DataPointSelection"><code class="docutils literal notranslate"><span class="pre">DataPointSelection</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -182,8 +191,8 @@ This allows the user to delete an existing datapoint by changing it’s value fi
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="main-scheduler.html"
-                          title="next chapter">biometrics_tracker.main.scheduler module</a></p>
+    <p class="topless"><a href="main-dispatcher.html"
+                          title="next chapter">biometrics_tracker.main.dispatcher module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -216,7 +225,7 @@ This allows the user to delete an existing datapoint by changing it’s value fi
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
+          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.1.0 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>

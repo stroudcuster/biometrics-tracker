@@ -2,7 +2,6 @@ from datetime import date, time, datetime
 import importlib.util as imputil
 import pathlib
 import re
-import sys
 from typing import Any, Optional
 
 

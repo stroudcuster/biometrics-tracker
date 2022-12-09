@@ -4,18 +4,19 @@ from datetime import datetime, date, time
 from io import StringIO, SEEK_SET
 import pathlib
 import re
-import threading
 import tkinter as tk
 import tkinter.filedialog as filedialog
 import tkinter.font as font
 from tkinter import ttk
+from typing import Any, Callable, Optional, Union
+import webbrowser
+
 import ttkbootstrap as ttkb
 import ttkbootstrap.dialogs.dialogs as dialogs
-from ttkbootstrap.validation import add_validation
 import ttkbootstrap.scrolled as scrolled
 from ttkbootstrap.constants import *
-from typing import Callable, Optional, Union
-import webbrowser
+
+import plugin_manager.model.plugin as plugin_model
 
 import biometrics_tracker.config.createconfig as config
 import biometrics_tracker.main.core as core
@@ -70,20 +71,21 @@ class PersonFrame(ttkb.Frame):
             self.person_id_var.set(person.id)
             self.name_var.set(person.name)
             startdate = person.dob
-        ttk.Label(self, text="Person ID:").grid(column=0, row=1, sticky=NSEW, padx=5, pady=5)
-        self.id_entry = ttkb.Entry(self, textvariable=self.person_id_var)
-        self.id_entry.grid(column=1, row=1, sticky=NSEW, rowspan=2, pady=5, padx=5)
-        ttk.Label(self, text="Name:").grid(column=0, row=3, sticky=NSEW, rowspan=1)
-        self.name_entry = ttkb.Entry(self, textvariable=self.name_var)
-        self.name_entry.grid(column=1, row=3, sticky=NSEW, rowspan=1, pady=5, padx=5)
-        ttk.Label(self, text="Date of Birth:").grid(column=0, row=4, sticky=NSEW, rowspan=1)
+        ttk.Label(self, text="Person ID:", anchor=tk.E).grid(column=0, row=1, sticky=NSEW, padx=5, pady=5)
+        self.id_entry = ttkb.Entry(self, textvariable=self.person_id_var, width=20)
+        self.id_entry.grid(column=1, row=1, sticky=tk.W, rowspan=2, pady=5, padx=5)
+        ttk.Label(self, text="Name:", anchor=tk.E).grid(column=0, row=3, sticky=NSEW, rowspan=1)
+        self.name_entry = ttkb.Entry(self, textvariable=self.name_var, width=50)
+        self.name_entry.grid(column=1, row=3, sticky=tk.W, rowspan=1, pady=5, padx=5)
+        ttk.Label(self, text="Date of Birth:", anchor=tk.E).grid(column=0, row=4, sticky=NSEW, rowspan=1)
         self.date_entry: DateWidget = DateWidget(self, startdate)
-        self.date_entry.grid(column=1, row=4, rowspan=1, pady=5, padx=5, sticky=NSEW)
+        self.date_entry.grid(column=1, row=4, rowspan=1, pady=5, padx=5, sticky=tk.W)
         self.dp_widgets: list[DataPointTypeWidget] = []
         self.date_entry.set_prev_entry(self.name_entry)
 
         ttk.Label(self, text="Check the items you will be tracking and select a unit of measure for each",
-                  ).grid(column=0, row=5, columnspan=2, rowspan=2, pady=10, padx=5, sticky=NW)
+                  wraplength=500, anchor=tk.W).grid(column=0, row=5, columnspan=3, rowspan=2, pady=10,
+                                                               padx=5, sticky=NW)
         row = 7
         for dp_type in dp.dptype_dp_map.keys():
             tracked = False
@@ -127,7 +129,9 @@ class PeopleListFrame(ttkb.Frame):
 
         """
         ttkb.Frame.__init__(self, parent)
-        ttkb.Label(self, text=title).grid(column=0, row=0, padx=5, pady=5, sticky=NSEW)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        ttkb.Label(self, text=title).grid(column=0, row=0, padx=5, pady=5, sticky=tk.EW)
         self.people_list: list[tuple[str, str]] = people_list
         self.queue_mgr: queues.Queues = queue_mgr
         self.callback: Callable = callback
@@ -139,7 +143,7 @@ class PeopleListFrame(ttkb.Frame):
             for idx, id_name in enumerate(people_list):
                 self.listbox.insert(idx, f"{id_name[0]} {id_name[1]}")
             self.listbox.bind('<Double-1>', self.send_db_req)
-            self.listbox.grid(column=0, row=1, padx=5, pady=5, stick=NW)
+            self.listbox.grid(column=0, row=1, padx=5, pady=5, stick=tk.NSEW)
             self.grid()
         else:
             self.send_db_req(event=None)
@@ -196,19 +200,24 @@ class NewDataPointFrame(ttkb.Frame):
         ttkb.Frame.__init__(self, parent)
         self.person: dp.Person = person
         self.bio_entries = []
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=3)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        self.columnconfigure(4, weight=3)
         row: int = 0
         ttkb.Label(self, text="Add New Datapoint").grid(column=0, row=row, columnspan=4)
         row += 1
         ttkb.Label(self, text=f'Person: {self.person.id} {self.person.name} DOB: {self.person.dob.month}/'
                    f'{self.person.dob.day}/{self.person.dob.year}').grid(column=0, row=row,
-                                                                         columnspan=5, padx=5, pady=5)
+                                                                         columnspan=4, padx=5, pady=5)
         row += 1
-        ttkb.Label(self, text="Date:").grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text="Date:", anchor=tk.W).grid(column=0, row=row, padx=5, pady=5)
         self.date_widget = DateWidget(self, default_value=date.today())
-        self.date_widget.grid(column=1, row=row, padx=5, pady=5)
-        ttkb.Label(self, text="Time:").grid(column=2, row=row, padx=5, pady=5)
+        self.date_widget.grid(column=1, row=row, padx=5, pady=5, sticky=tk.W, columnspan=2)
+        ttkb.Label(self, text="Time:", anchor=tk.E).grid(column=2, row=row, padx=5, pady=5)
         self.time_widget = TimeWidget(self)
-        self.time_widget.grid(column=3, row=row, padx=5, pady=5)
+        self.time_widget.grid(column=3, row=row, padx=5, pady=5, sticky=tk.W)
         row += 1
         for track_cfg in person.tracked.values():
             if track_cfg.tracked:
@@ -219,7 +228,7 @@ class NewDataPointFrame(ttkb.Frame):
                         prev_widget.down_arrow_entry = widget
                         widget.up_arrow_entry = prev_widget
                     self.bio_entries.append(widget)
-                widget.grid(column=0, row=row, sticky=NW, columnspan=4)
+                widget.grid(column=0, row=row, sticky=tk.E, columnspan=4)
                 row += 1
         row += 1
         ttkb.Button(self, text="Cancel", command=cancel_action).grid(column=0, row=row, sticky=NW, padx=10)
@@ -276,25 +285,24 @@ class CSVImportFrame(ttkb.Frame):
                                                                          columnspan=5, padx=5, pady=5)
         row += 1
 
-        ttkb.Label(self, text="Import File Name", width=40).grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text="Import File Name:", anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
         self.import_fn_entry = ttkb.Entry(self, textvariable=self.import_fn_var, width=40)
-        self.import_fn_entry.grid(column=1, row=row, padx=5, pady=5, columnspan=2, sticky=NW)
+        self.import_fn_entry.grid(column=1, row=row, padx=5, pady=5, columnspan=2, sticky=tk.W)
         self.import_fn_entry.bind('<FocusOut>', self.update_preview)
-        ttkb.Button(self, text="Browse", command=self.browse_csv).grid(column=3, row=row, padx=5, pady=5, sticky=NW)
+        ttkb.Button(self, text="Browse...", command=self.browse_csv).grid(column=3, row=row, padx=5, pady=5, sticky=NW)
         row += 1
-        self.header_rows_entry = widgets.LabeledIntegerWidget(self, label_text='Number of Header Rows', label_width=25,
-                                                              label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW,
-                                                                               'padx': 5, 'pady': 5}, entry_width=6,
-                                                              entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW,
-                                                                               'padx': 5, 'pady': 5})
-        self.header_rows_entry.grid(column=0, row=row, padx=5, pady=5, sticky=tk.NW)
+        self.header_rows_entry = widgets.LabeledIntegerWidget(self, label_text='Number of Header Rows:', label_width=25,
+                                                              label_grid_args={'column': 0, 'row': row, 'padx': 5,
+                                                                               'pady': 5}, entry_width=6,
+                                                              entry_grid_args={'column': 1, 'row': row, 'padx': 5,
+                                                                               'pady': 5})
         self.use_prev_row_date = False
         self.use_prev_row_date_var = ttkb.IntVar()
         self.use_prev_row_date_entry = Checkbutton(self,
                                                    text='Use date from previous row if date column is blank',
                                                    variable=self.use_prev_row_date_var,
                                                    command=self.set_use_prev_row_date, padding=5, width=50)
-        self.use_prev_row_date_entry.grid(column=1, row=row, columnspan=3, padx=5, pady=5)
+        self.use_prev_row_date_entry.grid(column=2, row=row, columnspan=3, padx=5, pady=5)
         self.widgets: list[ImportExportFieldWidget] = []
         row += 1
         ttkb.Label(self, text="Data Types for Each Column in the CSV File").grid(column=0, row=row, columnspan=2,
@@ -324,8 +332,8 @@ class CSVImportFrame(ttkb.Frame):
         self.preview.grid(column=0, row=row, padx=5, pady=5, sticky=NW, columnspan=4, rowspan=9)
         row += 9
         ttkb.Button(self, text='Cancel', command=cancel_action, width=10).grid(
-            column=0, row=row, sticky=NW, padx=5, pady=5)
-        ttkb.Button(self, text='Proceed', command=proceed_action, width=10).grid(column=1, row=row, sticky=NW,
+            column=1, row=row, sticky=NW, padx=5, pady=5)
+        ttkb.Button(self, text='Proceed', command=proceed_action, width=10).grid(column=2, row=row, sticky=NW,
                                                                                  padx=5, pady=5)
         self.import_spec_buttons: widgets.ImportExportSpecButtons = \
             widgets.ImportExportSpecButtons(parent=self, button_title='Import Specs',
@@ -334,7 +342,7 @@ class CSVImportFrame(ttkb.Frame):
                                             save_title='Save Import Spec',
                                             save_action=self.save_import_spec,
                                             specs_map=self.import_specs_collection)
-        self.import_spec_buttons.grid(column=2, row=row, padx=5, pady=5, sticky=NW)
+        self.import_spec_buttons.grid(column=3, row=row, padx=5, pady=5, sticky=NW, columnspan=2)
 
         self.grid(padx=50, pady=5)
 
@@ -549,26 +557,27 @@ class ExportFrame(ttkb.Frame):
                                                                          columnspan=5, padx=5, pady=5)
         row += 1
 
-        ttkb.Label(self, text=" Export File Directory:", width=20).grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text=" Export File Directory:", width=25, anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
         self.export_dir_entry = ttkb.Entry(self, textvariable=self.export_dir_var, width=40)
         self.export_dir_entry.grid(column=1, row=row, padx=5, pady=5, columnspan=2, sticky=NW)
-        ttkb.Button(self, text="Browse", command=self.browse_export_dir).grid(column=3, row=row, padx=5, pady=5)
+        ttkb.Button(self, text="Browse...", command=self.browse_export_dir).grid(column=3, row=row, padx=5, pady=5,
+                                                                                 sticky=tk.W)
 
         row += 1
-        ttkb.Label(self, text="Start Date:", width=20, justify=RIGHT).grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text="Start Date:", width=25, anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
         self.start_date_widget = DateWidget(self, datetime.today())
-        self.start_date_widget.grid(column=1, row=row, padx=5, pady=5, sticky=NW)
-        ttkb.Label(self, text="End Date:", justify=RIGHT).grid(column=2, row=row, padx=5, pady=5)
+        self.start_date_widget.grid(column=1, row=row, padx=5, pady=5, sticky=tk.W)
+        ttkb.Label(self, text="End Date:", anchor=tk.E).grid(column=2, row=row, padx=5, pady=5)
         self.end_date_widget = DateWidget(self, datetime.today())
-        self.end_date_widget.grid(column=3, row=row, padx=5, pady=5, sticky=NW)
+        self.end_date_widget.grid(column=3, row=row, padx=5, pady=5, sticky=tk.W)
 
         row += 1
-        ttkb.Label(self, text="Export File Type:", width=20, justify=RIGHT).grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text="Export File Type:", width=25, anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
         self.export_type_var = ttkb.StringVar()
         self.export_type_var.set(exp.ExportType.CSV.name)
         self.export_type_entry = ttk.Combobox(self, textvariable=self.export_type_var,
                                               values=[exp.ExportType.CSV.name, exp.ExportType.SQL.name])
-        self.export_type_entry.grid(column=1, row=row, padx=5, pady=5)
+        self.export_type_entry.grid(column=1, row=row, padx=5, pady=5, sticky=tk.W)
         self.inc_header_var = ttkb.IntVar()
         self.inc_header_var.set(0)
         self.inc_header_entry = Checkbutton(self, text='Include a header row (CSV only)?', variable=self.inc_header_var,
@@ -576,7 +585,7 @@ class ExportFrame(ttkb.Frame):
         self.inc_header_entry.grid(column=2, row=row, columnspan=2)
         row += 1
 
-        ttkb.Label(self, text="Units of Measure will be:", width=35).grid(column=0, row=row)
+        ttkb.Label(self, text="Units of Measure will be:", width=25, anchor=tk.E).grid(column=0, row=row)
         self.uom_handling_var = ttkb.StringVar()
         self.uom_handling_var.set(exp.UOMHandlingType.Excluded.name)
         names: list[str] = [value.name for value in exp.UOMHandlingType]
@@ -591,18 +600,18 @@ class ExportFrame(ttkb.Frame):
                                                values=values)
         self.uom_handling_entry.grid(column=1, row=row, padx=5, pady=5, sticky=NW)
         row += 1
-        ttkb.Label(self, text="Date Format:", width=20, justify=RIGHT).grid(column=0, row=row, padx=5, pady=5)
+        ttkb.Label(self, text="Date Format:", width=20, anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
         self.date_fmt_var = ttkb.StringVar()
         self.date_fmt_var.set('MM/DD/YYYY')
         self.date_fmt_entry = ttk.Combobox(self, textvariable=self.date_fmt_var,
                                            values=[f for f in exp.date_formats.keys()])
-        self.date_fmt_entry.grid(column=1, row=row, padx=5, pady=5, sticky=NW)
-        ttkb.Label(self, text="Time Format:", justify=RIGHT).grid(column=2, row=row, padx=5, pady=5)
+        self.date_fmt_entry.grid(column=1, row=row, padx=5, pady=5, sticky=tk.W)
+        ttkb.Label(self, text="Time Format:", anchor=tk.E).grid(column=2, row=row, padx=5, pady=5)
         self.time_fmt_var = ttkb.StringVar()
         self.time_fmt_var.set('HH:MM:SS-24')
         self.time_fmt_entry = ttk.Combobox(self, textvariable=self.time_fmt_var,
                                            values=[f for f in exp.time_formats.keys()])
-        self.time_fmt_entry.grid(column=3, row=row, padx=5, pady=5, sticky=NW)
+        self.time_fmt_entry.grid(column=3, row=row, padx=5, pady=5, sticky=tk.W)
         row += 1
 
         self.widgets: list[ImportExportFieldWidget] = []
@@ -627,10 +636,9 @@ class ExportFrame(ttkb.Frame):
         subframe.grid(column=0, row=row, columnspan=3, rowspan=widget_rows, sticky=NW)
 
         row += widget_rows + 1
-        ttkb.Button(self, text='Cancel', command=cancel_action, width=10).grid(
-            column=0, row=row, sticky=NE, padx=5, pady=5)
-        ttkb.Button(self, text='Proceed', command=proceed_action, width=10).grid(column=1, row=row, sticky=NE,
-                                                                                 padx=5, pady=5)
+        ttkb.Button(self, text='Cancel', command=cancel_action).grid(
+            column=1, row=row,  sticky=tk.E, padx=5, pady=5)
+        ttkb.Button(self, text='Proceed', command=proceed_action).grid(column=2, row=row, sticky=tk.W, padx=5, pady=5)
         self.export_spec_buttons: widgets.ImportExportSpecButtons = \
             widgets.ImportExportSpecButtons(parent=self, button_title='Export Specs',
                                             select_title='Select an Export Spec',
@@ -638,7 +646,7 @@ class ExportFrame(ttkb.Frame):
                                             save_title='Save Export Spec',
                                             save_action=self.save_export_spec,
                                             specs_map=self.export_specs_collection)
-        self.export_spec_buttons.grid(column=2, row=row, padx=5, pady=5, sticky=NW)
+        self.export_spec_buttons.grid(column=3, row=row, padx=5, pady=5, columnspan=2, rowspan=2)
         row += 1
 
         self.start_date_widget.prev_entry = self.export_dir_entry
@@ -796,8 +804,8 @@ class BiometricsFrameBase(ttkb.Frame):
                    f'{self.person.dob.day}/{self.person.dob.year}').grid(column=0, row=self.row,
                                                                          columnspan=5, padx=5, pady=5)
         self.row += 1
-        ttkb.Label(self.hdr_frame, text="Start Date:").grid(column=0, row=self.row, padx=5, pady=5)
-        self.start_date_widget.grid(column=1, row=self.row, padx=5, pady=5)
+        ttkb.Label(self.hdr_frame, text="Start Date:", width=15, anchor=tk.E).grid(column=0, row=self.row, padx=5, pady=5)
+        self.start_date_widget.grid(column=1, row=self.row, padx=5, pady=5, sticky=tk.W)
         ttkb.Label(self.hdr_frame, text="End Date:").grid(column=2, row=self.row, padx=5, pady=5)
         self.end_date_widget.grid(column=3, row=self.row, padx=5, pady=5)
         self.retrieve_btn.grid(column=4, row=self.row, padx=5, pady=5)
@@ -856,7 +864,7 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
         self.datapoint_widget: Optional[Union[widgets.DataPointWidget, widgets.PlaceholderWidget]] = \
             self.create_placeholder_widget()
         self.datapoint_widget.grid(column=self.datapoint_widget_col, row=self.datapoint_widget_row,
-                                   rowspan=5, columnspan=3)
+                                   rowspan=5, columnspan=4)
         cancel = ttkb.Button(self.entry_frame, text='Cancel', command=cancel_action)
         cancel.grid(column=3, row=7, padx=5, pady=5)
         save = ttkb.Button(self.entry_frame, text='Save', command=self.save_datapoint)
@@ -900,11 +908,8 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
             return
         start_datetime = mk_datetime(self.start_date, time(hour=0, minute=0, second=0))
         end_datetime = mk_datetime(self.end_date, time(hour=23, minute=59, second=59))
-        self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase,
-                                                                replyto=self.display_history,
-                                                                operation=messages.DBOperation.RETRIEVE_SET,
-                                                                person_id=self.person.id, start=start_datetime,
-                                                                end=end_datetime))
+        self.parent.retrieve_datapoints(replyto=self.display_history, person_id=self.person.id,
+                                        start_datetime=start_datetime, end_datetime=end_datetime)
 
     def display_history(self, msg: messages.DataPointRespMsg):
         """
@@ -956,7 +961,7 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
         self.datapoint_widget.forget()
         self.datapoint_widget = widgets.DataPointWidget(self.entry_frame, track_cfg, datapoint)
         self.datapoint_widget.grid(column=self.datapoint_widget_col, row=self.datapoint_widget_row, sticky=tk.NW,
-                                   padx=5, pady=5)
+                                   padx=5, pady=5, columnspan=4)
         self.datapoint_widget.focus_set()
 
     def save_datapoint(self):
@@ -1004,107 +1009,6 @@ class ViewEditBiometricsFrame(BiometricsFrameBase):
                                    rowspan=5, columnspan=3)
         if key_change:
             self.retrieve_history()
-
-
-class OldViewEditBiometricsFrame(BiometricsFrameBase):
-    """
-    Deprecated ViewEditBiometricsFrame class
-    """
-    def __init__(self, parent, person: dp.Person, queue_mgr: queues.Queues, cancel_action: Callable,
-                 submit_action: Callable):
-        """
-        Create an instance of ViewEditBiometricsFrame
-
-        :param parent: the GUI parent for this frame
-        :type parent: Tk derived Window or Frame
-        :param person: the info for the person whose history is to be displayed
-        :type person: biometrics_tracker.model.datapoints.Person
-        :param queue_mgr: message queue manager
-        :type queue_mgr: biometrics_tracker.ipc.queue_mgr.Queues
-        :param cancel_action: a callback that will be invoked when the Cancel button is pressed
-        :type cancel_action: Callable
-        :param submit_action: a callback that will be invoked when the Save button is pressed
-        :type submit_action: Callable
-        """
-        BiometricsFrameBase.__init__(self, 'View/Edit Biometrics History', parent, person, queue_mgr)
-        ttkb.Button(self.hdr_frame, text="Cancel", command=cancel_action).grid(column=1, row=self.row, padx=5, pady=5)
-        self.save_btn = ttkb.Button(self.hdr_frame, text="Save", command=submit_action)
-        self.save_btn.grid(column=4, row=self.row, padx=5, pady=5)
-        self.save_btn.config(state=DISABLED)
-        self.hdr_frame.grid(column=0, row=0)
-        self.tbl_frame = scrolled.ScrolledFrame(self, height=500, width=950)
-        self.col_dp_map: dict[dp.DataPointType, int] = {}
-        for idx, track_cfg in enumerate(self.person.tracked.values()):
-            self.col_dp_map[track_cfg.dp_type] = idx + 3
-        self.grid(sticky=NSEW)
-        self.delete_boxes: dict[int, tuple[datetime, ttkb.IntVar]] = {}
-
-    def retrieve_history(self):
-        """
-        Retrieve the datapoint within the specified date range for the selected person and fill a ScrollableFrame
-        with rows of widgets
-
-        :return: None
-        """
-        self.start_date = self.start_date_widget.get_date()
-        self.end_date = self.end_date_widget.get_date()
-
-        if self.start_date > self.end_date:
-            dialogs.Messagebox.ok('The end date must be on or after the start date', 'Date Entry Error')
-            self.start_date_widget.focus_set()
-            return
-        start_datetime = mk_datetime(self.start_date, time(hour=0, minute=0, second=0))
-        end_datetime = mk_datetime(self.end_date, time(hour=23, minute=59, second=59))
-        self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase,
-                                                                replyto=self.display_history,
-                                                                operation=messages.DBOperation.RETRIEVE_SET,
-                                                                person_id=self.person.id, start=start_datetime,
-                                                                end=end_datetime))
-
-    def display_history(self, msg: messages.DataPointRespMsg):
-        """
-        Create a entry prompts from the DataPoints history retrieved by the retrieve_history method
-
-        :param msg: a response message containing a list of DataPoints
-        :return: None
-
-        """
-        datapoints: list[dp.dptypes_union] = msg.datapoints
-        self.start_date_widget.disable()
-        self.end_date_widget.disable()
-        self.retrieve_btn.configure(state=DISABLED)
-        last_date: Optional[date] = None
-        last_time: Optional[time] = None
-        widgets = collections.OrderedDict()
-        row_idx = 0
-        ttkb.Label(self.tbl_frame, text='Del').grid(column=0, row=row_idx, sticky=NW)
-        row_idx += 1
-        for datapoint in datapoints:
-            dp_date, dp_time = split_datetime(datapoint.taken)
-            if last_date is not None and (dp_date != last_date or dp_time != last_time):
-                for col_idx, widget in widgets.items():
-                    widget.grid(column=col_idx, row=row_idx, padx=5, pady=5)
-                widgets = collections.OrderedDict()
-                row_idx += 1
-            last_date = dp_date
-            last_time = dp_time
-            delete_var = ttkb.IntVar()
-            delete_var.set(0)
-            self.delete_boxes[row_idx] = (datapoint.taken, delete_var)
-            Checkbutton(self.tbl_frame, text="", variable=delete_var).grid(column=0, row=row_idx, padx=2)
-            ttkb.Label(self.tbl_frame, text=dp_date.strftime('%m/%d/%Y')).grid(column=1, row=row_idx)
-            ttkb.Label(self.tbl_frame, text=dp_time.strftime(format='%I:%M %p')).grid(column=2, row=row_idx)
-            track_cfg = self.person.dp_type_track_cfg(datapoint.type)
-            col_idx = self.col_dp_map[datapoint.type]
-            widgets[col_idx] = MetricWidgetFactory.make_widget(self.tbl_frame, track_cfg, datapoint,
-                                                               show_note_field=False)
-            self.all_widgets.append(widgets[col_idx])
-        if last_date is not None:
-            for col_idx, widget in widgets.items():
-                widget.grid(column=col_idx, row=row_idx)
-        self.tbl_frame.grid(column=0, row=1, sticky=EW)
-        self.grid(sticky=NSEW)
-        self.save_btn.config(state=NORMAL)
 
 
 class BiometricsReportPromptFrame(BiometricsFrameBase):
@@ -1326,20 +1230,19 @@ class AddEditScheduleFrame(ttkb.Frame):
         row += 1
         ttkb.Label(self.entry_frame, text='Start Date:').grid(column=0, row=row, sticky=NW, padx=5, pady=5)
         self.start_date_entry: DateWidget = DateWidget(self.entry_frame, default_value=date.today())
-        self.start_date_entry.grid(column=1, row=row, sticky=NW)
+        self.start_date_entry.grid(column=1, row=row, sticky=tk.W, padx=5, pady=5)
         ttkb.Label(self.entry_frame, text='End Date:').grid(column=2, row=row, sticky=NW, padx=5, pady=5)
         self.end_date_entry: DateWidget = DateWidget(self.entry_frame, default_value=date.today())
-        self.end_date_entry.grid(column=3, row=row, sticky=NW)
+        self.end_date_entry.grid(column=3, row=row, sticky=tk.W, padx=5, pady=5)
         ttk.Label(self.entry_frame, text='Data Point Type:').grid(column=4, row=row, sticky=NW, padx=5, pady=5)
         self.dp_type_entry = widgets.DataPointTypeComboWidget(self.entry_frame, self.person)
         self.dp_type_entry.grid(column=5, row=row, sticky=NW)
         row += 1
         self.seq_nbr_entry = widgets.LabeledIntegerWidget(parent=self.entry_frame, label_text='Seq Nbr:', label_width=10,
-                                                          label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW,
-                                                                           'padx': 5, 'pady': 5}, entry_width=8,
-                                                          entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW,
+                                                          label_grid_args={'column': 0, 'row': row, 'padx': 5,
+                                                                           'pady': 5}, entry_width=8,
+                                                          entry_grid_args={'column': 1, 'row': row, 'sticky': tk.NW,
                                                                            'padx': 5, 'pady': 5})
-        self.seq_nbr_entry.grid(column=0, row=row, sticky=NW, columnspan=2)
         self.seq_nbr_entry.bind('<FocusIn>', self.focus_on_note)
 
         ttkb.Label(self.entry_frame, text='Note:').grid(column=2, row=row, sticky=NW, padx=5, pady=5)
@@ -1351,7 +1254,7 @@ class AddEditScheduleFrame(ttkb.Frame):
         ttkb.Label(self.entry_frame, text='Last Triggered:').grid(column=0, row=row, sticky=NW)
         self.last_triggered_var = ttkb.StringVar()
         last_trig = ttkb.Entry(self.entry_frame, textvariable=self.last_triggered_var)
-        last_trig.grid(column=1, row=row, sticky=NW)
+        last_trig.grid(column=1, row=row, sticky=tk.W, padx=5, pady=5)
         last_trig.bind('<FocusIn>', self.focus_on_note)
         if self.schedule_entry is not None and self.schedule_entry.last_triggered is not None:
             self.last_triggered_var.set(self.schedule_entry.last_triggered.strftime('%m/%d/%Y %I:%M:%S %p'))
@@ -1861,15 +1764,19 @@ class UpcomingScheduledEventsFrame(ttkb.Frame):
                             event_dict[dt] = [entry]
                             datetime_list.append(dt)
                 event_date = increment_date(event_date, days=1)
-
-        datetime_list.sort()
-        for dt in datetime_list:
-            for entry in event_dict[dt]:
-                text = f'{dt.strftime("%m/%d/%Y %I:%M %p")} {dp.dptype_dp_map[entry.dp_type].label()}' \
-                       f' {entry.frequency.name}'
-                label = ttkb.Label(self.list_frame, text=text, width=400)
-                label.grid(column=1, row=row, sticky=NW, padx=5, pady=5)
-                row += 1
+        if len(datetime_list) > 0:
+            datetime_list.sort()
+            for dt in datetime_list:
+                for entry in event_dict[dt]:
+                    text = f'{dt.strftime("%m/%d/%Y %I:%M %p")} {dp.dptype_dp_map[entry.dp_type].label()}' \
+                           f' {entry.frequency.name}'
+                    label = ttkb.Label(self.list_frame, text=text, width=400)
+                    label.grid(column=1, row=row, sticky=NW, padx=5, pady=5)
+                    row += 1
+        else:
+            ttkb.Label(self.list_frame, text='There are no entry sessions scheduled.').grid(column=1, row=row,
+                                                                                                  sticky=tk.NW,
+                                                                                                  padx=5, pady=5)
         self.list_frame.grid()
         self.start_date_entry.focus_set()
 
@@ -2012,6 +1919,17 @@ class Application(ttkb.Window, core.CoreLogic):
         imp_exp_menu.add_command(label='Export to CSV/SQL', command=lambda: self.select_person(
             'Whose data are you exporting?', self.export))
         self.menu_bar.add_cascade(label="Import/Export", menu=imp_exp_menu)
+        self.retrieve_installed_plugins()
+        for plugin in self.plugins:
+             for menu in plugin.menus:
+                 menu.create_menu(not_found_action=self.plugin_not_found, selection_action=self.preproc_selection,
+                                  add_menu_item=self.add_plugin_menu_item, add_menu=self.add_plugin_menu)
+
+        config_menu = ttkb.Menu(self.menu_bar)
+        config_menu.add_command(label='Install Plugin', command=self.select_install_plugin)
+        config_menu.add_command(label='Uninstall Plugin', command=self.select_remove_plugin)
+        self.menu_bar.add_cascade(label='Configuration', menu=config_menu)
+
         help_menu = ttkb.Menu(self.menu_bar)
         help_menu.add_command(label='View Help docs in browser', command=self.help_menu)
         self.menu_bar.add_cascade(label="Help", menu=help_menu)
@@ -2486,6 +2404,101 @@ class Application(ttkb.Window, core.CoreLogic):
         self.current_display = frame
         frame.focus_set()
 
+    def select_install_plugin(self) -> None:
+        """
+        Select a Plugin Specification File to be installed in the app's plugin folder.  The selected file will be
+        copied to that folder.  The application must be restarted for the plugin's menu to appear in the
+        menu bar
+
+        :return: None
+
+        """
+        file_str: Optional[str] = filedialog.askopenfilename(filetypes=[('JSON', '.json')],
+                                                             title='Select a Plugin Specification File')
+        if len(file_str.strip()) > 0:
+            file_path: pathlib.Path = pathlib.Path(file_str)
+            self.install_plugin(file_path)
+
+    def select_remove_plugin(self) -> None:
+        """
+        Select a Plugin Specification File from the app's plugin folder to be deleted.
+
+        :return: None
+
+        """
+        file_str: Optional[str] = filedialog.askopenfilename(initialdir=self.config_info.plugin_dir_path.__str__(),
+                                                             filetypes=[('JSON', '.json')],
+                                                             title='Select a Plugin Specification File to Remove')
+        if len(file_str.strip()) > 0:
+            file_path: pathlib.Path = pathlib.Path(file_str)
+            file_path.unlink(missing_ok=True)
+
+    def add_plugin_menu_item(self, menu: ttkb.Menu, label: str, action: Callable) -> None:
+        """
+        This method is provided as a callback to the plugin_manager.model.plugin.PluginMenu.create_menu method
+
+        :param menu: the parent Menu object
+        :type menu: ttkbootstrap.Menu
+        :param label: the text to be used for the menu item label
+        :param label: str
+        :param action: the callback to be invoked when the menu item is selected
+        :param action: Callable
+        :return: None
+
+        """
+        menu.add_command(label=label, command=action)
+
+    def add_plugin_menu(self, label: str) -> Any:
+        """
+        This method is provided to the plugin_manager.model.plugin.PluginMenu.create_menu method.
+
+        :param self:
+        :param label:
+        :return:
+        """
+        menu = ttkb.Menu(master=self.menu_bar)
+        self.menu_bar.add_cascade(label=label, menu=menu)
+        return menu
+
+    def plugin_not_found(self) -> None:
+        """
+        This is a dummy placeholder to be used an action method in cases when a plugin module can not be imported
+        or an entry point is not found within the module.
+
+        :return: None
+
+        """
+        pass
+
+    def preproc_selection(self, sel_person: bool, sel_date_rng: bool, sel_dp_type: bool, action: Callable) -> None:
+        """
+        This method is provided as an action call back to the plugin_manager.model.plugin.PluginMenu.create_menu
+        method.  It creates and displays an instance of DataPointSelectionFrame to collect selection criteria.
+
+        :param sel_person: will Person ID be part of the selection criteria
+        :type sel_person: bool
+        :param sel_date_rng: will date range be part of the selection criteria
+        :type sel_date_rng: bool
+        :param sel_dp_type: will DataPointType be part of the selection criteria
+        :type sel_dp_type: bool
+        :param action: the plugin's entry point
+        :type action: Callable
+        :return: None
+
+        """
+        def cancel():
+            self.remove_child_frame(self.current_display.__class__)
+
+        if self.current_display is not None:
+            self.remove_child_frame(self.current_display.__class__)
+        people_list: list[tuple[str, str]] = []
+        if sel_person:
+            people_list = self.people_list
+        self.current_display = DataPointSelectionFrame(parent=self, people_list=people_list,
+                                                       sel_date_rng=sel_date_rng, sel_dp_type=sel_dp_type,
+                                                       cancel_action=cancel, proceed_action=action)
+        self.current_display.focus_set()
+
 
 class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
     """
@@ -2704,3 +2717,153 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
                                                                  payload=self.schedule_entry,
                                                                  operation=messages.DBOperation.UPDATE))
         self.close_db()
+
+
+class DataPointSelectionFrame(ttkb.Frame, core.DataPointSelection):
+    """
+    A GUI frame that collects selection criteria for retrieving DataPoints from the database
+
+    """
+    def __init__(self, parent: Application, people_list: list[tuple[str, str]], sel_date_rng: bool, sel_dp_type: bool,
+                 cancel_action: Callable, proceed_action: Callable):
+        """
+        Creates an instance of DataPointSelectionFrame.  This class inherits from ttkbootstrap.Frame and
+        biometrics_tracker.main.core.DataPointSelection
+
+        :param parent: the Application instance that is the GUI parent of this frame
+        :type parent: biometrics_tracker.gui.tk_gui.Application
+        :param people_list: a list of tuples each containing a Person ID and Name
+        :type people_list: list[tuple[str, str]]
+        :param sel_date_rng: should a date range selection be presented
+        :type sel_date_rng: bool
+        :param sel_dp_type: show a DataPointType selection be presented
+        :type sel_dp_type: bool
+        :param cancel_action: a Callable to be invoked when the user clicks the Cancel button
+        :type cancel_action: Callable
+        :param proceed_action: a Callable to be invoked when the user clicks the Process button
+        :type proceed_action: Callable
+
+        """
+        ttkb.Frame.__init__(self, master=parent)
+        core.DataPointSelection.__init__(self, parent=parent, people_list=people_list, sel_date_rng=sel_date_rng,
+                                         sel_dp_type=sel_dp_type, action=proceed_action,
+                                         get_date_range=self.get_date_range,
+                                         get_dp_type_selection=self.get_dp_type_selection)
+        self.parent: Application = parent
+        self.people_list_frame: Optional[PeopleListFrame] = None
+        self.start_date_widget: Optional[widgets.DateWidget] = None
+        self.end_date_widget: Optional[widgets.DateWidget] = None
+        self.dp_widget: Optional[widgets.DataPointTypeComboWidget] = None
+        self.focus_set_gui = None
+        row = 0
+        if len(people_list) > 0:
+            self.people_list_frame = PeopleListFrame(parent=self, title='Select a person',
+                                                     people_list=self.people_list, queue_mgr=parent.queue_mgr,
+                                                     callback=self.get_person)
+            self.people_list_frame.grid(column=0, row=row, columnspan=4, padx=5, pady=5, sticky=tk.NSEW)
+            self.focus_set_gui = self.people_list_frame
+            row += 1
+            self.person_label = ttkb.Label(master=self, text='Double click to select a person')
+            self.person_label.grid(column=0, row=row, columnspan=4, padx=5, pady=5, sticky=tk.EW)
+            row += 1
+        if sel_date_rng:
+            ttkb.Label(master=self, text='Start Date: ', anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
+            self.start_date_widget = widgets.DateWidget(parent=self)
+            self.start_date_widget.grid(column=1, row=row, padx=5, pady=5, sticky=tk.W)
+            ttkb.Label(master=self, text='End Date: ', anchor=tk.E).grid(column=2, row=row, padx=5, pady=5)
+            self.end_date_widget = widgets.DateWidget(parent=self)
+            self.end_date_widget.grid(column=3, row=row, padx=5, pady=5, sticky=tk.W)
+            if self.focus_set_gui is None:
+                self.focus_set_gui = self.start_date_widget
+            if len(people_list) > 0:
+                self.start_date_widget.set_prev_entry(self.people_list_frame)
+            self.start_date_widget.set_next_entry(self.end_date_widget)
+            self.end_date_widget.set_prev_entry(self.start_date_widget)
+            row += 1
+        if sel_dp_type:
+            ttkb.Label(master=self, text='Datapoint Type:', anchor=tk.E).grid(column=0, row=row, padx=5, pady=5)
+            self.dp_widget = widgets.DataPointTypeComboWidget(parent=self, person=None)
+            self.dp_widget.grid(column=1, row=row, columnspan=2, padx=5, pady=5, sticky=tk.NSEW)
+            if sel_date_rng:
+                self.end_date_widget.set_next_entry(self.dp_widget)
+            row += 1
+            if self.focus_set_gui is None:
+                self.focus_set_gui = self.dp_widget
+        elif sel_date_rng:
+            if len(people_list) > 0:
+                self.end_date_widget.set_next_entry(self.people_list_frame)
+            else:
+                self.end_date_widget.set_next_entry(self.start_date_widget)
+
+        cancel_button = ttkb.Button(master=self, text='Cancel', command=cancel_action)
+        cancel_button.grid(column=0, row=row, padx=5, pady=5, sticky=tk.EW)
+        proceed_button = ttkb.Button(master=self, text='Proceed', command=self.proceed)
+        proceed_button.grid(column=3, row=row, padx=5, pady=5, sticky=tk.EW)
+
+        self.grid(padx=50, pady=25)
+        self.focus_set()
+
+    def focus_set(self):
+        """
+        Delegate focus_set invocations to the first prompt on the display
+
+        :return: None
+
+        """
+        self.focus_set_gui.focus_set()
+
+    def get_person(self, msg: messages.PersonMsg) -> None:
+        """
+        If person is part of the selection criteria, set the selected Person ID property.  This method is the
+        callback routine for the PeopleListFrame
+
+        :param msg: the Person instance retrieved from the database
+        :type msg: biometrics_tracker.ipc.messages.PersonMsg
+        :return: None
+
+        """
+        self.person = None
+        if len(self.people_list) > 0:
+            self.person = msg.payload
+            self.person_label['text'] = self.person.__str__()
+
+    def get_date_range(self) -> None:
+        """
+        If date range is part of the selection criteria, set the start date and end date properties from the
+        Start Date and End Date widgets, otherwise set these properties to None
+
+        :return: None
+
+        """
+        self.start_date = None
+        self.end_date = None
+        if self.sel_date_rng:
+            self.start_date = self.start_date_widget.get_date()
+            self.end_date = self.end_date_widget.get_date()
+
+    def get_dp_type_selection(self) -> None:
+        """
+        If DataPointType is part of the selection criteria, set the DataPointType property from the
+        DataPointTypeComboWidget, otherwise set the property to None
+
+        :return: None
+
+        """
+        self.dp_type = None
+        if self.sel_dp_type:
+            self.dp_type = self.dp_widget.get_dp_type()
+
+
+if __name__ == '__main__':
+    def cancel():
+        pass
+
+    def proceed():
+        pass
+
+    window = ttkb.Window(title='Selection Test', themename='darkly')
+    # test code here
+
+    ttkb.Button(master=window, text='Quit', command=window.quit).grid(column=0, row=1)
+    window.mainloop()
+
