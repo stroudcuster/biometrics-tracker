@@ -189,7 +189,10 @@ def launch():
 
     """
     quit: bool = False
-    home_str = os.environ['HOME']
+    if sys.platform[0:3] == 'win':
+        home_str = os.environ['HOMEPATH']
+    else:
+        home_str = os.environ['HOME']
     homepath: pathlib.Path = pathlib.Path(home_str)
     queue_mgr = queues.Queues(sleep_seconds=.5)
     launcher = Launcher(queue_mgr)

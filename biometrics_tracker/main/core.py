@@ -1,7 +1,7 @@
 from abc import abstractmethod
-from datetime import datetime, date, time
+from datetime import datetime, time
+import json
 import pathlib
-import sys
 from typing import Callable, Optional
 
 import biometrics_tracker.config.createconfig as config
@@ -10,6 +10,9 @@ import biometrics_tracker.ipc.queue_manager as queues
 import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.persistence as per
+import biometrics_tracker.utilities.utilities as util
+import biometrics_tracker.plugin.json_handler as plugin_jh
+import biometrics_tracker.plugin as plugin_model
 
 
 class CoreLogic:
@@ -34,6 +37,7 @@ class CoreLogic:
 
         self.queue_mgr = queue_mgr
         self.queue_sleep_millis = 250
+        self.plugins: list[plugin_model.Plugin] = []
         self.retrieved_person: Optional[dp.Person] = None
         self.check_completion_queue()
         self.check_response_queue()
@@ -193,11 +197,91 @@ class CoreLogic:
             case _:
                 ...
 
+    def retrieve_datapoints(self, replyto: Callable, person_id: Optional[str] = None,
+                            start_datetime: Optional[datetime] = None,
+                            end_datetime: Optional[datetime] = None,
+                            dp_type: Optional[dp.DataPointType] = None) -> None:
+        self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase,
+                                                                replyto=replyto,
+                                                                operation=messages.DBOperation.RETRIEVE_SET,
+                                                                person_id=person_id, start=start_datetime,
+                                                                end=end_datetime, dp_type = dp_type))
+
     def retrieve_person(self, person_id):
         def receive_person(msg: messages.PersonMsg):
             self.retrieved_person = msg.payload
 
-        self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase, replyto=receive_person))
+        self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase, replyto=receive_person,
+                                                             operation=messages.DBOperation.RETRIEVE_SINGLE))
         self.queue_mgr.check_db_resp_queue(block=True)
+
+    def retrieve_installed_plugins(self):
+        self.plugins = plugin_jh.retrieve_plugins(self.config_info.plugin_dir_path)
+
+    def install_plugin(self, plugin_filepath: pathlib.Path) -> None:
+        if plugin_filepath.exists():
+            try:
+                plugin = plugin_jh.retrieve_plugin(plugin_filepath)
+                plugin_jh.save_plugins(plugins=[plugin], plugin_path=self.config_info.plugin_dir_path)
+                self.plugins.append(plugin)
+            except json.JSONDecodeError:
+                raise json.JSONDecodeError(f'File: {plugin_filepath.__str__()} contains invalid JSON for a Plugin')
+
+        else:
+            raise FileNotFoundError(f'Plugin file {plugin_filepath.__str__()} does not exist')
+
+
+class DataPointSelection:
+    """ A GUI framework agnostic class to act as a container for the selection criteria collected by
+        in inheriting class the implements the selection GUI in a particular GUI framework
+
+    """
+
+    def __init__(self, parent: CoreLogic, people_list: list[tuple[str, str]], sel_date_rng: bool, sel_dp_type: bool,
+                 action: Callable, get_date_range: Callable, get_dp_type_selection: Callable):
+        self.parent: CoreLogic = parent
+        self.people_list: list[tuple[str, str]] = people_list
+        self.sel_date_rng: bool = sel_date_rng
+        self.sel_dp_type: bool = sel_dp_type
+        self.action = action
+        self.get_date_range: Callable = get_date_range
+        self.get_dp_type_selection: Callable = get_dp_type_selection
+        self.person: Optional[dp.Person] = None
+        self.start_date: Optional[datetime.date] = None
+        self.end_date: Optional[datetime.date] = None
+        self.dp_type: Optional[dp.DataPointType] = None
+        self.datapoints: list[dp.DataPoint] = []
+
+    def set_person(self, msg: messages.PersonMsg) -> None:
+        self.person = msg.payload
+
+    def set_start_date(self, date: Optional[datetime.date]) -> None:
+        self.start_date = date
+
+    def set_end_date(self, date: Optional[datetime.date]) -> None:
+        self.end_date = date
+
+    def set_dp_type(self, dp_type: dp.DataPointType):
+        self.dp_type = dp_type
+
+    def proceed(self):
+        person_id: Optional[str] = None
+        if self.person is not None:
+            person_id = self.person.id
+        self.get_date_range()
+        self.get_dp_type_selection()
+        start_dt: Optional[datetime] = None
+        end_dt: Optional[datetime] = None
+        if self.start_date is not None:
+            start_dt = util.mk_datetime(dt=self.start_date, tm=time(hour=0, minute=0, second=0))
+        if self.end_date is not None:
+            end_dt = util.mk_datetime(dt=self.end_date, tm=time(hour=23, minute=59, second=59))
+
+        self.parent.retrieve_datapoints(
+            replyto=lambda p=self.person, sd=start_dt, ed=end_dt, dp=self.dp_type:
+            self.action(person=p, start_date=sd, end_date=ed, dp_type=dp),
+            person_id=person_id, start_datetime=start_dt, end_datetime=end_dt, dp_type=self.dp_type)
+
+
 
 

@@ -18,13 +18,14 @@ class ConfigInfo:
     def __init__(self, config_file_path: Optional[pathlib.Path] = None, db_dir_path: Optional[pathlib.Path] = None,
                  menu_font_size: int = 12, default_font_size: int = 12, text_font_size: int = 12,
                  log_config: Optional[logging_config.LoggingConfig] = None,
-                 help_url: Optional[str] = None):
+                 help_url: Optional[str] = None, plugin_dir_path: Optional[pathlib.Path] = None):
         self.config_file_path: Optional[pathlib.Path] = config_file_path
         self.db_dir_path: Optional[pathlib.Path] = db_dir_path
         self.menu_font_size = menu_font_size
         self.default_font_size = default_font_size
         self.text_font_size = text_font_size
         self.help_url: Optional[str] = help_url
+        self.plugin_dir_path: Optional[pathlib.Path] = plugin_dir_path
         if log_config is None:
             self.logging_config = {}
         else:
@@ -136,6 +137,7 @@ class ConfigGUI(ttkb.Window):
         self.config_info.text_font_size = self.font_size_var.get()
         self.config_info.help_url = pathlib.Path(util.whereami('biometrics_tracker'), 'help',
                                                  'user-doc-index.html').as_uri()
+        self.config_info.plugin_dir_path = pathlib.Path(self.config_dir_path, 'plugins')
         self.config_info.config_file_path = pathlib.Path(self.config_dir_path, 'config_info.json')
         self.config_info.write_json()
         self.quit()

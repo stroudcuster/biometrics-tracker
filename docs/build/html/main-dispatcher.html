@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>pytest tests.model.persistence_fixtures &#8212; Biometrics Tracking 1.2.1 documentation</title>
+    <title>biometrics_tracker.main.dispatcher module &#8212; Biometrics Tracking 1.2.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -17,8 +17,8 @@
     <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pytest tests.model.test_datapoints" href="tests-model-test_datapoints.html" />
-    <link rel="prev" title="pytest tests.model.datapoint_fixtures" href="tests-model-datapoints_fixtures.html" /> 
+    <link rel="next" title="biometrics_tracker.main.scheduler module" href="main-scheduler.html" />
+    <link rel="prev" title="biometrics_tracker.main.core module" href="main-core.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -30,14 +30,14 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="tests-model-test_datapoints.html" title="pytest tests.model.test_datapoints"
+          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="tests-model-datapoints_fixtures.html" title="pytest tests.model.datapoint_fixtures"
+          <a href="main-core.html" title="biometrics_tracker.main.core module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pytest tests.model.persistence_fixtures</a></li> 
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.dispatcher module</a></li> 
       </ul>
     </div>  
 
@@ -46,19 +46,29 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="pytest-tests-model-persistence-fixtures">
-<span id="tests-model-persistence-fixtures"></span><h1>pytest tests.model.persistence_fixtures<a class="headerlink" href="#pytest-tests-model-persistence-fixtures" title="Permalink to this heading">¶</a></h1>
+  <section id="biometrics-tracker-main-dispatcher-module">
+<span id="main-dispatcher"></span><h1>biometrics_tracker.main.dispatcher module<a class="headerlink" href="#biometrics-tracker-main-dispatcher-module" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 </div>
-<span class="target" id="module-tests.model.persistence_fixtures"></span><dl class="py class">
-<dt class="sig sig-object py" id="tests.model.persistence_fixtures.QueueManagerPatch">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.model.persistence_fixtures.</span></span><span class="sig-name descname"><span class="pre">QueueManagerPatch</span></span><a class="headerlink" href="#tests.model.persistence_fixtures.QueueManagerPatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This class implements a monkey patch on the biometrics_tracker.ipc.Queues class and replaces the queue.Queue
-based dp_response and dp_request queues with lists.</p>
+<span class="target" id="module-biometrics_tracker.main.dispatcher"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.main.dispatcher.Dispatcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.dispatcher.</span></span><span class="sig-name descname"><span class="pre">Dispatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.dispatcher.Dispatcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
+<p>Uses schedule library functionality to run jobs at the appropriate date and time</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.main.dispatcher.Dispatcher.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.dispatcher.Dispatcher.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Monitor and run pending jobs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -73,8 +83,11 @@ based dp_response and dp_request queues with lists.</p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">pytest tests.model.persistence_fixtures</a><ul>
-<li><a class="reference internal" href="#tests.model.persistence_fixtures.QueueManagerPatch"><code class="docutils literal notranslate"><span class="pre">QueueManagerPatch</span></code></a></li>
+<li><a class="reference internal" href="#">biometrics_tracker.main.dispatcher module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.dispatcher.Dispatcher"><code class="docutils literal notranslate"><span class="pre">Dispatcher</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.main.dispatcher.Dispatcher.run"><code class="docutils literal notranslate"><span class="pre">Dispatcher.run()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -82,18 +95,18 @@ based dp_response and dp_request queues with lists.</p>
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="tests-model-datapoints_fixtures.html"
-                          title="previous chapter">pytest tests.model.datapoint_fixtures</a></p>
+    <p class="topless"><a href="main-core.html"
+                          title="previous chapter">biometrics_tracker.main.core module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="tests-model-test_datapoints.html"
-                          title="next chapter">pytest tests.model.test_datapoints</a></p>
+    <p class="topless"><a href="main-scheduler.html"
+                          title="next chapter">biometrics_tracker.main.scheduler module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/tests-model-persistence_fixtures.rst.txt"
+      <li><a href="_sources/main-dispatcher.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -121,14 +134,14 @@ based dp_response and dp_request queues with lists.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="tests-model-test_datapoints.html" title="pytest tests.model.test_datapoints"
+          <a href="main-scheduler.html" title="biometrics_tracker.main.scheduler module"
              >next</a> |</li>
         <li class="right" >
-          <a href="tests-model-datapoints_fixtures.html" title="pytest tests.model.datapoint_fixtures"
+          <a href="main-core.html" title="biometrics_tracker.main.core module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pytest tests.model.persistence_fixtures</a></li> 
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.dispatcher module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

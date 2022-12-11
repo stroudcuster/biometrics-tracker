@@ -13,7 +13,6 @@ from ttkbootstrap.validation import add_validation
 from ttkbootstrap.constants import *
 from typing import Any, Callable, Literal, Optional, Union
 
-import biometrics_tracker.config.plugin_config as plugin_config
 from biometrics_tracker.gui.validators import month_validator, day_validator, year_validator, hour_validator, \
     minute_validator
 import biometrics_tracker.model.exporters as exp
@@ -21,7 +20,7 @@ import biometrics_tracker.model.importers as imp
 from biometrics_tracker.model import uoms as uoms, datapoints as dp
 import biometrics_tracker.utilities.utilities as utilities
 
-METRIC_WIDGET_MIN_LBL_WIDTH: int = 15
+METRIC_WIDGET_MIN_LBL_WIDTH: int = 20
 
 
 class Radiobutton(ttkb.Radiobutton):
@@ -88,7 +87,7 @@ class EntryWidget:
     """
     An abstract base class for entry label/widget pairs
     """
-    def __init__(self, parent, label_text: Optional[str], regex_str: Optional[str] = None):
+    def __init__(self, parent, label_text: Optional[str], entry_width:int, regex_str: Optional[str] = None):
         """
         Create an instance of EntryWidget
         
@@ -104,7 +103,7 @@ class EntryWidget:
         else:
             self.regex_pattern = None
         self.strvar = ttkb.StringVar()
-        self.entry = ttkb.Entry(master=parent, textvariable=self.strvar, validate='focusout',
+        self.entry = ttkb.Entry(master=parent, textvariable=self.strvar, validate='focusout', width=entry_width,
                                 validatecommand=self.validate, invalidcommand=self.invalid)
 
     def invalid(self):
@@ -236,7 +235,7 @@ class TextWidget(EntryWidget):
     A regex validated text entry widget
 
     """
-    def __init__(self, parent, label_text: str, regex_str: Optional[str] = None):
+    def __init__(self, parent, label_text: str, entry_width: int, regex_str: Optional[str] = None):
         """
         Creates and instance of TextWidget
 
@@ -248,7 +247,7 @@ class TextWidget(EntryWidget):
         :type regex_str: str
 
         """
-        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, entry_width=entry_width, regex_str=regex_str)
 
     def validate(self) -> int:
         """
@@ -301,7 +300,7 @@ class TextWidget(EntryWidget):
             self.strvar.set(value)
 
 
-class LabeledTextWidget(ttkb.Frame):
+class LabeledTextWidget:
     """
     A Frame containing a Label and a TextWidget
 
@@ -326,11 +325,17 @@ class LabeledTextWidget(ttkb.Frame):
         :type regex_str: str
 
         """
-        ttkb.Frame.__init__(self, master=parent)
-        self.label = ttkb.Label(master=self, text=label_text, width=label_width)
+        #ttkb.Frame.__init__(self, master=parent)
+        anchor = tk.W
+        if 'row' in label_grid_args and 'row' in entry_grid_args and 'sticky' not in entry_grid_args:
+            if label_grid_args['row'] == entry_grid_args['row']:
+                entry_grid_args['sticky'] = tk.W
+                anchor = tk.E
+        self.label = ttkb.Label(master=parent, text=label_text, width=label_width, anchor=anchor)
         self.label.grid(**label_grid_args)
-        self.entry = TextWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry = TextWidget(parent=parent, label_text=label_text, entry_width=entry_width, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
+
 
     def focus_set(self):
         """
@@ -413,7 +418,7 @@ class IntegerWidget(EntryWidget):
         :type regex_str: str
 
         """
-        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, entry_width=10, regex_str=regex_str)
 
     def validate(self):
         """
@@ -473,7 +478,7 @@ class IntegerWidget(EntryWidget):
             raise ValueError(f'{value} is not a valid {self.label_text}')
 
 
-class LabeledIntegerWidget(ttkb.Frame):
+class LabeledIntegerWidget:
     def __init__(self, parent, label_text: str, label_width: int, label_grid_args: dict[str, Any],
                  entry_width: int, entry_grid_args: dict[str, Any], regex_str: Optional[str] = '\\s*(\\d*)\\s*'):
         """
@@ -494,10 +499,17 @@ class LabeledIntegerWidget(ttkb.Frame):
         :type regex_str: str
 
         """
-        ttkb.Frame.__init__(self, master=parent)
-        self.label = ttkb.Label(master=self, text=label_text, width=label_width)
+        #ttkb.Frame.__init__(self, master=parent)
+        row_str: str  = 'row'
+        sticky_str: str = 'sticky'
+        anchor = tk.W
+        if row_str in label_grid_args and row_str in entry_grid_args and sticky_str not in entry_grid_args:
+            if label_grid_args[row_str] == entry_grid_args[row_str]:
+                anchor = tk.E
+                entry_grid_args[sticky_str] = tk.W
+        self.label = ttkb.Label(master=parent, text=label_text, width=label_width, anchor=anchor)
         self.label.grid(**label_grid_args)
-        self.entry = IntegerWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry = IntegerWidget(parent=parent, label_text=label_text, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
 
     def focus_set(self):
@@ -581,7 +593,7 @@ class DecimalWidget(EntryWidget):
         :type regex_str: str
 
         """
-        EntryWidget.__init__(self, parent=parent, label_text=label_text, regex_str=regex_str)
+        EntryWidget.__init__(self, parent=parent, label_text=label_text, entry_width=10, regex_str=regex_str)
 
     def validate(self):
         """
@@ -643,7 +655,7 @@ class DecimalWidget(EntryWidget):
             raise ValueError(f'{self.strvar.get()} is not a valid {self.label_text}')
 
 
-class LabeledDecimalWidget(ttkb.Frame):
+class LabeledDecimalWidget:
     def __init__(self, parent, label_text: str, label_width: int, label_grid_args: dict[str, Any],
                  entry_width: int, entry_grid_args: dict[str, Any], regex_str: Optional[str] = '\\s*(\\d+[.]*\\d*)\\s*'):
         """
@@ -664,10 +676,17 @@ class LabeledDecimalWidget(ttkb.Frame):
         :type regex_str: str
 
         """
-        ttkb.Frame.__init__(self, master=parent)
-        self.label = ttkb.Label(self, text=label_text, width=label_width)
+        #ttkb.Frame.__init__(self, master=parent)
+        row_str: str = 'row'
+        sticky_str: str = 'sticky'
+        anchor = tk.W
+        if row_str in label_grid_args and row_str in entry_grid_args and sticky_str not in entry_grid_args:
+            if label_grid_args[row_str] == entry_grid_args[row_str]:
+                anchor = tk.E
+                entry_grid_args[sticky_str] = tk.W
+        self.label = ttkb.Label(parent, text=label_text, width=label_width, anchor=anchor)
         self.label.grid(**label_grid_args)
-        self.entry = DecimalWidget(parent=self, label_text=label_text, regex_str=regex_str)
+        self.entry = DecimalWidget(parent=parent, label_text=label_text, regex_str=regex_str)
         self.entry.grid(**entry_grid_args)
 
     def focus_set(self):
@@ -1123,17 +1142,20 @@ class DateWidget(ttkb.Frame):
                     self.error = True
                     dialogs.Messagebox.ok("Date entered is not valid.", "Date Entry Error")
 
-    def get_date(self) -> date:
+    def get_date(self) -> Optional[date]:
         """
         Build a date value from the values entered to the month, day and year entry fields.
 
         :return: datetime.date instance
 
         """
-        month: int = int(self.month_var.get())
-        day: int = int(self.day_var.get())
-        year: int = int(self.year_var.get())
-        return date(year=year, month=month, day=day)
+        try:
+            month: int = int(self.month_var.get())
+            day: int = int(self.day_var.get())
+            year: int = int(self.year_var.get())
+            return date(year=year, month=month, day=day)
+        except ValueError:
+            return None
 
     def set_date(self, date_value: date):
         """
@@ -1161,6 +1183,10 @@ class TimeWidget(ttkb.Frame):
         entry fields.
         """
         ttkb.Frame.__init__(self, parent)
+        self.columnconfigure(0, weight=2)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=2)
+        self.columnconfigure(3, weight=2)
         self.hour_var = ttkb.StringVar()
         self.minute_var = ttkb.StringVar()
         self.ampm_var = ttkb.StringVar()
@@ -1172,22 +1198,22 @@ class TimeWidget(ttkb.Frame):
             self.minute_var.set(fmt_time[3:5])
             self.ampm_var.set(fmt_time[6:8])
         self.hour_entry = ttkb.Entry(self, textvariable=self.hour_var, width=3)
-        self.hour_entry.grid(column=0, row=0, sticky=tk.NW, ipadx=0, padx=0, pady=5)
+        self.hour_entry.grid(column=0, row=0, sticky=tk.W, ipadx=0, padx=0, pady=5)
         ttkb.Label(self, text=":", width=1, font=('courier', 20, 'bold')).grid(column=1, row=0, sticky=tk.NW, padx=0,
                                                                                pady=5)
         self.hour_entry.bind('<KeyPress>', self.hour_keypress)
         self.hour_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.hour_entry, hour_validator)
         self.minute_entry = ttkb.Entry(self, textvariable=self.minute_var, width=3)
-        self.minute_entry.grid(column=2, row=0, sticky=tk.NW, ipadx=0, padx=0, pady=5)
+        self.minute_entry.grid(column=2, row=0, sticky=tk.W, ipadx=0, padx=0, pady=5)
         self.minute_entry.bind('<KeyPress>', self.minute_keypress)
         self.minute_entry.bind('<FocusIn>', self.clear_key_count)
         add_validation(self.minute_entry, minute_validator)
         self.am_button = Radiobutton(self, text='AM', value='AM', variable=self.ampm_var, command=self.validate_time)
-        self.am_button.grid(column=3, row=0, stick=tk.NW, padx=5, pady=5)
+        self.am_button.grid(column=3, row=0, stick=tk.W, padx=5, pady=5)
         self.pm_button = Radiobutton(self, text='PM', value='PM', variable=self.ampm_var, command=self.validate_time)
         self.pm_button.bind('<FocusOut>', self.validate_time, '+')
-        self.pm_button.grid(column=4, row=0, sticky=tk.NW, padx=5, pady=5)
+        self.pm_button.grid(column=4, row=0, sticky=tk.W, padx=5, pady=5)
         if self.ampm_var.get() not in ['AM', 'PM']:
             self.ampm_var.set('AM')
         self.grid()
@@ -1679,25 +1705,29 @@ class NoteTip:
 
 
 class IntegerMetricWidget(LabeledIntegerWidget):
-    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int):
+    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int,
+                 label_grid_args: dict[str, Any], entry_grid_args: dict[str, Any]):
         LabeledIntegerWidget.__init__(self, parent=parent,
-                                      label_text=dp.dptype_dp_map[dp_type].label(),
+                                      label_text=f'{dp.dptype_dp_map[dp_type].label()}:',
                                       label_width=self.label_width(dp.dptype_dp_map[dp_type].label(), min_label_width),
-                                      label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5},
+                                      label_grid_args=label_grid_args,
                                       entry_width=entry_width,
-                                      entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NE, 'padx': 5, 'pady': 5})
-        ttkb.Label(self, text=uom.abbreviation(), width=10).grid(column=2, row=0, sticky=tk.NW)
+                                      entry_grid_args=entry_grid_args)
+        ttkb.Label(parent, text=uom.abbreviation(), width=10).grid(column=entry_grid_args['column']+1,
+                                                                   row=entry_grid_args['row'], sticky=tk.EW)
 
 
 class DecimalMetricWidget(LabeledDecimalWidget):
-    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int):
+    def __init__(self, parent, dp_type: dp.DataPointType, uom: uoms.UOM, min_label_width: int, entry_width: int,
+                 label_grid_args: dict[str, Any], entry_grid_args: dict[str, Any]):
         LabeledDecimalWidget.__init__(self, parent=parent,
-                                      label_text=dp.dptype_dp_map[dp_type].label(),
+                                      label_text=f'{dp.dptype_dp_map[dp_type].label()}:',
                                       label_width=self.label_width(dp.dptype_dp_map[dp_type].label(), min_label_width),
-                                      label_grid_args={'column': 0, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5},
+                                      label_grid_args=label_grid_args,
                                       entry_width=entry_width,
-                                      entry_grid_args={'column': 1, 'row': 0, 'sticky': tk.NW, 'padx': 5, 'pady': 5})
-        ttkb.Label(self, text=uom.abbreviation(), width=10).grid(column=2, row=0, sticky=tk.NW)
+                                      entry_grid_args=entry_grid_args)
+        ttkb.Label(parent, text=uom.abbreviation(), width=10).grid(column=entry_grid_args['column']+1,
+                                                                   row=entry_grid_args['row'], sticky=tk.EW)
 
 
 class MetricWidget(ttkb.Frame):
@@ -1758,15 +1788,14 @@ class MetricWidget(ttkb.Frame):
 
         """
         if self.show_note_field:
-            self.note_entry = LabeledTextWidget(self, label_text='Note', label_width=6,
-                                                label_grid_args={'column': 0, 'row': 1, 'sticky': tk.NW, 'padx': 5,
+            self.note_entry = LabeledTextWidget(self, label_text='Note:', label_width=6,
+                                                label_grid_args={'column': 3, 'row': 0, 'sticky': tk.E, 'padx': 5,
                                                                  'pady': 5},
                                                 entry_width=30,
-                                                entry_grid_args={'column': 1, 'row': 1, 'sticky': tk.NW, 'padx': 5,
-                                                                 'pady': 5})
+                                                entry_grid_args={'column': 4, 'row': 0, 'sticky': tk.E, 'padx': 5,
+                                                                 'pady': 5, 'columnspan': 2})
             if self.datapoint:
                 self.note_entry.set_value(self.datapoint.note)
-            self.note_entry.grid(column=3, row=1, sticky=tk.NE)
             self.note_entry.bind('<FocusOut>', self.check_changed_note)
             self.note_entry.bind('<KeyPress>', self.handle_keypress)
             self.note_var = self.note_entry.entry.get_var()
@@ -1856,10 +1885,12 @@ class BodyWeightWidget(MetricWidget):
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
         self.weight_var = ttkb.DoubleVar()
         self.weight_entry = DecimalMetricWidget(parent=self, dp_type=self.dp_type, uom=self.uom,
-                                                min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
+                                                min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6,
+                                                label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 5},
+                                                entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 5})
+
         if datapoint:
             self.weight_entry.set_value(datapoint.data.value)
-        self.weight_entry.grid(column=0, row=1, sticky=tk.NW)
         self.weight_entry.bind('<FocusOut>', self.check_change)
         self.weight_entry.bind('<KeyPress>', self.handle_keypress)
         self.create_note_entry()
@@ -1917,8 +1948,9 @@ class BodyTempWidget(MetricWidget):
         """
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
         self.temp_entry = DecimalMetricWidget(parent=self, dp_type=self.dp_type, uom=self.uom,
-                                              min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
-        self.temp_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
+                                              min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6,
+                                              label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 5},
+                                              entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 5})
         self.temp_entry.bind('<KeyPress>', self.handle_keypress)
         self.temp_entry.bind('<FocusOut>', self.check_change)
         if datapoint is not None:
@@ -1977,36 +2009,28 @@ class BloodPressureWidget(MetricWidget):
         a right click
        """
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
-        self.systolic_entry = LabeledIntegerWidget(self, label_text=' Systolic',
-                                                   label_width=METRIC_WIDGET_MIN_LBL_WIDTH,
-                                                   label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
-                                                                    'sticky': tk.NW},
+        self.systolic_entry = LabeledIntegerWidget(self, label_text='Systolic:',
+                                                   label_width=self.label_width(dp.dptype_dp_map[dp.DataPointType.BP]
+                                                                                .label(),  METRIC_WIDGET_MIN_LBL_WIDTH),
+                                                   label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0},
                                                    entry_width=6,
-                                                   entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
-                                                                    'sticky': tk.NW})
-        self.systolic_entry.label.configure(anchor=tk.E)
-        self.systolic_entry.grid(column=0, row=1, padx=5, sticky=tk.NW)
+                                                   entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0})
         self.systolic_entry.bind('<KeyPress>', self.handle_keypress)
         self.systolic_entry.bind('<FocusOut>', self.check_change)
-        dash_frame = ttkb.Frame(self, width=METRIC_WIDGET_MIN_LBL_WIDTH * 2)
-        bp_label = ttkb.Label(dash_frame, text='Blood Pressure', width=METRIC_WIDGET_MIN_LBL_WIDTH, anchor=tk.W)
-        bp_label.grid(column=0, row=0, padx=5, pady=0, sticky=tk.NW)
-
-        ttkb.Label(dash_frame, text=f'======================  {track_cfg.default_uom.abbreviation()}').\
-            grid(column=1, row=0, padx=5, pady=0, sticky=tk.NW)
-        dash_frame.grid(column=0, row=2, padx=5, sticky=tk.NW)
-        self.diastolic_entry = LabeledIntegerWidget(self, label_text='Diastolic',
-                                                    label_width=METRIC_WIDGET_MIN_LBL_WIDTH,
-                                                    label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 0,
-                                                                     'sticky': tk.NW},
+        bp_label = ttkb.Label(self, text='Blood Pressure:', width=self.label_width('Blood Pressure:',
+                                                                                   METRIC_WIDGET_MIN_LBL_WIDTH),
+                              anchor=tk.E)
+        bp_label.grid(column=0, row=1, padx=5, pady=0)
+        ttkb.Label(self, text=f'===========', anchor=tk.E).grid(column=1, row=1)
+        ttkb.Label(self, text=f'{track_cfg.default_uom.abbreviation()}').grid(column=2, row=1, padx=5, pady=0)
+        self.diastolic_entry = LabeledIntegerWidget(self, label_text='Diastolic:',
+                                                    label_width=self.label_width(dp.dptype_dp_map[dp.DataPointType.BP]
+                                                                                 .label(),  METRIC_WIDGET_MIN_LBL_WIDTH),
+                                                    label_grid_args={'column': 0, 'row': 2, 'padx': 5, 'pady': 0},
                                                     entry_width=6,
-                                                    entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 0,
-                                                                     'sticky': tk.NW})
-        self.diastolic_entry.label.configure(anchor=tk.E)
-        self.diastolic_entry.grid(column=0, row=3, sticky=tk.NW, padx=5, pady=0)
+                                                    entry_grid_args={'column': 1, 'row': 2, 'padx': 5, 'pady': 0})
         self.diastolic_entry.bind('<KeyPress>', self.handle_diastolic_keypress)
         self.diastolic_entry.bind('<FocusOut>', self.check_change)
-        self.grid(padx=5, pady=5, sticky=tk.NW)
         if datapoint is not None:
             self.systolic_entry.set_value(datapoint.data.systolic)
             self.diastolic_entry.set_value(datapoint.data.diastolic)
@@ -2015,6 +2039,25 @@ class BloodPressureWidget(MetricWidget):
         if not show_note_field:
             for child in self.children.values():
                 child.bind('<Button-3>', self.edit_note)
+
+    @staticmethod
+    def label_width(text: str, min_width: int) -> int:
+        """
+        Calculates a width for the label based on the label text and a minumum width
+
+        :param text: the label test
+        :type text: str
+        :param min_width: the minimum label width
+        :type min_width: int
+        :reFturn: the calculated label width
+        :rtype: int
+
+        """
+        text_width = len(text) + 2
+        if text_width < min_width:
+            return min_width
+        else:
+            return text_width
 
     def get_value(self) -> (int, int):
         """
@@ -2077,8 +2120,10 @@ class BloodGlucoseWidget(MetricWidget):
         """
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
         self.bg_entry = IntegerMetricWidget(self, dp_type=track_cfg.dp_type, uom=track_cfg.default_uom,
-                                            min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
-        self.bg_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
+                                            min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6,
+                                            label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 5},
+                                            entry_grid_args={'column': 1, 'row': 0, 'padx': 5,
+                                                             'pady': 5})
         self.bg_entry.bind('<KeyPress>', self.handle_keypress)
         self.bg_entry.bind('<FocusOut>', self.check_change)
         if datapoint is not None:
@@ -2148,8 +2193,9 @@ class PulseWidget(MetricWidget):
         """
         MetricWidget.__init__(self, parent, track_cfg, datapoint, show_note_field)
         self.pulse_entry = IntegerMetricWidget(self, dp_type=track_cfg.dp_type, uom=track_cfg.default_uom,
-                                               min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6)
-        self.pulse_entry.grid(column=0, row=1, sticky=tk.NW, padx=5, pady=5)
+                                               min_label_width=METRIC_WIDGET_MIN_LBL_WIDTH, entry_width=6,
+                                               label_grid_args={'column': 0, 'row': 0, 'padx': 5, 'pady': 5},
+                                               entry_grid_args={'column': 1, 'row': 0, 'padx': 5, 'pady': 5})
         self.grid(padx=5, pady=5)
         self.pulse_entry.bind('<FocusOut>', self.check_change)
         self.pulse_entry.bind('<KeyPress>', self.handle_keypress)
@@ -2266,14 +2312,15 @@ class DataPointWidget(ttkb.Frame):
         ttkb.Frame.__init__(self, parent)
         self.track_cfg = track_cfg
         self.datapoint = datapoint
-        ttkb.Label(self, text='Recorded on:', width=15).grid(column=0, row=0, sticky=tk.NW, padx=5, pady=5)
+        ttkb.Label(self, text='Recorded:', width=METRIC_WIDGET_MIN_LBL_WIDTH, anchor=tk.E).grid(column=0, row=0,
+                                                                                                padx=5, pady=5)
         self.taken_date_widget = DateWidget(self, default_value=datapoint.taken.date())
-        self.taken_date_widget.grid(column=1, row=0, sticky=tk.NW, padx=5, pady=5)
+        self.taken_date_widget.grid(column=1, row=0, padx=0, pady=5, sticky=tk.W)
         ttkb.Label(self, text='at', width=3).grid(column=2, row=0, sticky=tk.NW, padx=2, pady=5)
         self.taken_time_widget = TimeWidget(self, default_value=datapoint.taken.time())
-        self.taken_time_widget.grid(column=3, row=0, sticky=tk.NW, padx=5, pady=5)
+        self.taken_time_widget.grid(column=4, row=0, sticky=tk.W, padx=0, pady=5)
         self.metric_widget = MetricWidgetFactory.make_widget(self, track_cfg, datapoint)
-        self.metric_widget.grid(column=0, row=1, columnspan=4, sticky=tk.NW, padx=5, pady=5)
+        self.metric_widget.grid(column=0, row=1, columnspan=5)
         self.taken_date_widget.prev_entry = parent
         self.taken_date_widget.next_entry = self.taken_time_widget
         self.taken_time_widget.prev_entry = self.taken_date_widget
@@ -2696,7 +2743,7 @@ class DataPointTypeComboWidget(ttkb.Frame):
     """
     A ComboBox for selecting an option from a list of DataPointType enum values
     """
-    def __init__(self, parent, person: dp.Person):
+    def __init__(self, parent, person: Optional[dp.Person]):
         """
         Creates an instance of DataPointTypeComboWidget
 
@@ -2709,7 +2756,7 @@ class DataPointTypeComboWidget(ttkb.Frame):
         combobox_list: list[str] = []
         self.combobox_map: dict[str, dp.DataPointType] = {}
         for dp_type, datapoint in dp.dptype_dp_map.items():
-            if person.is_tracked(dp_type):
+            if person is None or person.is_tracked(dp_type):
                 combobox_list.append(datapoint.label())
                 self.combobox_map[datapoint.label()] = dp_type
         self.dp_type_entry = ttkb.Combobox(self, textvariable=self.dp_type_var,
@@ -2897,8 +2944,8 @@ class HourlyScheduleWidget(ScheduleWidget):
         row: int = 0
         ttkb.Label(self, text='Hourly Schedule').grid(column=0, row=row, columnspan=4, padx=5, pady=5)
         row += 1
-        ttkb.Label(self, text='Every').grid(column=0, row=row, padx=5, pady=5)
-        self.interval_entry.grid(column=1, row=row)
+        ttkb.Label(self, text='Every:').grid(column=0, row=row, padx=5, pady=5)
+        self.interval_entry.grid(column=1, row=row, sticky=tk.W)
         ttkb.Label(self, text='Hours').grid(column=2, row=row, padx=5, pady=5)
         row += 1
         ttkb.Label(self, text='First Time:').grid(column=0, row=row, padx=5, pady=5)
@@ -2967,7 +3014,7 @@ class DailyScheduleWidget(ScheduleWidget):
         ttkb.Label(self, text='Days').grid(column=2, row=row, padx=5, pady=5)
         row += 1
         ttkb.Label(self, text='Time:').grid(column=0, row=row, padx=5, pady=5)
-        self.when_time_entry.grid(column=1, row=row)
+        self.when_time_entry.grid(column=1, row=row, padx=5, pady=5)
         self.when_time_entry.set_prev_entry(self.interval_entry)
         self.when_time_entry.set_next_entry(self.interval_entry)
 
@@ -3031,7 +3078,7 @@ class WeeklyScheduleWidget(ScheduleWidget):
         ttkb.Label(self, text='Weeks').grid(column=2, row=row, padx=5, pady=5)
         row += 1
         ttkb.Label(self, text='Time:').grid(column=0, row=row, padx=5, pady=5)
-        self.when_time_entry.grid(column=1, row=row)
+        self.when_time_entry.grid(column=1, row=row, padx=5, pady=5)
         row += 1
         self.weekday_entry = WeekDayCheckbuttonWidget(self)
         self.weekday_entry.set_checked_days(weekdays)
@@ -3100,7 +3147,7 @@ class MonthlyScheduleWidget(ScheduleWidget):
         ttkb.Label(self, text='Months').grid(column=2, row=row, padx=5, pady=5)
         row += 1
         ttkb.Label(self, text='Time:').grid(column=0, row=row, padx=5, pady=5)
-        self.when_time_entry.grid(column=1, row=row)
+        self.when_time_entry.grid(column=1, row=row, padx=5, pady=5)
         row += 1
         self.dom_entry = DaysOfMonthManager(parent=self, month=self.starts_on.month, year=self.starts_on.year,
                                             column=0, row=row, columnspan=4)
@@ -3167,7 +3214,7 @@ class OneTimeScheduleWidget(ScheduleWidget):
         row += 1
         row += 1
         ttkb.Label(self, text='Time on Start Date:').grid(column=0, row=row, padx=5, pady=5)
-        self.when_time_entry.grid(column=1, row=row)
+        self.when_time_entry.grid(column=1, row=row, padx=5, pady=5)
 
     def get_schedule_entry(self) -> dp.ScheduleEntry:
         """
@@ -3384,9 +3431,9 @@ class ImportExportSpecButtons(ttkb.Frame):
         self.specs_map: specs_map_type = specs_map
         ttkb.Label(self, text=button_title).grid(column=0, row=1, columnspan=2, padx=2, pady=2)
         self.select_button = ttkb.Button(self, text='Select', command=self.select_specs)
-        self.select_button.grid(column=0, row=0, padx=2, pady=2, sticky=tk.NW)
+        self.select_button.grid(column=0, row=0, padx=5, pady=2, sticky=tk.NW)
         self.save_button = ttkb.Button(self, text='Save', command=self.save_specs)
-        self.save_button.grid(column=1, row=0, padx=2, pady=2, sticky=NE)
+        self.save_button.grid(column=1, row=0, padx=5, pady=2, sticky=NE)
         self.select_list: Optional[ImportExportSpecsListWidget] = None
         self.save_widget: Optional[ImportExportSaveSpecWidget] = None
 
@@ -3454,65 +3501,9 @@ class ImportExportSpecButtons(ttkb.Frame):
         return id
 
 
-class PluginMenu:
-    """
-    An implementation of biometrics_tracker.config.PluginMenu class for the ttkbootstrap GUI framedwork
+if __name__ == '__main__':
 
-    """
-    def __init__(self, parent, plugin_menu: plugin_config.PluginMenu):
-        """
-        Creates an instance of PluginMenu
-
-        :param parent: the GUI parent of this menu
-        :type parent: ttkbootstrap.Menu
-        :param plugin_menu: a biometrics_tracker.config.PluginMenu instance.  These will be de-serialiezed from JSON provied with the plugin
-        :type plugin_menu: biometrics_tracker.config.PluginMenu
-
-        """
-        self.parent = parent
-        self.plugin_menu = plugin_menu
-        self.menu: Optional[ttkb.Menu] = None
-
-    def add_menu_item(self, label: str, action: Callable):
-        """
-        Provided as a callback for the add item function in the biometrics_tracker.config.PluginMenu.create_menus method
-
-        :param label: the label text for the menu option
-        :type label: str
-        :param action: the action callback for the menu item
-        :type action: Callable
-        :return: None
-
-        """
-        self.menu.add_command(label=label, command=action)
-
-    def add_menu(self, label: str):
-        """
-        Provided as a callback for the add menu funtion in the biometrics_tracker.config.PluginMenu.create_menus method
-
-        :param label: the label text for the menu
-        :type label: str
-        :return: None
-
-        """
-        self.parent.add_cascade(label=label, menu=self.menu)
-
-    def create_menu(self,  not_found_action: Callable,
-                    selection_action: Optional[Callable]) -> ttkb.Menu:
-        """
-        Invokes the biometrics_tracker.config.PluginMenu.create_menu method
-
-        :param not_found_action: the callback to be used for the menu if an entry point can not be imported
-        :param selection_action: the callback to be used for Person, date range and DataPointType selections
-        :return: the menu object
-        :rtype: ttkbootstrap.Menu
-
-        """
-        self.menu = ttkb.Menu(self.parent)
-        self.plugin_menu.create_menu(not_found_action=not_found_action, selection_action=selection_action,
-                                     add_menu_item=self.add_menu_item, add_menu=self.add_menu)
-        return self.menu
-
-
-
+    window = ttkb.Window(title='test plugin widgets', themename='darkly')
+    window.mainloop()
+    pass
 

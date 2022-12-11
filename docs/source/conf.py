@@ -9,7 +9,7 @@ import pathlib
 import sys
 sys.path.insert(0, pathlib.Path(__file__).parents[2].resolve().as_posix())
 
-autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf", "pytest"]
+autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf", "pytest", "plugin_manager", "ttkbwidgets"]
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -17,7 +17,7 @@ autodoc_mock_imports = ["schedule", "ttkbootstrap", "fpdf", "pytest"]
 project = 'Biometrics Tracking'
 copyright = '2022, Stroud Custer III'
 author = 'Stroud Custer III'
-release = '1.1.0'
+release = '1.2.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

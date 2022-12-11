@@ -75,8 +75,10 @@ DELETE_DP_FOR_PER_DATETIME = 'DELETE FROM DATAPOINTS WHERE PERSON_ID = ? AND TIM
 
 DELETE_DP_FOR_PER_DT_TYPE = 'DELETE FROM DATAPOINTS WHERE PERSON_ID = ? AND TIMESTAMP = ? AND TYPE = ?'
 
-RETRIEVE_DP_FOR_PERSON_STMT = 'SELECT TIMESTAMP, TYPE, NOTE, DATA FROM DATAPOINTS WHERE PERSON_ID = ? AND ' \
+RETRIEVE_DP_FOR_PERSON_STMT = 'SELECT PERSON_ID, TIMESTAMP, TYPE, NOTE, DATA FROM DATAPOINTS WHERE PERSON_ID = ? AND ' \
                               'TIMESTAMP >= ? AND TIMESTAMP <= ?;'
+
+RETRIEVE_DP_STMT = 'SELECT PERSON_ID, TIMESTAMP, TYPE, NOTE, DATA FROM DATAPOINTS '
 
 RETRIEVE_PEOPLE_STMT = 'SELECT ID, NAME FROM PEOPLE;'
 
@@ -93,13 +95,20 @@ class DataBase(threading.Thread):
     - SCHEDULE - one row for each schedule entry for the scheduled collection of biometrics data.  This table has a
     foreign key relationship with the PEOPLE table
 
-    TODO: mark up the list above so that it appears as a bulleted list in the Sphinx-produced API doc pages
-
-     :param filename: the name of the file containing the SQLite database
-     :type filename: str
-
     """
     def __init__(self, filename: str, queues: queue_manager.Queues, block_req_queue: bool):
+        """
+
+        Create an instance of DataBase
+
+        :param filename: the filename of the SQLite3 database
+        :type filenme: str
+        :param queues: a container for the IPC queues used by the application
+        :type queues: biometrics_tracker.ipc.queues.Queues
+        :param block_req_queue: should the database request queue fetch block
+        :type block_req_queue: bool
+
+        """
         threading.Thread.__init__(self)
         self.filename = filename
         if not pathlib.Path(filename).exists():
@@ -256,8 +265,12 @@ class DataBase(threading.Thread):
             case messages.DataPointReqMsg:
                 match msg.operation:
                     case messages.DBOperation.RETRIEVE_SET:
-                        datapoints: list[dp.DataPoint] = self.retrieve_datapoints_for_person(msg.person_id,
-                                                                                             msg.start, msg.end)
+                        datapoints: list[dp.DataPoint] = []
+                        if msg.person_id is not None and msg.start is not None and msg.end is not None and \
+                                msg.dp_type is None:
+                            datapoints = self.retrieve_datapoints_for_person(msg.person_id, msg.start, msg.end)
+                        else:
+                            datapoints = self.retrieve_datapoints_where(msg.person_id, msg.start, msg.end, msg.dp_type)
                         return messages.DataPointRespMsg(destination=msg.replyto, replyto=None, person_id=msg.person_id,
                                                          datapoints=datapoints)
                     case messages.DBOperation.DELETE_SINGLE:
@@ -598,9 +611,75 @@ class DataBase(threading.Thread):
         """
         curs: sql.Cursor = self.conn.cursor()
         rows = curs.execute(RETRIEVE_DP_FOR_PERSON_STMT, (person_id, start_date, end_date)).fetchall()
+        return DataBase.retrieve_datapoints(rows)
+
+    def retrieve_datapoints_where(self,  person_id: Optional[str] = None,
+                                  start_datetime: Optional[datetime] = None,
+                                  end_datetime: Optional[datetime] = None,
+                                  dp_type: dp.DataPointType = None) -> list[dp.DataPoint]:
+        """
+        This method was created to provide more flexibility in the selection criteria for DataPoints.  Selection
+        for Person, date range and DataPointType can be mixed and matches.  A parameter value of None indicates
+        that the column will not be included in the SELECT statement where clause.
+
+        :param person_id: the optional ID of the person to select rows for
+        :type person_id: Optional[str]
+        :param start_datetime: the optional earliest date/time to select rows for
+        :type start_datetime: Optional[datetime]
+        :param end_datetime: the optional most recent date/time to select rows for
+        :type end_datetime: Optional[datetime]
+        :param dp_type: the optional DataPointType to select rows for
+        :type dp_type: Optional[biometrics_tracker.model.datapoints.DataPointType]
+        :return: a list of DataPoints that meet the provided selection criterial
+        :rtype: list[biometrics_tracker.model.datapoints.DataPoint]
+
+        """
+
+        where_clause: str = ''
+        values: tuple = ()
+        if not (person_id is None and start_datetime is None and end_datetime is None and dp_type is None):
+            if person_id is not None:
+                where_clause = f'{where_clause} PERSON_ID = ?'
+                values = (person_id,)
+            if start_datetime is not None:
+                if len(values) > 0:
+                    where_clause = f'{where_clause} AND TIMESTAMP >= ?'
+                else:
+                    where_clause = f'{where_clause} TIMESTAMP >= ?'
+                values = (*values, start_datetime)
+            if end_datetime is not None:
+                if len(values) > 0:
+                    where_clause = f'{where_clause} AND TIMESTAMP <= ?'
+                else:
+                    where_clause = f'{where_clause} TIMESTAMP <= ?'
+                values = (*values, end_datetime)
+            if dp_type is not None:
+                if len(values) > 0:
+                    where_clause = f'{where_clause} AND TYPE = ?'
+                else:
+                    where_clause = f'{where_clause} TYPE = ?'
+                values = (*values, dp_type.value)
+            stmt = f'{RETRIEVE_DP_STMT} WHERE {where_clause}'
+        else:
+            stmt = RETRIEVE_DP_STMT
+        curs: sql.Cursor = self.conn.cursor()
+        rows = curs.execute(stmt, values).fetchall()
+        return DataBase.retrieve_datapoints(rows)
+
+    @staticmethod
+    def retrieve_datapoints(rows: list) -> list[dp.DataPoint]:
+        """
+        Creates a list of DataPoints from rows retrieved from the DATAPOINTS table
+
+        :param rows: the rows retrieved by a SELECT statement
+        :type rows: list[list[tuple[]]]
+        :return: a list of DataPoints
+        :rtype:  list[biometrics_tracker.model.datapoints.DataPoint]
+
+        """
         datapoints: list[dp.DataPoint] = []
         for row in rows:
-            ts_str, dp_type_int, note, data_json = row
+            person_id, ts_str, dp_type_int, note, data_json = row
             ts = datetime(int(ts_str[0:4]), int(ts_str[5:7]), int(ts_str[8:10]), int(ts_str[11:13]),
                           int(ts_str[14:16]), int(ts_str[17:19]))
             data = json.loads(eval(data_json), object_hook=jh.biometrics_object_hook)
