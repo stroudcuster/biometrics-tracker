@@ -11,8 +11,8 @@ import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.utilities.utilities as util
-import plugin_manager.model.json_handler as plugin_jh
-import plugin_manager.model.plugin as plugin_model
+import biometrics_tracker.plugin.json_handler as plugin_jh
+import biometrics_tracker.plugin as plugin_model
 
 
 class CoreLogic:

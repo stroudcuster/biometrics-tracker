@@ -21,6 +21,8 @@ API
     model-persistence
     model-uoms
     output-reports
+    plugin-plugin
+    plugin-json_handler
     utilities-utilities
     tests-random_data
     tests-test_tools

@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>biometrics_tracker.plugin.plugin module &#8212; Biometrics Tracking 1.2.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="biometrics_tracker.plugin.json_handler module" href="plugin-json_handler.html" />
+    <link rel="prev" title="biometrics_tracker.output.reports module" href="output-reports.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plugin-json_handler.html" title="biometrics_tracker.plugin.json_handler module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="output-reports.html" title="biometrics_tracker.output.reports module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.plugin.plugin module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="biometrics-tracker-plugin-plugin-module">
+<span id="plugin-plugin"></span><h1>biometrics_tracker.plugin.plugin module<a class="headerlink" href="#biometrics-tracker-plugin-plugin-module" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+</div>
+<span class="target" id="module-biometrics_tracker.plugin.plugin"></span><dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.Plugin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.plugin.plugin.</span></span><span class="sig-name descname"><span class="pre">Plugin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">menus</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu" title="biometrics_tracker.plugin.plugin.PluginMenu"><span class="pre">biometrics_tracker.plugin.plugin.PluginMenu</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.Plugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Holds general info and menu specs for a plugin</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.Plugin.add_menu">
+<span class="sig-name descname"><span class="pre">add_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu" title="biometrics_tracker.plugin.plugin.PluginMenu"><span class="pre">PluginMenu</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.Plugin.add_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a PluginMeu instance to the menus list property</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>menu</strong> (<em>biometrics_tracking.config.plugin_config.PluginMenu</em>) – the menu object to be added</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.Plugin.get_menu">
+<span class="sig-name descname"><span class="pre">get_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu" title="biometrics_tracker.plugin.plugin.PluginMenu"><span class="pre">PluginMenu</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.Plugin.get_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a menu that matches the provided title</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>match_title</strong> (<em>str</em>) – the title to be match</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the retrieved PluginMenu object or None</p>
+</dd>
+<dt class="field-odd">Rttype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[biometrics_tracker.plugin.plugin.PluginMenu</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.Plugin.remove_menu">
+<span class="sig-name descname"><span class="pre">remove_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.Plugin.remove_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a menu from the menu list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>match_title</strong> (<em>str`</em>) – the title of the menu to be removed</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginImportError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.plugin.plugin.</span></span><span class="sig-name descname"><span class="pre">PluginImportError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginImportError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ImportError</span></code></p>
+<p>This exception is thrown if the PluginMenuItem.import_entry_point module importation fails due to a
+problem with the module code, such as a syntax error or undefined symbol</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.plugin.plugin.</span></span><span class="sig-name descname"><span class="pre">PluginMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenuItem" title="biometrics_tracker.plugin.plugin.PluginMenuItem"><span class="pre">biometrics_tracker.plugin.plugin.PluginMenuItem</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A dataclass that hold the information necessary to specify an application menu.  This class is GUI framework
+agnostic.  An example of an tkinter based implementation which used composition to access the functionality
+of this class can be found in the biometrics_tracker.gui.widgets module.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenu.add_item">
+<span class="sig-name descname"><span class="pre">add_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenuItem" title="biometrics_tracker.plugin.plugin.PluginMenuItem"><span class="pre">PluginMenuItem</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenu.add_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a PluginMenuItem instance to the list maintained by this instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<em>biometrics_tracker.config.PluginMenuItem</em>) – the PluginMenuItem instance to be added</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenu.create_menu">
+<span class="sig-name descname"><span class="pre">create_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">not_found_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_menu_item</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenu.create_menu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a menu from a PluginMenu instance, and it’s PluginMenuItem children, using callbacks provided the
+GUI implementation to create the menus and menu items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>not_found_action</strong> (<em>Callable</em>) – the callback to be used when an entry point can not be found</p></li>
+<li><p><strong>selection_action</strong> (<em>Callable</em>) – the callback to be used for Person, date range and DataPointType selections</p></li>
+<li><p><strong>add_menu_item</strong> (<em>Callable</em>) – the callback to be used to add menu items to the menu</p></li>
+<li><p><strong>add_menu</strong> (<em>Callable</em>) – the callback to be used to associate the menu created with a parent menu</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenu.get_menu_item">
+<span class="sig-name descname"><span class="pre">get_menu_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenuItem" title="biometrics_tracker.plugin.plugin.PluginMenuItem"><span class="pre">PluginMenuItem</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenu.get_menu_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a PluginMenuItem object that matches the provided title
+:param match_title: the title of the PluginMenuItem to be retrieved
+:type match_title: str
+:return: Optional[biometrics_tracker.plugin.plugin.PluginMenuItem</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenuItem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.plugin.plugin.</span></span><span class="sig-name descname"><span class="pre">PluginMenuItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_point_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenuItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A data class that holds the information necessary to create a menu item for a plugin entry point. The module
+name to be imported is supplied by the parent PluginMenu instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>title</strong> (<em>str</em>) – the title for the menu item</p></li>
+<li><p><strong>entry_point_name</strong> (<em>str</em>) – the name of the callback for the menu item</p></li>
+<li><p><strong>select_person</strong> (<em>bool</em>) – should the menu item present a Person selection list prior to invoking the entry point</p></li>
+<li><p><strong>select_date_range</strong> (<em>bool</em>) – should the menu item present a date range selection list prior to invoking the entry point</p></li>
+<li><p><strong>select_dp_type</strong> (<em>bool</em>) – should the menu item present a DataPointType selection list prior to invoking the entry point</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginMenuItem.import_entry_point">
+<span class="sig-name descname"><span class="pre">import_entry_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">not_found_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginMenuItem.import_entry_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports the module specified in a PluginMenu instance, then checks for the existence of the entry point
+specified in the PluginMenuItem instance.  If the module can not be loaded, a custom exception is raised
+If the module can be imported, a check is made to see if the entry point exists.  If it does not exist,
+then then the provided not_found_actions callback is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module_name</strong> (<em>str</em>) – the name of the plugin module to be imported</p></li>
+<li><p><strong>not_found_action</strong> (<em>Callable</em>) – a Callable to be used as the menu item callback if the entry_point doesnt exist</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a Callable to be used as a callback for the menu item</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="biometrics_tracker.plugin.plugin.PluginNotFoundError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.plugin.plugin.</span></span><span class="sig-name descname"><span class="pre">PluginNotFoundError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.plugin.plugin.PluginNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ModuleNotFoundError</span></code></p>
+<p>This exception is thrown if the PluginMenuItem.import_entry_point method can not find a module specified
+in a PluginMenu entry</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">biometrics_tracker.plugin.plugin module</a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.Plugin"><code class="docutils literal notranslate"><span class="pre">Plugin</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.Plugin.add_menu"><code class="docutils literal notranslate"><span class="pre">Plugin.add_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.Plugin.get_menu"><code class="docutils literal notranslate"><span class="pre">Plugin.get_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.Plugin.remove_menu"><code class="docutils literal notranslate"><span class="pre">Plugin.remove_menu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginImportError"><code class="docutils literal notranslate"><span class="pre">PluginImportError</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu"><code class="docutils literal notranslate"><span class="pre">PluginMenu</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu.add_item"><code class="docutils literal notranslate"><span class="pre">PluginMenu.add_item()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu.create_menu"><code class="docutils literal notranslate"><span class="pre">PluginMenu.create_menu()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenu.get_menu_item"><code class="docutils literal notranslate"><span class="pre">PluginMenu.get_menu_item()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenuItem"><code class="docutils literal notranslate"><span class="pre">PluginMenuItem</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginMenuItem.import_entry_point"><code class="docutils literal notranslate"><span class="pre">PluginMenuItem.import_entry_point()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#biometrics_tracker.plugin.plugin.PluginNotFoundError"><code class="docutils literal notranslate"><span class="pre">PluginNotFoundError</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="output-reports.html"
+                          title="previous chapter">biometrics_tracker.output.reports module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="plugin-json_handler.html"
+                          title="next chapter">biometrics_tracker.plugin.json_handler module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/plugin-plugin.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plugin-json_handler.html" title="biometrics_tracker.plugin.json_handler module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="output-reports.html" title="biometrics_tracker.output.reports module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.plugin.plugin module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Stroud Custer III.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
