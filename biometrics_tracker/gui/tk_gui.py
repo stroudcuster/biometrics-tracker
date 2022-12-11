@@ -16,8 +16,6 @@ import ttkbootstrap.dialogs.dialogs as dialogs
 import ttkbootstrap.scrolled as scrolled
 from ttkbootstrap.constants import *
 
-import plugin_manager.model.plugin as plugin_model
-
 import biometrics_tracker.config.createconfig as config
 import biometrics_tracker.main.core as core
 import biometrics_tracker.main.scheduler as scheduler
@@ -2435,7 +2433,7 @@ class Application(ttkb.Window, core.CoreLogic):
 
     def add_plugin_menu_item(self, menu: ttkb.Menu, label: str, action: Callable) -> None:
         """
-        This method is provided as a callback to the plugin_manager.model.plugin.PluginMenu.create_menu method
+        This method is provided as a callback to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu method
 
         :param menu: the parent Menu object
         :type menu: ttkbootstrap.Menu
@@ -2450,7 +2448,7 @@ class Application(ttkb.Window, core.CoreLogic):
 
     def add_plugin_menu(self, label: str) -> Any:
         """
-        This method is provided to the plugin_manager.model.plugin.PluginMenu.create_menu method.
+        This method is provided to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu method.
 
         :param self:
         :param label:
@@ -2472,7 +2470,7 @@ class Application(ttkb.Window, core.CoreLogic):
 
     def preproc_selection(self, sel_person: bool, sel_date_rng: bool, sel_dp_type: bool, action: Callable) -> None:
         """
-        This method is provided as an action call back to the plugin_manager.model.plugin.PluginMenu.create_menu
+        This method is provided as an action call back to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu
         method.  It creates and displays an instance of DataPointSelectionFrame to collect selection criteria.
 
         :param sel_person: will Person ID be part of the selection criteria

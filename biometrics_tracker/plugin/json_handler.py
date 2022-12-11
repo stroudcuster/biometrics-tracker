@@ -32,7 +32,7 @@ def retrieve_plugin(plugin_json: pathlib.Path) -> plugin_model.Plugin:
     :param plugin_json: a Path object associated with the JSON file
     :type plugin_json: pathlib.Path
     :return: the deserialized Plugin object
-    :rtype: plugin_manager.plugin.plugin.Plugin
+    :rtype: biometrics_tracker.plugin.plugin.Plugin
 
     """
     try:
@@ -49,7 +49,7 @@ def save_plugins(plugins: list[plugin_model.Plugin], plugin_path: pathlib.Path):
     Serialize a list of Plugin instances to JSON files.  The file names are based on the Plugin.name and author_name properties
 
     :param plugins: a list of Plugin objects
-    :type plugins: list[plugin_manager.plugin.plugin.Plugin]
+    :type plugins: list[biometrics_tracker.plugin.plugin.Plugin]
     :param plugin_path: a Path object pointing to the plugin folder
     :type plugin_path: pathlib.Path
     :return: None
@@ -61,7 +61,7 @@ def save_plugins(plugins: list[plugin_model.Plugin], plugin_path: pathlib.Path):
                               f'{plugin.author_name.replace(" ", "_")}-{plugin.name.replace(" ","_")}.json').open(mode='w') as pj:
                 pj.write(json_str)
         else:
-            raise TypeError(f'{plugin.__str__()} is not a valid plugin_manager.plugin.Plugin object')
+            raise TypeError(f'{plugin.__str__()} is not a valid biometrics_tracker.plugin.plugin.Plugin object')
 
 
 def decode_bool(bool_str: str) -> bool:
