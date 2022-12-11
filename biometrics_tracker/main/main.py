@@ -173,10 +173,6 @@ class Launcher:
 
         """
         config_info = self.pre_launch(config_path)
-        print(f'schedule_str {schedule_str}')
-        print(f'person_id {person_id}')
-        print(f'dp_type_name {dp_type_name}')
-        print(f'schedule_note {schedule_note}')
         app = gui.ScheduledEntryWindow(config_info=config_info, queue_mgr=self.queue_mgr,
                                        schedule_str=schedule_str, person_id=person_id, dp_type_name=dp_type_name,
                                        schedule_note=schedule_note)
