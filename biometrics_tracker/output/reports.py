@@ -45,7 +45,7 @@ class ReportBase(threading.Thread):
         start_datetime = utilities.mk_datetime(self.start_date, time(hour=0, minute=0, second=0))
         end_datetime = utilities.mk_datetime(self.end_date, time(hour=23, minute=59, second=59))
         self.queue_mgr.send_db_req_msg(messages.DataPointReqMsg(destination=per.DataBase, replyto=self.replyto,
-                                                                person_id= self.person.id, start=start_datetime,
+                                                                person_id=self.person.id, start=start_datetime,
                                                                 end=end_datetime,
                                                                 operation=messages.DBOperation.RETRIEVE_SET))
         resp: messages.DataPointRespMsg = self.queue_mgr.check_db_resp_queue(block=True)

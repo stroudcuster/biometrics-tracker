@@ -12,7 +12,7 @@ import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.utilities.utilities as util
 import biometrics_tracker.plugin.json_handler as plugin_jh
-import biometrics_tracker.plugin as plugin_model
+import biometrics_tracker.plugin.plugin as plugin_model
 
 
 class CoreLogic:
@@ -205,7 +205,7 @@ class CoreLogic:
                                                                 replyto=replyto,
                                                                 operation=messages.DBOperation.RETRIEVE_SET,
                                                                 person_id=person_id, start=start_datetime,
-                                                                end=end_datetime, dp_type = dp_type))
+                                                                end=end_datetime, dp_type=dp_type))
 
     def retrieve_person(self, person_id):
         def receive_person(msg: messages.PersonMsg):
@@ -277,10 +277,7 @@ class DataPointSelection:
         if self.end_date is not None:
             end_dt = util.mk_datetime(dt=self.end_date, tm=time(hour=23, minute=59, second=59))
 
-        self.parent.retrieve_datapoints(
-            replyto=lambda p=self.person, sd=start_dt, ed=end_dt, dp=self.dp_type:
-            self.action(person=p, start_date=sd, end_date=ed, dp_type=dp),
-            person_id=person_id, start_datetime=start_dt, end_datetime=end_dt, dp_type=self.dp_type)
+        self.action(person=self.person, start_date=start_dt, end_date=end_dt, dp_type=self.dp_type)
 
 
 

@@ -1,6 +1,6 @@
 [project]
 name = "biometrics-tracker"
-version = "1.2.1"
+version = "1.2.2"
 description = "This application records and reports biometric measurements (e.g. weight, blood pressure, pulse)"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}

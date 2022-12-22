@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>API &#8212; Biometrics Tracking 1.2.1 documentation</title>
+    <title>API &#8212; Biometrics Tracking 1.2.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="LICENSE.html" title="The MIT License (MIT)"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">API</a></li> 
       </ul>
     </div>  
@@ -248,7 +248,7 @@
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_date"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_date()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_time"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_time()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.help_menu"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.help_menu()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.person_received()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.make_metric_widget"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.make_metric_widget()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.remove_child_frame"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.remove_child_frame()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.run"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.run()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="gui-tk-gui.html#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.submit"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.submit()</span></code></a></li>
@@ -650,6 +650,7 @@
 <li class="toctree-l1"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
 <li class="toctree-l2"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase"><code class="docutils literal notranslate"><span class="pre">DataBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.build_schedule"><code class="docutils literal notranslate"><span class="pre">DataBase.build_schedule()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.close"><code class="docutils literal notranslate"><span class="pre">DataBase.close()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.close_db"><code class="docutils literal notranslate"><span class="pre">DataBase.close_db()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.commit"><code class="docutils literal notranslate"><span class="pre">DataBase.commit()</span></code></a></li>
@@ -671,6 +672,7 @@
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_where"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_datapoints_where()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.retrieve_people"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_people()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.retrieve_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_person()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.retrieve_schedule_for_person_seq"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_schedule_for_person_seq()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.retrieve_schedules_for_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_schedules_for_person()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.run"><code class="docutils literal notranslate"><span class="pre">DataBase.run()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="model-persistence.html#biometrics_tracker.model.persistence.DataBase.update_datapoint"><code class="docutils literal notranslate"><span class="pre">DataBase.update_datapoint()</span></code></a></li>
@@ -755,6 +757,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="utilities-utilities.html">biometrics_tracker.utilities.utilities module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html#biometrics_tracker.utilities.utilities.MutableString"><code class="docutils literal notranslate"><span class="pre">MutableString</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html#biometrics_tracker.utilities.utilities.compare_hms"><code class="docutils literal notranslate"><span class="pre">compare_hms()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html#biometrics_tracker.utilities.utilities.compare_mdyhms"><code class="docutils literal notranslate"><span class="pre">compare_mdyhms()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html#biometrics_tracker.utilities.utilities.datetime_from_str"><code class="docutils literal notranslate"><span class="pre">datetime_from_str()</span></code></a></li>
@@ -989,7 +992,7 @@
         <li class="right" >
           <a href="LICENSE.html" title="The MIT License (MIT)"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">API</a></li> 
       </ul>
     </div>

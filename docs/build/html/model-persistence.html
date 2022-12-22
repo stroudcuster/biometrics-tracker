@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>biometrics_tracker.model.persistence module &#8212; Biometrics Tracking 1.2.1 documentation</title>
+    <title>biometrics_tracker.model.persistence module &#8212; Biometrics Tracking 1.2.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="model-json_handler.html" title="biometrics_tracker.model.json_handler module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.model.persistence module</a></li> 
       </ul>
@@ -66,6 +66,26 @@ the PEOPLE table.
 relationship with the PEOPLE table
 - SCHEDULE - one row for each schedule entry for the scheduled collection of biometrics data.  This table has a
 foreign key relationship with the PEOPLE table</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.build_schedule">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Row</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.build_schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a ScheduleEntry instance from a row retrieved from the SCHEDULE table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>person_id</strong> (<em>str</em>) – the ID of the Person whose Schedule entries were retrieved</p></li>
+<li><p><strong>row</strong> (<em>sql.Row</em>) – the row retrieved from the database</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ScheduleEntry instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.close" title="Permalink to this definition">¶</a></dt>
@@ -378,6 +398,26 @@ a selection list for the people whose biometrics are tracked by the application<
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.retrieve_schedule_for_person_seq">
+<span class="sig-name descname"><span class="pre">retrieve_schedule_for_person_seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq_nbr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">ScheduleEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.retrieve_schedule_for_person_seq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a single ScheduleEntry matching the supplied Person ID and SecheduleEntry sequence number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>person_id</strong> (<em>str</em>) – ID of the person whose ScheduleEntry will be retrieved</p></li>
+<li><p><strong>seq_nbr</strong> (<em>int</em>) – sequence number of the ScheduleEntry to be retrieved</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the retrieved ScheduleEntry or None</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry">biometrics_tracker.model.datapoints.ScheduleEntry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.model.persistence.DataBase.retrieve_schedules_for_person">
 <span class="sig-name descname"><span class="pre">retrieve_schedules_for_person</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><span class="pre">biometrics_tracker.model.datapoints.ScheduleEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.model.persistence.DataBase.retrieve_schedules_for_person" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the schedule entries associated with the specified person</p>
@@ -496,6 +536,7 @@ instance to the SCHEDULE table.</p>
     <ul>
 <li><a class="reference internal" href="#">biometrics_tracker.model.persistence module</a><ul>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase"><code class="docutils literal notranslate"><span class="pre">DataBase</span></code></a><ul>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.build_schedule"><code class="docutils literal notranslate"><span class="pre">DataBase.build_schedule()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.close"><code class="docutils literal notranslate"><span class="pre">DataBase.close()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.close_db"><code class="docutils literal notranslate"><span class="pre">DataBase.close_db()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.commit"><code class="docutils literal notranslate"><span class="pre">DataBase.commit()</span></code></a></li>
@@ -517,6 +558,7 @@ instance to the SCHEDULE table.</p>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_datapoints_where"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_datapoints_where()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_people"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_people()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_person()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_schedule_for_person_seq"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_schedule_for_person_seq()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.retrieve_schedules_for_person"><code class="docutils literal notranslate"><span class="pre">DataBase.retrieve_schedules_for_person()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.run"><code class="docutils literal notranslate"><span class="pre">DataBase.run()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.model.persistence.DataBase.update_datapoint"><code class="docutils literal notranslate"><span class="pre">DataBase.update_datapoint()</span></code></a></li>
@@ -577,7 +619,7 @@ instance to the SCHEDULE table.</p>
         <li class="right" >
           <a href="model-json_handler.html" title="biometrics_tracker.model.json_handler module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.model.persistence module</a></li> 
       </ul>

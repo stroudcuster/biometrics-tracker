@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>biometrics_tracker.gui.tk_gui module &#8212; Biometrics Tracking 1.2.1 documentation</title>
+    <title>biometrics_tracker.gui.tk_gui module &#8212; Biometrics Tracking 1.2.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -35,7 +35,7 @@
         <li class="right" >
           <a href="config-logging_config.html" title="biometrics_tracker.config-logging_config module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.tk_gui module</a></li> 
       </ul>
@@ -294,7 +294,7 @@ Person/Add a New Person menu option is selected</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.add_plugin_menu">
 <span class="sig-name descname"><span class="pre">add_plugin_menu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.add_plugin_menu" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is provided to the plugin_manager.model.plugin.PluginMenu.create_menu method.</p>
+<dd><p>This method is provided to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -311,7 +311,7 @@ Person/Add a New Person menu option is selected</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.add_plugin_menu_item">
 <span class="sig-name descname"><span class="pre">add_plugin_menu_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">menu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ttkbootstrap.Menu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.add_plugin_menu_item" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is provided as a callback to the plugin_manager.model.plugin.PluginMenu.create_menu method</p>
+<dd><p>This method is provided as a callback to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -478,7 +478,7 @@ or an entry point is not found within the module.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.Application.preproc_selection">
 <span class="sig-name descname"><span class="pre">preproc_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sel_person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_date_rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.Application.preproc_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is provided as an action call back to the plugin_manager.model.plugin.PluginMenu.create_menu
+<dd><p>This method is provided as an action call back to the biometrics_tracker.plugin.plugin.PluginMenu.create_menu
 method.  It creates and displays an instance of DataPointSelectionFrame to collect selection criteria.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1219,8 +1219,8 @@ owner of the schedule entry and date is assumed to be the current date.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received">
-<span class="sig-name descname"><span class="pre">person_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.make_metric_widget">
+<span class="sig-name descname"><span class="pre">make_metric_widget</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PersonMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.make_metric_widget" title="Permalink to this definition">¶</a></dt>
 <dd><p>A callback specified as the replyto Callable in the message sent by the run method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1536,7 +1536,7 @@ with rows of widgets</p>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_date"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_date()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.get_time"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.get_time()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.help_menu"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.help_menu()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.person_received"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.person_received()</span></code></a></li>
+<li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.make_metric_widget"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.make_metric_widget()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.remove_child_frame"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.remove_child_frame()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.run"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.run()</span></code></a></li>
 <li><a class="reference internal" href="#biometrics_tracker.gui.tk_gui.ScheduledEntryWindow.submit"><code class="docutils literal notranslate"><span class="pre">ScheduledEntryWindow.submit()</span></code></a></li>
@@ -1609,7 +1609,7 @@ with rows of widgets</p>
         <li class="right" >
           <a href="config-logging_config.html" title="biometrics_tracker.config-logging_config module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">biometrics_tracker.gui.tk_gui module</a></li> 
       </ul>
