@@ -1,5 +1,4 @@
 from abc import abstractmethod
-import collections
 from datetime import datetime, date, time
 from io import StringIO, SEEK_SET
 import pathlib
@@ -27,7 +26,7 @@ import biometrics_tracker.model.exporters as exp
 import biometrics_tracker.model.importers as imp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.output.reports as reports
-from biometrics_tracker.utilities.utilities import mk_datetime, split_datetime, increment_date, split_camelcase, \
+from biometrics_tracker.utilities.utilities import mk_datetime, increment_date, split_camelcase, \
     whereami, compare_mdyhms
 import biometrics_tracker.version as version
 import biometrics_tracker.gui.widgets as widgets
@@ -83,7 +82,7 @@ class PersonFrame(ttkb.Frame):
 
         ttk.Label(self, text="Check the items you will be tracking and select a unit of measure for each",
                   wraplength=500, anchor=tk.W).grid(column=0, row=5, columnspan=3, rowspan=2, pady=10,
-                                                               padx=5, sticky=NW)
+                                                    padx=5, sticky=NW)
         row = 7
         for dp_type in dp.dptype_dp_map.keys():
             tracked = False
@@ -2504,8 +2503,8 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
     owner of the schedule entry and date is assumed to be the current date.
     """
 
-    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues, schedule_str: str, person_id: str,
-                 dp_type_name: str, schedule_note: str):
+    def __init__(self, config_info: config.ConfigInfo, queue_mgr: queues.Queues, schedule: dp.ScheduleEntry,
+                 person: dp.Person):
         """
         Creates an instance of biometrics-tracker.gui.tkgui.ScheduledEntry
 
@@ -2514,17 +2513,18 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         :param queue_mgr: managers send and receiving messages using the database request, database response and
         completion queues.
         :type queue_mgr: biometrics_tracker.ipc.queue_manager.Queues
-        :param entry: the ScheduleEntry that triggered the job
-        :type entry: biometrics_tracker.model.datapoints.ScheduleEntry
+        :param schedule: the ScheduleEntry that triggered the job
+        :type schedule: biometrics_tracker.model.datapoints.ScheduleEntry
+        :param person: the Person the Schedules are related to
+        :type person: biometrics_tracker.model.datapoints.Person
 
         """
         ttkb.Window.__init__(self, themename="darkly",
                              iconphoto=pathlib.Path(whereami('biometrics_tracker'), 'gui',
                                                     'biometrics_tracker.png').__str__())
         core.CoreLogic.__init__(self, config_info, queue_mgr)
-        self.person_id: str = person_id
-        self.person: Optional[dp.Person] = None
-        self.dp_type: dp.DataPointType = dp.dptype_name_map[dp_type_name]
+        self.person: dp.Person = person
+        self.schedule: dp.ScheduleEntry = schedule
         font.nametofont('TkMenuFont').config(size=self.config_info.menu_font_size)
         font.nametofont('TkTextFont').config(size=self.config_info.text_font_size)
         font.nametofont('TkDefaultFont').config(size=self.config_info.default_font_size)
@@ -2545,9 +2545,17 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         self.row: int = 0
         ttkb.Label(self, text="Add New Datapoint").grid(column=0, row=self.row, columnspan=4)
         self.row += 1
-        ttkb.Label(self, text=f'Schedule Entry: {schedule_str}').grid(column=0, row=self.row, columnspan=4)
+        ttkb.Label(self, text=f'Person: {self.person.id} {self.person.name} DOB: {self.person.dob.month}/'
+                   f'{self.person.dob.day}/{self.person.dob.year}').grid(column=0, row=self.row,
+                                                                         columnspan=5, padx=5, pady=5)
         self.row += 1
-        ttkb.Label(self, text=schedule_note, width=50).grid(column=0, row=self.row, columnspan=4)
+        ttkb.Label(self, text=f'Person: {self.person.id} {self.person.name} DOB: {self.person.dob.month}/'
+                   f'{self.person.dob.day}/{self.person.dob.year}').grid(column=0, row=1,
+                                                                         columnspan=5, padx=5, pady=5)
+
+        ttkb.Label(self, text=f'Schedule Entry: {self.schedule.__str__()}').grid(column=0, row=self.row, columnspan=4)
+        self.row += 1
+        ttkb.Label(self, text=self.schedule.note, width=50).grid(column=0, row=self.row, columnspan=4)
         self.row += 2
         ttkb.Label(self, text="Date:").grid(column=0, row=self.row, padx=5, pady=5)
         self.date_widget = DateWidget(self, default_value=date.today())
@@ -2555,7 +2563,16 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         ttkb.Label(self, text="Time:").grid(column=2, row=self.row, padx=5, pady=5)
         self.time_widget = TimeWidget(self, default_value=datetime.now().time())
         self.time_widget.grid(column=3, row=self.row, padx=5, pady=5)
-        self.row = 6
+        track_cfg = self.person.dp_type_track_cfg(self.schedule.dp_type)
+        self.row += 1
+        if track_cfg is not None:
+            self.widget = MetricWidgetFactory.make_widget(self, track_cfg, None, show_note_field=True)
+            self.widget.grid(column=0, row=self.row, columnspan=3, sticky=NW)
+            self.time_widget.set_next_entry(self.widget)
+        else:
+            raise ValueError(f'{self.schedule.dp_type.name} is not tracked for {self.person.name}')
+
+        self.row += 2
         ttkb.Button(self, text="Cancel", command=self.close_db).grid(column=0, row=self.row, sticky=NW, padx=10)
         ttkb.Button(self, text="Suspend Schedule", command=self.suspend_schedule).grid(column=1, row=self.row,
                                                                                        sticky=NW,  padx=10)
@@ -2575,14 +2592,11 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         :return: None
 
         """
-        self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase, replyto=self.person_received,
-                                                             person_id=self.person_id,
-                                                             operation=messages.DBOperation.RETRIEVE_SINGLE))
         self.check_completion_queue()
         self.check_response_queue()
         self.mainloop()
 
-    def person_received(self, msg: messages.PersonMsg):
+    def make_metric_widget(self, msg: messages.PersonMsg):
         """
         A callback specified as the replyto Callable in the message sent by the run method
 
@@ -2591,17 +2605,13 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         :return: None
 
         """
-        self.person = msg.payload
-        ttkb.Label(self, text=f'Person: {self.person.id} {self.person.name} DOB: {self.person.dob.month}/'
-                   f'{self.person.dob.day}/{self.person.dob.year}').grid(column=0, row=1,
-                                                                         columnspan=5, padx=5, pady=5)
-        track_cfg = self.person.dp_type_track_cfg(self.dp_type)
+        track_cfg = self.person.dp_type_track_cfg(self.schedule.dp_type)
         if track_cfg is not None:
             self.widget = MetricWidgetFactory.make_widget(self, track_cfg, None, show_note_field=True)
             self.widget.grid(column=0, row=4, columnspan=3, sticky=NW)
             self.time_widget.set_next_entry(self.widget)
         else:
-            raise ValueError(f'{self.dp_type.name} is not tracked for {self.person.name}')
+            raise ValueError(f'{self.schedule.dp_type.name} is not tracked for {self.person.name}')
 
     def close_db(self) -> None:
         """
@@ -2708,11 +2718,11 @@ class ScheduledEntryWindow(ttkb.Window, core.CoreLogic):
         :return: None
 
         """
-        self.schedule_entry.suspended = True
+        self.schedule.suspended = True
         self.queue_mgr.send_db_req_msg(messages.ScheduleEntryMsg(destination='per.DataBase', replyto=None,
                                                                  person_id=self.person.id,
-                                                                 seq_nbr=self.schedule_entry.seq_nbr,
-                                                                 payload=self.schedule_entry,
+                                                                 seq_nbr=self.schedule.seq_nbr,
+                                                                 payload=self.schedule,
                                                                  operation=messages.DBOperation.UPDATE))
         self.close_db()
 

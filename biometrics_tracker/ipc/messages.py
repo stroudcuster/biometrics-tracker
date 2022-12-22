@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import date, datetime
+from datetime import datetime
 from enum import Enum, auto
 from typing import Any, Callable, Iterator, Optional, Union
 
@@ -151,5 +151,4 @@ db_req_msg_type = Union[PersonReqMsg, ScheduleEntryReqMsg, TrackingConfigReqMsg,
                         ScheduleEntryMsg, DataPointMsg,
                         CloseDataBaseReqMsg, CreateDataBaseReqMsg]
 db_resp_msg_type = Union[PersonMsg, ScheduleEntriesMsg, TrackingConfigMsg, PeopleMsg, DataPointMsg, DataPointRespMsg]
-
 

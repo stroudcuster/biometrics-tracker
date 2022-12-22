@@ -1,3 +1,4 @@
+from collections import UserString
 from datetime import date, time, datetime
 import importlib.util as imputil
 import pathlib
@@ -276,3 +277,21 @@ def whereami(package_name: str) -> pathlib.Path:
     """
     origin = imputil.find_spec(package_name).origin
     return pathlib.Path(origin).parent
+
+
+class MutableString(UserString):
+    def __setitem__(self, index: int, value: str) -> None:
+        data_as_list = list(self.data)
+        data_as_list[index] = value
+        self.data = "".join(data_as_list)
+
+    def __delitem__(self, index: int) -> None:
+        data_as_list = list(self.data)
+        del data_as_list[index]
+        self.data = "".join(data_as_list)
+
+    def append(self, string: str) -> None:
+        data_as_list = list(self.data)
+        data_as_list.extend(list(string))
+        self.data = "".join(data_as_list)
+

@@ -19,6 +19,7 @@ import biometrics_tracker.config.createconfig as config
 import biometrics_tracker.ipc.messages as messages
 import biometrics_tracker.ipc.queue_manager as queues
 import biometrics_tracker.config.json_handler as jh
+import biometrics_tracker.model.datapoints as dp
 import biometrics_tracker.model.persistence as per
 import biometrics_tracker.main.scheduler as sched
 import biometrics_tracker.gui.tk_gui as gui
@@ -69,6 +70,7 @@ class Launcher:
         """
         self.queue_mgr = queue_mgr
         self.db: Optional[per.DataBase] = None
+        self.person: Optional[dp.Person] = None
 
     def start_database(self, filename: str):
         """
@@ -149,36 +151,53 @@ class Launcher:
 
         """
         config_info: config.ConfigInfo = self.pre_launch(config_path)
-        scheduler = sched.Scheduler(config_info, self.queue_mgr)
+        scheduler = sched.Scheduler(config_info, self.queue_mgr, start_dispatcher=True)
         scheduler.start()
         return True
 
-    def launch_scheduled_entry(self, config_path: pathlib.Path, schedule_str: str, person_id: str,
-                               dp_type_name:str, schedule_note: str) -> bool:
+    def launch_scheduled_entry(self, config_path: pathlib.Path, seq_nbr: int, person_id: str) -> bool:
         """
         Launch the Biometric Tracker GUI
 
         :param config_path: a pathlib object connected to the configuration file
         :type config_path: pathlib.Path
-        :param schedule_str: a string representation of the Schedule that triggered the Scheduled Entry session
-        :type schedule_str: str
+        :param seq_nbr: a string representation of the sequence number of the ScheduleEntry that triggered the Scheduled Entry session
+        :type seq_nbr: int
         :param person_id: the id of the person whose metric will be recorded
         :type person_id: str
-        :param dp_type_name: the string representation of the DataPointType for the metric
-        :type dp_type_name: str
-        :param schedule_note: the note associated with the Schedule that triggered the Schedule Entry session
-        :type schedule_note: str
         :return: quit flag
         :rtype: bool
 
         """
+        def retrieve_schedule(msg: messages.ScheduleEntriesMsg):
+            schedule = msg.entries[0]
+            app = gui.ScheduledEntryWindow(config_info=config_info, queue_mgr=self.queue_mgr,
+                                           schedule=schedule, person=self.person)
+            app.mainloop()
+            app.destroy()
+            self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase, replyto=None))
+
+        def retrieve_person(msg: messages.PersonMsg):
+            self.person = msg.payload
+            self.queue_mgr.send_db_req_msg(messages.ScheduleEntryReqMsg(destination=per.DataBase,
+                                                                        replyto=retrieve_schedule,
+                                                                        person_id=self.person.id,
+                                                                        seq_nbr=seq_nbr,
+                                                                        last_triggered=None,
+                                                                        operation=messages.DBOperation.RETRIEVE_SINGLE))
+
         config_info = self.pre_launch(config_path)
-        app = gui.ScheduledEntryWindow(config_info=config_info, queue_mgr=self.queue_mgr,
-                                       schedule_str=schedule_str, person_id=person_id, dp_type_name=dp_type_name,
-                                       schedule_note=schedule_note)
-        app.mainloop()
-        app.destroy()
-        self.queue_mgr.send_db_req_msg(messages.CloseDataBaseReqMsg(destination=per.DataBase, replyto=None))
+        self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase,
+                                                             replyto=retrieve_person,
+                                                             person_id=person_id,
+                                                             operation=messages.DBOperation.RETRIEVE_SINGLE))
+        done: bool = False
+        while not done:
+            msg = self.queue_mgr.check_db_resp_queue(block=True)
+            if msg is not None:
+                msg.destination(msg)
+            if msg.__class__ == messages.ScheduleEntriesMsg:
+                done = True
         return True
 
 
@@ -210,10 +229,8 @@ def launch():
                         quit = launcher.launch_scheduler(config_path)
                     case '--scheduled-entry':
                         quit = launcher.launch_scheduled_entry(config_path=config_path,
-                                                               schedule_str=sys.argv[2],
-                                                               person_id=sys.argv[3],
-                                                               dp_type_name=sys.argv[4],
-                                                               schedule_note=sys.argv[5])
+                                                               seq_nbr=int(sys.argv[2]),
+                                                               person_id=sys.argv[3])
                     case _:
                        quit = launcher.launch_gui(config_path)
             else:

@@ -63,6 +63,9 @@ RETRIEVE_SCHED_NEXT_SEQ_NBR_STMT = 'SELECT MAX(SEQ_NBR) + 1 FROM SCHEDULE WHERE 
 RETRIEVE_SCHEDULES_FOR_PERSON_STMT = 'SELECT SEQ_NBR, DP_TYPE, FREQUENCY, STARTS_ON, ENDS_ON, NOTE, WEEKDAYS, DAYS_OF_MONTH, ' \
     'INTERVAL, WHEN_TIME, SUSPENDED, LAST_TRIGGERED FROM SCHEDULE WHERE PERSON_ID = ?;'
 
+RETRIEVE_SCHEDULE_FOR_PERSON_SEQ_STMT = 'SELECT SEQ_NBR, DP_TYPE, FREQUENCY, STARTS_ON, ENDS_ON, NOTE, WEEKDAYS, DAYS_OF_MONTH, ' \
+    'INTERVAL, WHEN_TIME, SUSPENDED, LAST_TRIGGERED FROM SCHEDULE WHERE PERSON_ID = ? AND SEQ_NBR = ?;'
+
 INSERT_DATAPOINT_STMT = 'INSERT INTO DATAPOINTS (PERSON_ID, TIMESTAMP, NOTE, DATA, TYPE)' \
                         'VALUES (?, ?, ?, ?, ?);'
 
@@ -243,6 +246,10 @@ class DataBase(threading.Thread):
                         self.delete_schedules_for_person(msg.person_id)
                         resp_msg = messages.ScheduleEntriesMsg(destination=msg.replyto, replyto=None,
                                                                person_id=msg.person_id, entries=[])
+                    case messages.DBOperation.RETRIEVE_SINGLE:
+                        entry: dp.ScheduleEntry = self.retrieve_schedule_for_person_seq(msg.person_id, msg.seq_nbr)
+                        resp_msg = messages.ScheduleEntriesMsg(destination=msg.replyto, replyto=None,
+                                                               person_id=msg.person_id, entries=[entry])
                     case messages.DBOperation.RETRIEVE_SET:
                         entries: list[dp.ScheduleEntry] = self.retrieve_schedules_for_person(msg.person_id)
                         resp_msg = messages.ScheduleEntriesMsg(destination=msg.replyto, replyto=None,
@@ -453,6 +460,32 @@ class DataBase(threading.Thread):
         curs.execute(DELETE_SCHEDULES_FOR_PERSON_STMT, (person_id,))
         curs.execute('COMMIT;')
 
+    @staticmethod
+    def build_schedule(person_id: str, row) -> dp.ScheduleEntry:
+        seq_nbr, dp_type_str, freq_str, starts_on_str, ends_on_str, note, weekdays_str, doms_str, interval, \
+            when_time_str, suspended_int, last_triggered_str = row
+        dp_type: dp.DataPointType = dp.dptype_name_map[dp_type_str]
+        frequency: dp.FrequencyType = dp.frequency_name_map[freq_str]
+        starts_on: date = utilities.datetime_from_str(starts_on_str).date()
+        ends_on: date = utilities.datetime_from_str(ends_on_str).date()
+        when_time: Optional[time] = utilities.time_from_str(when_time_str)
+        suspended: bool = False
+        if suspended_int == 1:
+            suspended = True
+        last_triggered: Optional[datetime] = utilities.datetime_from_str(last_triggered_str)
+        weekdays: list[dp.WeekDay] = []
+        if len(weekdays_str.strip()) > 0:
+            for wd in weekdays_str.split(','):
+                weekdays.append(dp.weekday_name_map[wd])
+        doms: list[int] = []
+        if len(doms_str.strip()) > 0:
+            for dom_str in doms_str.split(','):
+                doms.append(int(dom_str))
+        return dp.ScheduleEntry(person_id=person_id, seq_nbr=seq_nbr, frequency=frequency, dp_type=dp_type,
+                                starts_on=starts_on, ends_on=ends_on, note=note, weekdays=weekdays,
+                                days_of_month=doms, interval=interval, when_time=when_time,
+                                suspended=suspended, last_triggered=last_triggered)
+
     def retrieve_schedules_for_person(self, person_id) -> list[dp.ScheduleEntry]:
         """
         Retrieve the schedule entries associated with the specified person
@@ -466,31 +499,18 @@ class DataBase(threading.Thread):
         rows = curs.execute(RETRIEVE_SCHEDULES_FOR_PERSON_STMT, (person_id,))
         entries: list[dp.ScheduleEntry] = []
         for row in rows:
-            seq_nbr, dp_type_str, freq_str, starts_on_str, ends_on_str, note, weekdays_str, doms_str, interval, \
-                  when_time_str, suspended_int, last_triggered_str = row
-            dp_type: dp.DataPointType = dp.dptype_name_map[dp_type_str]
-            frequency: dp.FrequencyType = dp.frequency_name_map[freq_str]
-            starts_on: date = utilities.datetime_from_str(starts_on_str).date()
-            ends_on: date = utilities.datetime_from_str(ends_on_str).date()
-            when_time: Optional[time] = utilities.time_from_str(when_time_str)
-            suspended: bool = False
-            if suspended_int == 1:
-                suspended = True
-            last_triggered: Optional[datetime] = utilities.datetime_from_str(last_triggered_str)
-            weekdays: list[dp.WeekDay] = []
-            if len(weekdays_str.strip()) > 0:
-                for wd in weekdays_str.split(','):
-                    weekdays.append(dp.weekday_name_map[wd])
-            doms: list[int] = []
-            if len(doms_str.strip()) > 0:
-                for dom_str in doms_str.split(','):
-                    doms.append(int(dom_str))
-            sched_entry = dp.ScheduleEntry(person_id=person_id, seq_nbr=seq_nbr, frequency=frequency, dp_type=dp_type,
-                                           starts_on=starts_on, ends_on=ends_on, note=note, weekdays=weekdays,
-                                           days_of_month=doms, interval=interval, when_time=when_time,
-                                           suspended=suspended, last_triggered=last_triggered)
+            sched_entry: dp.ScheduleEntry = self.build_schedule(row)
             entries.append(sched_entry)
         return entries
+
+    def retrieve_schedule_for_person_seq(self, person_id: str, seq_nbr: int):
+        curs = self.conn.cursor()
+        row: sql.Row = curs.execute(RETRIEVE_SCHEDULE_FOR_PERSON_SEQ_STMT, (person_id, seq_nbr)).fetchone()
+        if row is not None:
+            sched_entry = self.build_schedule(person_id=person_id, row=row)
+            return sched_entry
+        else:
+            return None
 
     def insert_person(self, person: dp.Person):
         """
