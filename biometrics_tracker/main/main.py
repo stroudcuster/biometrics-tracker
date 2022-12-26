@@ -220,7 +220,11 @@ def launch():
         if config_path.exists():
             arg_parser = argparse.ArgumentParser(prog='biotrack')
             sub_parser = arg_parser.add_subparsers(title='commands', dest='subcmd',
-                                                   metavar='config | gui | scheduler | scheduled-entry', required=True)
+                                                   metavar='config | gui | scheduler | scheduled-entry',
+                                                   help='config = intitial configuration,  gui = start application GUI,'
+                                                        '  scheduler = start scheduler process,  scheduled-entry = '
+                                                        'initiate Scheduled Entry session',
+                                                   required=True)
 
             config_parser = sub_parser.add_parser('config')
             config_parser.set_defaults(func=lambda hp=homepath: launcher.launch_config(homepath=hp))
