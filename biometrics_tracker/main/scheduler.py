@@ -49,7 +49,7 @@ def run_scheduled_entry(**kwargs):
         logger.info(f'Launching {log_msg}')
         # the second 'python' arg is passed to the Python interpreter as argv[0].  The second arg
         # parm, the path to the Python script, becomes the script's argv[0]
-        os.execlp('python', 'python', path.__str__(), '--scheduled-entry', str(entry.seq_nbr), entry.person_id)
+        os.execlp('python', 'python', path.__str__(), 'scheduled-entry', entry.person_id, str(entry.seq_nbr))
         assert False, f'Error launching {path.__str__()}'
     if entry.frequency in [dp.FrequencyType.One_Time, dp.FrequencyType.Monthly]:
         return schedule.CancelJob
