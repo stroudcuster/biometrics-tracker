@@ -4,6 +4,7 @@ file which contains the application's configuration info.  If this file is not f
 time the application is invoked, the config.createconfig.ConfigGUI Window will be presented to allow configuration
 parameters to be set.  If the import succeeds, the gui.Application Window will be presented.
 """
+import argparse
 import json
 import logging
 import logging.config
@@ -71,6 +72,7 @@ class Launcher:
         self.queue_mgr = queue_mgr
         self.db: Optional[per.DataBase] = None
         self.person: Optional[dp.Person] = None
+        self.args: Optional[argparse.Namespace] = None
 
     def start_database(self, filename: str):
         """
@@ -155,16 +157,12 @@ class Launcher:
         scheduler.start()
         return True
 
-    def launch_scheduled_entry(self, config_path: pathlib.Path, seq_nbr: int, person_id: str) -> bool:
+    def launch_scheduled_entry(self, config_path: pathlib.Path) -> bool:
         """
         Launch the Biometric Tracker GUI
 
         :param config_path: a pathlib object connected to the configuration file
         :type config_path: pathlib.Path
-        :param seq_nbr: a string representation of the sequence number of the ScheduleEntry that triggered the Scheduled Entry session
-        :type seq_nbr: int
-        :param person_id: the id of the person whose metric will be recorded
-        :type person_id: str
         :return: quit flag
         :rtype: bool
 
@@ -182,14 +180,14 @@ class Launcher:
             self.queue_mgr.send_db_req_msg(messages.ScheduleEntryReqMsg(destination=per.DataBase,
                                                                         replyto=retrieve_schedule,
                                                                         person_id=self.person.id,
-                                                                        seq_nbr=seq_nbr,
+                                                                        seq_nbr=self.args.seq[0],
                                                                         last_triggered=None,
                                                                         operation=messages.DBOperation.RETRIEVE_SINGLE))
 
         config_info = self.pre_launch(config_path)
         self.queue_mgr.send_db_req_msg(messages.PersonReqMsg(destination=per.DataBase,
                                                              replyto=retrieve_person,
-                                                             person_id=person_id,
+                                                             person_id=self.args.id[0],
                                                              operation=messages.DBOperation.RETRIEVE_SINGLE))
         done: bool = False
         while not done:
@@ -207,6 +205,7 @@ def launch():
     according to the command line argument.  If not, launch the Config GUI
 
     """
+
     quit: bool = False
     if sys.platform[0:3] == 'win':
         home_str = os.environ['HOMEPATH']
@@ -219,22 +218,26 @@ def launch():
         config_path: pathlib.Path = pathlib.Path(homepath, os.sep.join(['biometrics-tracker', 'config',
                                                                         'config_info.json']))
         if config_path.exists():
-            if len(sys.argv) > 1:
-                match sys.argv[1]:
-                    case '--config':
-                        quit = launcher.launch_config(homepath)
-                    case '--gui':
-                        quit = launcher.launch_gui(config_path)
-                    case '--scheduler':
-                        quit = launcher.launch_scheduler(config_path)
-                    case '--scheduled-entry':
-                        quit = launcher.launch_scheduled_entry(config_path=config_path,
-                                                               seq_nbr=int(sys.argv[2]),
-                                                               person_id=sys.argv[3])
-                    case _:
-                       quit = launcher.launch_gui(config_path)
-            else:
-                quit = launcher.launch_gui(config_path)
+            arg_parser = argparse.ArgumentParser(prog='biotrack')
+            sub_parser = arg_parser.add_subparsers(title='commands', dest='subcmd',
+                                                   metavar='config | gui | scheduler | scheduled-entry', required=True)
+
+            config_parser = sub_parser.add_parser('config')
+            config_parser.set_defaults(func=lambda hp=homepath: launcher.launch_config(homepath=hp))
+            scheduler_parser = sub_parser.add_parser('scheduler')
+            scheduler_parser.set_defaults(func=lambda cp=config_path: launcher.launch_scheduler(config_path=cp))
+            sched_entry_parser = sub_parser.add_parser('scheduled-entry')
+            sched_entry_parser.set_defaults(func=lambda cp=config_path: launcher.launch_scheduled_entry(config_path=cp))
+            sched_entry_parser.add_argument(dest='id', type=str, nargs=1,
+                                            help='Person ID')
+            sched_entry_parser.add_argument(dest='seq', type=int, nargs=1,
+                                            help='Schedule sequence number')
+            gui_parser = sub_parser.add_parser('gui')
+            gui_parser.set_defaults(func=lambda cp=config_path: launcher.launch_gui(config_path=cp))
+
+            launcher.args = arg_parser.parse_args()
+            quit = launcher.args.func()
+
         else:
             quit = launcher.launch_config(homepath)
 
