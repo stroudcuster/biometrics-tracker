@@ -1,53 +1,131 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>pytest tests.random_data &#8212; Biometrics Tracking 1.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pytest tests.random_data &mdash; Biometrics Tracking 1.3.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pytest tests.test_tools" href="tests-test_tools.html" />
     <link rel="prev" title="biometrics_tracker.utilities.utilities module" href="utilities-utilities.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tests-test_tools.html" title="pytest tests.test_tools"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="utilities-utilities.html" title="biometrics_tracker.utilities.utilities module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pytest tests.random_data</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Biometrics Tracking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">biometrics_tracker.main module - desktop application entry point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-core.html">biometrics_tracker.main.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-dispatcher.html">biometrics_tracker.main.dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-scheduler.html">biometrics_tracker.main.scheduler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-createconfig.html">biometrics_tracker.config-createconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html">biometrics_tracker.config.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html">biometrics_tracker.gui.widgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-validators.html">biometrics_tracker.gui.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-datapoints.html">biometrics_tracker.model.datapoints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-exporters.html">biometrics_tracker.model.exporters module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-importers.html">biometrics_tracker.model.importers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-json_handler.html">biometrics_tracker.model.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-uoms.html">biometrics_tracker.model.uoms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output-reports.html">biometrics_tracker.output.reports module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-plugin.html">biometrics_tracker.plugin.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-json_handler.html">biometrics_tracker.plugin.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html">biometrics_tracker.utilities.utilities module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pytest tests.random_data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tests.random_data.RandomData"><code class="docutils literal notranslate"><span class="pre">RandomData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.get_current_state"><code class="docutils literal notranslate"><span class="pre">RandomData.get_current_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.get_init_state"><code class="docutils literal notranslate"><span class="pre">RandomData.get_init_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_alpha_string"><code class="docutils literal notranslate"><span class="pre">RandomData.random_alpha_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_bool"><code class="docutils literal notranslate"><span class="pre">RandomData.random_bool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_date"><code class="docutils literal notranslate"><span class="pre">RandomData.random_date()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_date_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_date_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_datetime"><code class="docutils literal notranslate"><span class="pre">RandomData.random_datetime()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_datetime_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_datetime_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_dec"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dec()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_dec_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dec_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_dict_item"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dict_item()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_int"><code class="docutils literal notranslate"><span class="pre">RandomData.random_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_int_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_int_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_time"><code class="docutils literal notranslate"><span class="pre">RandomData.random_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.random_time_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_time_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests.random_data.RandomData.set_state"><code class="docutils literal notranslate"><span class="pre">RandomData.set_state()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html">pytest tests.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-random_data.html">pytest tests.model.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_tools.html">pytest tests.model.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-datapoints_fixtures.html">pytest tests.model.datapoint_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-persistence_fixtures.html">pytest tests.model.persistence_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_datapoints.html">pytest tests.model.test_datapoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_exporters.html">pytest tests.model.test_exporters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_json_handler.html">pytest tests.model.test_json_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_persistence.html">pytest tests.model.test_persistence</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Biometrics Tracking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">pytest tests.random_data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tests-random_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="pytest-tests-random-data">
-<span id="tests-random-data"></span><h1>pytest tests.random_data<a class="headerlink" href="#pytest-tests-random-data" title="Permalink to this heading">¶</a></h1>
+<span id="tests-random-data"></span><h1>pytest tests.random_data<a class="headerlink" href="#pytest-tests-random-data" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -55,19 +133,19 @@
 </div>
 <span class="target" id="module-tests.random_data"></span><dl class="py class">
 <dt class="sig sig-object py" id="tests.random_data.RandomData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.random_data.</span></span><span class="sig-name descname"><span class="pre">RandomData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tests.random_data.</span></span><span class="sig-name descname"><span class="pre">RandomData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class provides a variety of randomized data, maintaining the seed as a property so that, if necessary it
 can be queried and used to provide the same sequence of data in a later test run.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.get_current_state">
-<span class="sig-name descname"><span class="pre">get_current_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.get_current_state" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_current_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.get_current_state" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves the current state of the random number generator</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the current state of the random number generator</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>tuple[Any, …]</p>
 </dd>
 </dl>
@@ -75,13 +153,13 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.get_init_state">
-<span class="sig-name descname"><span class="pre">get_init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.get_init_state" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.get_init_state" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieves the randon.getstate() value that was saved when the RandomData instance was created</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the initial state of the random number generator</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>tuple[Any]</p>
 </dd>
 </dl>
@@ -89,20 +167,20 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_alpha_string">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_alpha_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_caps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_spaces</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_alpha_string" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_alpha_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_caps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_spaces</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_alpha_string" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a string of random alpha characters</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>length</strong> (<em>int</em>) – the length of the string to be returned</p></li>
 <li><p><strong>initial_caps</strong> (<em>bool</em>) – should the initial alpha char in the string be capitalized</p></li>
 <li><p><strong>no_spaces</strong> (<em>bool</em>) – are spaces allowed in the returned string</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the produced string</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -110,13 +188,13 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_bool">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_bool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_bool" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_bool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_bool" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random boolean value</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>produced bool value</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>bool</p>
 </dd>
 </dl>
@@ -124,19 +202,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_date">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_date" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_date" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random datetime.date within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.date</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.date</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random date value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.date</p>
 </dd>
 </dl>
@@ -144,19 +222,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_date_pair">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_date_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_date_pair" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_date_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_date_pair" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a sorted pair random datetime.date within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.date</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.date</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random date value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[datetime.date, datetime.date]</p>
 </dd>
 </dl>
@@ -164,19 +242,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_datetime">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_datetime" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_datetime" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random datetime.datetime within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.datetime</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.datetime</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random datetime value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.datetime</p>
 </dd>
 </dl>
@@ -184,19 +262,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_datetime_pair">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_datetime_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_datetime_pair" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_datetime_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_datetime_pair" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a sorted pair random datetime.datetime within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.datetime</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.datetime</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random time value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[datetime.datetime, datetime.datetime]</p>
 </dd>
 </dl>
@@ -204,19 +282,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_dec">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">lower:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">upper:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">precision:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_dec" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">lower:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">upper:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">precision:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_dec" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random Decimal within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>float</em><em> or </em><em>decimal.Decimal</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>float</em><em> or </em><em>decimal.Decimal</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random Decimal value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>decimal.Decimal</p>
 </dd>
 </dl>
@@ -224,19 +302,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_dec_pair">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dec_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self,</span> <span class="pre">lower:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">upper:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">precision:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_dec_pair" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dec_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self,</span> <span class="pre">lower:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">upper:</span> <span class="pre">[&lt;class</span> <span class="pre">'float'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'decimal.Decimal'&gt;],</span> <span class="pre">precision:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_dec_pair" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a sorted tuple of random Decimal values within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>float</em><em> or </em><em>decimal.Decimal</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>float</em><em> or </em><em>decimal.Decimal</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a pair of sorted int values</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[decimal.Decimal]</p>
 </dd>
 </dl>
@@ -244,16 +322,16 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_dict_item">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dict_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_dict_item" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_dict_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_dict_item" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a randomly chosen key/value pair from the provided dict</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>dictx</strong> (<em>dict</em>) – the dict from which a key/value pair will be selected</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a key/value pair</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[Any, Any]</p>
 </dd>
 </dl>
@@ -261,19 +339,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_int">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_int" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_int" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random integer within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>int</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>int</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random int value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>int</p>
 </dd>
 </dl>
@@ -281,19 +359,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_int_pair">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_int_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_int_pair" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_int_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_int_pair" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a sorted tuple of random int values within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>int</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>int</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a pair of sorted int values</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[int]</p>
 </dd>
 </dl>
@@ -301,19 +379,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_time">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_time" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.random_time" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a random datetime.time within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.time</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.time</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random time value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.time</p>
 </dd>
 </dl>
@@ -321,19 +399,19 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.random_time_pair">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_time_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.time</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_time_pair" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">random_time_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.time</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tests.random_data.RandomData.random_time_pair" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a sorted pair random datetime.time within  a range expressed by inclusive upper and lower bounds</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lower</strong> (<em>datetime.time</em>) – lower boundary</p></li>
 <li><p><strong>upper</strong> (<em>datetime.time</em>) – upper boundary</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>random time value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[datetime.time, datetime.time]</p>
 </dd>
 </dl>
@@ -341,16 +419,16 @@ can be queried and used to provide the same sequence of data in a later test run
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tests.random_data.RandomData.set_state">
-<span class="sig-name descname"><span class="pre">set_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_as_initial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.set_state" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_as_initial</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.random_data.RandomData.set_state" title="Permalink to this definition"></a></dt>
 <dd><p>Set the random number generator state to a particular value</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>state</strong> (<em>tuple</em><em>[</em><em>Any</em><em>, </em><em>...</em><em>]</em>) – state to be established</p></li>
 <li><p><strong>set_as_initial</strong> (<em>bool</em>) – should this state be saved in the initial state property</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -361,94 +439,34 @@ can be queried and used to provide the same sequence of data in a later test run
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">pytest tests.random_data</a><ul>
-<li><a class="reference internal" href="#tests.random_data.RandomData"><code class="docutils literal notranslate"><span class="pre">RandomData</span></code></a><ul>
-<li><a class="reference internal" href="#tests.random_data.RandomData.get_current_state"><code class="docutils literal notranslate"><span class="pre">RandomData.get_current_state()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.get_init_state"><code class="docutils literal notranslate"><span class="pre">RandomData.get_init_state()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_alpha_string"><code class="docutils literal notranslate"><span class="pre">RandomData.random_alpha_string()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_bool"><code class="docutils literal notranslate"><span class="pre">RandomData.random_bool()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_date"><code class="docutils literal notranslate"><span class="pre">RandomData.random_date()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_date_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_date_pair()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_datetime"><code class="docutils literal notranslate"><span class="pre">RandomData.random_datetime()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_datetime_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_datetime_pair()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_dec"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dec()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_dec_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dec_pair()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_dict_item"><code class="docutils literal notranslate"><span class="pre">RandomData.random_dict_item()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_int"><code class="docutils literal notranslate"><span class="pre">RandomData.random_int()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_int_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_int_pair()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_time"><code class="docutils literal notranslate"><span class="pre">RandomData.random_time()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.random_time_pair"><code class="docutils literal notranslate"><span class="pre">RandomData.random_time_pair()</span></code></a></li>
-<li><a class="reference internal" href="#tests.random_data.RandomData.set_state"><code class="docutils literal notranslate"><span class="pre">RandomData.set_state()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="utilities-utilities.html" class="btn btn-neutral float-left" title="biometrics_tracker.utilities.utilities module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests-test_tools.html" class="btn btn-neutral float-right" title="pytest tests.test_tools" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Stroud Custer III.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="utilities-utilities.html"
-                          title="previous chapter">biometrics_tracker.utilities.utilities module</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="tests-test_tools.html"
-                          title="next chapter">pytest tests.test_tools</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/tests-random_data.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tests-test_tools.html" title="pytest tests.test_tools"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="utilities-utilities.html" title="biometrics_tracker.utilities.utilities module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pytest tests.random_data</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, Stroud Custer III.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

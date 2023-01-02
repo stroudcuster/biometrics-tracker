@@ -18,6 +18,7 @@ from biometrics_tracker.gui.validators import month_validator, day_validator, ye
 import biometrics_tracker.model.exporters as exp
 import biometrics_tracker.model.importers as imp
 from biometrics_tracker.model import uoms as uoms, datapoints as dp
+import biometrics_tracker.plugin.browser as pubrowser
 import biometrics_tracker.utilities.utilities as utilities
 
 METRIC_WIDGET_MIN_LBL_WIDTH: int = 20
@@ -3499,6 +3500,35 @@ class ImportExportSpecButtons(ttkb.Frame):
         id = self.save_widget.get_spec_id()
         self.save_widget.destroy()
         return id
+
+
+class PluginBrowser(ttkb.Frame, pubrowser.PluginBrowserBase):
+    def __init__(self, parent, wheel_path: pathlib.Path, dest_dir_path: pathlib.Path, cancel_action: Callable,
+                 selection_action: Callable):
+        ttkb.Frame.__init__(self, parent)
+        pubrowser.PluginBrowserBase.__init__(self, wheel_path, dest_dir_path)
+        self.selection_action = selection_action
+        row: int = 0
+        ttkb.Label(self, text='Plugin JSON Browser').grid(column=0, row=row, padx=5, pady=5, columnspan=3)
+        row += 1
+        ttkb.Label(self, text=f'Wheel File: {wheel_path.__str__()}', width=150, anchor=tk.E).grid(column=0, row=row,
+                                                                                                  padx=5, pady=5)
+        row += 1
+        if len(self.plugin_list) > 0:
+            self.listbox = tk.Listbox(self)
+            for idx, plugin_name in enumerate(self.plugin_list):
+                self.listbox.insert(idx, plugin_name)
+            self.listbox.bind('<Double-1>', self.handle_selection)
+        row += len(self.plugin_list)
+        ttkb.Button(self, text='Cancel', command=cancel_action)
+
+    def show_gui(self):
+        self.listbox.focus_set()
+
+    def handle_selection(self):
+        idx, = self.listbox.curselection()
+        self.extract_json(self.plugin_list[idx])
+        self.selection_action()
 
 
 if __name__ == '__main__':

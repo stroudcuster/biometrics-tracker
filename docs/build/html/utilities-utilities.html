@@ -1,53 +1,126 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>biometrics_tracker.utilities.utilities module &#8212; Biometrics Tracking 1.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biometrics_tracker.utilities.utilities module &mdash; Biometrics Tracking 1.3.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pytest tests.random_data" href="tests-random_data.html" />
     <link rel="prev" title="biometrics_tracker.plugin.json_handler module" href="plugin-json_handler.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tests-random_data.html" title="pytest tests.random_data"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="plugin-json_handler.html" title="biometrics_tracker.plugin.json_handler module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.utilities.utilities module</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Biometrics Tracking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">biometrics_tracker.main module - desktop application entry point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-core.html">biometrics_tracker.main.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-dispatcher.html">biometrics_tracker.main.dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-scheduler.html">biometrics_tracker.main.scheduler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-createconfig.html">biometrics_tracker.config-createconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html">biometrics_tracker.config.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html">biometrics_tracker.gui.widgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-validators.html">biometrics_tracker.gui.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-datapoints.html">biometrics_tracker.model.datapoints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-exporters.html">biometrics_tracker.model.exporters module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-importers.html">biometrics_tracker.model.importers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-json_handler.html">biometrics_tracker.model.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-uoms.html">biometrics_tracker.model.uoms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output-reports.html">biometrics_tracker.output.reports module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-plugin.html">biometrics_tracker.plugin.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-json_handler.html">biometrics_tracker.plugin.json_handler module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">biometrics_tracker.utilities.utilities module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.MutableString"><code class="docutils literal notranslate"><span class="pre">MutableString</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_hms"><code class="docutils literal notranslate"><span class="pre">compare_hms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_mdyhms"><code class="docutils literal notranslate"><span class="pre">compare_mdyhms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.datetime_from_str"><code class="docutils literal notranslate"><span class="pre">datetime_from_str()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_date"><code class="docutils literal notranslate"><span class="pre">increment_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_datetime"><code class="docutils literal notranslate"><span class="pre">increment_datetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.max_dom"><code class="docutils literal notranslate"><span class="pre">max_dom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.mk_datetime"><code class="docutils literal notranslate"><span class="pre">mk_datetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.ordinal"><code class="docutils literal notranslate"><span class="pre">ordinal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_camelcase"><code class="docutils literal notranslate"><span class="pre">split_camelcase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_datetime"><code class="docutils literal notranslate"><span class="pre">split_datetime()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.step_enumerate"><code class="docutils literal notranslate"><span class="pre">step_enumerate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.time_from_str"><code class="docutils literal notranslate"><span class="pre">time_from_str()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.utilities.utilities.whereami"><code class="docutils literal notranslate"><span class="pre">whereami()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests-random_data.html">pytest tests.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html">pytest tests.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-random_data.html">pytest tests.model.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_tools.html">pytest tests.model.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-datapoints_fixtures.html">pytest tests.model.datapoint_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-persistence_fixtures.html">pytest tests.model.persistence_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_datapoints.html">pytest tests.model.test_datapoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_exporters.html">pytest tests.model.test_exporters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_json_handler.html">pytest tests.model.test_json_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_persistence.html">pytest tests.model.test_persistence</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Biometrics Tracking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">biometrics_tracker.utilities.utilities module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utilities-utilities.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="biometrics-tracker-utilities-utilities-module">
-<span id="utilities-utilities"></span><h1>biometrics_tracker.utilities.utilities module<a class="headerlink" href="#biometrics-tracker-utilities-utilities-module" title="Permalink to this heading">¶</a></h1>
+<span id="utilities-utilities"></span><h1>biometrics_tracker.utilities.utilities module<a class="headerlink" href="#biometrics-tracker-utilities-utilities-module" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -55,26 +128,26 @@
 </div>
 <span class="target" id="module-biometrics_tracker.utilities.utilities"></span><dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.MutableString">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">MutableString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.MutableString" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">MutableString</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.MutableString" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserString</span></code></p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.compare_hms">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_hms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_hms" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_hms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_hms" title="Permalink to this definition"></a></dt>
 <dd><p>Compares the hour, minutes and seconds of two datetime.time objects.  This avoids false inequalities based on
 microsecond level variances</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>time1</strong> (<em>datetime.time</em>) – the first of a pair of times to be compared</p></li>
 <li><p><strong>time2</strong> (<em>datetime.time</em>) – the second of a pair of times to be compared</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>are the times equal</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -82,20 +155,20 @@ microsecond level variances</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.compare_mdyhms">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_mdyhms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_mdyhms" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">compare_mdyhms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.compare_mdyhms" title="Permalink to this definition"></a></dt>
 <dd><p>Compares the day, month, year, hour, minutes and seconds of two datetime.datetime objects.  This avoids false
 inequalities based on microsecond level variances</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>datetime1</strong> (<em>datetime.datetime</em>) – the first of a pair of datetimes to be compared</p></li>
 <li><p><strong>datetime2</strong> (<em>datetime.datetime</em>) – the second of a pair of datetimes to be compared</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>are the datetimes equal</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -103,16 +176,16 @@ inequalities based on microsecond level variances</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.datetime_from_str">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">datetime_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.datetime_from_str" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">datetime_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datetime_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.datetime_from_str" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a datetime created from the ISO format string passed to the function</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>datetime_str</strong> (<em>str</em>) – an ISO formatted date/time string</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a date/time</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.datetime</p>
 </dd>
 </dl>
@@ -120,7 +193,7 @@ inequalities based on microsecond level variances</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.increment_date">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">increment_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.increment_date" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">increment_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">date</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.increment_date" title="Permalink to this definition"></a></dt>
 <dd><p>Increments the provided date by the specified number of years, months and days.  The increment values may be
 positive or negative, but they must all have the same sign or a ValueError exception will be raised.
 :param dt: the date to be incremented
@@ -137,7 +210,7 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.increment_datetime">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">increment_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dattim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.increment_datetime" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">increment_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dattim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">months</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.increment_datetime" title="Permalink to this definition"></a></dt>
 <dd><p>Increments the provided date by the specified number of years, months and days.  The increment values may be
 positive or negative, but they must all have the same sign or a ValueError exception will be raised.
 :param dattim: the datetime to be incremented
@@ -154,7 +227,7 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.max_dom">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">max_dom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.max_dom" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">max_dom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">month</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.max_dom" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the number of days in the specified month
 :param month: the month for which the number of days will be returned
 :type month: int
@@ -164,19 +237,19 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.mk_datetime">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">mk_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.mk_datetime" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">mk_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.mk_datetime" title="Permalink to this definition"></a></dt>
 <dd><p>Create a datetime using separate date and time values</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dt</strong> (<em>datetime.date</em>) – date value</p></li>
 <li><p><strong>tm</strong> (<em>datetime.time</em>) – time value</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>datetime value</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.datetime</p>
 </dd>
 </dl>
@@ -184,16 +257,16 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.ordinal">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.ordinal" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">ordinal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.ordinal" title="Permalink to this definition"></a></dt>
 <dd><p>Converts an integer to its ordinal representation</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>number</strong> (<em>int</em>) – integer to be converted</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>ordinal form of the specified number</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -201,7 +274,7 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.split_camelcase">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_camelcase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camelcase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_camelcase" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_camelcase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camelcase</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_camelcase" title="Permalink to this definition"></a></dt>
 <dd><p>Splits a camelcase string into its components
 :param camelcase: a camelcase formatted string
 :type camelcase: str
@@ -211,16 +284,16 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.split_datetime">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dttm:</span> <span class="pre">~datetime.datetime)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'datetime.date'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'datetime.time'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_datetime" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">split_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dttm:</span> <span class="pre">~datetime.datetime)</span> <span class="pre">-&gt;</span> <span class="pre">(&lt;class</span> <span class="pre">'datetime.date'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'datetime.time'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.split_datetime" title="Permalink to this definition"></a></dt>
 <dd><p>Return date and time instances created from the proved datetime</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>dttm</strong> (<em>datetime.datetime</em>) – datetime to be split into date and time values</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a tuple containing a date and a time</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>tuple[datetime.date, datetime.time]</p>
 </dd>
 </dl>
@@ -228,21 +301,21 @@ positive or negative, but they must all have the same sign or a ValueError excep
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.step_enumerate">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">step_enumerate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.step_enumerate" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">step_enumerate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.step_enumerate" title="Permalink to this definition"></a></dt>
 <dd><p>This function is similar to the built in enumerate function, but it allows you to specify  a starting value and
 the amount to increment the index for each item in the list</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lst</strong> (<em>list</em><em>[</em><em>Any</em><em>]</em>) – a list of items to be enumerated</p></li>
 <li><p><strong>start</strong> (<em>int</em>) – the starting value for the enumeration</p></li>
 <li><p><strong>step</strong> (<em>int</em>) – the amount by which the index will be incremented for each itme in the list</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a list of tuples consisting of index/item pairs</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list[tuple[int, Any]]</p>
 </dd>
 </dl>
@@ -250,18 +323,18 @@ the amount to increment the index for each item in the list</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.time_from_str">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">time_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">time</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.time_from_str" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">time_from_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">time</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.time_from_str" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a time created from a string formated as HH:MM:SS.  This function uses the following regular expression
 to validate the string format and extract hours, minutes and seconds from the string:
 ‘(d{1,2})[:](d{2})[:](d{0,2})s*’</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>time_str</strong> (<em>str</em>) – the time, in string form</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a time</p>
 </dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>datetime.datetime</p>
 </dd>
 </dl>
@@ -269,13 +342,13 @@ to validate the string format and extract hours, minutes and seconds from the st
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.utilities.utilities.whereami">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">whereami</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.whereami" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.utilities.utilities.</span></span><span class="sig-name descname"><span class="pre">whereami</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#biometrics_tracker.utilities.utilities.whereami" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a Path object pointing to the location of the application’s package folder</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the path of the application’s package directory</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>pathlib.Path</p>
 </dd>
 </dl>
@@ -284,89 +357,34 @@ to validate the string format and extract hours, minutes and seconds from the st
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">biometrics_tracker.utilities.utilities module</a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.MutableString"><code class="docutils literal notranslate"><span class="pre">MutableString</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_hms"><code class="docutils literal notranslate"><span class="pre">compare_hms()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.compare_mdyhms"><code class="docutils literal notranslate"><span class="pre">compare_mdyhms()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.datetime_from_str"><code class="docutils literal notranslate"><span class="pre">datetime_from_str()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_date"><code class="docutils literal notranslate"><span class="pre">increment_date()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.increment_datetime"><code class="docutils literal notranslate"><span class="pre">increment_datetime()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.max_dom"><code class="docutils literal notranslate"><span class="pre">max_dom()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.mk_datetime"><code class="docutils literal notranslate"><span class="pre">mk_datetime()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.ordinal"><code class="docutils literal notranslate"><span class="pre">ordinal()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_camelcase"><code class="docutils literal notranslate"><span class="pre">split_camelcase()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.split_datetime"><code class="docutils literal notranslate"><span class="pre">split_datetime()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.step_enumerate"><code class="docutils literal notranslate"><span class="pre">step_enumerate()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.time_from_str"><code class="docutils literal notranslate"><span class="pre">time_from_str()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.utilities.utilities.whereami"><code class="docutils literal notranslate"><span class="pre">whereami()</span></code></a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plugin-json_handler.html" class="btn btn-neutral float-left" title="biometrics_tracker.plugin.json_handler module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tests-random_data.html" class="btn btn-neutral float-right" title="pytest tests.random_data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Stroud Custer III.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="plugin-json_handler.html"
-                          title="previous chapter">biometrics_tracker.plugin.json_handler module</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="tests-random_data.html"
-                          title="next chapter">pytest tests.random_data</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/utilities-utilities.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="tests-random_data.html" title="pytest tests.random_data"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="plugin-json_handler.html" title="biometrics_tracker.plugin.json_handler module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.utilities.utilities module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, Stroud Custer III.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

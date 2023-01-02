@@ -1,53 +1,122 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>biometrics_tracker.main.scheduler module &#8212; Biometrics Tracking 1.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biometrics_tracker.main.scheduler module &mdash; Biometrics Tracking 1.3.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="biometrics_tracker.config-createconfig module" href="config-createconfig.html" />
     <link rel="prev" title="biometrics_tracker.main.dispatcher module" href="main-dispatcher.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="config-createconfig.html" title="biometrics_tracker.config-createconfig module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.scheduler module</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Biometrics Tracking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">biometrics_tracker.main module - desktop application entry point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-core.html">biometrics_tracker.main.core module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-dispatcher.html">biometrics_tracker.main.dispatcher module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">biometrics_tracker.main.scheduler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler"><code class="docutils literal notranslate"><span class="pre">Scheduler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.check_response_queue"><code class="docutils literal notranslate"><span class="pre">Scheduler.check_response_queue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.process_people"><code class="docutils literal notranslate"><span class="pre">Scheduler.process_people()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.process_schedule_entries"><code class="docutils literal notranslate"><span class="pre">Scheduler.process_schedule_entries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_people"><code class="docutils literal notranslate"><span class="pre">Scheduler.retrieve_people()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_schedules"><code class="docutils literal notranslate"><span class="pre">Scheduler.retrieve_schedules()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.run"><code class="docutils literal notranslate"><span class="pre">Scheduler.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.main.scheduler.run_scheduled_entry"><code class="docutils literal notranslate"><span class="pre">run_scheduled_entry()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="config-createconfig.html">biometrics_tracker.config-createconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html">biometrics_tracker.config.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html">biometrics_tracker.gui.widgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-validators.html">biometrics_tracker.gui.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-datapoints.html">biometrics_tracker.model.datapoints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-exporters.html">biometrics_tracker.model.exporters module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-importers.html">biometrics_tracker.model.importers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-json_handler.html">biometrics_tracker.model.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-uoms.html">biometrics_tracker.model.uoms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output-reports.html">biometrics_tracker.output.reports module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-plugin.html">biometrics_tracker.plugin.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-json_handler.html">biometrics_tracker.plugin.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html">biometrics_tracker.utilities.utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-random_data.html">pytest tests.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html">pytest tests.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-random_data.html">pytest tests.model.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_tools.html">pytest tests.model.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-datapoints_fixtures.html">pytest tests.model.datapoint_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-persistence_fixtures.html">pytest tests.model.persistence_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_datapoints.html">pytest tests.model.test_datapoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_exporters.html">pytest tests.model.test_exporters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_json_handler.html">pytest tests.model.test_json_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_persistence.html">pytest tests.model.test_persistence</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Biometrics Tracking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">biometrics_tracker.main.scheduler module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/main-scheduler.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="biometrics-tracker-main-scheduler-module">
-<span id="main-scheduler"></span><h1>biometrics_tracker.main.scheduler module<a class="headerlink" href="#biometrics-tracker-main-scheduler-module" title="Permalink to this heading">¶</a></h1>
+<span id="main-scheduler"></span><h1>biometrics_tracker.main.scheduler module<a class="headerlink" href="#biometrics-tracker-main-scheduler-module" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -55,22 +124,22 @@
 </div>
 <span class="target" id="module-biometrics_tracker.main.scheduler"></span><dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.scheduler.</span></span><span class="sig-name descname"><span class="pre">Scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_dispatcher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_replyto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.scheduler.</span></span><span class="sig-name descname"><span class="pre">Scheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_dispatcher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">completion_replyto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_sleep_seconds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Thread</span></code></p>
 <p>A threaded class the used the contents of the People and ScheduleEntry database tables to present single entry
 windows for according to the schedule</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.check_response_queue">
-<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.check_response_queue" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.check_response_queue" title="Permalink to this definition"></a></dt>
 <dd><p>Check the database response queue for responses to requests</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>block</strong> – should the queue check be a blocking check</p></li>
 <li><p><strong>caller</strong> – a string name of the invoking method for inclusion in log entries</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -78,13 +147,13 @@ windows for according to the schedule</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.process_people">
-<span class="sig-name descname"><span class="pre">process_people</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PeopleMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.process_people" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">process_people</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PeopleMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.process_people" title="Permalink to this definition"></a></dt>
 <dd><p>Received a list of people and processes each entry in the list</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.PeopleMsg</em>) – a message containing a list of Person instances</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -92,13 +161,13 @@ windows for according to the schedule</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.process_schedule_entries">
-<span class="sig-name descname"><span class="pre">process_schedule_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ScheduleEntriesMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.process_schedule_entries" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">process_schedule_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ScheduleEntriesMsg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.process_schedule_entries" title="Permalink to this definition"></a></dt>
 <dd><p>Processes the ScheduleEntry’s for a single person, checking each one to see if a job should be triggered</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>msg</strong> (<em>biometrics_tracker.ipc.messages.ScheduleEntriesMsg</em>) – a database response message containing a list of ScheduleEntry’s</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -106,11 +175,11 @@ windows for according to the schedule</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.retrieve_people">
-<span class="sig-name descname"><span class="pre">retrieve_people</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_people" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_people</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_people" title="Permalink to this definition"></a></dt>
 <dd><p>Issues a PersonReqMsg to the database to retrieve a list of person_id’s, passing control onto the
 process_people method through the replyto callback.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -118,16 +187,16 @@ process_people method through the replyto callback.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.retrieve_schedules">
-<span class="sig-name descname"><span class="pre">retrieve_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">replyto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_schedules" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">retrieve_schedules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">replyto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">person_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_schedules" title="Permalink to this definition"></a></dt>
 <dd><p>Issue a ScheduleEntryReqMsg to the database to retrieve the ScheduleEntry’s for a person</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>replyto</strong> (<em>Callable</em>) – the method or function to serve as the ‘replyto’ callback</p></li>
 <li><p><strong>person_id</strong> (<em>str</em>) – the ID of the person whose ScheduleEntry’s are to be retrieved</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -135,13 +204,13 @@ process_people method through the replyto callback.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.Scheduler.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.run" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.main.scheduler.Scheduler.run" title="Permalink to this definition"></a></dt>
 <dd><p>Override the threading.Thread run method.  Loops until boolean quit property is True, issuing a database
 request to retrieve a list of people, which chains through successive replyto callbacks to process the
 ScheduleEntry’s for each person and kicks of jobs that present biometrics_tracking.gui.ScheduledEntryWindow
 instances</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -152,18 +221,18 @@ instances</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="biometrics_tracker.main.scheduler.run_scheduled_entry">
-<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.scheduler.</span></span><span class="sig-name descname"><span class="pre">run_scheduled_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.run_scheduled_entry" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.scheduler.</span></span><span class="sig-name descname"><span class="pre">run_scheduled_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.scheduler.run_scheduled_entry" title="Permalink to this definition"></a></dt>
 <dd><p>This method creates and runs an instance of biometrics_tracker.gui.ScheduledEntryWindow.  It is started as a
 separate process because the Tkinter event loop must be in the main thread.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>logger</strong> (<em>logging.Logger</em>) – a logger instance</p></li>
 <li><p><strong>entry</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.ScheduleEntry" title="biometrics_tracker.model.datapoints.ScheduleEntry"><em>biometrics_tracker.model.datapoints.ScheduleEntry</em></a>) – the ScheduleEntry that triggered the invocation of this method</p></li>
 <li><p><strong>log_msg</strong> (<em>str</em>) – a message to be written to the logger</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -172,85 +241,34 @@ separate process because the Tkinter event loop must be in the main thread.</p>
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">biometrics_tracker.main.scheduler module</a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler"><code class="docutils literal notranslate"><span class="pre">Scheduler</span></code></a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.check_response_queue"><code class="docutils literal notranslate"><span class="pre">Scheduler.check_response_queue()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.process_people"><code class="docutils literal notranslate"><span class="pre">Scheduler.process_people()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.process_schedule_entries"><code class="docutils literal notranslate"><span class="pre">Scheduler.process_schedule_entries()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_people"><code class="docutils literal notranslate"><span class="pre">Scheduler.retrieve_people()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.retrieve_schedules"><code class="docutils literal notranslate"><span class="pre">Scheduler.retrieve_schedules()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.Scheduler.run"><code class="docutils literal notranslate"><span class="pre">Scheduler.run()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#biometrics_tracker.main.scheduler.run_scheduled_entry"><code class="docutils literal notranslate"><span class="pre">run_scheduled_entry()</span></code></a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main-dispatcher.html" class="btn btn-neutral float-left" title="biometrics_tracker.main.dispatcher module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="config-createconfig.html" class="btn btn-neutral float-right" title="biometrics_tracker.config-createconfig module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Stroud Custer III.</p>
   </div>
-  <div>
-    <h4>Previous topic</h4>
-    <p class="topless"><a href="main-dispatcher.html"
-                          title="previous chapter">biometrics_tracker.main.dispatcher module</a></p>
-  </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="config-createconfig.html"
-                          title="next chapter">biometrics_tracker.config-createconfig module</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/main-scheduler.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="config-createconfig.html" title="biometrics_tracker.config-createconfig module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.scheduler module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, Stroud Custer III.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

@@ -1,49 +1,122 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
-    <title>biometrics_tracker.main.core module &#8212; Biometrics Tracking 1.2.2 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/traditional.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>biometrics_tracker.main.core module &mdash; Biometrics Tracking 1.3.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="biometrics_tracker.main.dispatcher module" href="main-dispatcher.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
-             accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" accesskey="U">API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.core module</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Biometrics Tracking
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">The MIT License (MIT)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="main.html">biometrics_tracker.main module - desktop application entry point</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">biometrics_tracker.main.core module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic"><code class="docutils literal notranslate"><span class="pre">CoreLogic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.check_completion_queue"><code class="docutils literal notranslate"><span class="pre">CoreLogic.check_completion_queue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.check_response_queue"><code class="docutils literal notranslate"><span class="pre">CoreLogic.check_response_queue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.close_db"><code class="docutils literal notranslate"><span class="pre">CoreLogic.close_db()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.config_info"><code class="docutils literal notranslate"><span class="pre">CoreLogic.config_info</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.delete_datapoint"><code class="docutils literal notranslate"><span class="pre">CoreLogic.delete_datapoint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.exit_app"><code class="docutils literal notranslate"><span class="pre">CoreLogic.exit_app()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.save_datapoint"><code class="docutils literal notranslate"><span class="pre">CoreLogic.save_datapoint()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#biometrics_tracker.main.core.DataPointSelection"><code class="docutils literal notranslate"><span class="pre">DataPointSelection</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="main-dispatcher.html">biometrics_tracker.main.dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main-scheduler.html">biometrics_tracker.main.scheduler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-createconfig.html">biometrics_tracker.config-createconfig module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-json_handler.html">biometrics_tracker.config.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config-logging_config.html">biometrics_tracker.config-logging_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-tk-gui.html">biometrics_tracker.gui.tk_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-widgets.html">biometrics_tracker.gui.widgets module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gui-validators.html">biometrics_tracker.gui.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-datapoints.html">biometrics_tracker.model.datapoints module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-exporters.html">biometrics_tracker.model.exporters module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-importers.html">biometrics_tracker.model.importers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-json_handler.html">biometrics_tracker.model.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-persistence.html">biometrics_tracker.model.persistence module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model-uoms.html">biometrics_tracker.model.uoms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output-reports.html">biometrics_tracker.output.reports module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-plugin.html">biometrics_tracker.plugin.plugin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugin-json_handler.html">biometrics_tracker.plugin.json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities-utilities.html">biometrics_tracker.utilities.utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-random_data.html">pytest tests.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-test_tools.html">pytest tests.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-random_data.html">pytest tests.model.random_data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_tools.html">pytest tests.model.test_tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-datapoints_fixtures.html">pytest tests.model.datapoint_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-persistence_fixtures.html">pytest tests.model.persistence_fixtures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_datapoints.html">pytest tests.model.test_datapoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_exporters.html">pytest tests.model.test_exporters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_json_handler.html">pytest tests.model.test_json_handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests-model-test_persistence.html">pytest tests.model.test_persistence</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Biometrics Tracking</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API</a></li>
+      <li class="breadcrumb-item active">biometrics_tracker.main.core module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/main-core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="biometrics-tracker-main-core-module">
-<span id="main-core"></span><h1>biometrics_tracker.main.core module<a class="headerlink" href="#biometrics-tracker-main-core-module" title="Permalink to this heading">¶</a></h1>
+<span id="main-core"></span><h1>biometrics_tracker.main.core module<a class="headerlink" href="#biometrics-tracker-main-core-module" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
@@ -51,16 +124,16 @@
 </div>
 <span class="target" id="module-biometrics_tracker.main.core"></span><dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.core.</span></span><span class="sig-name descname"><span class="pre">CoreLogic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.core.</span></span><span class="sig-name descname"><span class="pre">CoreLogic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_mgr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Queues</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class is intended to be subclassed by classes that will add and/or update Datapoints</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.check_completion_queue">
-<span class="sig-name descname"><span class="pre">check_completion_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.check_completion_queue" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check_completion_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.check_completion_queue" title="Permalink to this definition"></a></dt>
 <dd><p>Check the completion queue, invoke the Callable in the message’s destination property is it or the
 message object is not None</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -68,11 +141,11 @@ message object is not None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.check_response_queue">
-<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.check_response_queue" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">check_response_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.check_response_queue" title="Permalink to this definition"></a></dt>
 <dd><p>Check the database response queue, invoke the Callable in the message’s destination property is it or the
 message object is not None</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -80,10 +153,10 @@ message object is not None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.close_db">
-<span class="sig-name descname"><span class="pre">close_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.close_db" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">close_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.close_db" title="Permalink to this definition"></a></dt>
 <dd><p>Send a database request message to close the database and end the persistence thread</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -91,7 +164,7 @@ message object is not None</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.config_info">
-<span class="sig-name descname"><span class="pre">config_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></em><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.config_info" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">config_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="config-createconfig.html#biometrics_tracker.config.createconfig.ConfigInfo" title="biometrics_tracker.config.createconfig.ConfigInfo"><span class="pre">ConfigInfo</span></a></em><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.config_info" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>self.config_info.help_url = pathlib.Path(sys.path[-1:][0], ‘biometrics_tracker’, ‘help’,</dt><dd><p>‘user-doc-index.html’).as_uri()</p>
 </dd>
@@ -100,13 +173,13 @@ message object is not None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.delete_datapoint">
-<span class="sig-name descname"><span class="pre">delete_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datapoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyWeightDP" title="biometrics_tracker.model.datapoints.BodyWeightDP"><span class="pre">biometrics_tracker.model.datapoints.BodyWeightDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyTemperatureDP" title="biometrics_tracker.model.datapoints.BodyTemperatureDP"><span class="pre">biometrics_tracker.model.datapoints.BodyTemperatureDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodPressureDP" title="biometrics_tracker.model.datapoints.BloodPressureDP"><span class="pre">biometrics_tracker.model.datapoints.BloodPressureDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodGlucoseDP" title="biometrics_tracker.model.datapoints.BloodGlucoseDP"><span class="pre">biometrics_tracker.model.datapoints.BloodGlucoseDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.PulseDP" title="biometrics_tracker.model.datapoints.PulseDP"><span class="pre">biometrics_tracker.model.datapoints.PulseDP</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.delete_datapoint" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">delete_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datapoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyWeightDP" title="biometrics_tracker.model.datapoints.BodyWeightDP"><span class="pre">biometrics_tracker.model.datapoints.BodyWeightDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BodyTemperatureDP" title="biometrics_tracker.model.datapoints.BodyTemperatureDP"><span class="pre">biometrics_tracker.model.datapoints.BodyTemperatureDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodPressureDP" title="biometrics_tracker.model.datapoints.BloodPressureDP"><span class="pre">biometrics_tracker.model.datapoints.BloodPressureDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.BloodGlucoseDP" title="biometrics_tracker.model.datapoints.BloodGlucoseDP"><span class="pre">biometrics_tracker.model.datapoints.BloodGlucoseDP</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.PulseDP" title="biometrics_tracker.model.datapoints.PulseDP"><span class="pre">biometrics_tracker.model.datapoints.PulseDP</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.delete_datapoint" title="Permalink to this definition"></a></dt>
 <dd><p>Send a database request message to delete a specified datapoint</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>datapoint</strong> (<em>a subclass</em><em> of </em><em>biometrics_tracker.model.datapoint.DataPoint</em>) – the data point to be deleted</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -114,13 +187,13 @@ message object is not None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.exit_app">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exit_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompletionMsg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.exit_app" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exit_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompletionMsg</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.exit_app" title="Permalink to this definition"></a></dt>
 <dd><p>An abstract method that must be overridden to end the GUI event loop</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>msg</strong> – a Completion message, usually a response to a Close Database request</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -128,12 +201,12 @@ message object is not None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.CoreLogic.save_datapoint">
-<span class="sig-name descname"><span class="pre">save_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">taken</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BloodPressureWidget" title="biometrics_tracker.gui.widgets.BloodPressureWidget"><span class="pre">BloodPressureWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PulseWidget" title="biometrics_tracker.gui.widgets.PulseWidget"><span class="pre">PulseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BloodGlucoseWidget" title="biometrics_tracker.gui.widgets.BloodGlucoseWidget"><span class="pre">BloodGlucoseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BodyWeightWidget" title="biometrics_tracker.gui.widgets.BodyWeightWidget"><span class="pre">BodyWeightWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BodyTempWidget" title="biometrics_tracker.gui.widgets.BodyTempWidget"><span class="pre">BodyTempWidget</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_if_zero</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_operation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DBOperation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.save_datapoint" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">save_datapoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">person</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><span class="pre">Person</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">taken</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BloodPressureWidget" title="biometrics_tracker.gui.widgets.BloodPressureWidget"><span class="pre">BloodPressureWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.PulseWidget" title="biometrics_tracker.gui.widgets.PulseWidget"><span class="pre">PulseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BloodGlucoseWidget" title="biometrics_tracker.gui.widgets.BloodGlucoseWidget"><span class="pre">BloodGlucoseWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BodyWeightWidget" title="biometrics_tracker.gui.widgets.BodyWeightWidget"><span class="pre">BodyWeightWidget</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="gui-widgets.html#biometrics_tracker.gui.widgets.BodyTempWidget" title="biometrics_tracker.gui.widgets.BodyTempWidget"><span class="pre">BodyTempWidget</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_if_zero</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_operation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DBOperation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.CoreLogic.save_datapoint" title="Permalink to this definition"></a></dt>
 <dd><p>Inserts or updates the database with datapoint property of the provided datapoint widget if
 the value fields(s) of the widget are non-zero.  If the value field(s) are zero and the
 delete_if_zero parameter is True, the datapoint is deleted from the database</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>person</strong> (<a class="reference internal" href="model-datapoints.html#biometrics_tracker.model.datapoints.Person" title="biometrics_tracker.model.datapoints.Person"><em>biometrics_tracker.model.datapoints.Person</em></a>) – the person associated with the datapoint</p></li>
 <li><p><strong>taken</strong> (<em>datetime.datetime</em>) – the datetime associated withe datapoint</p></li>
@@ -144,7 +217,7 @@ This allows the user to delete an existing datapoint by changing it’s value fi
 <li><p><strong>key_timestamp</strong> (<em>datetime</em>) – for DataPoint updates only: the Taken datetime prior to possible change by user</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dt class="field-even">Returns</dt>
 <dd class="field-even"><p>None</p>
 </dd>
 </dl>
@@ -154,7 +227,7 @@ This allows the user to delete an existing datapoint by changing it’s value fi
 
 <dl class="py class">
 <dt class="sig sig-object py" id="biometrics_tracker.main.core.DataPointSelection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.core.</span></span><span class="sig-name descname"><span class="pre">DataPointSelection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic" title="biometrics_tracker.main.core.CoreLogic"><span class="pre">CoreLogic</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">people_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_date_rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_dp_type_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.DataPointSelection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">biometrics_tracker.main.core.</span></span><span class="sig-name descname"><span class="pre">DataPointSelection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic" title="biometrics_tracker.main.core.CoreLogic"><span class="pre">CoreLogic</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">people_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_date_rng</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sel_dp_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_date_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_dp_type_selection</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#biometrics_tracker.main.core.DataPointSelection" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A GUI framework agnostic class to act as a container for the selection criteria collected by
 in inheriting class the implements the selection GUI in a particular GUI framework</p>
@@ -163,78 +236,33 @@ in inheriting class the implements the selection GUI in a particular GUI framewo
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <div>
-    <h3><a href="index.html">Table of Contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">biometrics_tracker.main.core module</a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic"><code class="docutils literal notranslate"><span class="pre">CoreLogic</span></code></a><ul>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.check_completion_queue"><code class="docutils literal notranslate"><span class="pre">CoreLogic.check_completion_queue()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.check_response_queue"><code class="docutils literal notranslate"><span class="pre">CoreLogic.check_response_queue()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.close_db"><code class="docutils literal notranslate"><span class="pre">CoreLogic.close_db()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.config_info"><code class="docutils literal notranslate"><span class="pre">CoreLogic.config_info</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.delete_datapoint"><code class="docutils literal notranslate"><span class="pre">CoreLogic.delete_datapoint()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.exit_app"><code class="docutils literal notranslate"><span class="pre">CoreLogic.exit_app()</span></code></a></li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.CoreLogic.save_datapoint"><code class="docutils literal notranslate"><span class="pre">CoreLogic.save_datapoint()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#biometrics_tracker.main.core.DataPointSelection"><code class="docutils literal notranslate"><span class="pre">DataPointSelection</span></code></a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="main-dispatcher.html" class="btn btn-neutral float-right" title="biometrics_tracker.main.dispatcher module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Stroud Custer III.</p>
   </div>
-  <div>
-    <h4>Next topic</h4>
-    <p class="topless"><a href="main-dispatcher.html"
-                          title="next chapter">biometrics_tracker.main.dispatcher module</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/main-core.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="main-dispatcher.html" title="biometrics_tracker.main.dispatcher module"
-             >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Biometrics Tracking 1.2.2 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="api.html" >API</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">biometrics_tracker.main.core module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2022, Stroud Custer III.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
