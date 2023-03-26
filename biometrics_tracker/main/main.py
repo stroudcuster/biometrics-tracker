@@ -201,7 +201,7 @@ class Launcher:
 
 def launch():
     """
-    Check for a configuration file.  If one is found, launch the Biometrics Tracking GUI or Scheduler of Config GUI,
+    Check for a configuration file.  If one is found, launch the Biometrics Tracking GUI or Scheduler or Config GUI,
     according to the command line argument.  If not, launch the Config GUI
 
     """
